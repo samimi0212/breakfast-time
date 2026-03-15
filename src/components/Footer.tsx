@@ -15,7 +15,7 @@ const Footer = () => (
             Livraison en 30 min · 7j/7 de 7h à 15h · Alpes-Maritimes
           </p>
         </div>
-        
+        <a
           href="/carte"
           className="flex-shrink-0 px-8 py-3.5 rounded-full font-semibold text-sm transition-all hover:scale-105"
           style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
