@@ -1,30 +1,66 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/lib/supabase";
 import logo from "@/assets/logo.png";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setError("");
+  };
+
+  const handleSubmit = async () => {
+    if (!form.email || !form.password) {
+      setError("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: form.email,
+      password: form.password,
+    });
+
+    setLoading(false);
+    if (error) {
+      setError("Email ou mot de passe incorrect.");
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        {/* Logo */}
         <div className="text-center mb-8">
           <a href="/">
             <img src={logo} alt="Breakfast Time" className="h-20 w-auto mx-auto" />
           </a>
         </div>
 
-        {/* Card */}
         <div className="bg-white rounded-3xl p-8 shadow-lg">
           <h1 className="font-display text-2xl font-bold text-center mb-2">Bon retour !</h1>
-          <p className="text-muted-foreground text-center text-sm mb-8">
-            Connectez-vous à votre compte
-          </p>
+          <p className="text-muted-foreground text-center text-sm mb-8">Connectez-vous à votre compte</p>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl px-4 py-3 mb-4">
+              {error}
+            </div>
+          )}
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">
-                Email
-              </label>
+              <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
               <input
+                name="email"
                 type="email"
+                value={form.email}
+                onChange={handleChange}
                 placeholder="votre@email.com"
                 className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
               />
@@ -32,22 +68,31 @@ const Login = () => {
 
             <div>
               <div className="flex justify-between items-center mb-1.5">
-                <label className="block text-sm font-medium text-foreground">
-                  Mot de passe
-                </label>
+                <label className="block text-sm font-medium text-foreground">Mot de passe</label>
                 <a href="#" className="text-xs text-primary hover:underline">
                   Mot de passe oublié ?
                 </a>
               </div>
               <input
+                name="password"
                 type="password"
+                value={form.password}
+                onChange={handleChange}
                 placeholder="••••••••"
                 className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
               />
             </div>
 
-            <button className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity mt-2">
-              Se connecter
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
+            >
+              {loading ? (
+                <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
+              ) : (
+                "Se connecter"
+              )}
             </button>
           </div>
 
