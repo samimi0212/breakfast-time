@@ -85,7 +85,10 @@ const CartePage = () => {
     const t = searchParams.get("tab");
     return t === "carte" ? "carte" : "menus";
   });
-  const [catActive, setCatActive] = useState("Viennoiseries");
+  const [catActive, setCatActive] = useState(() => {
+  const cat = searchParams.get("cat");
+  return cat || "Viennoiseries";
+});
 
   useEffect(() => {
     window.scrollTo(0, 0);
