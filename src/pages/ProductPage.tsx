@@ -10,6 +10,10 @@ const ProductPage = () => {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   const product = allProducts.find((p) => p.id === id);
 
   if (!product) {
@@ -30,16 +34,13 @@ const ProductPage = () => {
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const related = allProducts
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 3);
+  const related = allProducts.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       <div className="pt-24 pb-16 px-6 max-w-6xl mx-auto">
-
         {/* Retour */}
         <button
           onClick={() => navigate(-1)}
@@ -51,15 +52,10 @@ const ProductPage = () => {
 
         {/* Produit principal */}
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
-
           {/* Image */}
           <div className="relative">
             <div className="aspect-square rounded-3xl overflow-hidden bg-muted">
-              <img
-                src={product.img}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
+              <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
             </div>
             {/* Badge catégorie */}
             <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
@@ -69,25 +65,16 @@ const ProductPage = () => {
 
           {/* Infos */}
           <div className="flex flex-col gap-6">
-
             {/* Titre + prix */}
             <div>
-              <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">
-                {product.category}
-              </p>
-              <h1 className="font-display text-4xl lg:text-5xl font-bold leading-tight mb-4">
-                {product.name}
-              </h1>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {product.desc}
-              </p>
+              <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">{product.category}</p>
+              <h1 className="font-display text-4xl lg:text-5xl font-bold leading-tight mb-4">{product.name}</h1>
+              <p className="text-muted-foreground text-lg leading-relaxed">{product.desc}</p>
             </div>
 
             {/* Prix */}
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-display font-bold text-primary">
-                {product.price}
-              </span>
+              <span className="text-4xl font-display font-bold text-primary">{product.price}</span>
               <span className="text-muted-foreground text-sm">/ personne</span>
             </div>
 
@@ -131,9 +118,7 @@ const ProductPage = () => {
               <button
                 onClick={handleAdd}
                 className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 ${
-                  added
-                    ? "bg-green-500 text-white"
-                    : "bg-primary text-primary-foreground hover:opacity-90"
+                  added ? "bg-green-500 text-white" : "bg-primary text-primary-foreground hover:opacity-90"
                 }`}
               >
                 {added ? (
@@ -144,7 +129,8 @@ const ProductPage = () => {
                 ) : (
                   <>
                     <ShoppingBag size={20} />
-                    Ajouter au panier — {(parseFloat(product.price.replace("€", "").replace(",", ".")) * qty).toFixed(2).replace(".", ",")}€
+                    Ajouter au panier —{" "}
+                    {(parseFloat(product.price.replace("€", "").replace(",", ".")) * qty).toFixed(2).replace(".", ",")}€
                   </>
                 )}
               </button>
@@ -153,18 +139,17 @@ const ProductPage = () => {
             {/* Livraison */}
             <div className="flex items-center gap-3 text-sm text-muted-foreground border border-border rounded-2xl px-4 py-3">
               <span className="text-xl">🚴</span>
-              <span>Livré en <strong className="text-foreground">30 minutes</strong> · Alpes-Maritimes · 7j/7 de 7h à 15h</span>
+              <span>
+                Livré en <strong className="text-foreground">30 minutes</strong> · Alpes-Maritimes · 7j/7 de 7h à 15h
+              </span>
             </div>
-
           </div>
         </div>
 
         {/* Produits similaires */}
         {related.length > 0 && (
           <div className="mt-20">
-            <h2 className="font-display text-2xl font-semibold mb-8">
-              Vous aimerez aussi
-            </h2>
+            <h2 className="font-display text-2xl font-semibold mb-8">Vous aimerez aussi</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((item) => (
                 <div
