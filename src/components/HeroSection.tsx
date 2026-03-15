@@ -67,7 +67,7 @@ const HeroSection = () => (
           >
             Découvrir la carte
           </a>
-          
+          <a
             href="#how"
             className="border-2 px-8 py-4 rounded-full text-lg font-semibold transition-colors hover:bg-card/10"
             style={{ borderColor: "hsl(0 0% 100% / 0.3)", color: "hsl(0 0% 100%)" }}
