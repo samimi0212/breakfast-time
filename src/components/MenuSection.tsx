@@ -67,6 +67,7 @@ const MenuSection = () => {
             ))}
             {/* Overlay dégradé */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          </div>
 
           {/* Droite — Options */}
           <div className="flex flex-col gap-4">
