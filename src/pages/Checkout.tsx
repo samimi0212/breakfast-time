@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingBag, CreditCard, Clock, MapPin, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { supabase } from "@/lib/supabase";
 import Navbar from "@/components/Navbar";
 
 // Génère les créneaux horaires disponibles
@@ -89,11 +90,37 @@ const Checkout = () => {
   const handleSubmit = async () => {
     if (!validate()) return;
     setLoading(true);
-    // Stripe sera intégré ici
-    setTimeout(() => {
-      setLoading(false);
-      alert("Redirection vers Stripe... (à connecter)");
-    }, 1000);
+
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    const { error } = await supabase.from("commandes").insert({
+      user_id: session?.user?.id || null,
+      user_email: form.email,
+      user_prenom: form.prenom,
+      user_nom: form.nom,
+      user_telephone: form.telephone,
+      adresse: form.adresse,
+      ville: form.ville,
+      code_postal: form.codePostal,
+      date_livraison: form.date,
+      heure_livraison: form.heure,
+      note: form.note,
+      items: items,
+      total: total,
+      statut: "En attente",
+    });
+
+    setLoading(false);
+
+    if (error) {
+      setErrors({ general: "Une erreur est survenue. Veuillez réessayer." });
+      return;
+    }
+
+    clearCart();
+    navigate("/confirmation");
   };
 
   const inputClass = (field: string) =>
@@ -106,7 +133,6 @@ const Checkout = () => {
       <Navbar />
 
       <div className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
-
         {/* Retour */}
         <button
           onClick={() => navigate("/panier")}
@@ -119,10 +145,8 @@ const Checkout = () => {
         <h1 className="font-display text-3xl font-bold mb-8">Finaliser la commande</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
-
           {/* Formulaire */}
           <div className="lg:col-span-2 space-y-6">
-
             {/* Coordonnées */}
             <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
               <div className="flex items-center gap-3 mb-5">
@@ -134,22 +158,48 @@ const Checkout = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Prénom</label>
-                  <input name="prenom" value={form.prenom} onChange={handleChange} placeholder="Marie" className={inputClass("prenom")} />
+                  <input
+                    name="prenom"
+                    value={form.prenom}
+                    onChange={handleChange}
+                    placeholder="Marie"
+                    className={inputClass("prenom")}
+                  />
                   {errors.prenom && <p className="text-red-400 text-xs mt-1">{errors.prenom}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Nom</label>
-                  <input name="nom" value={form.nom} onChange={handleChange} placeholder="Dupont" className={inputClass("nom")} />
+                  <input
+                    name="nom"
+                    value={form.nom}
+                    onChange={handleChange}
+                    placeholder="Dupont"
+                    className={inputClass("nom")}
+                  />
                   {errors.nom && <p className="text-red-400 text-xs mt-1">{errors.nom}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Email</label>
-                  <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="marie@email.com" className={inputClass("email")} />
+                  <input
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="marie@email.com"
+                    className={inputClass("email")}
+                  />
                   {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Téléphone</label>
-                  <input name="telephone" type="tel" value={form.telephone} onChange={handleChange} placeholder="+33 6 00 00 00 00" className={inputClass("telephone")} />
+                  <input
+                    name="telephone"
+                    type="tel"
+                    value={form.telephone}
+                    onChange={handleChange}
+                    placeholder="+33 6 00 00 00 00"
+                    className={inputClass("telephone")}
+                  />
                   {errors.telephone && <p className="text-red-400 text-xs mt-1">{errors.telephone}</p>}
                 </div>
               </div>
@@ -166,18 +216,36 @@ const Checkout = () => {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Adresse</label>
-                  <input name="adresse" value={form.adresse} onChange={handleChange} placeholder="12 rue des Fleurs" className={inputClass("adresse")} />
+                  <input
+                    name="adresse"
+                    value={form.adresse}
+                    onChange={handleChange}
+                    placeholder="12 rue des Fleurs"
+                    className={inputClass("adresse")}
+                  />
                   {errors.adresse && <p className="text-red-400 text-xs mt-1">{errors.adresse}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Ville</label>
-                    <input name="ville" value={form.ville} onChange={handleChange} placeholder="Nice" className={inputClass("ville")} />
+                    <input
+                      name="ville"
+                      value={form.ville}
+                      onChange={handleChange}
+                      placeholder="Nice"
+                      className={inputClass("ville")}
+                    />
                     {errors.ville && <p className="text-red-400 text-xs mt-1">{errors.ville}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Code postal</label>
-                    <input name="codePostal" value={form.codePostal} onChange={handleChange} placeholder="06000" className={inputClass("codePostal")} />
+                    <input
+                      name="codePostal"
+                      value={form.codePostal}
+                      onChange={handleChange}
+                      placeholder="06000"
+                      className={inputClass("codePostal")}
+                    />
                     {errors.codePostal && <p className="text-red-400 text-xs mt-1">{errors.codePostal}</p>}
                   </div>
                 </div>
@@ -211,7 +279,9 @@ const Checkout = () => {
                       <option value="">Aucun créneau disponible</option>
                     ) : (
                       slots.map((s) => (
-                        <option key={s} value={s}>{s}</option>
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
                       ))
                     )}
                   </select>
@@ -235,7 +305,6 @@ const Checkout = () => {
                 className="w-full px-4 py-3 rounded-xl border-2 border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition resize-none"
               />
             </div>
-
           </div>
 
           {/* Récapitulatif */}
@@ -258,7 +327,10 @@ const Checkout = () => {
                       <p className="text-xs text-muted-foreground">x{item.qty}</p>
                     </div>
                     <p className="text-sm font-bold text-primary flex-shrink-0">
-                      {(parseFloat(item.price.replace("€", "").replace(",", ".")) * item.qty).toFixed(2).replace(".", ",")}€
+                      {(parseFloat(item.price.replace("€", "").replace(",", ".")) * item.qty)
+                        .toFixed(2)
+                        .replace(".", ",")}
+                      €
                     </p>
                   </div>
                 ))}
@@ -300,7 +372,6 @@ const Checkout = () => {
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
