@@ -36,14 +36,14 @@ const Footer = () => (
             Des petits-déjeuners et brunchs d'exception livrés chez vous dans les Alpes-Maritimes.
           </p>
           <div className="flex gap-3 mt-6">
-            
+            <a
               href="#"
               className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
               style={{ backgroundColor: "rgba(223,240,87,0.15)" }}
             >
               <Instagram size={18} style={{ color: "#DFF057" }} />
             </a>
-            
+            <a
               href="#"
               className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
               style={{ backgroundColor: "rgba(223,240,87,0.15)" }}
