@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 export interface CartItem {
   id: string;
@@ -22,12 +22,23 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useState<CartItem[]>(() => {
+    try {
+      const saved = localStorage.getItem("breakfast-cart");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("breakfast-cart", JSON.stringify(items));
+  }, [items]);
 
   const addItem = (item: CartItem) => {
     setItems((prev) => {
       const existing = prev.findIndex(
-        (i) => i.id === item.id && JSON.stringify(i.options) === JSON.stringify(item.options)
+        (i) => i.id === item.id && JSON.stringify(i.options) === JSON.stringify(item.options),
       );
       if (existing !== -1) {
         const updated = [...prev];
@@ -43,9 +54,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateQty = (index: number, qty: number) => {
-    setItems((prev) =>
-      prev.map((item, i) => (i === index ? { ...item, qty } : item))
-    );
+    setItems((prev) => prev.map((item, i) => (i === index ? { ...item, qty } : item)));
   };
 
   const clearCart = () => setItems([]);
