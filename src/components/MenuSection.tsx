@@ -68,20 +68,6 @@ const MenuSection = () => {
             {/* Overlay dégradé */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
-            {/* Indicateurs */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-              {visuals.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveImg(i)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    activeImg === i ? "w-6 bg-white" : "bg-white/50"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
           {/* Droite — Options */}
           <div className="flex flex-col gap-4">
             {options.map((option, i) => (
