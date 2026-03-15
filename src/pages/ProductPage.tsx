@@ -9,10 +9,22 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const [selections, setSelections] = useState<Record<string, string>>({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setSelections({});
   }, [id]);
+
+  const product = allProducts.find((p) => p.id === id);
+
+  const allSelected = product?.options
+    ? product.options.filter((o) => o.required).every((o) => selections[o.id])
+    : true;
+
+  const handleSelect = (optionId: string, choice: string) => {
+    setSelections((prev) => ({ ...prev, [optionId]: choice }));
+  };
 
   const product = allProducts.find((p) => p.id === id);
 
@@ -95,6 +107,39 @@ const ProductPage = () => {
               </div>
             )}
 
+            {/* Options */}
+            {product.options && product.options.length > 0 && (
+              <div className="space-y-5">
+                {product.options.map((option) => (
+                  <div key={option.id}>
+                    <div className="flex items-center gap-2 mb-3">
+                      <h3 className="font-display font-semibold text-lg">{option.label}</h3>
+                      {option.required && (
+                        <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">
+                          Obligatoire
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {option.choices.map((choice) => (
+                        <button
+                          key={choice}
+                          onClick={() => handleSelect(option.id, choice)}
+                          className={`px-4 py-2.5 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
+                            selections[option.id] === choice
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
+                          }`}
+                        >
+                          {choice}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Quantité + Ajouter */}
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Quantité */}
@@ -117,14 +162,24 @@ const ProductPage = () => {
               {/* Bouton ajouter */}
               <button
                 onClick={handleAdd}
+                disabled={!allSelected}
                 className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 ${
-                  added ? "bg-green-500 text-white" : "bg-primary text-primary-foreground hover:opacity-90"
+                  added
+                    ? "bg-green-500 text-white"
+                    : allSelected
+                      ? "bg-primary text-primary-foreground hover:opacity-90"
+                      : "bg-muted text-muted-foreground cursor-not-allowed"
                 }`}
               >
                 {added ? (
                   <>
                     <Check size={20} />
                     Ajouté !
+                  </>
+                ) : !allSelected ? (
+                  <>
+                    <ShoppingBag size={20} />
+                    Veuillez compléter vos choix
                   </>
                 ) : (
                   <>

@@ -1,3 +1,10 @@
+export interface ProductOption {
+  id: string;
+  label: string;
+  required: boolean;
+  choices: string[];
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -6,19 +13,41 @@ export interface Product {
   category: string;
   composition: string[];
   desc: string;
+  options?: ProductOption[];
 }
 
 export const allProducts: Product[] = [
   // ---- NOS MENUS ----
   {
-    id: "menu-francais",
-    name: "Menu Français",
-    price: "12,90€",
-    category: "Nos Menus",
-    img: "https://static.wixstatic.com/media/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png",
-    desc: "Le classique à la française pour bien commencer la journée.",
-    composition: ["1/2 baguette", "1 beurre", "1 confiture", "1 viennoiserie", "1 jus frais"],
-  },
+    {
+  id: "menu-francais",
+  name: "Menu Français",
+  price: "12,90€",
+  category: "Nos Menus",
+  img: "https://static.wixstatic.com/media/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png",
+  desc: "Le classique à la française pour bien commencer la journée.",
+  composition: ["1/2 baguette", "1 beurre", "1 confiture", "1 viennoiserie", "1 jus frais"],
+  options: [
+    {
+      id: "viennoiserie",
+      label: "Viennoiserie",
+      required: true,
+      choices: ["Croissant", "Pain au chocolat"],
+    },
+    {
+      id: "confiture",
+      label: "Confiture",
+      required: true,
+      choices: ["Fraise", "Abricot", "Nutella"],
+    },
+    {
+      id: "jus",
+      label: "Jus frais",
+      required: true,
+      choices: ["Orange", "Pomme", "Ananas"],
+    },
+  ],
+},
   {
     id: "menu-anglais",
     name: "Menu Anglais",
