@@ -26,6 +26,7 @@ const ProductPage = () => {
     setSelections((prev) => ({ ...prev, [optionId]: choice }));
   };
 
+  const product = allProducts.find((p) => p.id === id);
 
   if (!product) {
     return (
@@ -189,8 +190,8 @@ const ProductPage = () => {
                   </>
                 ) : !allSelected ? (
                   <>
-                    <ShoppingBag size={20} />
-                    Veuillez compléter vos choix
+                    <ShoppingBag size={18} />
+                    Compléter vos choix
                   </>
                 ) : (
                   <>
