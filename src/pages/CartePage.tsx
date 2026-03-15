@@ -219,10 +219,10 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
   return (
     <div
       onClick={() => navigate(`/produit/${id}`)}
-      className="bg-card rounded-2xl overflow-hidden hover-lift group cursor-pointer"
+      className="bg-card rounded-2xl overflow-hidden hover-lift group cursor-pointer max-w-xs mx-auto w-full"
       style={{ boxShadow: "var(--card-shadow)" }}
     >
-      <div className="relative overflow-hidden aspect-[4/3]">
+      <div className="relative overflow-hidden aspect-square">
         <img
           src={img}
           alt={name}
