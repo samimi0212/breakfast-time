@@ -230,12 +230,12 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
           loading="lazy"
         />
       </div>
-      <div className="p-5">
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="font-display text-lg font-semibold">{name}</h3>
-          <span className="text-primary font-bold text-lg">{price}</span>
+      <div className="p-4 flex flex-col" style={{ minHeight: "100px" }}>
+        <div className="flex items-start justify-between gap-2 mb-3 flex-1">
+          <h3 className="font-display text-base font-semibold leading-tight">{name}</h3>
+          <span className="text-primary font-bold text-base flex-shrink-0">{price}</span>
         </div>
-        <button className="w-full border-2 border-primary text-primary py-2.5 rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-colors text-sm">
+        <button className="w-full border-2 border-primary text-primary py-2 rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-colors text-sm mt-auto">
           Voir le produit →
         </button>
       </div>
