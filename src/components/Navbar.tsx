@@ -34,13 +34,13 @@ const Navbar = () => {
 
         {/* Droite — Connexion / S'inscrire / Panier */}
         <div className="flex-1 flex justify-end items-center gap-3">
-          
+          <a
             href="/connexion"
             className="hidden md:block text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
           >
             Connexion
           </a>
-          
+          <a
             href="/inscription"
             className="hidden md:block bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
           >
