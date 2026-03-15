@@ -26,6 +26,7 @@ const ProductPage = () => {
     setSelections((prev) => ({ ...prev, [optionId]: choice }));
   };
 
+  const product = allProducts.find((p) => p.id === id);
 
   if (!product) {
     return (
@@ -94,14 +95,26 @@ const ProductPage = () => {
               <div className="bg-muted rounded-2xl p-5">
                 <h3 className="font-display font-semibold text-lg mb-3">Composition</h3>
                 <ul className="space-y-2">
-                  {product.composition.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm text-foreground/80">
-                      <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
-                        <Check size={12} className="text-primary" />
-                      </span>
-                      {item}
-                    </li>
-                  ))}
+                  {product.composition.map((item, i) => {
+                    const hasChoice = item.includes("au choix");
+                    const cleanItem = item.replace(" au choix", "");
+                    return (
+                      <li key={i} className="flex items-center gap-3 text-sm text-foreground/80">
+                        <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+                          <Check size={12} className="text-primary" />
+                        </span>
+                        <span>{cleanItem}</span>
+                        {hasChoice && (
+                          <span
+                            className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                            style={{ backgroundColor: "#DFF057", color: "#5a5a1a" }}
+                          >
+                            au choix
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
