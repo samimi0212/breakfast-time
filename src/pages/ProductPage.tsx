@@ -26,7 +26,6 @@ const ProductPage = () => {
     setSelections((prev) => ({ ...prev, [optionId]: choice }));
   };
 
-  const product = allProducts.find((p) => p.id === id);
 
   if (!product) {
     return (
