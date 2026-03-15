@@ -61,13 +61,13 @@ const HeroSection = () => (
           className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up"
           style={{ animationDelay: "0.7s" }}
         >
-          
+          <a
             href="#menu"
             className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity"
           >
             Découvrir la carte
           </a>
-          
+          <a
             href="#how"
             className="border-2 px-8 py-4 rounded-full text-lg font-semibold transition-colors hover:bg-card/10"
             style={{ borderColor: "hsl(0 0% 100% / 0.3)", color: "hsl(0 0% 100%)" }}
