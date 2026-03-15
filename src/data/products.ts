@@ -19,13 +19,14 @@ export interface Product {
 export const allProducts: Product[] = [
   // ---- NOS MENUS ----
   {
+    {
   id: "menu-francais",
   name: "Menu Français",
   price: "12,90€",
   category: "Nos Menus",
   img: "https://static.wixstatic.com/media/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png",
   desc: "Le classique à la française pour bien commencer la journée.",
-  composition: ["1/2 baguette", "1 beurre", "1 confiture", "1 viennoiserie", "1 jus frais"],
+  composition: ["1/2 baguette", "1 beurre", "1 confiture/Nutella au choix", "1 viennoiserie au choix", "1 jus frais au choix"],
   options: [
     {
       id: "viennoiserie",
