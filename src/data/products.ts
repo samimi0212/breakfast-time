@@ -19,7 +19,6 @@ export interface Product {
 export const allProducts: Product[] = [
   // ---- NOS MENUS ----
   {
-    {
   id: "menu-francais",
   name: "Menu Français",
   price: "12,90€",
