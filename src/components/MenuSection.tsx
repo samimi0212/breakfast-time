@@ -27,7 +27,7 @@ const options = [
     title: "Plateaux & Planches",
     desc: "Pour un moment à plusieurs — plateaux de viennoiseries, planches de fromages ou de charcuterie. Posez au centre, profitez ensemble.",
     cta: "Découvrir",
-    link: "/carte?tab=carte",
+    link: "/carte?tab=carte&cat=À Partager",
     imgIndex: 2,
   },
 ];
