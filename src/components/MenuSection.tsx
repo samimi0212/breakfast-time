@@ -7,8 +7,8 @@ const MenuSection = () => {
   const [activeImg, setActiveImg] = useState(0);
 
   const visuals = [
-  "https://static.wixstatic.com/media/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png",
-];
+    "https://static.wixstatic.com/media/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png",
+  ];
 
   const options = [
     {
@@ -104,6 +104,12 @@ const MenuSection = () => {
                       {option.cta}
                       <ArrowRight size={14} />
                     </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* CTA bas */}
         <div className="text-center mt-12">
