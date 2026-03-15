@@ -148,6 +148,7 @@ const MenuSection = () => {
             Plus de 30 produits disponibles · Livraison gratuite · 7j/7
           </p>
           
+          <a
             href="#menu"
             onClick={() => navigate("/carte")}
             className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
