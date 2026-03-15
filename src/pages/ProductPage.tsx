@@ -1,3 +1,4 @@
+import { useCart } from "@/context/CartContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowLeft, ShoppingBag, Check, Minus, Plus } from "lucide-react";
@@ -9,6 +10,7 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const { addItem } = useCart();
   const [selections, setSelections] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -26,6 +28,8 @@ const ProductPage = () => {
     setSelections((prev) => ({ ...prev, [optionId]: choice }));
   };
 
+  const product = allProducts.find((p) => p.id === id);
+
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -40,6 +44,15 @@ const ProductPage = () => {
   }
 
   const handleAdd = () => {
+    if (!allSelected) return;
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      qty,
+      options: selections,
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
