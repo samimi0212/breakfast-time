@@ -6,6 +6,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import AboutSection from "@/components/AboutSection";
 import DeliveryZone from "@/components/DeliveryZone";
+import EventsPromo from "@/components/EventsPromo";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ const Index = () => (
       <Testimonials />
       <AboutSection />
       <DeliveryZone />
+      <EventsPromo />
       <FinalCTA />
     </main>
     <Footer />
