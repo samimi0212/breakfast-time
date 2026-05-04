@@ -52,7 +52,7 @@ const HeroSection = () => (
           className="text-lg md:text-xl mb-10 animate-fade-up"
           style={{ animationDelay: "0.5s", color: "hsl(0 0% 100% / 0.8)" }}
         >
-          Des petits-déjeuners et brunchs d'exception, livrés chez vous en 30 minutes. Alpes-Maritimes, 7j/7.
+          Des petits-déjeuners et brunchs, livrés chez vous en moins de 45 minutes. Alpes-Maritimes, 7j/7.
         </p>
 
         <div
