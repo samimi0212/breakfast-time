@@ -28,7 +28,7 @@ export const handler = async (event: any) => {
 
     // Email à l'admin
     await resend.emails.send({
-      from: "Breakfast Time <noreply@resend.dev>",
+      from: "Breakfast Time <noreply@immo-score.fr>",
       to: "contact@breakfast-time.fr",
       subject: `Nouvelle demande de devis - ${eventTypeLabels[data.eventType]}`,
       html: `
@@ -52,7 +52,7 @@ export const handler = async (event: any) => {
 
     // Email de confirmation au client
     await resend.emails.send({
-      from: "Breakfast Time <noreply@resend.dev>",
+      from: "Breakfast Time <noreply@immo-score.fr>",
       to: data.email,
       subject: "Votre demande de devis - Breakfast Time",
       html: `
