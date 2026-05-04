@@ -42,7 +42,7 @@ const EventsPromo = () => {
             </p>
 
             <button
-              onClick={() => navigate("/carte?tab=evenements")}
+              onClick={() => navigate("/evenements")}
               className="flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-sm transition-all hover:scale-105 w-fit"
               style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
             >
@@ -57,7 +57,7 @@ const EventsPromo = () => {
                 key={label}
                 className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl text-center cursor-pointer hover:scale-105 transition-transform duration-200"
                 style={{ backgroundColor: "rgba(223, 240, 87, 0.08)", border: "1px solid rgba(223, 240, 87, 0.15)" }}
-                onClick={() => navigate("/carte?tab=evenements")}
+                onClick={() => navigate("/evenements")}
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center"
