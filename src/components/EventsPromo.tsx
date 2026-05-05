@@ -19,7 +19,7 @@ const formules = [
   },
   {
     label: "Groupe",
-    tag: "Anniversaire & retrouvailles",
+    tag: "Anniversaire & occasions",
     price: "À partir de 8€/pers.",
     image: brunchGroupe,
   },
@@ -53,14 +53,6 @@ const EventsPromo = () => {
             </h2>
           </div>
 
-          <button
-            onClick={() => navigate("/evenements")}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold transition-all hover:scale-105 whitespace-nowrap self-start md:self-auto"
-            style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
-          >
-            Voir toutes les formules
-            <ArrowRight size={15} />
-          </button>
         </div>
 
         {/* Cards photos */}
