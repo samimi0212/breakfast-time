@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import AboutSection from "@/components/AboutSection";
 import DeliveryZone from "@/components/DeliveryZone";
 import EventsPromo from "@/components/EventsPromo";
+import OrderOnline from "@/components/OrderOnline";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -16,6 +17,7 @@ const Index = () => (
     <main>
       <HeroSection />
       <MenuSection />
+      <OrderOnline />
       <EventsPromo />
       <HowItWorks />
       <WhyChooseUs />
