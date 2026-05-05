@@ -43,7 +43,7 @@ const EventBookingForm = () => {
     setError("");
 
     try {
-      const response = await fetch("/.netlify/functions/send-event-email", {
+      const response = await fetch("/api/send-event-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -44,7 +44,7 @@ const PhoneAppointmentForm = ({ onClose }: { onClose: () => void }) => {
     setError("");
 
     try {
-      const response = await fetch("/.netlify/functions/send-appointment-email", {
+      const response = await fetch("/api/send-appointment-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
