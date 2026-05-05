@@ -46,7 +46,7 @@ const OrderOnline = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
-          style={{ backgroundColor: "#00CCBC", color: "white" }}
+          style={{ backgroundColor: "hsl(61, 45%, 42%)", color: "white" }}
         >
           Deliveroo
         </a>
@@ -54,8 +54,8 @@ const OrderOnline = () => (
           href="#"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold border-2 transition-all hover:scale-105"
-          style={{ backgroundColor: "white", color: "#1a1a1a" }}
+          className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
+          style={{ backgroundColor: "hsl(61, 45%, 42%)", color: "white" }}
         >
           Uber Eats
         </a>
