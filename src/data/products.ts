@@ -94,6 +94,15 @@ export const allProducts: Product[] = [
     composition: ["Farine", "Beurre pur", "Levure", "Sel", "Sucre"],
   },
   {
+    id: "pain-au-chocolat",
+    name: "Pain au chocolat",
+    price: "1,60€",
+    category: "Viennoiseries",
+    img: "/pain-chocolat.png",
+    desc: "Pain au chocolat pur beurre, feuilleté et fondant, avec deux barres de chocolat noir.",
+    composition: ["Farine", "Beurre pur", "Chocolat noir", "Levure", "Sel", "Sucre"],
+  },
+  {
     id: "pain-aux-raisins",
     name: "Pain aux raisins",
     price: "1,80€",
