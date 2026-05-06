@@ -160,55 +160,23 @@ const ProductPage = () => {
               </div>
             )}
 
-            {/* Quantité + Ajouter */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              {/* Quantité */}
-              <div className="flex items-center gap-3 bg-muted rounded-2xl px-4 py-3">
+            {/* Commander via les plateformes */}
+            <div className="flex flex-col gap-3">
+              <p className="text-sm text-muted-foreground text-center">Commandez ce produit sur :</p>
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => setQty(Math.max(1, qty - 1))}
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  disabled
+                  className="flex-1 py-4 rounded-2xl font-semibold text-lg opacity-80 cursor-not-allowed bg-primary text-primary-foreground"
                 >
-                  <Minus size={14} />
+                  Uber Eats
                 </button>
-                <span className="font-semibold text-lg w-8 text-center">{qty}</span>
                 <button
-                  onClick={() => setQty(qty + 1)}
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  disabled
+                  className="flex-1 py-4 rounded-2xl font-semibold text-lg opacity-80 cursor-not-allowed bg-muted text-foreground"
                 >
-                  <Plus size={14} />
+                  Deliveroo
                 </button>
               </div>
-
-              {/* Bouton ajouter */}
-              <button
-                onClick={handleAdd}
-                disabled={!allSelected}
-                className={`flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 ${
-                  added
-                    ? "bg-green-500 text-white"
-                    : allSelected
-                      ? "bg-primary text-primary-foreground hover:opacity-90"
-                      : "bg-muted text-muted-foreground cursor-not-allowed"
-                }`}
-              >
-                {added ? (
-                  <>
-                    <Check size={20} />
-                    Ajouté !
-                  </>
-                ) : !allSelected ? (
-                  <>
-                    <ShoppingBag size={18} />
-                    Compléter vos choix
-                  </>
-                ) : (
-                  <>
-                    <ShoppingBag size={20} />
-                    Ajouter au panier —{" "}
-                    {(parseFloat(product.price.replace("€", "").replace(",", ".")) * qty).toFixed(2).replace(".", ",")}€
-                  </>
-                )}
-              </button>
             </div>
 
             {/* Livraison */}

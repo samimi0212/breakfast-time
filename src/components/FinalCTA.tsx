@@ -1,10 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { ShoppingBag, Clock, Star } from "lucide-react";
+import { Clock, Star } from "lucide-react";
 import heroImg from "@/assets/hero-breakfast.jpg";
 
 const FinalCTA = () => {
-  const navigate = useNavigate();
-
   return (
     <section className="relative py-32 overflow-hidden">
       {/* Image de fond */}
@@ -50,7 +47,7 @@ const FinalCTA = () => {
           {[
             { icon: Clock, value: "30 min", label: "Délai de livraison" },
             { icon: Star, value: "100%", label: "Produits frais" },
-            { icon: ShoppingBag, value: "7j/7", label: "7h à 15h" },
+            { icon: Star, value: "7j/7", label: "7h à 15h" },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
@@ -66,22 +63,21 @@ const FinalCTA = () => {
           ))}
         </div>
 
-        {/* Boutons */}
+        {/* Boutons plateformes */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => navigate("/carte")}
-            className="flex items-center justify-center gap-2 px-10 py-4 rounded-full text-lg font-semibold transition-all hover:scale-105"
+            disabled
+            className="flex items-center justify-center gap-2 px-10 py-4 rounded-full text-lg font-semibold opacity-80 cursor-not-allowed"
             style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
           >
-            <ShoppingBag size={20} />
-            Commander maintenant
+            Uber Eats
           </button>
           <button
-            onClick={() => navigate("/inscription")}
-            className="px-10 py-4 rounded-full text-lg font-semibold border-2 transition-colors hover:bg-white/10"
+            disabled
+            className="px-10 py-4 rounded-full text-lg font-semibold border-2 opacity-80 cursor-not-allowed"
             style={{ borderColor: "rgba(255,255,255,0.3)", color: "white" }}
           >
-            Créer un compte
+            Deliveroo
           </button>
         </div>
       </div>
