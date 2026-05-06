@@ -80,8 +80,8 @@ const Footer = () => (
             </li>
             <li className="flex items-center gap-2">
               <Mail size={14} style={{ color: "#DFF057" }} />
-              <a href="mailto:hello@breakfast-time.fr" className="hover:text-white transition-colors">
-                hello@breakfast-time.fr
+              <a href="mailto:contact@breakfast-time.fr" className="hover:text-white transition-colors">
+                contact@breakfast-time.fr
               </a>
             </li>
           </ul>
@@ -121,13 +121,13 @@ const Footer = () => (
       >
         <p>© 2026 Breakfast Time. Tous droits réservés.</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-white transition-colors">
+          <a href="/mentions-legales" className="hover:text-white transition-colors">
             Mentions légales
           </a>
-          <a href="#" className="hover:text-white transition-colors">
+          <a href="/cgv" className="hover:text-white transition-colors">
             CGV
           </a>
-          <a href="#" className="hover:text-white transition-colors">
+          <a href="/confidentialite" className="hover:text-white transition-colors">
             Confidentialité
           </a>
         </div>

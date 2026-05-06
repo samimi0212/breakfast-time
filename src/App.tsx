@@ -15,6 +15,9 @@ import Confirmation from "./pages/Confirmation.tsx";
 import MyOrders from "./pages/MyOrders.tsx";
 import CartePage from "./pages/CartePage.tsx";
 import Events from "./pages/Events.tsx";
+import MentionsLegales from "./pages/MentionsLegales.tsx";
+import CGV from "./pages/CGV.tsx";
+import Confidentialite from "./pages/Confidentialite.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -37,6 +40,9 @@ const App = () => (
             <Route path="/mes-commandes" element={<MyOrders />} />
             <Route path="/carte" element={<CartePage />} />
             <Route path="/evenements" element={<Events />} />
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/cgv" element={<CGV />} />
+            <Route path="/confidentialite" element={<Confidentialite />} />
             <Route path="/produit/:id" element={<ProductPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

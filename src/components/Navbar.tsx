@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ShoppingBag, User, LogOut } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "@/context/CartContext";
 import { supabase } from "@/lib/supabase";
 import logo from "@/assets/logo.png";
 
@@ -9,7 +8,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
-  const { count } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -100,19 +98,6 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* Cart icon */}
-          <button
-            onClick={() => navigate("/panier")}
-            className="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-muted transition-colors"
-          >
-            <ShoppingBag size={22} className="text-foreground" />
-            {count > 0 && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
-                {count}
-              </span>
-            )}
-          </button>
-
           {/* Mobile toggle */}
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-foreground">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -129,9 +114,6 @@ const Navbar = () => {
                 <p className="text-foreground font-medium py-2">Bonjour {prenom} !</p>
                 <a href="/mon-compte" className="text-foreground py-2 text-sm">
                   Mon compte
-                </a>
-                <a href="/mes-commandes" className="text-foreground py-2 text-sm">
-                  Mes commandes
                 </a>
                 <button onClick={handleLogout} className="text-red-500 font-medium py-2 text-left text-sm">
                   Déconnexion
