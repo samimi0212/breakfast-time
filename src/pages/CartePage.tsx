@@ -16,7 +16,7 @@ const menus = [
     id: "menu-anglais",
     name: "Menu Anglais",
     price: "12,90€",
-    img: "https://static.wixstatic.com/media/21c6e4_35577f9aced14c51b49fc307bf7656d6~mv2.jpg/v1/fill/w_917,h_917,al_c,q_85,enc_avif,quality_auto/21c6e4_35577f9aced14c51b49fc307bf7656d6~mv2.jpg",
+    img: "/menu-anglais.png",
   },
   {
     id: "menu-brunch",
