@@ -23,7 +23,7 @@ export const allProducts: Product[] = [
     name: "Menu Français",
   price: "12,90€",
   category: "Nos Menus",
-  img: "https://static.wixstatic.com/media/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png",
+  img: "/menu-francais.png",
   desc: "Le classique à la française pour bien commencer la journée.",
   composition: ["1/2 baguette", "1 beurre", "1 confiture/Nutella au choix", "1 viennoiserie au choix", "1 jus frais au choix"],
   options: [
@@ -406,7 +406,7 @@ export const allProducts: Product[] = [
     name: "Petit-déjeuner Séminaire",
     price: "Sur devis",
     category: "Événements",
-    img: "https://static.wixstatic.com/media/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_34c4bd51a8a94133aebf056e7c1dfbbe~mv2.png",
+    img: "/menu-francais.png",
     desc: "Démarrez votre séminaire du bon pied avec un petit-déjeuner professionnel livré sur site.",
     composition: ["Viennoiseries individuelles", "Café & thé", "Jus de fruits frais", "Fruits de saison", "Service discret & ponctuel"],
     options: [
