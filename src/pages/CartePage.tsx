@@ -253,7 +253,7 @@ const CartePage = () => {
     "Découvrez nos menus petit-déjeuner et brunch livrés à domicile dans les Alpes-Maritimes. Produits frais et locaux, 7j/7."
   );
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = useState<"menus" | "carte">(() => {
     const t = searchParams.get("tab");
     return t === "carte" ? "carte" : "menus";
@@ -262,6 +262,11 @@ const CartePage = () => {
     const cat = searchParams.get("cat");
     return cat || "Viennoiseries";
   });
+
+  const switchTab = (t: "menus" | "carte") => {
+    setTab(t);
+    setSearchParams({ tab: t }, { replace: true });
+  };
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -344,7 +349,7 @@ const CartePage = () => {
             <div className="flex justify-center mb-10 mt-4">
               <div className="bg-muted rounded-2xl p-1.5 flex gap-2 flex-wrap justify-center">
                 <button
-                  onClick={() => setTab("menus")}
+                  onClick={() => switchTab("menus")}
                   className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
                     tab === "menus"
                       ? "bg-primary text-primary-foreground shadow-sm"
@@ -354,7 +359,7 @@ const CartePage = () => {
                   Nos Menus
                 </button>
                 <button
-                  onClick={() => setTab("carte")}
+                  onClick={() => switchTab("carte")}
                   className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
                     tab === "carte"
                       ? "bg-primary text-primary-foreground shadow-sm"
