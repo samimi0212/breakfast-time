@@ -89,7 +89,7 @@ export const allProducts: Product[] = [
     name: "Croissant",
     price: "1,50€",
     category: "Viennoiseries",
-    img: "https://static.wixstatic.com/media/21c6e4_d396d1aefd3347a494342e2e3100c9d7~mv2.jpeg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_d396d1aefd3347a494342e2e3100c9d7~mv2.jpeg",
+    img: "/croissant.png",
     desc: "Croissant pur beurre, feuilleté et doré, préparé le matin même.",
     composition: ["Farine", "Beurre pur", "Levure", "Sel", "Sucre"],
   },
