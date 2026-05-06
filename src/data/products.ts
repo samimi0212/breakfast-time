@@ -277,7 +277,7 @@ export const allProducts: Product[] = [
     composition: ["Graines de chia", "Lait de coco", "Fruits frais", "Miel", "Granola"],
   },
   {
-    id: "granola-bowl-parfait",
+    id: "granola-parfait",
     name: "Granola Bowl Parfait",
     price: "8,50€",
     category: "Le Sucré",
