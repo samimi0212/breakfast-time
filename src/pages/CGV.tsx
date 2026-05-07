@@ -1,7 +1,10 @@
+import { usePageMeta } from "@/hooks/usePageMeta";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const CGV = () => (
+const CGV = () => {
+  usePageMeta("Conditions Générales de Vente | Breakfast Time", "Conditions générales de vente de Breakfast Time, service de livraison de petits-déjeuners dans les Alpes-Maritimes.", "/cgv");
+  return (
   <>
     <Navbar />
     <main className="max-w-3xl mx-auto px-6 py-24">
@@ -84,6 +87,7 @@ const CGV = () => (
     </main>
     <Footer />
   </>
-);
+  );
+};
 
 export default CGV;

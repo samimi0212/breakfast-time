@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Login = () => {
-  usePageMeta("Connexion | Breakfast Time", "Connectez-vous à votre compte Breakfast Time.");
+  usePageMeta("Connexion | Breakfast Time", "Connectez-vous à votre compte Breakfast Time.", "/connexion", true);
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);

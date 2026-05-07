@@ -1,7 +1,10 @@
+import { usePageMeta } from "@/hooks/usePageMeta";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const Confidentialite = () => (
+const Confidentialite = () => {
+  usePageMeta("Politique de confidentialité | Breakfast Time", "Politique de confidentialité et traitement des données personnelles de Breakfast Time.", "/confidentialite");
+  return (
   <>
     <Navbar />
     <main className="max-w-3xl mx-auto px-6 py-24">
@@ -91,6 +94,7 @@ const Confidentialite = () => (
     </main>
     <Footer />
   </>
-);
+  );
+};
 
 export default Confidentialite;

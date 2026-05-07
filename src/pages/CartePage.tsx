@@ -36,6 +36,12 @@ const menus = [
     price: "45,00€",
     img: "https://static.wixstatic.com/media/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png",
   },
+  {
+    id: "menu-veggie",
+    name: "Menu Veggie",
+    price: "21,90€",
+    img: "/menu-veggie.png",
+  },
 ];
 
 const produits: Record<string, { id: string; name: string; price: string; img: string }[]> = {
@@ -262,7 +268,8 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
 const CartePage = () => {
   usePageMeta(
     "Notre Carte — Menus & Brunchs | Breakfast Time",
-    "Découvrez nos menus petit-déjeuner et brunch livrés à domicile dans les Alpes-Maritimes. Produits frais et locaux, 7j/7."
+    "Découvrez nos menus petit-déjeuner et brunch livrés à domicile dans les Alpes-Maritimes. Produits frais et locaux, 7j/7.",
+    "/carte"
   );
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();

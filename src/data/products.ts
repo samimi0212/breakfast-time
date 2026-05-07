@@ -83,6 +83,15 @@ export const allProducts: Product[] = [
     desc: "Offrez un menu anniversaire à personnaliser, une attention gourmande et originale.",
     composition: ["Sélection de viennoiseries", "Granola parfait", "Jus de fruit frais", "Surprise anniversaire", "Décoration incluse"],
   },
+  {
+    id: "menu-veggie",
+    name: "Menu Veggie",
+    price: "21,90€",
+    category: "Nos Menus",
+    img: "/menu-veggie.png",
+    desc: "Un menu végétarien frais et gourmand, plein d'énergie pour bien démarrer la journée.",
+    composition: ["Tartine Avocat Halloumi", "Smoothie fruits rouges", "Granola bowl végétal"],
+  },
   // ---- VIENNOISERIES ----
   {
     id: "croissant",

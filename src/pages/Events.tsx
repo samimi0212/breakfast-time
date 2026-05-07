@@ -66,7 +66,8 @@ const eventDetails = [
 const Events = () => {
   usePageMeta(
     "Événements — Mariage, Entreprise, Groupe | Breakfast Time",
-    "Breakfast Time organise vos petits-déjeuners d'exception pour mariages, séminaires et événements de groupe dans les Alpes-Maritimes."
+    "Breakfast Time organise vos petits-déjeuners d'exception pour mariages, séminaires et événements de groupe dans les Alpes-Maritimes.",
+    "/evenements"
   );
   const [showAppointment, setShowAppointment] = useState(false);
   const [showDevis, setShowDevis] = useState(false);

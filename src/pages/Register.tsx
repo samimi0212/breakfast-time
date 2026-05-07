@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Register = () => {
-  usePageMeta("Inscription | Breakfast Time", "Créez votre compte Breakfast Time et commandez vos petits-déjeuners livrés à domicile.");
+  usePageMeta("Inscription | Breakfast Time", "Créez votre compte Breakfast Time et commandez vos petits-déjeuners livrés à domicile.", "/inscription", true);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     prenom: "",

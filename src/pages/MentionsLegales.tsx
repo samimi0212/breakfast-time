@@ -1,7 +1,10 @@
+import { usePageMeta } from "@/hooks/usePageMeta";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const MentionsLegales = () => (
+const MentionsLegales = () => {
+  usePageMeta("Mentions légales | Breakfast Time", "Mentions légales de Breakfast Time, service de livraison de petits-déjeuners dans les Alpes-Maritimes.", "/mentions-legales");
+  return (
   <>
     <Navbar />
     <main className="max-w-3xl mx-auto px-6 py-24">
@@ -49,6 +52,7 @@ const MentionsLegales = () => (
     </main>
     <Footer />
   </>
-);
+  );
+};
 
 export default MentionsLegales;
