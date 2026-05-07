@@ -340,6 +340,15 @@ export const allProducts: Product[] = [
     desc: "Café frappé glacé, onctueux et rafraîchissant.",
     composition: ["Espresso", "Lait", "Glaçons", "Sucre"],
   },
+  {
+    id: "jus-orange-presse",
+    name: "Jus d'orange pressé",
+    price: "3,50€",
+    category: "Boissons",
+    img: "/jus-orange.png",
+    desc: "Jus d'orange fraîchement pressé, 100% pur jus sans sucre ajouté.",
+    composition: ["Oranges fraîches pressées"],
+  },
   // ---- À PARTAGER ----
   {
     id: "plateau-viennoiseries",

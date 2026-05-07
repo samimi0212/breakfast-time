@@ -216,6 +216,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "5,50€",
       img: "https://static.wixstatic.com/media/21c6e4_0666def6d3c34d979690efd0430ca8ec~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_0666def6d3c34d979690efd0430ca8ec~mv2.png",
     },
+    {
+      id: "jus-orange-presse",
+      name: "Jus d'orange pressé",
+      price: "3,50€",
+      img: "/jus-orange.png",
+    },
   ],
   "À Partager": [
     {
