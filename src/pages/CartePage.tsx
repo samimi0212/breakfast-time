@@ -42,6 +42,12 @@ const menus = [
     price: "21,90€",
     img: "/menu-veggie.png",
   },
+  {
+    id: "menu-duo",
+    name: "Menu Duo",
+    price: "39,00€",
+    img: "/menu-duo.png",
+  },
 ];
 
 const produits: Record<string, { id: string; name: string; price: string; img: string }[]> = {

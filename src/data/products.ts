@@ -92,6 +92,15 @@ export const allProducts: Product[] = [
     desc: "Un menu végétarien frais et gourmand, plein d'énergie pour bien démarrer la journée.",
     composition: ["Tartine Avocat Halloumi", "Smoothie fruits rouges", "Granola bowl végétal"],
   },
+  {
+    id: "menu-duo",
+    name: "Menu Duo",
+    price: "39,00€",
+    category: "Nos Menus",
+    img: "/menu-duo.png",
+    desc: "Le petit-déjeuner idéal pour deux, généreux et complet.",
+    composition: ["4 mini viennoiseries", "2 granola", "2 bagels au choix", "2 œufs brouillés", "2 jus frais au choix"],
+  },
   // ---- VIENNOISERIES ----
   {
     id: "croissant",
