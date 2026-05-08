@@ -15,6 +15,7 @@ import Confirmation from "./pages/Confirmation.tsx";
 import MyOrders from "./pages/MyOrders.tsx";
 import CartePage from "./pages/CartePage.tsx";
 import Events from "./pages/Events.tsx";
+import EventsCommander from "./pages/EventsCommander.tsx";
 import MentionsLegales from "./pages/MentionsLegales.tsx";
 import CGV from "./pages/CGV.tsx";
 import Confidentialite from "./pages/Confidentialite.tsx";
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/mes-commandes" element={<MyOrders />} />
             <Route path="/carte" element={<CartePage />} />
             <Route path="/evenements" element={<Events />} />
+            <Route path="/evenements/commander" element={<EventsCommander />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/cgv" element={<CGV />} />
             <Route path="/confidentialite" element={<Confidentialite />} />

@@ -99,7 +99,7 @@ const Events = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
-              onClick={() => navigate("/carte")}
+              onClick={() => navigate("/evenements/commander")}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold transition-all hover:scale-105"
               style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
             >
@@ -182,7 +182,7 @@ const Events = () => {
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <button
-                      onClick={() => navigate("/carte")}
+                      onClick={() => navigate("/evenements/commander")}
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:scale-105"
                       style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
                     >
@@ -230,7 +230,7 @@ const Events = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => navigate("/carte")}
+              onClick={() => navigate("/evenements/commander")}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold transition-all hover:scale-105"
               style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
             >
