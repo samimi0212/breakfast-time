@@ -260,6 +260,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "39,00€",
       img: "https://static.wixstatic.com/media/21c6e4_1072c5ec1d8844478ad6ddf0753d7d1d~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_1072c5ec1d8844478ad6ddf0753d7d1d~mv2.png",
     },
+    {
+      id: "planche-mixte",
+      name: "Planche mixte",
+      price: "39,00€",
+      img: "/plateau-mixte.png",
+    },
   ],
 };
 

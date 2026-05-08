@@ -404,6 +404,15 @@ export const allProducts: Product[] = [
     desc: "Belle sélection de fromages affinés avec accompagnements.",
     composition: ["Comté", "Brie", "Chèvre", "Roquefort", "Fruits secs et confiture"],
   },
+  {
+    id: "planche-mixte",
+    name: "Planche mixte",
+    price: "39,00€",
+    category: "À Partager",
+    img: "/plateau-mixte.png",
+    desc: "Planche généreuse mêlant charcuterie et fromages affinés, idéale pour partager.",
+    composition: ["Sélection de charcuterie", "Sélection de fromages", "Condiments", "Pain grillé"],
+  },
   // ---- ÉVÉNEMENTS ----
   {
     id: "brunch-mariage",
