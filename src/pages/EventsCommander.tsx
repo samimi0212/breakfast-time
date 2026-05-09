@@ -3,181 +3,149 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ShoppingBag, Check, Minus, Plus, ArrowLeft } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Check, Minus, Plus } from "lucide-react";
 
 const eventProducts = [
   {
-    id: "evt-plateau-decouverte",
-    name: "Plateau Découverte Événement",
-    price: "24,90€",
-    img: "/menu-francais.png",
-    desc: "Un plateau généreux pensé pour vos événements : viennoiseries premium, charcuterie fine, fromages sélectionnés et jus de fruits frais. Idéal pour 2 personnes.",
-    composition: [
-      "2 croissants pur beurre",
-      "2 pains au chocolat",
-      "Sélection charcuterie (jambon, saucisson)",
-      "Fromages affinés (3 variétés)",
-      "2 jus de fruits frais au choix",
-      "Confiture artisanale",
-    ],
+    id: "evt-plateau-mini-viennoiseries",
+    name: "Plateau mini viennoiseries",
+    price: "29,00€",
+    img: "/mini-viennoiseries.png",
+    composition: ["30 mini viennoiseries", "Croissants", "Pains au chocolat"],
   },
 ];
 
-const EventsCommander = () => {
-  const navigate = useNavigate();
-  const { addItem, count } = useCart();
+const EventProductCard = ({
+  product,
+}: {
+  product: (typeof eventProducts)[0];
+}) => {
+  const { addItem } = useCart();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
-  const product = eventProducts[0];
-
   const handleAdd = () => {
-    addItem({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      img: product.img,
-      qty,
-    });
+    addItem({ id: product.id, name: product.name, price: product.price, img: product.img, qty });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
   return (
+    <div
+      className="bg-card rounded-2xl overflow-hidden flex flex-col h-full"
+      style={{ boxShadow: "var(--card-shadow)" }}
+    >
+      <div className="relative overflow-hidden aspect-square">
+        <img
+          src={product.img}
+          alt={product.name}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div className="p-4 flex flex-col flex-1 gap-3">
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="font-display text-base font-semibold leading-tight">{product.name}</h3>
+          <span className="text-primary font-bold text-base flex-shrink-0">{product.price}</span>
+        </div>
+
+        <ul className="space-y-1">
+          {product.composition.map((item, i) => (
+            <li key={i} className="text-xs text-muted-foreground flex items-center gap-1.5">
+              <span className="w-1 h-1 rounded-full bg-primary/40 flex-shrink-0" />
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-2 mt-auto pt-2">
+          <div className="flex items-center gap-2 border rounded-xl px-3 py-1.5">
+            <button onClick={() => setQty((q) => Math.max(1, q - 1))} className="hover:text-primary transition-colors">
+              <Minus size={13} />
+            </button>
+            <span className="w-5 text-center text-sm font-semibold">{qty}</span>
+            <button onClick={() => setQty((q) => q + 1)} className="hover:text-primary transition-colors">
+              <Plus size={13} />
+            </button>
+          </div>
+          <button
+            onClick={handleAdd}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-sm font-semibold transition-all"
+            style={{
+              backgroundColor: added ? "#b8cc30" : "#DFF057",
+              color: "#3a3a0a",
+            }}
+          >
+            {added ? <Check size={14} /> : <ShoppingBag size={14} />}
+            {added ? "Ajouté !" : "Ajouter au panier"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const EventsCommander = () => {
+  const navigate = useNavigate();
+  const { count } = useCart();
+
+  return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
 
-      <div className="pt-28 pb-20 px-6">
-        <div className="max-w-5xl mx-auto">
+      {/* Header */}
+      <div className="bg-foreground pt-28 pb-16 px-6 text-center">
+        <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">
+          Livraison & installation incluses
+        </p>
+        <h1 className="font-display text-4xl md:text-5xl font-bold mb-4" style={{ color: "white" }}>
+          Commander pour votre{" "}
+          <span className="italic" style={{ color: "#DFF057" }}>
+            événement
+          </span>
+        </h1>
+        <p className="text-lg max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
+          Sélectionnez vos formules et ajoutez-les au panier. Nous nous occupons du reste.
+        </p>
+      </div>
 
-          {/* Retour */}
+      {/* Breadcrumb */}
+      <div className="px-6 py-4 max-w-7xl mx-auto w-full">
+        <p className="text-sm text-muted-foreground flex items-center gap-2">
           <button
             onClick={() => navigate("/evenements")}
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-10"
+            className="hover:text-primary transition-colors inline-flex items-center gap-1"
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={13} />
             Retour aux événements
           </button>
+        </p>
+      </div>
 
-          {/* Header */}
-          <div className="mb-12">
-            <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-4"
-              style={{ backgroundColor: "rgba(58,58,10,0.08)", color: "#5a5a1a" }}
-            >
-              <ShoppingBag size={11} />
-              Commander pour votre événement
-            </div>
-            <h1 className="font-display text-4xl md:text-5xl font-bold leading-tight" style={{ color: "#2a2a08" }}>
-              Nos formules{" "}
-              <span className="italic" style={{ color: "#7a7020" }}>
-                événements
-              </span>
-            </h1>
-            <p className="mt-4 text-base text-muted-foreground max-w-xl">
-              Commandez directement en ligne pour votre mariage, séminaire ou occasion spéciale. Livraison & installation incluses.
-            </p>
-          </div>
-
-          {/* Produit */}
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Image */}
-            <div
-              className="rounded-3xl overflow-hidden aspect-square"
-              style={{ boxShadow: "0 20px 50px -10px rgba(0,0,0,0.12)" }}
-            >
-              <img
-                src={product.img}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Détails */}
-            <div className="py-4">
-              <h2 className="font-display text-3xl font-bold mb-3">{product.name}</h2>
-              <p className="text-2xl font-bold mb-6" style={{ color: "#7a7020" }}>
-                {product.price}
-                <span className="text-base font-normal text-muted-foreground ml-2">/ plateau (2 pers.)</span>
-              </p>
-
-              <p className="text-muted-foreground leading-relaxed mb-8">{product.desc}</p>
-
-              {/* Composition */}
-              <div className="mb-10">
-                <p className="text-sm font-semibold uppercase tracking-widest mb-4" style={{ color: "#5a5a1a" }}>
-                  Composition
-                </p>
-                <ul className="space-y-2">
-                  {product.composition.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm">
-                      <div
-                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: "rgba(223,240,87,0.4)" }}
-                      >
-                        <Check size={11} style={{ color: "#3a3a0a" }} />
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Quantité */}
-              <div className="flex items-center gap-4 mb-6">
-                <p className="text-sm font-medium">Quantité</p>
-                <div className="flex items-center gap-3 border rounded-full px-4 py-2">
-                  <button
-                    onClick={() => setQty((q) => Math.max(1, q - 1))}
-                    className="hover:text-primary transition-colors"
-                  >
-                    <Minus size={14} />
-                  </button>
-                  <span className="w-6 text-center font-semibold text-sm">{qty}</span>
-                  <button
-                    onClick={() => setQty((q) => q + 1)}
-                    className="hover:text-primary transition-colors"
-                  >
-                    <Plus size={14} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Boutons */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={handleAdd}
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold transition-all hover:scale-105"
-                  style={{ backgroundColor: added ? "#b8cc30" : "#DFF057", color: "#3a3a0a" }}
-                >
-                  {added ? <Check size={16} /> : <ShoppingBag size={16} />}
-                  {added ? "Ajouté au panier !" : "Ajouter au panier"}
-                </button>
-                <button
-                  onClick={() => {
-                    handleAdd();
-                    setTimeout(() => navigate("/panier"), 300);
-                  }}
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold transition-all hover:scale-105"
-                  style={{ backgroundColor: "#3a3a0a", color: "#ffffff" }}
-                >
-                  Commander maintenant
-                </button>
-              </div>
-
-              {count > 0 && (
-                <button
-                  onClick={() => navigate("/panier")}
-                  className="mt-4 w-full text-center text-sm font-medium underline underline-offset-4"
-                  style={{ color: "#7a7020" }}
-                >
-                  Voir le panier ({count} article{count > 1 ? "s" : ""})
-                </button>
-              )}
-            </div>
-          </div>
+      {/* Grille produits */}
+      <div className="flex-1 pb-16 px-6 max-w-7xl mx-auto w-full">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+          {eventProducts.map((product) => (
+            <EventProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
+
+      {/* Barre panier flottante si articles */}
+      {count > 0 && (
+        <div className="sticky bottom-0 left-0 right-0 p-4 z-40" style={{ backgroundColor: "#f4f1ea" }}>
+          <div className="max-w-7xl mx-auto">
+            <button
+              onClick={() => navigate("/panier")}
+              className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-semibold transition-all hover:scale-[1.01]"
+              style={{ backgroundColor: "#3a3a0a", color: "white" }}
+            >
+              <ShoppingBag size={16} />
+              Voir le panier · {count} article{count > 1 ? "s" : ""}
+            </button>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
