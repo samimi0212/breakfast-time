@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X, User, LogOut } from "lucide-react";
+import { Menu, X, User, LogOut, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
+import { useCart } from "@/context/CartContext";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
@@ -31,6 +32,7 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const { count } = useCart();
   const prenom = user?.user_metadata?.prenom || "";
 
   return (
@@ -97,6 +99,20 @@ const Navbar = () => {
               </a>
             </div>
           )}
+
+          {/* Panier */}
+          <button
+            onClick={() => navigate("/panier")}
+            className="relative flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors"
+          >
+            <ShoppingBag size={20} className="text-foreground/80" />
+            {count > 0 && (
+              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center"
+                style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                {count > 9 ? "9+" : count}
+              </span>
+            )}
+          </button>
 
           {/* Mobile toggle */}
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-foreground">
