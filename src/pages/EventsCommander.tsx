@@ -4,13 +4,14 @@ import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowLeft, ShoppingBag, Check, Minus, Plus } from "lucide-react";
+import plateauViennoiserie from "@/assets/plateau-viennoiserie-entre.png";
 
 const eventProducts = [
   {
     id: "evt-plateau-mini-viennoiseries",
     name: "Plateau mini viennoiseries",
     price: "29,00€",
-    img: "/mini-viennoiseries.png",
+    img: plateauViennoiserie,
     composition: ["30 mini viennoiseries", "Croissants", "Pains au chocolat"],
   },
 ];
