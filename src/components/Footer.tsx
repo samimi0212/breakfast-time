@@ -4,7 +4,7 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "already" | "error">("idle");
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +24,8 @@ const Footer = () => {
       if (res.ok) {
         setStatus("success");
         setEmail("");
+      } else if (res.status === 409) {
+        setStatus("already");
       } else {
         setStatus("error");
       }
@@ -135,6 +137,16 @@ const Footer = () => {
                 Bienvenue dans la famille Breakfast Time ☀️ Un email de confirmation vient de vous être envoyé.
               </p>
             </div>
+          ) : status === "already" ? (
+            <div className="flex flex-col items-start gap-3">
+              <div className="flex items-center gap-2" style={{ color: "#DFF057" }}>
+                <CheckCircle size={18} />
+                <span className="text-sm font-semibold">Vous êtes déjà inscrit(e) !</span>
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+                Cette adresse email est déjà abonnée à notre newsletter.
+              </p>
+            </div>
           ) : (
             <>
               <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
@@ -144,7 +156,7 @@ const Footer = () => {
                 <input
                   type="email"
                   value={email}
-                  onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+                  onChange={(e) => { setEmail(e.target.value); if (status === "error" || status === "already") setStatus("idle"); }}
                   placeholder="votre@email.com"
                   required
                   className="w-full px-4 py-2.5 rounded-xl text-sm bg-white/10 border border-white/20 placeholder:text-white/30 focus:outline-none focus:border-primary"

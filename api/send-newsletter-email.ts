@@ -27,8 +27,11 @@ export default async function handler(req: Request): Promise<Response> {
       .insert({ email })
       .select();
 
-    if (dbError && dbError.code !== "23505") {
-      // 23505 = unique_violation (déjà inscrit), on laisse passer
+    if (dbError) {
+      if (dbError.code === "23505") {
+        // Email déjà inscrit
+        return new Response(JSON.stringify({ error: "already_subscribed" }), { status: 409 });
+      }
       console.error("DB error:", dbError);
       return new Response(JSON.stringify({ error: "Erreur base de données" }), { status: 500 });
     }
