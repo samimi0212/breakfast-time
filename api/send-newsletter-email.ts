@@ -1,8 +1,13 @@
 import { Resend } from "resend";
+import { createClient } from "@supabase/supabase-js";
 
 export const config = { runtime: "edge" };
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const supabase = createClient(
+  "https://ommkmxahqxakoixoiiux.supabase.co",
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
@@ -14,6 +19,18 @@ export default async function handler(req: Request): Promise<Response> {
 
     if (!email || !email.includes("@")) {
       return new Response(JSON.stringify({ error: "Adresse email invalide" }), { status: 400 });
+    }
+
+    // Sauvegarde en base — ignore les doublons silencieusement
+    const { error: dbError } = await supabase
+      .from("newsletter_subscribers")
+      .insert({ email })
+      .select();
+
+    if (dbError && dbError.code !== "23505") {
+      // 23505 = unique_violation (déjà inscrit), on laisse passer
+      console.error("DB error:", dbError);
+      return new Response(JSON.stringify({ error: "Erreur base de données" }), { status: 500 });
     }
 
     await resend.emails.send({
