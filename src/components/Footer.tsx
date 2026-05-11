@@ -1,7 +1,34 @@
-import { Instagram, Facebook, Mail, MapPin, Clock } from "lucide-react";
+import { useState } from "react";
+import { Instagram, Facebook, Mail, MapPin, Clock, CheckCircle, Loader2 } from "lucide-react";
 import logo from "@/assets/logo.png";
 
-const Footer = () => (
+const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || status === "loading") return;
+
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/send-newsletter-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
   <footer className="bg-foreground" style={{ color: "hsl(var(--background))" }}>
     {/* Contenu principal */}
     <div className="px-6 py-16 max-w-6xl mx-auto">
@@ -92,23 +119,55 @@ const Footer = () => (
           <h4 className="font-semibold text-sm tracking-widest uppercase mb-5" style={{ color: "#DFF057" }}>
             Newsletter
           </h4>
-          <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Recevez nos nouveautés et offres exclusives.
-          </p>
-          <div className="flex flex-col gap-2">
-            <input
-              type="email"
-              placeholder="votre@email.com"
-              className="w-full px-4 py-2.5 rounded-xl text-sm text-foreground bg-white/10 border border-white/20 placeholder:text-white/30 focus:outline-none focus:border-primary"
-              style={{ color: "white" }}
-            />
-            <button
-              className="w-full py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-[1.02]"
-              style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
-            >
-              S'abonner
-            </button>
-          </div>
+
+          {status === "success" ? (
+            <div className="flex flex-col items-start gap-3">
+              <div className="flex items-center gap-2" style={{ color: "#DFF057" }}>
+                <CheckCircle size={18} />
+                <span className="text-sm font-semibold">Inscription confirmée !</span>
+              </div>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+                Bienvenue dans la famille Breakfast Time ☀️ Un email de confirmation vient de vous être envoyé.
+              </p>
+            </div>
+          ) : (
+            <>
+              <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+                Recevez nos nouveautés et offres exclusives.
+              </p>
+              <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+                  placeholder="votre@email.com"
+                  required
+                  className="w-full px-4 py-2.5 rounded-xl text-sm bg-white/10 border border-white/20 placeholder:text-white/30 focus:outline-none focus:border-primary"
+                  style={{ color: "white", borderColor: status === "error" ? "#ff6b6b" : undefined }}
+                />
+                {status === "error" && (
+                  <p className="text-xs" style={{ color: "#ff9999" }}>
+                    Une erreur est survenue, veuillez réessayer.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="w-full py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" />
+                      Inscription…
+                    </>
+                  ) : (
+                    "S'abonner"
+                  )}
+                </button>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -134,6 +193,7 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;
