@@ -14,7 +14,7 @@ const steps = [
   {
     icon: Truck,
     title: "Savourez",
-    desc: "Livré chez vous frais et prêt à déguster. 7j/7 de 8h à 15h.",
+    desc: "Livré chez vous frais et prêt à déguster.",
   },
 ];
 
