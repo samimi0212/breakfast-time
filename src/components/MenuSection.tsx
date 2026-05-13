@@ -11,7 +11,7 @@ const visuals = [
 const options = [
   {
     title: "Nos Menus",
-    desc: "Des formules pensées pour vous — tout est inclus, rien à choisir. Du Menu Français au Brunch complet, on s'occupe de tout.",
+    desc: "Des formules pensées pour vous — tout est inclus, choisissez vos options. Du Menu Français au Brunch complet, on s'occupe de tout.",
     cta: "Voir les menus",
     link: "/carte?tab=menus",
     imgIndex: 0,
