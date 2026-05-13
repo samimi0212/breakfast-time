@@ -103,7 +103,7 @@ const EventsPromo = () => {
 
         {/* Sous-texte */}
         <p className="text-center mt-10 text-sm" style={{ color: "#8a8a60" }}>
-          Devis personnalisé · Livraison & installation incluses · Disponible 7j/7
+          Devis personnalisé · Livraison & installation incluses · Disponible 7j/7 · Commandez en ligne
         </p>
       </div>
     </section>
