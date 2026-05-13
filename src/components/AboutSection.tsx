@@ -21,9 +21,9 @@ const AboutSection = () => (
             et de saison pour transformer vos matins en moments d'exception.
           </p>
           <p>
-            Que ce soit pour un réveil en douceur à la maison, une réunion d'équipe ou des évènements
-            de groupe, nos menus s'adaptent à chaque moment. Du sucré, du salé, des boissons...
-            — tout est pensé pour vous simplifier la vie.
+            Que ce soit pour un réveil en douceur à la maison, une réunion d'équipe ou l'accueil
+            de vos voyageurs, nos menus s'adaptent à chaque moment. Du sucré, du salé, des boissons
+            chaudes et fraîches — tout est pensé pour vous simplifier la vie.
           </p>
           <p>
             Basés dans les Alpes-Maritimes, nous livrons 7 jours sur 7 avec une seule promesse :
@@ -31,7 +31,7 @@ const AboutSection = () => (
           </p>
         </div>
         <a
-          href="#menu"
+          href="/carte"
           className="inline-block mt-8 bg-primary text-primary-foreground px-8 py-3.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
         >
           Découvrir nos produits
