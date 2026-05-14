@@ -79,9 +79,9 @@ export const allProducts: Product[] = [
     name: "Birthday Box",
     price: "45,00€",
     category: "Nos Menus",
-    img: "https://static.wixstatic.com/media/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png",
+    img: "/birthday-box.png",
     desc: "Offrez un menu anniversaire à personnaliser, une attention gourmande et originale.",
-    composition: ["Gâteau de Pancakes", "Granola parfait", "Oeufs brouillés à la truffe", "Croissant salé", "Smoothie", "Cadeau surprise", "Bougie étincelle"],
+    composition: ["Sélection de viennoiseries", "Granola parfait", "Jus de fruit frais", "Surprise anniversaire", "Décoration incluse"],
   },
   {
     id: "menu-veggie",
