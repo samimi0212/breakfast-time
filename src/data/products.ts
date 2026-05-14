@@ -90,7 +90,7 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/menu-veggie.png",
     desc: "Un menu végétarien frais et gourmand, plein d'énergie pour bien démarrer la journée.",
-    composition: ["Tartine Avocat Halloumi", "Smoothie fruits rouges", "Granola bowl végétal"],
+    composition: ["Tartine Avocat Halloumi", "Smoothie fruits rouges", "Muffin myrtilles", "Granola bowl végétal"],
   },
   {
     id: "menu-duo",
