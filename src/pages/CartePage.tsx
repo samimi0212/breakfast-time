@@ -31,12 +31,6 @@ const menus = [
     img: "https://static.wixstatic.com/media/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg",
   },
   {
-    id: "birthday-box",
-    name: "Birthday Box",
-    price: "45,00€",
-    img: "/birthday-box.png",
-  },
-  {
     id: "menu-veggie",
     name: "Menu Veggie",
     price: "21,90€",
@@ -47,6 +41,12 @@ const menus = [
     name: "Menu Duo",
     price: "39,00€",
     img: "/menu-duo.png",
+  },
+  {
+    id: "birthday-box",
+    name: "Birthday Box",
+    price: "45,00€",
+    img: "/birthday-box.png",
   },
 ];
 

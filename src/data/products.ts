@@ -75,22 +75,13 @@ export const allProducts: Product[] = [
     composition: ["Viennoiseries assorties", "Pain et accompagnements", "Œufs", "Jus de fruits frais", "Boisson chaude"],
   },
   {
-    id: "birthday-box",
-    name: "Birthday Box",
-    price: "45,00€",
-    category: "Nos Menus",
-    img: "/birthday-box.png",
-    desc: "Offrez un menu anniversaire à personnaliser, une attention gourmande et originale.",
-    composition: ["Sélection de viennoiseries", "Granola parfait", "Jus de fruit frais", "Surprise anniversaire", "Décoration incluse"],
-  },
-  {
     id: "menu-veggie",
     name: "Menu Veggie",
     price: "21,90€",
     category: "Nos Menus",
     img: "/menu-veggie.png",
     desc: "Un menu végétarien frais et gourmand, plein d'énergie pour bien démarrer la journée.",
-    composition: ["Tartine Avocat Halloumi", "Smoothie fruits rouges", "Muffin myrtilles", "Granola bowl végétal"],
+    composition: ["Tartine Avocat Halloumi", "Smoothie fruits rouges", "Granola bowl végétal"],
   },
   {
     id: "menu-duo",
@@ -100,6 +91,15 @@ export const allProducts: Product[] = [
     img: "/menu-duo.png",
     desc: "Le petit-déjeuner idéal pour deux, généreux et complet.",
     composition: ["4 mini viennoiseries", "2 granola", "2 bagels au choix", "2 œufs brouillés", "2 jus frais au choix"],
+  },
+  {
+    id: "birthday-box",
+    name: "Birthday Box",
+    price: "45,00€",
+    category: "Nos Menus",
+    img: "/birthday-box.png",
+    desc: "Offrez un menu anniversaire à personnaliser, une attention gourmande et originale.",
+    composition: ["Sélection de viennoiseries", "Granola parfait", "Jus de fruit frais", "Surprise anniversaire", "Décoration incluse"],
   },
   // ---- VIENNOISERIES ----
   {
