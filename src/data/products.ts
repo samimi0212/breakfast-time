@@ -339,6 +339,7 @@ export const allProducts: Product[] = [
     img: "/muffin-myrtille.png",
     desc: "Muffin moelleux aux myrtilles, fait maison.",
     composition: ["Farine", "Myrtilles", "Beurre", "Œufs", "Sucre"],
+    allergens: ["Gluten", "Œufs", "Lait"],
   },
   // ---- BOISSONS ----
   {
