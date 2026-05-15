@@ -120,13 +120,13 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "bagel-chevre-miel",
       name: "Bagel chèvre miel",
       price: "13,50€",
-      img: "/bagel-chevre.png",
+      img: "https://static.wixstatic.com/media/21c6e4_a2a0e40b65f14dc0b9e902939034c8b7~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a2a0e40b65f14dc0b9e902939034c8b7~mv2.png",
     },
     {
       id: "bagel-bacon-cheddar",
       name: "Bagel Bacon Cheddar",
       price: "13,50€",
-      img: "https://static.wixstatic.com/media/21c6e4_aceb5b56d164432abb582ed01d9e5c61~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_aceb5b56d164432abb582ed01d9e5c61~mv2.png",
+      img: "/bagel-bacon-cheddar.png",
     },
     {
       id: "bagel-saumon-avocat",
