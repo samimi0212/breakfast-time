@@ -267,6 +267,15 @@ export const allProducts: Product[] = [
     desc: "Œufs brouillés moelleux, préparés à la minute.",
     composition: ["Œufs frais", "Beurre", "Sel", "Poivre"],
   },
+  {
+    id: "breakfast-burrito",
+    name: "Breakfast Burrito",
+    price: "14,90€",
+    category: "Le Salé",
+    img: "/breakfast-burrito.png",
+    desc: "Un burrito généreux garni pour un petit-déjeuner qui tient au corps.",
+    composition: ["Tortilla", "Œufs brouillés", "Bacon", "Cheddar", "Salsa"],
+  },
   // ---- LE SUCRÉ ----
   {
     id: "pancakes-erable-myrtilles",
