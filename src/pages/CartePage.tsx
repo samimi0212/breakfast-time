@@ -150,7 +150,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "oeufs-benedicte",
       name: "Oeufs bénédicte",
       price: "8,50€",
-      img: "https://static.wixstatic.com/media/21c6e4_afd75b1c09184351bf14d4b600cef84c~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_afd75b1c09184351bf14d4b600cef84c~mv2.png",
+      img: "/oeuf-benedicte.png",
     },
     {
       id: "oeufs-brouilles-truffe",
