@@ -254,7 +254,7 @@ export const allProducts: Product[] = [
     name: "Oeufs brouillés Truffe",
     price: "7,50€",
     category: "Le Salé",
-    img: "https://static.wixstatic.com/media/21c6e4_cb3b17ebf6484ce6a13ed79d3a530f53~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_cb3b17ebf6484ce6a13ed79d3a530f53~mv2.png",
+    img: "/oeufs-brouilles-truffe.png",
     desc: "Œufs brouillés onctueux à la truffe noire, un délice raffiné.",
     composition: ["Œufs frais", "Crème fraîche", "Truffe noire", "Beurre", "Fleur de sel"],
   },
