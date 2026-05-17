@@ -285,6 +285,16 @@ export const allProducts: Product[] = [
     desc: "Pain au levain toasté garni de houmous, labneh et halloumi toasté.",
     composition: ["Pain au levain", "Houmous", "Labneh", "Halloumi toasté", "Pois chiches croustillants", "Œuf émietté", "Épices zaatar", "Menthe fraîche"],
   },
+  // ---- EXTRA ----
+  {
+    id: "frites-patates-douces",
+    name: "Frites de patates douces",
+    price: "5,50€",
+    category: "Extra",
+    img: "/frite-patate-douce.png",
+    desc: "",
+    composition: [],
+  },
   // ---- LE SUCRÉ ----
   {
     id: "pancakes-erable-myrtilles",

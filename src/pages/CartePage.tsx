@@ -177,7 +177,14 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/toast-med.png",
     },
   ],
-  "Extra": [],
+  "Extra": [
+    {
+      id: "frites-patates-douces",
+      name: "Frites de patates douces",
+      price: "5,50€",
+      img: "/frite-patate-douce.png",
+    },
+  ],
   "Le Sucré": [
     {
       id: "pancakes-erable-myrtilles",
