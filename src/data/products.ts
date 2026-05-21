@@ -144,7 +144,7 @@ export const allProducts: Product[] = [
     name: "Suisse",
     price: "1,70€",
     category: "Viennoiseries",
-    img: "https://static.wixstatic.com/media/21c6e4_84d87e8f2b6c494a94518f55cba0b872~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_84d87e8f2b6c494a94518f55cba0b872~mv2.png",
+    img: "/suisse.png",
     desc: "Viennoiserie moelleuse aux pépites de chocolat et crème pâtissière.",
     composition: ["Pâte briochée", "Crème pâtissière", "Pépites de chocolat"],
   },
