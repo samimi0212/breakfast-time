@@ -100,7 +100,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "baguette",
       name: "Baguette",
       price: "1,30€",
-      img: "https://static.wixstatic.com/media/21c6e4_d8f2fa38f4234f1e89e73216fb5da62b~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_d8f2fa38f4234f1e89e73216fb5da62b~mv2.jpg",
+      img: "/baguette.png",
     },
     {
       id: "baguette-bio",
