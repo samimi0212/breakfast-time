@@ -194,6 +194,15 @@ export const allProducts: Product[] = [
     desc: "Pain complet moelleux, riche en fibres pour bien commencer la journée.",
     composition: ["Farine complète", "Eau", "Sel", "Levain"],
   },
+  {
+    id: "pain-ciabatta",
+    name: "Pain Ciabatta",
+    price: "3,50€",
+    category: "Pains",
+    img: "/ciabatta.png",
+    desc: "",
+    composition: [],
+  },
   // ---- LE SALÉ ----
   {
     id: "bagel-chevre-miel",
