@@ -135,7 +135,7 @@ export const allProducts: Product[] = [
     name: "Pain aux raisins",
     price: "1,80€",
     category: "Viennoiseries",
-    img: "https://static.wixstatic.com/media/21c6e4_321718d0c9b547fba1bc9e630d0d6db5~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_321718d0c9b547fba1bc9e630d0d6db5~mv2.png",
+    img: "/pain-raisins.png",
     desc: "Pain aux raisins moelleux, à la crème pâtissière maison.",
     composition: ["Pâte feuilletée", "Crème pâtissière", "Raisins secs"],
   },

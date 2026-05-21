@@ -74,7 +74,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "pain-aux-raisins",
       name: "Pain aux raisins",
       price: "1,80€",
-      img: "https://static.wixstatic.com/media/21c6e4_321718d0c9b547fba1bc9e630d0d6db5~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_321718d0c9b547fba1bc9e630d0d6db5~mv2.png",
+      img: "/pain-raisins.png",
     },
     {
       id: "suisse",
