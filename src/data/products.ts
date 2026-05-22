@@ -190,7 +190,7 @@ export const allProducts: Product[] = [
     name: "Pain complet",
     price: "2,80€",
     category: "Pains",
-    img: "https://static.wixstatic.com/media/21c6e4_736a710692ba41f2b3c6c6944edb9a40~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_736a710692ba41f2b3c6c6944edb9a40~mv2.jpg",
+    img: "/pain-complet.png",
     desc: "Pain complet moelleux, riche en fibres pour bien commencer la journée.",
     composition: ["Farine complète", "Eau", "Sel", "Levain"],
   },
