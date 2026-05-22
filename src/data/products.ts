@@ -203,6 +203,15 @@ export const allProducts: Product[] = [
     desc: "",
     composition: [],
   },
+  {
+    id: "pain-nordique",
+    name: "Pain Nordique",
+    price: "4,50€",
+    category: "Pains",
+    img: "/pain-nordique.png",
+    desc: "",
+    composition: [],
+  },
   // ---- LE SALÉ ----
   {
     id: "bagel-chevre-miel",

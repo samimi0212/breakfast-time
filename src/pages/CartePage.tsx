@@ -120,6 +120,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "3,50€",
       img: "/ciabatta.png",
     },
+    {
+      id: "pain-nordique",
+      name: "Pain Nordique",
+      price: "4,50€",
+      img: "/pain-nordique.png",
+    },
   ],
   "Le Salé": [
     {
