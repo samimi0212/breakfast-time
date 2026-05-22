@@ -178,10 +178,10 @@ export const allProducts: Product[] = [
   },
   {
     id: "baguette-bio",
-    name: "Baguette bio aux graines",
+    name: "Baguette céréales",
     price: "2,10€",
     category: "Pains",
-    img: "https://static.wixstatic.com/media/21c6e4_bcd49273376a400fa8ca7e7b52d8d55d~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_bcd49273376a400fa8ca7e7b52d8d55d~mv2.jpg",
+    img: "/baguette-cereales.png",
     desc: "Baguette bio aux graines variées, riche en fibres et en saveurs.",
     composition: ["Farine bio", "Graines de sésame", "Graines de tournesol", "Graines de lin"],
   },
