@@ -189,6 +189,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/breakfast-burrito.png",
     },
     {
+      id: "chicken-burrito",
+      name: "Chicken Burrito",
+      price: "8,50€",
+      img: "/chicken-burrito.png",
+    },
+    {
       id: "toast-mediterraneen",
       name: "Toast méditerranéen",
       price: "17,90€",

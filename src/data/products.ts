@@ -304,6 +304,15 @@ export const allProducts: Product[] = [
     composition: ["Tortilla", "Œufs brouillés", "Bacon", "Cheddar", "Salsa"],
   },
   {
+    id: "chicken-burrito",
+    name: "Chicken Burrito",
+    price: "8,50€",
+    category: "Le Salé",
+    img: "/chicken-burrito.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "toast-mediterraneen",
     name: "Toast méditerranéen",
     price: "17,90€",
