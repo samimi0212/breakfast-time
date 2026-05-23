@@ -195,6 +195,15 @@ export const allProducts: Product[] = [
     composition: ["Farine complète", "Eau", "Sel", "Levain"],
   },
   {
+    id: "petit-pain-campagne",
+    name: "Petit pain campagne",
+    price: "1,50€",
+    category: "Pains",
+    img: "/mini-pain-campagne.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "pain-ciabatta",
     name: "Pain Ciabatta",
     price: "3,50€",

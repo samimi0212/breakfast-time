@@ -115,6 +115,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/pain-complet.png",
     },
     {
+      id: "petit-pain-campagne",
+      name: "Petit pain campagne",
+      price: "1,50€",
+      img: "/mini-pain-campagne.png",
+    },
+    {
       id: "pain-ciabatta",
       name: "Pain Ciabatta",
       price: "3,50€",
