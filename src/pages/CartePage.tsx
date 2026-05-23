@@ -115,6 +115,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/pain-complet.png",
     },
     {
+      id: "petit-pain-gluten-free",
+      name: "Petit pain Gluten Free",
+      price: "2,50€",
+      img: "/pain-sans-gluten.png",
+    },
+    {
       id: "petit-pain-campagne",
       name: "Petit pain campagne",
       price: "1,50€",
