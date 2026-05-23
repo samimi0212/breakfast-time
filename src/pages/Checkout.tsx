@@ -321,7 +321,7 @@ const Checkout = () => {
                       <p className="text-sm font-semibold truncate">{item.name}</p>
                       {item.options && Object.keys(item.options).length > 0 && (
                         <p className="text-xs text-muted-foreground truncate">
-                          {Object.values(item.options).join(", ")}
+                          {Object.values(item.options).flatMap((v) => Array.isArray(v) ? v : [v]).join(", ")}
                         </p>
                       )}
                       <p className="text-xs text-muted-foreground">x{item.qty}</p>

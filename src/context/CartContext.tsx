@@ -6,7 +6,7 @@ export interface CartItem {
   price: string;
   img: string;
   qty: number;
-  options?: Record<string, string>;
+  options?: Record<string, string | string[]>;
 }
 
 interface CartContextType {

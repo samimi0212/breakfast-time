@@ -189,6 +189,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/breakfast-burrito.png",
     },
     {
+      id: "pancakes-a-composer",
+      name: "Pancakes à composer",
+      price: "4,50€",
+      img: "/pancakes-entre.png",
+    },
+    {
       id: "chicken-burrito",
       name: "Chicken Burrito",
       price: "8,50€",

@@ -2,6 +2,7 @@ export interface ProductOption {
   id: string;
   label: string;
   required: boolean;
+  multiSelect?: boolean;
   choices: string[];
 }
 
@@ -302,6 +303,30 @@ export const allProducts: Product[] = [
     img: "/breakfast-burrito.png",
     desc: "Un burrito généreux garni pour un petit-déjeuner qui tient au corps.",
     composition: ["Tortilla", "Œufs brouillés", "Bacon", "Cheddar", "Salsa"],
+  },
+  {
+    id: "pancakes-a-composer",
+    name: "Pancakes à composer",
+    price: "4,50€",
+    category: "Le Salé",
+    img: "/pancakes-entre.png",
+    desc: "Pancakes moelleux à personnaliser selon vos envies.",
+    composition: [],
+    options: [
+      {
+        id: "nappage",
+        label: "Choix du nappage",
+        required: true,
+        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir"],
+      },
+      {
+        id: "toppings",
+        label: "Choix des toppings",
+        required: false,
+        multiSelect: true,
+        choices: ["Eclats de noisettes", "Noix de pécan", "Fruits rouges", "Banane", "Beurre de cacahuètes"],
+      },
+    ],
   },
   {
     id: "chicken-burrito",

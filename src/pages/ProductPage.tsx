@@ -11,7 +11,7 @@ const ProductPage = () => {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
-  const [selections, setSelections] = useState<Record<string, string>>({});
+  const [selections, setSelections] = useState<Record<string, string | string[]>>({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,8 +24,18 @@ const ProductPage = () => {
     ? product.options.filter((o) => o.required).every((o) => selections[o.id])
     : true;
 
-  const handleSelect = (optionId: string, choice: string) => {
-    setSelections((prev) => ({ ...prev, [optionId]: choice }));
+  const handleSelect = (optionId: string, choice: string, multiSelect?: boolean) => {
+    if (multiSelect) {
+      setSelections((prev) => {
+        const current = (prev[optionId] as string[]) || [];
+        const updated = current.includes(choice)
+          ? current.filter((c) => c !== choice)
+          : [...current, choice];
+        return { ...prev, [optionId]: updated };
+      });
+    } else {
+      setSelections((prev) => ({ ...prev, [optionId]: choice }));
+    }
   };
 
   if (!product) {
@@ -176,19 +186,24 @@ const ProductPage = () => {
                       )}
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {option.choices.map((choice) => (
-                        <button
-                          key={choice}
-                          onClick={() => handleSelect(option.id, choice)}
-                          className={`px-4 py-2.5 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
-                            selections[option.id] === choice
-                              ? "bg-primary text-primary-foreground border-primary"
-                              : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
-                          }`}
-                        >
-                          {choice}
-                        </button>
-                      ))}
+                      {option.choices.map((choice) => {
+                        const isSelected = option.multiSelect
+                          ? ((selections[option.id] as string[]) || []).includes(choice)
+                          : selections[option.id] === choice;
+                        return (
+                          <button
+                            key={choice}
+                            onClick={() => handleSelect(option.id, choice, option.multiSelect)}
+                            className={`px-4 py-2.5 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
+                              isSelected
+                                ? "bg-primary text-primary-foreground border-primary"
+                                : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
+                            }`}
+                          >
+                            {choice}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}

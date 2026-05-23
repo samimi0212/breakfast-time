@@ -70,15 +70,17 @@ const Cart = () => {
                   {/* Options choisies */}
                   {item.options && Object.keys(item.options).length > 0 && (
                     <div className="flex flex-wrap gap-1 mb-2">
-                      {Object.entries(item.options).map(([key, value]) => (
+                      {Object.entries(item.options).map(([key, value]) =>
+                        (Array.isArray(value) ? value : [value]).map((v) => (
                         <span
-                          key={key}
+                          key={key + v}
                           className="text-xs px-2 py-0.5 rounded-full font-medium"
                           style={{ backgroundColor: "#DFF057", color: "#5a5a1a" }}
                         >
-                          {value}
+                          {v}
                         </span>
-                      ))}
+                        ))
+                      )}
                     </div>
                   )}
 
