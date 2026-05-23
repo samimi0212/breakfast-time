@@ -159,12 +159,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/avocado-toast.png",
     },
     {
-      id: "tartine-halloumi-avocat",
-      name: "Tartine Halloumi Avocat",
-      price: "14,90€",
-      img: "https://static.wixstatic.com/media/21c6e4_08111e7f9e0b47e1b126820ad08c842e~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_08111e7f9e0b47e1b126820ad08c842e~mv2.png",
-    },
-    {
       id: "oeufs-benedicte",
       name: "Oeufs bénédicte",
       price: "8,50€",

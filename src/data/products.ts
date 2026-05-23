@@ -259,15 +259,6 @@ export const allProducts: Product[] = [
     composition: ["Pain de campagne toasté", "Avocat", "Citron", "Piment", "Graines de sésame"],
   },
   {
-    id: "tartine-halloumi-avocat",
-    name: "Tartine Halloumi Avocat",
-    price: "14,90€",
-    category: "Le Salé",
-    img: "https://static.wixstatic.com/media/21c6e4_08111e7f9e0b47e1b126820ad08c842e~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_08111e7f9e0b47e1b126820ad08c842e~mv2.png",
-    desc: "Tartine généreuse au halloumi grillé et avocat frais.",
-    composition: ["Pain artisanal", "Halloumi grillé", "Avocat", "Tomates cerises", "Herbes fraîches"],
-  },
-  {
     id: "oeufs-benedicte",
     name: "Oeufs bénédicte",
     price: "8,50€",
