@@ -44,7 +44,7 @@ const Footer = () => {
         <div className="lg:col-span-1">
           <img src={logo} alt="Breakfast Time" className="h-16 w-auto mb-4 brightness-0 invert" />
           <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Des petits-déjeuners et brunchs d'exception livrés chez vous dans les Alpes-Maritimes.
+            Des petits-déjeuners et brunchs, livrés chez vous en moins de 45 minutes. Alpes-Maritimes, 7j/7.
           </p>
           <div className="flex gap-3 mt-6">
             <a
