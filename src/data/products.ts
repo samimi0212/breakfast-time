@@ -411,6 +411,15 @@ export const allProducts: Product[] = [
     composition: ["Farine", "Beurre", "Pépites de chocolat", "Sucre", "Œuf"],
   },
   {
+    id: "cookie-gluten-free",
+    name: "Cookie Gluten Free",
+    price: "2,60€",
+    category: "Le Sucré",
+    img: "/cookie-sans-gluten.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "cake-marbre",
     name: "Cake marbré",
     price: "3,80€",
