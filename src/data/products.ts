@@ -309,7 +309,7 @@ export const allProducts: Product[] = [
     name: "Pancakes à composer",
     price: "4,50€",
     category: "Le Sucré",
-    img: "/pancakes-entre.png",
+    img: "/pancakes-composer.png",
     desc: "Pancakes moelleux à personnaliser selon vos envies.",
     composition: [],
     options: [
