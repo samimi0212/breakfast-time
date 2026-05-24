@@ -223,18 +223,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/pancakes-composer.png",
     },
     {
-      id: "pancakes-erable-myrtilles",
-      name: "Pancakes Sirop d'érable Myrtilles",
-      price: "10,90€",
-      img: "https://static.wixstatic.com/media/21c6e4_f419aee1d44244458fc6c57efc1de148~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_f419aee1d44244458fc6c57efc1de148~mv2.png",
-    },
-    {
-      id: "pancakes-nutella-banane",
-      name: "Pancakes Nutella Banane",
-      price: "10,90€",
-      img: "https://static.wixstatic.com/media/21c6e4_e0c9e849faa64c90b4e105a283f646bf~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_e0c9e849faa64c90b4e105a283f646bf~mv2.png",
-    },
-    {
       id: "brioche-perdue",
       name: "Brioche Perdue Gourmande",
       price: "12,90€",

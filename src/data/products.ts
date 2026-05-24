@@ -367,24 +367,6 @@ export const allProducts: Product[] = [
   },
   // ---- LE SUCRÉ ----
   {
-    id: "pancakes-erable-myrtilles",
-    name: "Pancakes Sirop d'érable Myrtilles",
-    price: "10,90€",
-    category: "Le Sucré",
-    img: "https://static.wixstatic.com/media/21c6e4_f419aee1d44244458fc6c57efc1de148~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_f419aee1d44244458fc6c57efc1de148~mv2.png",
-    desc: "Pancakes moelleux nappés de sirop d'érable et myrtilles fraîches.",
-    composition: ["Pancakes maison", "Sirop d'érable", "Myrtilles fraîches", "Beurre"],
-  },
-  {
-    id: "pancakes-nutella-banane",
-    name: "Pancakes Nutella Banane",
-    price: "10,90€",
-    category: "Le Sucré",
-    img: "https://static.wixstatic.com/media/21c6e4_e0c9e849faa64c90b4e105a283f646bf~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_e0c9e849faa64c90b4e105a283f646bf~mv2.png",
-    desc: "Pancakes gourmands au Nutella et rondelles de banane.",
-    composition: ["Pancakes maison", "Nutella", "Banane", "Éclats de noisette"],
-  },
-  {
     id: "brioche-perdue",
     name: "Brioche Perdue Gourmande",
     price: "12,90€",
