@@ -226,7 +226,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "brioche-perdue",
       name: "Brioche Perdue Gourmande",
       price: "12,90€",
-      img: "https://static.wixstatic.com/media/21c6e4_5ba1b60f56084a23b7fe442adaafbe4a~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_5ba1b60f56084a23b7fe442adaafbe4a~mv2.png",
+      img: "/brioche-perdue.png",
     },
     {
       id: "pudding-chia",
