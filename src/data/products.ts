@@ -380,7 +380,7 @@ export const allProducts: Product[] = [
     name: "Pudding Chia Bowl",
     price: "9,50€",
     category: "Le Sucré",
-    img: "https://static.wixstatic.com/media/21c6e4_3b8ad26ddf37468a834c55f7697d48a6~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_3b8ad26ddf37468a834c55f7697d48a6~mv2.png",
+    img: "/chia-pudding.png",
     desc: "Pudding de graines de chia onctueux, garni de fruits frais.",
     composition: ["Graines de chia", "Lait de coco", "Fruits frais", "Miel", "Granola"],
   },
