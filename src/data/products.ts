@@ -361,7 +361,7 @@ export const allProducts: Product[] = [
     name: "Halloumi grillé",
     price: "7,50€",
     category: "Extra",
-    img: "/halloumi-grille.png",
+    img: "/halloumi.png",
     desc: "",
     composition: [],
   },
