@@ -471,7 +471,7 @@ export const allProducts: Product[] = [
     name: "Smoothie banane",
     price: "6,50€",
     category: "Boissons",
-    img: "https://static.wixstatic.com/media/21c6e4_97bb0d3d0a8e4fd5a0bcb6426a6b5a91~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_97bb0d3d0a8e4fd5a0bcb6426a6b5a91~mv2.png",
+    img: "/smoothie-banane.png",
     desc: "Smoothie onctueux à la banane, préparé avec des fruits frais.",
     composition: ["Banane", "Lait d'amande", "Miel", "Vanille"],
   },

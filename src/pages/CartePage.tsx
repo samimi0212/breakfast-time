@@ -282,7 +282,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "smoothie-banane",
       name: "Smoothie banane",
       price: "6,50€",
-      img: "https://static.wixstatic.com/media/21c6e4_97bb0d3d0a8e4fd5a0bcb6426a6b5a91~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_97bb0d3d0a8e4fd5a0bcb6426a6b5a91~mv2.png",
+      img: "/smoothie-banane.png",
     },
     {
       id: "smoothie-fruits-rouges",
