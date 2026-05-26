@@ -297,6 +297,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/americano.png",
     },
     {
+      id: "chocolat-chaud",
+      name: "Chocolat chaud",
+      price: "5,50€",
+      img: "/chocolat-chaud.png",
+    },
+    {
       id: "cafe-frappe",
       name: "Iced latte",
       price: "5,50€",

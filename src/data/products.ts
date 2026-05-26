@@ -494,6 +494,15 @@ export const allProducts: Product[] = [
     composition: [],
   },
   {
+    id: "chocolat-chaud",
+    name: "Chocolat chaud",
+    price: "5,50€",
+    category: "Boissons",
+    img: "/chocolat-chaud.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "cafe-frappe",
     name: "Iced latte",
     price: "5,50€",
