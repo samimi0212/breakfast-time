@@ -451,7 +451,7 @@ export const allProducts: Product[] = [
     name: "Muffin myrtilles",
     price: "2,70€",
     category: "Le Sucré",
-    img: "/muffin-myrtille.png",
+    img: "/muffin-myrtilles.png",
     desc: "Muffin moelleux aux myrtilles, fait maison.",
     composition: ["Farine", "Myrtilles", "Beurre", "Œufs", "Sucre"],
     allergens: ["Gluten", "Œufs", "Lait"],

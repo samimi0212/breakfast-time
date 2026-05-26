@@ -268,7 +268,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "muffin-myrtilles",
       name: "Muffin myrtilles",
       price: "2,70€",
-      img: "/muffin-myrtille.png",
+      img: "/muffin-myrtilles.png",
     },
   ],
   Boissons: [
