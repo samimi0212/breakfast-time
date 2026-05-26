@@ -329,6 +329,15 @@ export const allProducts: Product[] = [
     ],
   },
   {
+    id: "breakfast-bowl",
+    name: "Breakfast Bowl",
+    price: "11,50€",
+    category: "Le Salé",
+    img: "/breakfast-bowl.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "rostis",
     name: "Röstis",
     price: "6,50€",
