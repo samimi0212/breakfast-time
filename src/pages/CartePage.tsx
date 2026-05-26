@@ -189,12 +189,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/breakfast-burrito.png",
     },
     {
-      id: "rostis",
-      name: "Röstis",
-      price: "6,50€",
-      img: "/rostis.png",
-    },
-    {
       id: "chicken-burrito",
       name: "Chicken Burrito",
       price: "8,50€",
@@ -219,6 +213,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       name: "Halloumi grillé",
       price: "7,50€",
       img: "/halloumi.png",
+    },
+    {
+      id: "rostis",
+      name: "Röstis",
+      price: "6,50€",
+      img: "/rostis.png",
     },
   ],
   "Le Sucré": [

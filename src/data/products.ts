@@ -332,7 +332,7 @@ export const allProducts: Product[] = [
     id: "rostis",
     name: "Röstis",
     price: "6,50€",
-    category: "Le Salé",
+    category: "Extra",
     img: "/rostis.png",
     desc: "",
     composition: [],
