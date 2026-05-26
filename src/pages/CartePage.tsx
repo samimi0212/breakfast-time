@@ -259,12 +259,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/cookie-sans-gluten.png",
     },
     {
-      id: "cake-marbre",
-      name: "Cake marbré",
-      price: "3,80€",
-      img: "/marbre.png",
-    },
-    {
       id: "muffin-myrtilles",
       name: "Muffin myrtilles",
       price: "2,70€",
@@ -327,6 +321,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       name: "Planche mixte",
       price: "39,00€",
       img: "/plateau-mixte.png",
+    },
+    {
+      id: "cake-marbre",
+      name: "Cake marbré",
+      price: "10,50€",
+      img: "/marbre.png",
     },
   ],
 };

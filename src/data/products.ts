@@ -431,8 +431,8 @@ export const allProducts: Product[] = [
   {
     id: "cake-marbre",
     name: "Cake marbré",
-    price: "3,80€",
-    category: "Le Sucré",
+    price: "10,50€",
+    category: "À Partager",
     img: "/marbre.png",
     desc: "Cake marbré vanille-chocolat moelleux, fait maison.",
     composition: ["Farine", "Beurre", "Œufs", "Sucre", "Chocolat", "Vanille"],
