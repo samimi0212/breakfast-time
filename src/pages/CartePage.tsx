@@ -279,18 +279,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
   ],
   Boissons: [
     {
-      id: "smoothie-banane",
-      name: "Smoothie banane",
-      price: "6,50€",
-      img: "/smoothie-banane.png",
-    },
-    {
-      id: "smoothie-fruits-rouges",
-      name: "Smoothie fruits rouges",
-      price: "6,50€",
-      img: "/smoothie-fruits-rouges.png",
-    },
-    {
       id: "cafe-latte",
       name: "Café Latte",
       price: "5,50€",
@@ -310,9 +298,21 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     },
     {
       id: "cafe-frappe",
-      name: "Café frappé",
+      name: "Iced latte",
       price: "5,50€",
       img: "/iced-latte.png",
+    },
+    {
+      id: "smoothie-banane",
+      name: "Smoothie banane",
+      price: "6,50€",
+      img: "/smoothie-banane.png",
+    },
+    {
+      id: "smoothie-fruits-rouges",
+      name: "Smoothie fruits rouges",
+      price: "6,50€",
+      img: "/smoothie-fruits-rouges.png",
     },
     {
       id: "jus-orange-presse",
