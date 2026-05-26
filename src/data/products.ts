@@ -480,7 +480,7 @@ export const allProducts: Product[] = [
     name: "Smoothie fruits rouges",
     price: "6,50€",
     category: "Boissons",
-    img: "https://static.wixstatic.com/media/21c6e4_dd1900b53c5445bfa3005623afd0b1b0~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_dd1900b53c5445bfa3005623afd0b1b0~mv2.png",
+    img: "/smoothie-fruits-rouges.png",
     desc: "Smoothie vitaminé aux fruits rouges frais de saison.",
     composition: ["Fraises", "Framboises", "Myrtilles", "Yaourt", "Miel"],
   },
