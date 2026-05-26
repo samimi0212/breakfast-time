@@ -303,6 +303,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/capuccino.png",
     },
     {
+      id: "americano",
+      name: "Americano",
+      price: "3,00€",
+      img: "/americano.png",
+    },
+    {
       id: "cafe-frappe",
       name: "Café frappé",
       price: "5,50€",

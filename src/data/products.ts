@@ -503,6 +503,15 @@ export const allProducts: Product[] = [
     composition: [],
   },
   {
+    id: "americano",
+    name: "Americano",
+    price: "3,00€",
+    category: "Boissons",
+    img: "/americano.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "cafe-frappe",
     name: "Café frappé",
     price: "5,50€",
