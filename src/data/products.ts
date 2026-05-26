@@ -329,6 +329,15 @@ export const allProducts: Product[] = [
     ],
   },
   {
+    id: "rostis",
+    name: "Röstis",
+    price: "6,50€",
+    category: "Le Salé",
+    img: "/rostis.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "chicken-burrito",
     name: "Chicken Burrito",
     price: "8,50€",
