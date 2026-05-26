@@ -489,7 +489,7 @@ export const allProducts: Product[] = [
     name: "Café frappé",
     price: "5,50€",
     category: "Boissons",
-    img: "https://static.wixstatic.com/media/21c6e4_0666def6d3c34d979690efd0430ca8ec~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_0666def6d3c34d979690efd0430ca8ec~mv2.png",
+    img: "/iced-latte.png",
     desc: "Café frappé glacé, onctueux et rafraîchissant.",
     composition: ["Espresso", "Lait", "Glaçons", "Sucre"],
   },
