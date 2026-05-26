@@ -485,6 +485,15 @@ export const allProducts: Product[] = [
     composition: ["Fraises", "Framboises", "Myrtilles", "Yaourt", "Miel"],
   },
   {
+    id: "cafe-latte",
+    name: "Café Latte",
+    price: "5,50€",
+    category: "Boissons",
+    img: "/cafe-latte.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "cafe-frappe",
     name: "Café frappé",
     price: "5,50€",

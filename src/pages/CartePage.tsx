@@ -291,6 +291,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/smoothie-fruits-rouges.png",
     },
     {
+      id: "cafe-latte",
+      name: "Café Latte",
+      price: "5,50€",
+      img: "/cafe-latte.png",
+    },
+    {
       id: "cafe-frappe",
       name: "Café frappé",
       price: "5,50€",
