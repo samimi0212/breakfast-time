@@ -352,7 +352,7 @@ export const allProducts: Product[] = [
     name: "Frites de patates douces",
     price: "5,50€",
     category: "Extra",
-    img: "/frite-patate-douce.png",
+    img: "/frites-patate-douce.png",
     desc: "",
     composition: [],
   },
