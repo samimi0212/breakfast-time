@@ -357,6 +357,15 @@ export const allProducts: Product[] = [
   },
   // ---- EXTRA ----
   {
+    id: "salade-verte",
+    name: "Salade verte",
+    price: "4,50€",
+    category: "Extra",
+    img: "/salade-verte.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "frites-patates-douces",
     name: "Frites de patates douces",
     price: "5,50€",

@@ -203,6 +203,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
   ],
   "Extra": [
     {
+      id: "salade-verte",
+      name: "Salade verte",
+      price: "4,50€",
+      img: "/salade-verte.png",
+    },
+    {
       id: "frites-patates-douces",
       name: "Frites de patates douces",
       price: "5,50€",
