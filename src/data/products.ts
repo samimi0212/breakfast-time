@@ -27,7 +27,7 @@ export const allProducts: Product[] = [
   category: "Nos Menus",
   img: "/menu-francais.png",
   desc: "Le classique à la française pour bien commencer la journée.",
-  composition: ["1/2 baguette", "1 beurre", "1 confiture/Nutella au choix", "1 viennoiserie au choix", "1 jus frais au choix"],
+  composition: ["1/2 baguette", "1 beurre", "1 nappage au choix", "1 viennoiserie au choix", "1 jus frais au choix", "1 boisson chaude au choix"],
   options: [
     {
       id: "viennoiserie",
@@ -36,8 +36,8 @@ export const allProducts: Product[] = [
       choices: ["Croissant", "Pain au chocolat"],
     },
     {
-      id: "confiture",
-      label: "Confiture",
+      id: "nappage",
+      label: "Choix du nappage",
       required: true,
       choices: ["Fraise", "Abricot", "Nutella"],
     },
@@ -46,6 +46,12 @@ export const allProducts: Product[] = [
       label: "Jus frais",
       required: true,
       choices: ["Orange", "Pomme", "Ananas"],
+    },
+    {
+      id: "boisson-chaude",
+      label: "Boisson chaude",
+      required: true,
+      choices: ["Americano", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
     },
   ],
 },
