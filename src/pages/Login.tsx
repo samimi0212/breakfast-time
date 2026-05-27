@@ -18,6 +18,10 @@ const Login = () => {
     setError("");
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") handleSubmit();
+  };
+
   const handleSubmit = async () => {
     if (!form.email || !form.password) {
       setError("Veuillez remplir tous les champs.");
@@ -66,6 +70,7 @@ const Login = () => {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="votre@email.com"
+                onKeyDown={handleKeyDown}
                 className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
               />
             </div>
@@ -83,6 +88,7 @@ const Login = () => {
                 value={form.password}
                 onChange={handleChange}
                 placeholder="••••••••"
+                onKeyDown={handleKeyDown}
                 className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
               />
             </div>
