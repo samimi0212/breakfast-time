@@ -23,7 +23,8 @@ export default async function handler(req: Request): Promise<Response> {
       );
     }
 
-    const stripe = new Stripe(secretKey, { apiVersion: "2025-04-30.basil" });
+    // @ts-ignore
+    const stripe = new Stripe(secretKey);
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100),
