@@ -338,7 +338,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "plateau-viennoiseries",
       name: "Plateau de viennoiseries",
       price: "17,00€",
-      img: "https://static.wixstatic.com/media/21c6e4_54d6c72da0db428c9a95913573cb84ee~mv2.jpg/v1/fill/w_832,h_832,al_c,q_85,enc_avif,quality_auto/21c6e4_54d6c72da0db428c9a95913573cb84ee~mv2.jpg",
+      img: "/plateau-mini.png",
     },
     {
       id: "planche-charcuterie",

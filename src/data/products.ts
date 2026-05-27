@@ -553,7 +553,7 @@ export const allProducts: Product[] = [
     name: "Plateau de viennoiseries",
     price: "17,00€",
     category: "À Partager",
-    img: "https://static.wixstatic.com/media/21c6e4_54d6c72da0db428c9a95913573cb84ee~mv2.jpg/v1/fill/w_832,h_832,al_c,q_85,enc_avif,quality_auto/21c6e4_54d6c72da0db428c9a95913573cb84ee~mv2.jpg",
+    img: "/plateau-mini.png",
     desc: "Un beau plateau de viennoiseries fraîches à partager.",
     composition: ["Croissants", "Pains au chocolat", "Pains aux raisins", "Suisses"],
   },
