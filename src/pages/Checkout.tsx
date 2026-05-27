@@ -65,6 +65,20 @@ const CheckoutForm = () => {
     heure: "",
   });
 
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) return;
+      const meta = session.user.user_metadata;
+      setForm((prev) => ({
+        ...prev,
+        prenom: meta?.prenom || "",
+        nom: meta?.nom || "",
+        email: session.user.email || "",
+        telephone: meta?.telephone || "",
+      }));
+    });
+  }, []);
+
   const [slots, setSlots] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
