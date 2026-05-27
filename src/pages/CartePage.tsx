@@ -346,6 +346,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "10,50€",
       img: "/cake-marbre.png",
     },
+    {
+      id: "brioche-partager",
+      name: "Brioche",
+      price: "9,50€",
+      img: "/brioche-partager.png",
+    },
   ],
 };
 

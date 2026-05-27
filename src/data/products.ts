@@ -557,6 +557,15 @@ export const allProducts: Product[] = [
     desc: "Un beau plateau de viennoiseries fraîches à partager.",
     composition: ["Croissants", "Pains au chocolat", "Pains aux raisins", "Suisses"],
   },
+  {
+    id: "brioche-partager",
+    name: "Brioche",
+    price: "9,50€",
+    category: "À Partager",
+    img: "/brioche-partager.png",
+    desc: "",
+    composition: [],
+  },
   // ---- ÉVÉNEMENTS ----
   {
     id: "brunch-mariage",
