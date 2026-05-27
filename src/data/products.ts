@@ -557,33 +557,6 @@ export const allProducts: Product[] = [
     desc: "Un beau plateau de viennoiseries fraîches à partager.",
     composition: ["Croissants", "Pains au chocolat", "Pains aux raisins", "Suisses"],
   },
-  {
-    id: "planche-charcuterie",
-    name: "Planche de charcuterie",
-    price: "39,00€",
-    category: "À Partager",
-    img: "https://static.wixstatic.com/media/21c6e4_a7461066fb7542869e337fd7e3ef7d9a~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a7461066fb7542869e337fd7e3ef7d9a~mv2.png",
-    desc: "Sélection de charcuteries fines, idéale pour partager.",
-    composition: ["Jambon ibérique", "Saucisson", "Chorizo", "Mortadelle", "Cornichons"],
-  },
-  {
-    id: "planche-fromages",
-    name: "Planche de fromages",
-    price: "39,00€",
-    category: "À Partager",
-    img: "https://static.wixstatic.com/media/21c6e4_1072c5ec1d8844478ad6ddf0753d7d1d~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_1072c5ec1d8844478ad6ddf0753d7d1d~mv2.png",
-    desc: "Belle sélection de fromages affinés avec accompagnements.",
-    composition: ["Comté", "Brie", "Chèvre", "Roquefort", "Fruits secs et confiture"],
-  },
-  {
-    id: "planche-mixte",
-    name: "Planche mixte",
-    price: "39,00€",
-    category: "À Partager",
-    img: "/plateau-mixte.png",
-    desc: "Planche généreuse mêlant charcuterie et fromages affinés, idéale pour partager.",
-    composition: ["Sélection de charcuterie", "Sélection de fromages", "Condiments", "Pain grillé"],
-  },
   // ---- ÉVÉNEMENTS ----
   {
     id: "brunch-mariage",
