@@ -362,7 +362,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "cake-marbre",
       name: "Cake marbré",
       price: "10,50€",
-      img: "/marbre.png",
+      img: "/cake-marbre.png",
     },
   ],
 };
