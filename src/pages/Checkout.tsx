@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ShoppingBag, CreditCard, Clock, MapPin, User } from "lucide-react";
+import { ArrowLeft, CreditCard, Clock, MapPin, User, Lock } from "lucide-react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useCart } from "@/context/CartContext";
 import { supabase } from "@/lib/supabase";
 import Navbar from "@/components/Navbar";
 
-// Génère les créneaux horaires disponibles
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+
 const generateSlots = (date: string): string[] => {
   const slots: string[] = [];
   const now = new Date();
@@ -16,12 +19,10 @@ const generateSlots = (date: string): string[] => {
     for (let m = 0; m < 60; m += 30) {
       const slot = new Date(selected);
       slot.setHours(h, m, 0, 0);
-
       if (isToday) {
         const minTime = new Date(now.getTime() + 45 * 60000);
         if (slot < minTime) continue;
       }
-
       const hStr = String(h).padStart(2, "0");
       const mStr = String(m).padStart(2, "0");
       slots.push(`${hStr}:${mStr}`);
@@ -30,15 +31,25 @@ const generateSlots = (date: string): string[] => {
   return slots;
 };
 
-// Format date pour input
-const todayStr = () => {
-  const d = new Date();
-  return d.toISOString().split("T")[0];
+const todayStr = () => new Date().toISOString().split("T")[0];
+
+const CARD_ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      fontSize: "16px",
+      color: "#1a1a0a",
+      fontFamily: "system-ui, sans-serif",
+      "::placeholder": { color: "#9ca3af" },
+    },
+    invalid: { color: "#ef4444" },
+  },
 };
 
-const Checkout = () => {
+const CheckoutForm = () => {
   const { items, total, clearCart } = useCart();
   const navigate = useNavigate();
+  const stripe = useStripe();
+  const elements = useElements();
 
   const [form, setForm] = useState({
     prenom: "",
@@ -89,38 +100,69 @@ const Checkout = () => {
 
   const handleSubmit = async () => {
     if (!validate()) return;
+    if (!stripe || !elements) return;
+
     setLoading(true);
+    setErrors({});
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
+    try {
+      // 1. Créer le PaymentIntent côté serveur
+      const res = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: total }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || "Erreur lors de la création du paiement");
 
-    const { error } = await supabase.from("commandes").insert({
-      user_id: session?.user?.id || null,
-      user_email: form.email,
-      user_prenom: form.prenom,
-      user_nom: form.nom,
-      user_telephone: form.telephone,
-      adresse: form.adresse,
-      ville: form.ville,
-      code_postal: form.codePostal,
-      date_livraison: form.date,
-      heure_livraison: form.heure,
-      note: form.note,
-      items: items,
-      total: total,
-      statut: "En attente",
-    });
+      // 2. Confirmer le paiement avec Stripe
+      const cardElement = elements.getElement(CardElement);
+      const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret, {
+        payment_method: {
+          card: cardElement!,
+          billing_details: {
+            name: `${form.prenom} ${form.nom}`,
+            email: form.email,
+            phone: form.telephone,
+          },
+        },
+      });
 
-    setLoading(false);
+      if (stripeError) {
+        setErrors({ general: stripeError.message || "Paiement refusé. Veuillez vérifier votre carte." });
+        setLoading(false);
+        return;
+      }
 
-    if (error) {
-      setErrors({ general: "Une erreur est survenue. Veuillez réessayer." });
-      return;
+      // 3. Enregistrer la commande dans Supabase
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      await supabase.from("commandes").insert({
+        user_id: session?.user?.id || null,
+        user_email: form.email,
+        user_prenom: form.prenom,
+        user_nom: form.nom,
+        user_telephone: form.telephone,
+        adresse: form.adresse,
+        ville: form.ville,
+        code_postal: form.codePostal,
+        date_livraison: form.date,
+        heure_livraison: form.heure,
+        note: form.note,
+        items,
+        total,
+        statut: "Payée",
+        stripe_payment_id: paymentIntent?.id,
+      });
+
+      clearCart();
+      navigate("/confirmation");
+    } catch (err: any) {
+      setErrors({ general: err.message || "Une erreur est survenue. Veuillez réessayer." });
+      setLoading(false);
     }
-
-    clearCart();
-    navigate("/confirmation");
   };
 
   const inputClass = (field: string) =>
@@ -133,7 +175,6 @@ const Checkout = () => {
       <Navbar />
 
       <div className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
-        {/* Retour */}
         <button
           onClick={() => navigate("/panier")}
           className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group"
@@ -145,8 +186,8 @@ const Checkout = () => {
         <h1 className="font-display text-3xl font-bold mb-8">Finaliser la commande</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Formulaire */}
           <div className="lg:col-span-2 space-y-6">
+
             {/* Coordonnées */}
             <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
               <div className="flex items-center gap-3 mb-5">
@@ -158,54 +199,28 @@ const Checkout = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Prénom</label>
-                  <input
-                    name="prenom"
-                    value={form.prenom}
-                    onChange={handleChange}
-                    placeholder="Marie"
-                    className={inputClass("prenom")}
-                  />
+                  <input name="prenom" value={form.prenom} onChange={handleChange} placeholder="Marie" className={inputClass("prenom")} />
                   {errors.prenom && <p className="text-red-400 text-xs mt-1">{errors.prenom}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Nom</label>
-                  <input
-                    name="nom"
-                    value={form.nom}
-                    onChange={handleChange}
-                    placeholder="Dupont"
-                    className={inputClass("nom")}
-                  />
+                  <input name="nom" value={form.nom} onChange={handleChange} placeholder="Dupont" className={inputClass("nom")} />
                   {errors.nom && <p className="text-red-400 text-xs mt-1">{errors.nom}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Email</label>
-                  <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="marie@email.com"
-                    className={inputClass("email")}
-                  />
+                  <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="marie@email.com" className={inputClass("email")} />
                   {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Téléphone</label>
-                  <input
-                    name="telephone"
-                    type="tel"
-                    value={form.telephone}
-                    onChange={handleChange}
-                    placeholder="+33 6 00 00 00 00"
-                    className={inputClass("telephone")}
-                  />
+                  <input name="telephone" type="tel" value={form.telephone} onChange={handleChange} placeholder="+33 6 00 00 00 00" className={inputClass("telephone")} />
                   {errors.telephone && <p className="text-red-400 text-xs mt-1">{errors.telephone}</p>}
                 </div>
               </div>
             </div>
 
-            {/* Adresse */}
+            {/* Adresse de livraison */}
             <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
@@ -216,43 +231,25 @@ const Checkout = () => {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Adresse</label>
-                  <input
-                    name="adresse"
-                    value={form.adresse}
-                    onChange={handleChange}
-                    placeholder="12 rue des Fleurs"
-                    className={inputClass("adresse")}
-                  />
+                  <input name="adresse" value={form.adresse} onChange={handleChange} placeholder="12 rue des Fleurs" className={inputClass("adresse")} />
                   {errors.adresse && <p className="text-red-400 text-xs mt-1">{errors.adresse}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Ville</label>
-                    <input
-                      name="ville"
-                      value={form.ville}
-                      onChange={handleChange}
-                      placeholder="Nice"
-                      className={inputClass("ville")}
-                    />
+                    <input name="ville" value={form.ville} onChange={handleChange} placeholder="Nice" className={inputClass("ville")} />
                     {errors.ville && <p className="text-red-400 text-xs mt-1">{errors.ville}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Code postal</label>
-                    <input
-                      name="codePostal"
-                      value={form.codePostal}
-                      onChange={handleChange}
-                      placeholder="06000"
-                      className={inputClass("codePostal")}
-                    />
+                    <input name="codePostal" value={form.codePostal} onChange={handleChange} placeholder="06000" className={inputClass("codePostal")} />
                     {errors.codePostal && <p className="text-red-400 text-xs mt-1">{errors.codePostal}</p>}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Créneau */}
+            {/* Créneau de livraison */}
             <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
@@ -263,14 +260,7 @@ const Checkout = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Date</label>
-                  <input
-                    name="date"
-                    type="date"
-                    value={form.date}
-                    min={todayStr()}
-                    onChange={handleChange}
-                    className={inputClass("date")}
-                  />
+                  <input name="date" type="date" value={form.date} min={todayStr()} onChange={handleChange} className={inputClass("date")} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Heure</label>
@@ -279,9 +269,7 @@ const Checkout = () => {
                       <option value="">Aucun créneau disponible</option>
                     ) : (
                       slots.map((s) => (
-                        <option key={s} value={s}>
-                          {s}
-                        </option>
+                        <option key={s} value={s}>{s}</option>
                       ))
                     )}
                   </select>
@@ -293,7 +281,7 @@ const Checkout = () => {
               </p>
             </div>
 
-            {/* Note */}
+            {/* Note pour le livreur */}
             <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
               <h2 className="font-display text-lg font-semibold mb-4">Note pour le livreur</h2>
               <textarea
@@ -305,6 +293,32 @@ const Checkout = () => {
                 className="w-full px-4 py-3 rounded-xl border-2 border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition resize-none"
               />
             </div>
+
+            {/* Paiement Stripe */}
+            <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <CreditCard size={16} className="text-primary" />
+                </div>
+                <h2 className="font-display text-lg font-semibold">Paiement par carte</h2>
+              </div>
+
+              <div className="border-2 border-border rounded-xl px-4 py-4 focus-within:border-primary transition">
+                <CardElement options={CARD_ELEMENT_OPTIONS} />
+              </div>
+
+              {errors.general && (
+                <p className="text-red-400 text-sm mt-3 flex items-center gap-1.5">
+                  <span>⚠️</span> {errors.general}
+                </p>
+              )}
+
+              <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1.5">
+                <Lock size={11} />
+                Paiement 100% sécurisé — vos données bancaires ne sont jamais stockées sur nos serveurs
+              </p>
+            </div>
+
           </div>
 
           {/* Récapitulatif */}
@@ -312,7 +326,6 @@ const Checkout = () => {
             <div className="bg-white rounded-2xl p-6 sticky top-24" style={{ boxShadow: "var(--card-shadow)" }}>
               <h2 className="font-display text-lg font-bold mb-4">Récapitulatif</h2>
 
-              {/* Produits */}
               <div className="space-y-3 mb-4">
                 {items.map((item, i) => (
                   <div key={i} className="flex gap-3 items-center">
@@ -329,8 +342,7 @@ const Checkout = () => {
                     <p className="text-sm font-bold text-primary flex-shrink-0">
                       {(parseFloat(item.price.replace("€", "").replace(",", ".")) * item.qty)
                         .toFixed(2)
-                        .replace(".", ",")}
-                      €
+                        .replace(".", ",")}€
                     </p>
                   </div>
                 ))}
@@ -351,10 +363,9 @@ const Checkout = () => {
                 </div>
               </div>
 
-              {/* Bouton payer */}
               <button
                 onClick={handleSubmit}
-                disabled={loading}
+                disabled={loading || !stripe}
                 className="w-full bg-primary text-primary-foreground py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-60"
               >
                 {loading ? (
@@ -368,7 +379,8 @@ const Checkout = () => {
               </button>
 
               <p className="text-xs text-muted-foreground text-center mt-3 flex items-center justify-center gap-1">
-                🔒 Paiement sécurisé par Stripe
+                <Lock size={11} />
+                Paiement sécurisé par Stripe
               </p>
             </div>
           </div>
@@ -377,5 +389,11 @@ const Checkout = () => {
     </div>
   );
 };
+
+const Checkout = () => (
+  <Elements stripe={stripePromise} options={{ locale: "fr" }}>
+    <CheckoutForm />
+  </Elements>
+);
 
 export default Checkout;

@@ -232,6 +232,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "6,50€",
       img: "/rostis.png",
     },
+    {
+      id: "breakfast-burrito",
+      name: "Breakfast Burrito",
+      price: "14,90€",
+      img: "/breakfast-burrito.png",
+    },
   ],
   "Le Sucré": [
     {
@@ -281,6 +287,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       name: "Muffin Chocolat",
       price: "4,50€",
       img: "/muffin-choco.png",
+    },
+    {
+      id: "muffin-myrtilles",
+      name: "Muffin myrtilles",
+      price: "2,70€",
+      img: "/muffin-myrtille.png",
     },
   ],
   Boissons: [

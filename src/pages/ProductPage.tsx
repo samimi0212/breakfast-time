@@ -210,23 +210,42 @@ const ProductPage = () => {
               </div>
             )}
 
-            {/* Commander via les plateformes */}
+            {/* Quantité + Ajouter au panier */}
             <div className="flex flex-col gap-3">
-              <p className="text-sm text-muted-foreground text-center">Commandez ce produit sur :</p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 bg-muted rounded-xl px-3 py-2.5 flex-shrink-0">
+                  <button
+                    onClick={() => setQty(Math.max(1, qty - 1))}
+                    className="w-8 h-8 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <Minus size={14} />
+                  </button>
+                  <span className="font-semibold w-8 text-center text-lg">{qty}</span>
+                  <button
+                    onClick={() => setQty(qty + 1)}
+                    className="w-8 h-8 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <Plus size={14} />
+                  </button>
+                </div>
                 <button
-                  disabled
-                  className="flex-1 py-4 rounded-2xl font-semibold text-lg opacity-80 cursor-not-allowed bg-primary text-primary-foreground"
+                  onClick={handleAdd}
+                  disabled={!allSelected}
+                  className="flex-1 py-4 rounded-2xl font-semibold text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  style={added ? { backgroundColor: "#22c55e", color: "white" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
                 >
-                  Uber Eats
-                </button>
-                <button
-                  disabled
-                  className="flex-1 py-4 rounded-2xl font-semibold text-lg opacity-80 cursor-not-allowed bg-muted text-foreground"
-                >
-                  Deliveroo
+                  {added ? (
+                    <><Check size={20} /> Ajouté au panier !</>
+                  ) : (
+                    <><ShoppingBag size={20} /> Ajouter au panier</>
+                  )}
                 </button>
               </div>
+              {!allSelected && (
+                <p className="text-sm text-amber-600 font-medium">
+                  Veuillez sélectionner toutes les options obligatoires
+                </p>
+              )}
             </div>
 
             {/* Livraison */}
