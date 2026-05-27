@@ -1,18 +1,29 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });
+  }
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey) {
+    return new Response(
+      JSON.stringify({ error: "Stripe non configuré — clé secrète manquante" }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 
   try {
     const { amount } = await req.json();
 
     if (!amount || amount <= 0) {
-      return new Response(JSON.stringify({ error: "Montant invalide" }), { status: 400 });
+      return new Response(
+        JSON.stringify({ error: "Montant invalide" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
     }
+
+    const stripe = new Stripe(secretKey, { apiVersion: "2025-04-30.basil" });
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100),
@@ -26,7 +37,7 @@ export default async function handler(req: Request): Promise<Response> {
     );
   } catch (error: any) {
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: error.message || "Erreur interne" }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }

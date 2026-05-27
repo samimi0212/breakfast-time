@@ -108,26 +108,18 @@ const CheckoutForm = () => {
 
     try {
       // 1. Créer le PaymentIntent côté serveur
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 15000);
-      let res: Response;
-      try {
-        res = await fetch("/api/create-payment-intent", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: total }),
-          signal: controller.signal,
-        });
-      } finally {
-        clearTimeout(timeout);
-      }
+      const res = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: total }),
+      });
       let data: any;
       try {
-        data = await res!.json();
+        data = await res.json();
       } catch {
         throw new Error("Erreur serveur. Veuillez réessayer dans quelques secondes.");
       }
-      if (!res!.ok || data.error) throw new Error(data.error || "Erreur lors de la création du paiement");
+      if (!res.ok || data.error) throw new Error(data.error || "Erreur lors de la création du paiement");
 
       // 2. Confirmer le paiement avec Stripe
       const cardElement = elements.getElement(CardElement);
