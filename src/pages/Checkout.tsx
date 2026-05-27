@@ -179,6 +179,8 @@ const CheckoutForm = () => {
 
       if (dbError) {
         console.error("Supabase insert error:", dbError);
+        // Afficher l'erreur temporairement pour debug
+        alert("Erreur Supabase : " + JSON.stringify(dbError));
       }
 
       // 4. Envoyer l'email de confirmation
