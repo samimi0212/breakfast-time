@@ -159,7 +159,7 @@ const CheckoutForm = () => {
         data: { session },
       } = await supabase.auth.getSession();
 
-      await supabase.from("commandes").insert({
+      const { error: dbError } = await supabase.from("commandes").insert({
         user_id: session?.user?.id || null,
         user_email: form.email,
         user_prenom: form.prenom,
@@ -176,6 +176,37 @@ const CheckoutForm = () => {
         statut: "Payée",
         stripe_payment_id: paymentIntent?.id,
       });
+
+      if (dbError) {
+        console.error("Supabase insert error:", dbError);
+      }
+
+      // 4. Envoyer l'email de confirmation
+      try {
+        await fetch("/api/send-order-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            order: {
+              prenom: form.prenom,
+              nom: form.nom,
+              email: form.email,
+              telephone: form.telephone,
+              adresse: form.adresse,
+              ville: form.ville,
+              codePostal: form.codePostal,
+              date: form.date,
+              heure: form.heure,
+              note: form.note,
+              items,
+              total,
+              stripeId: paymentIntent?.id,
+            },
+          }),
+        });
+      } catch (emailErr) {
+        console.error("Email error:", emailErr);
+      }
 
       clearCart();
       navigate("/confirmation");
