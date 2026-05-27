@@ -29,7 +29,7 @@ const MyOrders = () => {
       const { data, error } = await supabase
         .from("commandes")
         .select("*")
-        .eq("user_id", session.user.id)
+        .or(`user_id.eq.${session.user.id},user_email.eq.${session.user.email}`)
         .order("created_at", { ascending: false });
 
       if (!error) setOrders(data || []);
