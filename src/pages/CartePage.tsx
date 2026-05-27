@@ -506,44 +506,64 @@ const CartePage = () => {
                 {/* Carte Menus */}
                 <button
                   onClick={() => switchTab("menus")}
-                  className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 p-8 flex flex-col gap-4"
+                  className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 overflow-hidden flex flex-col"
                 >
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
-                    <BookOpen size={28} style={{ color: "#6b7a10" }} />
+                  <div className="relative h-52 w-full overflow-hidden">
+                    <img
+                      src="/menu-highlight.jpg"
+                      alt="Nos Menus"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35), transparent)" }} />
                   </div>
-                  <div>
-                    <h2 className="font-display text-2xl font-bold text-foreground mb-1">Nos Menus</h2>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.
+                  <div className="p-7 flex flex-col gap-3 flex-1">
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
+                      <BookOpen size={22} style={{ color: "#6b7a10" }} />
+                    </div>
+                    <div>
+                      <h2 className="font-display text-2xl font-bold text-foreground mb-1">Nos Menus</h2>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.
+                      </p>
+                    </div>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
+                      À partir de 12,90€
                     </p>
-                  </div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
-                    À partir de 12,90€
-                  </p>
-                  <div className="flex items-center gap-2 font-semibold text-sm mt-auto" style={{ color: "#6b7a10" }}>
-                    Voir les menus <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    <div className="flex items-center gap-2 font-semibold text-sm mt-auto pt-2" style={{ color: "#6b7a10" }}>
+                      Voir les menus <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </button>
 
                 {/* Carte Produits à la Carte */}
                 <button
                   onClick={() => switchTab("carte")}
-                  className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 p-8 flex flex-col gap-4"
+                  className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 overflow-hidden flex flex-col"
                 >
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
-                    <ShoppingBasket size={28} style={{ color: "#6b7a10" }} />
+                  <div className="relative h-52 w-full overflow-hidden">
+                    <img
+                      src="/hero-breakfast.jpg"
+                      alt="Produits à la Carte"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35), transparent)" }} />
                   </div>
-                  <div>
-                    <h2 className="font-display text-2xl font-bold text-foreground mb-1">Produits à la Carte</h2>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      Composez votre breakfast à votre guise. Viennoiseries, salé, sucré, boissons…
+                  <div className="p-7 flex flex-col gap-3 flex-1">
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
+                      <ShoppingBasket size={22} style={{ color: "#6b7a10" }} />
+                    </div>
+                    <div>
+                      <h2 className="font-display text-2xl font-bold text-foreground mb-1">Produits à la Carte</h2>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        Composez votre breakfast à votre guise. Viennoiseries, salé, sucré, boissons…
+                      </p>
+                    </div>
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
+                      Dès 1,50€ le produit
                     </p>
-                  </div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
-                    Dès 1,50€ le produit
-                  </p>
-                  <div className="flex items-center gap-2 font-semibold text-sm mt-auto" style={{ color: "#6b7a10" }}>
-                    Composer mon breakfast <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    <div className="flex items-center gap-2 font-semibold text-sm mt-auto pt-2" style={{ color: "#6b7a10" }}>
+                      Composer mon breakfast <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </button>
               </div>
