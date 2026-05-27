@@ -174,16 +174,14 @@ const Register = () => {
                 placeholder="••••••••"
                 className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
               />
-              {form.password.length > 0 && (
-                <div className="flex gap-4 mt-2">
-                  <span className={`flex items-center gap-1 text-xs ${form.password.length >= 8 ? "text-green-600" : "text-muted-foreground"}`}>
-                    <span>{form.password.length >= 8 ? "✓" : "○"}</span> 8 caractères minimum
-                  </span>
-                  <span className={`flex items-center gap-1 text-xs ${/[A-Z]/.test(form.password) ? "text-green-600" : "text-muted-foreground"}`}>
-                    <span>{/[A-Z]/.test(form.password) ? "✓" : "○"}</span> Une majuscule
-                  </span>
-                </div>
-              )}
+              <div className="flex gap-4 mt-2">
+                <span className={`flex items-center gap-1 text-xs ${form.password.length >= 8 ? "text-green-600" : "text-muted-foreground"}`}>
+                  <span>{form.password.length >= 8 ? "✓" : "○"}</span> 8 caractères minimum
+                </span>
+                <span className={`flex items-center gap-1 text-xs ${/[A-Z]/.test(form.password) ? "text-green-600" : "text-muted-foreground"}`}>
+                  <span>{/[A-Z]/.test(form.password) ? "✓" : "○"}</span> Une majuscule
+                </span>
+              </div>
             </div>
 
             <div>
