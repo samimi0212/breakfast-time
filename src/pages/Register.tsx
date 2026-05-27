@@ -78,14 +78,13 @@ const Register = () => {
             </div>
             <h1 className="font-display text-2xl font-bold mb-2">Compte créé !</h1>
             <p className="text-muted-foreground mb-6">
-              Un email de confirmation a été envoyé à <strong>{form.email}</strong>. Vérifiez votre boîte mail pour
-              activer votre compte.
+              Bienvenue chez Breakfast Time, <strong>{form.prenom}</strong> ! Votre compte a bien été créé.
             </p>
             <button
-              onClick={() => navigate(`/connexion?redirect=${encodeURIComponent(redirectTo)}`)}
+              onClick={() => navigate(redirectTo)}
               className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
             >
-              Se connecter
+              Continuer
             </button>
           </div>
         </div>
