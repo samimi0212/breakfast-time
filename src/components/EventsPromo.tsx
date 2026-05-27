@@ -61,7 +61,7 @@ const EventsPromo = () => {
             <div
               key={label}
               className="group relative overflow-hidden rounded-2xl cursor-pointer"
-              style={{ aspectRatio: "4/5" }}
+              style={{ aspectRatio: "3/2" }}
               onClick={() => navigate("/evenements")}
             >
               {/* Photo */}
