@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Search } from "lucide-react";
+import { Search, BookOpen, ShoppingBasket, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { usePageMeta } from "@/hooks/usePageMeta";
@@ -401,9 +401,11 @@ const CartePage = () => {
   );
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [tab, setTab] = useState<"menus" | "carte">(() => {
+  const [tab, setTab] = useState<"menus" | "carte" | null>(() => {
     const t = searchParams.get("tab");
-    return t === "carte" ? "carte" : "menus";
+    if (t === "carte") return "carte";
+    if (t === "menus") return "menus";
+    return null;
   });
   const [catActive, setCatActive] = useState(() => {
     const cat = searchParams.get("cat");
@@ -413,6 +415,7 @@ const CartePage = () => {
   const switchTab = (t: "menus" | "carte") => {
     setTab(t);
     setSearchParams({ tab: t }, { replace: true });
+    setTimeout(() => window.scrollTo({ top: 460, behavior: "smooth" }), 50);
   };
 
   const switchCat = (cat: string) => {
@@ -497,31 +500,82 @@ const CartePage = () => {
           </div>
         ) : (
           <div>
-            {/* Onglets */}
-            <div className="flex justify-center mb-10 mt-4">
-              <div className="bg-muted rounded-2xl p-1.5 flex gap-2 flex-wrap justify-center">
+            {/* Choix initial — deux grandes cartes */}
+            {tab === null && (
+              <div className="grid sm:grid-cols-2 gap-6 mt-8 max-w-3xl mx-auto">
+                {/* Carte Menus */}
                 <button
                   onClick={() => switchTab("menus")}
-                  className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
-                    tab === "menus"
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 p-8 flex flex-col gap-4"
                 >
-                  Nos Menus
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
+                    <BookOpen size={28} style={{ color: "#6b7a10" }} />
+                  </div>
+                  <div>
+                    <h2 className="font-display text-2xl font-bold text-foreground mb-1">Nos Menus</h2>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.
+                    </p>
+                  </div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
+                    À partir de 12,90€
+                  </p>
+                  <div className="flex items-center gap-2 font-semibold text-sm mt-auto" style={{ color: "#6b7a10" }}>
+                    Voir les menus <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </button>
+
+                {/* Carte Produits à la Carte */}
                 <button
                   onClick={() => switchTab("carte")}
-                  className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
-                    tab === "carte"
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 p-8 flex flex-col gap-4"
                 >
-                  Produits à la Carte
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
+                    <ShoppingBasket size={28} style={{ color: "#6b7a10" }} />
+                  </div>
+                  <div>
+                    <h2 className="font-display text-2xl font-bold text-foreground mb-1">Produits à la Carte</h2>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Composez votre breakfast à votre guise. Viennoiseries, salé, sucré, boissons…
+                    </p>
+                  </div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
+                    Dès 1,50€ le produit
+                  </p>
+                  <div className="flex items-center gap-2 font-semibold text-sm mt-auto" style={{ color: "#6b7a10" }}>
+                    Composer mon breakfast <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </button>
               </div>
-            </div>
+            )}
+
+            {/* Onglets (visibles une fois un choix fait) */}
+            {tab !== null && (
+              <div className="flex justify-center mb-10 mt-4">
+                <div className="bg-muted rounded-2xl p-1.5 flex gap-2 flex-wrap justify-center">
+                  <button
+                    onClick={() => switchTab("menus")}
+                    className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                      tab === "menus"
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    Nos Menus
+                  </button>
+                  <button
+                    onClick={() => switchTab("carte")}
+                    className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                      tab === "carte"
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    Produits à la Carte
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Nos Menus */}
             {tab === "menus" && (
