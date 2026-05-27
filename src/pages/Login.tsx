@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import logo from "@/assets/logo.png";
 import { usePageMeta } from "@/hooks/usePageMeta";
@@ -7,6 +7,8 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 const Login = () => {
   usePageMeta("Connexion | Breakfast Time", "Connectez-vous à votre compte Breakfast Time.", "/connexion", true);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -32,7 +34,7 @@ const Login = () => {
     if (error) {
       setError("Email ou mot de passe incorrect.");
     } else {
-      navigate("/");
+      navigate(redirectTo);
     }
   };
 
@@ -100,7 +102,7 @@ const Login = () => {
 
           <p className="text-center text-sm text-muted-foreground mt-6">
             Pas encore de compte ?{" "}
-            <a href="/inscription" className="text-primary font-semibold hover:underline">
+            <a href={`/inscription?redirect=${encodeURIComponent(redirectTo)}`} className="text-primary font-semibold hover:underline">
               S'inscrire
             </a>
           </p>

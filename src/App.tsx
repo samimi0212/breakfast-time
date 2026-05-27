@@ -20,6 +20,7 @@ import MentionsLegales from "./pages/MentionsLegales.tsx";
 import CGV from "./pages/CGV.tsx";
 import Confidentialite from "./pages/Confidentialite.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import PrivateRoute from "./components/PrivateRoute.tsx";
 
 const queryClient = new QueryClient();
 
@@ -35,10 +36,10 @@ const App = () => (
             <Route path="/connexion" element={<Login />} />
             <Route path="/inscription" element={<Register />} />
             <Route path="/panier" element={<Cart />} />
-            <Route path="/commande" element={<Checkout />} />
-            <Route path="/mon-compte" element={<MyAccount />} />
-            <Route path="/confirmation" element={<Confirmation />} />
-            <Route path="/mes-commandes" element={<MyOrders />} />
+            <Route path="/commande" element={<PrivateRoute><Checkout /></PrivateRoute>} />
+            <Route path="/mon-compte" element={<PrivateRoute><MyAccount /></PrivateRoute>} />
+            <Route path="/confirmation" element={<PrivateRoute><Confirmation /></PrivateRoute>} />
+            <Route path="/mes-commandes" element={<PrivateRoute><MyOrders /></PrivateRoute>} />
             <Route path="/carte" element={<CartePage />} />
             <Route path="/evenements" element={<Events />} />
             <Route path="/evenements/commander" element={<EventsCommander />} />

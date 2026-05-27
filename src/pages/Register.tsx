@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import logo from "@/assets/logo.png";
 import { usePageMeta } from "@/hooks/usePageMeta";
@@ -7,6 +7,8 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 const Register = () => {
   usePageMeta("Inscription | Breakfast Time", "Créez votre compte Breakfast Time et commandez vos petits-déjeuners livrés à domicile.", "/inscription", true);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
   const [form, setForm] = useState({
     prenom: "",
     nom: "",
@@ -76,7 +78,7 @@ const Register = () => {
               activer votre compte.
             </p>
             <button
-              onClick={() => navigate("/connexion")}
+              onClick={() => navigate(`/connexion?redirect=${encodeURIComponent(redirectTo)}`)}
               className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
             >
               Se connecter
@@ -197,7 +199,7 @@ const Register = () => {
 
           <p className="text-center text-sm text-muted-foreground mt-6">
             Déjà un compte ?{" "}
-            <a href="/connexion" className="text-primary font-semibold hover:underline">
+            <a href={`/connexion?redirect=${encodeURIComponent(redirectTo)}`} className="text-primary font-semibold hover:underline">
               Se connecter
             </a>
           </p>
