@@ -276,6 +276,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "2,70€",
       img: "/muffin-myrtilles.png",
     },
+    {
+      id: "muffin-choco",
+      name: "Muffin Chocolat",
+      price: "4,50€",
+      img: "/muffin-choco.png",
+    },
   ],
   Boissons: [
     {

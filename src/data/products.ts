@@ -465,6 +465,15 @@ export const allProducts: Product[] = [
     composition: ["Farine", "Myrtilles", "Beurre", "Œufs", "Sucre"],
     allergens: ["Gluten", "Œufs", "Lait"],
   },
+  {
+    id: "muffin-choco",
+    name: "Muffin Chocolat",
+    price: "4,50€",
+    category: "Le Sucré",
+    img: "/muffin-choco.png",
+    desc: "",
+    composition: [],
+  },
   // ---- BOISSONS ----
   {
     id: "cafe-latte",
