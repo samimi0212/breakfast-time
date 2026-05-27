@@ -232,7 +232,7 @@ const ProductPage = () => {
                   onClick={handleAdd}
                   disabled={!allSelected}
                   className="flex-1 py-4 rounded-2xl font-semibold text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  style={added ? { backgroundColor: "#22c55e", color: "white" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
+                  style={added ? { backgroundColor: "#e8711a", color: "white" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
                 >
                   {added ? (
                     <><Check size={20} /> Ajouté au panier !</>
