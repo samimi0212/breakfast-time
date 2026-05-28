@@ -45,12 +45,18 @@ export default async function handler(req: Request): Promise<Response> {
 
     const dropoffAddress = `${order.adresse}, ${order.codePostal} ${order.ville}, France`;
 
+    // Calcul de l'heure de pickup : date + heure de livraison demandée
+    const [year, month, day] = order.date.split("-").map(Number);
+    const [hour, minute] = order.heure.split(":").map(Number);
+    const pickupAt = new Date(year, month - 1, day, hour, minute).toISOString();
+
     const payload = {
       job: {
         pickups: [
           {
             address: PICKUP_ADDRESS,
             comment: "Commande Breakfast Time — prête pour récupération",
+            pickup_at: pickupAt,
             contact: {
               firstname: "Breakfast",
               lastname: "Time",
