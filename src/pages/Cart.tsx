@@ -159,10 +159,6 @@ const Cart = () => {
                 Passer la commande →
               </button>
 
-              <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground justify-center">
-                <span>🚴</span>
-                <span>Livraison en 30 min · 7j/7 de 7h à 15h</span>
-              </div>
             </div>
           </div>
 
