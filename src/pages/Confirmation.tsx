@@ -33,7 +33,7 @@ const Confirmation = () => {
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl">🚴</span>
             <div className="flex-1">
-              <p className="font-semibold mb-2">Livraison en cours de préparation</p>
+              <p className="font-semibold mb-2">C'est parti, on prépare votre commande !</p>
               <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                 <div className="h-full w-1/3 bg-primary rounded-full animate-shimmer" />
               </div>
