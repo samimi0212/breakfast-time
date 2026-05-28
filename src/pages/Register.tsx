@@ -61,6 +61,14 @@ const Register = () => {
     if (error) {
       setError(error.message);
     } else {
+      // Envoyer l'email de bienvenue
+      try {
+        await fetch("/api/send-welcome-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prenom: form.prenom, email: form.email }),
+        });
+      } catch { /* ignore */ }
       setSuccess(true);
     }
   };
