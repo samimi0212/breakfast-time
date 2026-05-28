@@ -92,7 +92,7 @@ const Register = () => {
               onClick={() => navigate(redirectTo)}
               className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity"
             >
-              Continuer
+              {redirectTo.includes("/commande") ? "Poursuivre votre commande" : "Continuer"}
             </button>
           </div>
         </div>
