@@ -9,7 +9,7 @@ const MenuSection = () => {
   const visuals = [
     "/menu-brunch.png",
     "https://static.wixstatic.com/media/21c6e4_35577f9aced14c51b49fc307bf7656d6~mv2.jpg/v1/fill/w_917,h_917,al_c,q_85,enc_avif,quality_auto/21c6e4_35577f9aced14c51b49fc307bf7656d6~mv2.jpg",
-    "https://static.wixstatic.com/media/21c6e4_a7461066fb7542869e337fd7e3ef7d9a~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a7461066fb7542869e337fd7e3ef7d9a~mv2.png",
+    "/plateau-viennoiserie-entre-2.png",
     "https://static.wixstatic.com/media/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg",
   ];
 
@@ -29,7 +29,7 @@ const MenuSection = () => {
       imgIndex: 1,
     },
     {
-      title: "Plateaux & Planches",
+      title: "Planches à partager",
       desc: "Pour un moment à plusieurs — plateaux de viennoiseries, planches de fromages ou de charcuterie. Posez au centre, profitez ensemble.",
       cta: "Découvrir",
       path: "/?tab=carte#menu",
