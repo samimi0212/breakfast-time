@@ -111,7 +111,7 @@ const ProductPage = () => {
             {/* Composition */}
             {product.composition.length > 0 && (
               <div className="bg-muted rounded-2xl p-5">
-                <h3 className="font-display font-semibold text-lg mb-3">Composition</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">Détails</h3>
                 <ul className="space-y-2">
                   {product.composition.map((item, i) => {
                     const hasChoice = item.includes("au choix");
