@@ -88,6 +88,34 @@ const CheckoutForm = () => {
   const [suggestions, setSuggestions] = useState<{ description: string; place_id: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionsTimer = useRef<any>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  const isCoordComplete = !!(form.prenom && form.nom && form.email && form.telephone);
+  const isAdresseComplete = !!(form.adresse && form.ville && form.codePostal && deliveryPrice !== null);
+  const isCreneauComplete = !!(form.date && form.heure);
+
+  const sectionClass = (name: string, complete: boolean) => {
+    const isActive = activeSection === name;
+    return `bg-white rounded-2xl p-6 transition-all duration-200 ${
+      isActive
+        ? "ring-2 ring-primary shadow-md"
+        : complete
+        ? "ring-2 ring-green-400"
+        : ""
+    }`;
+  };
+
+  const SectionTitle = ({ icon: Icon, title, complete }: { icon: any; title: string; complete: boolean }) => (
+    <div className="flex items-center gap-3 mb-5">
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${complete ? "bg-green-100" : "bg-primary/10"}`}>
+        {complete
+          ? <span className="text-green-500 font-bold text-sm">✓</span>
+          : <Icon size={16} className="text-primary" />
+        }
+      </div>
+      <h2 className="font-display text-lg font-semibold">{title}</h2>
+    </div>
+  );
 
   useEffect(() => {
     if (items.length === 0) navigate("/panier");
@@ -366,13 +394,13 @@ const CheckoutForm = () => {
           <div className="lg:col-span-2 space-y-6">
 
             {/* Coordonnées */}
-            <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                  <User size={16} className="text-primary" />
-                </div>
-                <h2 className="font-display text-lg font-semibold">Vos coordonnées</h2>
-              </div>
+            <div
+              className={sectionClass("coordonnees", isCoordComplete)}
+              style={{ boxShadow: "var(--card-shadow)" }}
+              onFocus={() => setActiveSection("coordonnees")}
+              onBlur={() => setActiveSection(null)}
+            >
+              <SectionTitle icon={User} title="Vos coordonnées" complete={isCoordComplete} />
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Prénom</label>
@@ -398,13 +426,13 @@ const CheckoutForm = () => {
             </div>
 
             {/* Adresse de livraison */}
-            <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                  <MapPin size={16} className="text-primary" />
-                </div>
-                <h2 className="font-display text-lg font-semibold">Adresse de livraison</h2>
-              </div>
+            <div
+              className={sectionClass("adresse", isAdresseComplete)}
+              style={{ boxShadow: "var(--card-shadow)" }}
+              onFocus={() => setActiveSection("adresse")}
+              onBlur={() => setActiveSection(null)}
+            >
+              <SectionTitle icon={MapPin} title="Adresse de livraison" complete={isAdresseComplete} />
               <div className="space-y-4">
                 <div className="relative">
                   <label className="block text-sm font-medium mb-1.5">Adresse</label>
@@ -451,13 +479,13 @@ const CheckoutForm = () => {
             </div>
 
             {/* Créneau de livraison */}
-            <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Clock size={16} className="text-primary" />
-                </div>
-                <h2 className="font-display text-lg font-semibold">Créneau de livraison</h2>
-              </div>
+            <div
+              className={sectionClass("creneau", isCreneauComplete)}
+              style={{ boxShadow: "var(--card-shadow)" }}
+              onFocus={() => setActiveSection("creneau")}
+              onBlur={() => setActiveSection(null)}
+            >
+              <SectionTitle icon={Clock} title="Créneau de livraison" complete={isCreneauComplete} />
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Date</label>
@@ -483,7 +511,12 @@ const CheckoutForm = () => {
             </div>
 
             {/* Note pour le livreur */}
-            <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
+            <div
+              className={sectionClass("note", false)}
+              style={{ boxShadow: "var(--card-shadow)" }}
+              onFocus={() => setActiveSection("note")}
+              onBlur={() => setActiveSection(null)}
+            >
               <h2 className="font-display text-lg font-semibold mb-4">Note pour le livreur</h2>
               <textarea
                 name="note"
