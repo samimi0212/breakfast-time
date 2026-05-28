@@ -58,6 +58,7 @@ const CheckoutForm = () => {
     email: "",
     telephone: "",
     adresse: "",
+    complement: "",
     ville: "",
     codePostal: "",
     note: "",
@@ -303,7 +304,7 @@ const CheckoutForm = () => {
         user_prenom: form.prenom,
         user_nom: form.nom,
         user_telephone: form.telephone,
-        adresse: form.adresse,
+        adresse: form.complement ? `${form.adresse} — ${form.complement}` : form.adresse,
         ville: form.ville,
         code_postal: form.codePostal,
         date_livraison: form.date,
@@ -330,7 +331,7 @@ const CheckoutForm = () => {
               prenom: form.prenom,
               nom: form.nom,
               telephone: form.telephone,
-              adresse: form.adresse,
+              adresse: form.complement ? `${form.adresse} — ${form.complement}` : form.adresse,
               ville: form.ville,
               codePostal: form.codePostal,
               date: form.date,
@@ -367,7 +368,7 @@ const CheckoutForm = () => {
               nom: form.nom,
               email: form.email,
               telephone: form.telephone,
-              adresse: form.adresse,
+              adresse: form.complement ? `${form.adresse} — ${form.complement}` : form.adresse,
               ville: form.ville,
               codePostal: form.codePostal,
               date: form.date,
@@ -485,6 +486,18 @@ const CheckoutForm = () => {
                     </div>
                   )}
                   {errors.adresse && <p className="text-red-400 text-xs mt-1">{errors.adresse}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1.5">
+                    Complément d'adresse <span className="text-muted-foreground font-normal">(facultatif)</span>
+                  </label>
+                  <input
+                    name="complement"
+                    value={form.complement}
+                    onChange={handleChange}
+                    placeholder="Bât. B, 3ème étage, digicode 1234..."
+                    className={inputClass("complement")}
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
