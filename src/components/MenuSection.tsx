@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 const visuals = [
   "/menu-brunch.png",
   "/menu-anglais.png",
-  "https://static.wixstatic.com/media/21c6e4_a7461066fb7542869e337fd7e3ef7d9a~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a7461066fb7542869e337fd7e3ef7d9a~mv2.png",
+  "/plateau-viennoiserie-entre-2.png",
 ];
 
 const options = [
@@ -24,7 +24,7 @@ const options = [
     imgIndex: 1,
   },
   {
-    title: "Plateaux & Planches",
+    title: "Planches à partager",
     desc: "Pour un moment à plusieurs — plateaux de viennoiseries, planches de fromages ou de charcuterie. Posez au centre, profitez ensemble.",
     cta: "Découvrir",
     link: "/carte?tab=carte&cat=À Partager",
