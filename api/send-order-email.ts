@@ -98,6 +98,12 @@ export default async function handler(req: Request): Promise<Response> {
           <p><strong>Livraison :</strong> ${new Date(order.date).toLocaleDateString("fr-FR")} à ${order.heure}</p>
           <p><strong>Adresse :</strong> ${order.adresse}, ${order.codePostal} ${order.ville}</p>
           ${order.note ? `<p><strong>Note :</strong> ${order.note}</p>` : ""}
+          <hr style="margin: 16px 0; border: none; border-top: 1px solid #e0e0d0;">
+          <h3 style="margin: 0 0 8px 0; color: #3a3a0a;">Détail de la commande</h3>
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            ${itemsHtml}
+          </table>
+          <p style="margin-top: 12px;"><strong>Frais de livraison :</strong> ${Number(order.fraisLivraison ?? 0).toFixed(2)}€</p>
           <p><strong>Total :</strong> ${Number(order.total).toFixed(2)}€</p>
           <p><strong>Stripe ID :</strong> ${order.stripeId}</p>
         </div>`,
