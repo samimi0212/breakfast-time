@@ -82,6 +82,9 @@ const CheckoutForm = () => {
   const [slots, setSlots] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [deliveryPrice, setDeliveryPrice] = useState<number | null>(null);
+  const [deliveryLoading, setDeliveryLoading] = useState(false);
+  const [deliveryError, setDeliveryError] = useState("");
 
   useEffect(() => {
     if (items.length === 0) navigate("/panier");
@@ -92,6 +95,40 @@ const CheckoutForm = () => {
     setSlots(newSlots);
     setForm((prev) => ({ ...prev, heure: newSlots[0] || "" }));
   }, [form.date]);
+
+  // Calcul des frais de livraison dès que l'adresse est complète
+  useEffect(() => {
+    if (!form.adresse || !form.codePostal || !form.ville) {
+      setDeliveryPrice(null);
+      setDeliveryError("");
+      return;
+    }
+    const fullAddress = `${form.adresse}, ${form.codePostal} ${form.ville}, France`;
+    const timer = setTimeout(async () => {
+      setDeliveryLoading(true);
+      setDeliveryError("");
+      try {
+        const res = await fetch("/api/get-delivery-price", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ address: fullAddress }),
+        });
+        const data = await res.json();
+        if (!data.deliverable) {
+          setDeliveryPrice(null);
+          setDeliveryError(data.message || "Zone non desservie");
+        } else {
+          setDeliveryPrice(data.price);
+          setDeliveryError("");
+        }
+      } catch {
+        setDeliveryError("Impossible de calculer les frais de livraison");
+      } finally {
+        setDeliveryLoading(false);
+      }
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [form.adresse, form.codePostal, form.ville]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -109,6 +146,7 @@ const CheckoutForm = () => {
     if (!form.ville) e.ville = "Requis";
     if (!form.codePostal) e.codePostal = "Requis";
     if (!form.heure) e.heure = "Requis";
+    if (deliveryPrice === null) e.adresse = "Adresse hors zone de livraison (max 15 km)";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -121,11 +159,13 @@ const CheckoutForm = () => {
     setErrors({});
 
     try {
+      const orderTotal = total + (deliveryPrice ?? 0);
+
       // 1. Créer le PaymentIntent côté serveur
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: total }),
+        body: JSON.stringify({ amount: orderTotal }),
       });
       let data: any;
       try {
@@ -172,7 +212,8 @@ const CheckoutForm = () => {
         heure_livraison: form.heure,
         note: form.note,
         items,
-        total,
+        total: orderTotal,
+        frais_livraison: deliveryPrice,
         statut: "Payée",
       }).select().single();
 
@@ -235,7 +276,8 @@ const CheckoutForm = () => {
               heure: form.heure,
               note: form.note,
               items,
-              total,
+              total: orderTotal,
+              fraisLivraison: deliveryPrice,
               stripeId: paymentIntent?.id,
               trackingUrl,
             },
@@ -443,11 +485,19 @@ const CheckoutForm = () => {
                 </div>
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>Livraison</span>
-                  <span className="text-primary font-semibold">Gratuite</span>
+                  {deliveryLoading ? (
+                    <span className="text-muted-foreground italic">Calcul...</span>
+                  ) : deliveryError ? (
+                    <span className="text-red-400 text-xs">{deliveryError}</span>
+                  ) : deliveryPrice !== null ? (
+                    <span className="font-semibold text-foreground">{deliveryPrice.toFixed(2).replace(".", ",")}€</span>
+                  ) : (
+                    <span className="text-muted-foreground italic text-xs">Saisir une adresse</span>
+                  )}
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t border-border">
                   <span>Total</span>
-                  <span className="text-primary">{total.toFixed(2).replace(".", ",")}€</span>
+                  <span className="text-primary">{(total + (deliveryPrice ?? 0)).toFixed(2).replace(".", ",")}€</span>
                 </div>
               </div>
 

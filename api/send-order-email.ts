@@ -53,7 +53,10 @@ export default async function handler(req: Request): Promise<Response> {
             ${itemsHtml}
           </table>
 
-          <div style="text-align: right; padding-top: 12px; border-top: 2px solid #3a3a0a;">
+          <div style="text-align: right; padding-top: 12px; border-top: 1px solid #f0f0e8; margin-bottom: 4px;">
+            <span style="font-size: 14px; color: #999;">Frais de livraison : ${Number(order.fraisLivraison ?? 0).toFixed(2).replace(".", ",")}€</span>
+          </div>
+          <div style="text-align: right; padding-top: 8px; border-top: 2px solid #3a3a0a;">
             <span style="font-size: 18px; font-weight: bold; color: #3a3a0a;">Total : ${Number(order.total).toFixed(2).replace(".", ",")}€</span>
           </div>
 
