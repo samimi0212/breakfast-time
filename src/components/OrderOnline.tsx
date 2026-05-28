@@ -35,12 +35,19 @@ const OrderOnline = () => (
         </span>
       </h2>
 
-      <p className="text-base mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
-        Retrouvez-nous sur vos applications de livraison préférées.
+      <p className="text-base mb-10 leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+        Commande en ligne · Livraison le jour même · Directement chez vous.
       </p>
 
-      {/* Boutons plateformes */}
+      {/* Boutons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/commande"
+          className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
+          style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
+        >
+          Commander maintenant
+        </a>
         <a
           href="#"
           target="_blank"
