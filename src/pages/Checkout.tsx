@@ -203,10 +203,25 @@ const CheckoutForm = () => {
           }),
         });
         const uberData = await uberRes.json();
-        if (uberData.tracking_url) trackingUrl = uberData.tracking_url;
-        alert("Uber Direct réponse : " + JSON.stringify(uberData));
-      } catch (uberErr: any) {
-        alert("Uber Direct erreur : " + uberErr.message);
+        if (uberData.tracking_url) {
+          trackingUrl = uberData.tracking_url;
+        } else if (uberData.error) {
+          // Zone non couverte → notifier par email pour livraison manuelle
+          await fetch("/api/send-order-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              order: { prenom: form.prenom, nom: form.nom, email: "contact@breakfast-time.fr",
+                telephone: form.telephone, adresse: form.adresse, ville: form.ville,
+                codePostal: form.codePostal, date: form.date, heure: form.heure,
+                note: `⚠️ LIVRAISON MANUELLE REQUISE — Uber Direct non disponible (${uberData.error})\n${form.note || ""}`,
+                items, total, stripeId: "" },
+              notifyOnly: true,
+            }),
+          });
+        }
+      } catch (uberErr) {
+        console.error("Uber Direct error:", uberErr);
       }
 
       // 5. Envoyer l'email de confirmation
