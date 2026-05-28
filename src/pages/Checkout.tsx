@@ -626,7 +626,7 @@ const CheckoutForm = () => {
                 name="note"
                 value={form.note}
                 onChange={handleChange}
-                placeholder="Code d'entrée, étage, instructions particulières..."
+                placeholder="Instructions particulières..."
                 rows={3}
                 className="w-full px-4 py-3 rounded-xl border-2 border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition resize-none"
               />
