@@ -15,10 +15,13 @@ async function getStuartToken(): Promise<string> {
   const res = await fetch(STUART_AUTH_URL, {
     method: "POST",
     headers: {
-      "Authorization": `Basic ${credentials}`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: new URLSearchParams({ grant_type: "client_credentials" }),
+    body: new URLSearchParams({
+      grant_type: "client_credentials",
+      client_id: clientId,
+      client_secret: clientSecret,
+    }),
   });
 
   if (!res.ok) {
