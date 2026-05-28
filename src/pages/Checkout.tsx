@@ -180,7 +180,36 @@ const CheckoutForm = () => {
         console.error("Supabase insert error:", dbError);
       }
 
-      // 4. Envoyer l'email de confirmation
+      // 4. Créer la livraison Uber Direct
+      let trackingUrl = "";
+      try {
+        const uberRes = await fetch("/api/create-uber-delivery", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            order: {
+              prenom: form.prenom,
+              nom: form.nom,
+              telephone: form.telephone,
+              adresse: form.adresse,
+              ville: form.ville,
+              codePostal: form.codePostal,
+              date: form.date,
+              heure: form.heure,
+              note: form.note,
+              items,
+              total,
+            },
+          }),
+        });
+        const uberData = await uberRes.json();
+        if (uberData.tracking_url) trackingUrl = uberData.tracking_url;
+        console.log("Uber Direct:", uberData);
+      } catch (uberErr) {
+        console.error("Uber Direct error:", uberErr);
+      }
+
+      // 5. Envoyer l'email de confirmation
       try {
         await fetch("/api/send-order-email", {
           method: "POST",
