@@ -204,9 +204,9 @@ const CheckoutForm = () => {
         });
         const uberData = await uberRes.json();
         if (uberData.tracking_url) trackingUrl = uberData.tracking_url;
-        console.log("Uber Direct:", uberData);
-      } catch (uberErr) {
-        console.error("Uber Direct error:", uberErr);
+        alert("Uber Direct réponse : " + JSON.stringify(uberData));
+      } catch (uberErr: any) {
+        alert("Uber Direct erreur : " + uberErr.message);
       }
 
       // 5. Envoyer l'email de confirmation
