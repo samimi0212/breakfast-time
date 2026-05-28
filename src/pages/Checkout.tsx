@@ -90,6 +90,7 @@ const CheckoutForm = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionsTimer = useRef<any>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [showCustomDate, setShowCustomDate] = useState(false);
 
   const isCoordComplete = !!(form.prenom && form.nom && form.email && form.telephone);
   const isAdresseComplete = !!(form.adresse && form.ville && form.codePostal && deliveryPrice !== null);
@@ -529,7 +530,7 @@ const CheckoutForm = () => {
                     const d = new Date();
                     d.setDate(d.getDate() + i);
                     const iso = d.toISOString().split("T")[0];
-                    const isSelected = form.date === iso;
+                    const isSelected = form.date === iso && !showCustomDate;
                     const label = i === 0
                       ? "Aujourd'hui"
                       : i === 1
@@ -542,6 +543,7 @@ const CheckoutForm = () => {
                         onClick={() => {
                           setForm((prev) => ({ ...prev, date: iso }));
                           setErrors((prev) => ({ ...prev, date: "" }));
+                          setShowCustomDate(false);
                         }}
                         className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all whitespace-nowrap ${
                           isSelected
@@ -553,7 +555,32 @@ const CheckoutForm = () => {
                       </button>
                     );
                   })}
+                  <button
+                    type="button"
+                    onClick={() => setShowCustomDate((v) => !v)}
+                    className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all whitespace-nowrap ${
+                      showCustomDate
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-border bg-background text-foreground hover:border-primary/50"
+                    }`}
+                  >
+                    Autre date…
+                  </button>
                 </div>
+                {showCustomDate && (
+                  <div className="mt-3">
+                    <input
+                      type="date"
+                      min={(() => { const d = new Date(); d.setDate(d.getDate() + 7); return d.toISOString().split("T")[0]; })()}
+                      value={showCustomDate && !Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() + i); return d.toISOString().split("T")[0]; }).includes(form.date) ? form.date : ""}
+                      onChange={(e) => {
+                        setForm((prev) => ({ ...prev, date: e.target.value }));
+                        setErrors((prev) => ({ ...prev, date: "" }));
+                      }}
+                      className="px-4 py-2.5 rounded-xl border-2 border-primary bg-background text-foreground focus:outline-none focus:border-primary transition text-sm"
+                    />
+                  </div>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Heure</label>
