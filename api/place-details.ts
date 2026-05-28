@@ -7,13 +7,17 @@ export default async function handler(req: Request): Promise<Response> {
     const { place_id } = await req.json();
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=address_components&language=fr&key=${apiKey}`;
+    const res = await fetch(`https://places.googleapis.com/v1/places/${place_id}`, {
+      headers: {
+        "X-Goog-Api-Key": apiKey!,
+        "X-Goog-FieldMask": "addressComponents",
+      },
+    });
 
-    const res = await fetch(url);
     const data: any = await res.json();
 
-    const components = data.result?.address_components || [];
-    const get = (type: string) => components.find((c: any) => c.types.includes(type))?.long_name || "";
+    const components = data.addressComponents || [];
+    const get = (type: string) => components.find((c: any) => c.types?.includes(type))?.longText || "";
 
     const streetNumber = get("street_number");
     const route = get("route");
