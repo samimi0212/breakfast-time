@@ -522,24 +522,51 @@ const CheckoutForm = () => {
               onBlur={() => setActiveSection(null)}
             >
               <SectionTitle icon={Clock} title="Créneau de livraison" complete={isCreneauComplete} />
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1.5">Date</label>
-                  <input name="date" type="date" value={form.date} min={todayStr()} onChange={handleChange} className={inputClass("date")} />
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">Date</label>
+                <div className="flex gap-2 flex-wrap">
+                  {Array.from({ length: 7 }, (_, i) => {
+                    const d = new Date();
+                    d.setDate(d.getDate() + i);
+                    const iso = d.toISOString().split("T")[0];
+                    const isSelected = form.date === iso;
+                    const label = i === 0
+                      ? "Aujourd'hui"
+                      : i === 1
+                      ? "Demain"
+                      : d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" });
+                    return (
+                      <button
+                        key={iso}
+                        type="button"
+                        onClick={() => {
+                          setForm((prev) => ({ ...prev, date: iso }));
+                          setErrors((prev) => ({ ...prev, date: "" }));
+                        }}
+                        className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all whitespace-nowrap ${
+                          isSelected
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border bg-background text-foreground hover:border-primary/50"
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    );
+                  })}
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1.5">Heure</label>
-                  <select name="heure" value={form.heure} onChange={handleChange} className={inputClass("heure")}>
-                    {slots.length === 0 ? (
-                      <option value="">Aucun créneau disponible</option>
-                    ) : (
-                      slots.map((s) => (
-                        <option key={s} value={s}>{s}</option>
-                      ))
-                    )}
-                  </select>
-                  {errors.heure && <p className="text-red-400 text-xs mt-1">{errors.heure}</p>}
-                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1.5">Heure</label>
+                <select name="heure" value={form.heure} onChange={handleChange} className={inputClass("heure")}>
+                  {slots.length === 0 ? (
+                    <option value="">Aucun créneau disponible</option>
+                  ) : (
+                    slots.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))
+                  )}
+                </select>
+                {errors.heure && <p className="text-red-400 text-xs mt-1">{errors.heure}</p>}
               </div>
               <p className="text-xs text-muted-foreground mt-3">
                 🕐 Livraison disponible de 7h à 15h · Minimum 45 min après commande
