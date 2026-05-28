@@ -180,10 +180,10 @@ const CheckoutForm = () => {
         console.error("Supabase insert error:", dbError);
       }
 
-      // 4. Créer la livraison Uber Direct
+      // 4. Créer la livraison Stuart
       let trackingUrl = "";
       try {
-        const uberRes = await fetch("/api/create-uber-delivery", {
+        const stuartRes = await fetch("/api/create-stuart-delivery", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -202,26 +202,14 @@ const CheckoutForm = () => {
             },
           }),
         });
-        const uberData = await uberRes.json();
-        if (uberData.tracking_url) {
-          trackingUrl = uberData.tracking_url;
-        } else if (uberData.error) {
-          // Zone non couverte → notifier par email pour livraison manuelle
-          await fetch("/api/send-order-email", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              order: { prenom: form.prenom, nom: form.nom, email: "contact@breakfast-time.fr",
-                telephone: form.telephone, adresse: form.adresse, ville: form.ville,
-                codePostal: form.codePostal, date: form.date, heure: form.heure,
-                note: `⚠️ LIVRAISON MANUELLE REQUISE — Uber Direct non disponible (${uberData.error})\n${form.note || ""}`,
-                items, total, stripeId: "" },
-              notifyOnly: true,
-            }),
-          });
+        const stuartData = await stuartRes.json();
+        if (stuartData.tracking_url) {
+          trackingUrl = stuartData.tracking_url;
+        } else if (stuartData.error) {
+          console.error("Stuart error:", stuartData.error);
         }
-      } catch (uberErr) {
-        console.error("Uber Direct error:", uberErr);
+      } catch (stuartErr) {
+        console.error("Stuart error:", stuartErr);
       }
 
       // 5. Envoyer l'email de confirmation
