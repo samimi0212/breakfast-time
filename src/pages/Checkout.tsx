@@ -496,13 +496,19 @@ const CheckoutForm = () => {
             </div>
 
             {/* Paiement Stripe */}
-            <div className="bg-white rounded-2xl p-6" style={{ boxShadow: "var(--card-shadow)" }}>
+            <div className={`bg-white rounded-2xl p-6 transition-opacity ${deliveryError ? "opacity-40 pointer-events-none" : ""}`} style={{ boxShadow: "var(--card-shadow)" }}>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                   <CreditCard size={16} className="text-primary" />
                 </div>
                 <h2 className="font-display text-lg font-semibold">Paiement par carte</h2>
               </div>
+
+              {deliveryError && (
+                <p className="text-red-400 text-sm mb-3 flex items-center gap-1.5">
+                  <span>⚠️</span> Veuillez d'abord renseigner une adresse dans notre zone de livraison.
+                </p>
+              )}
 
               <div className="border-2 border-border rounded-xl px-4 py-4 focus-within:border-primary transition">
                 <CardElement options={CARD_ELEMENT_OPTIONS} />
@@ -574,15 +580,15 @@ const CheckoutForm = () => {
 
               <button
                 onClick={handleSubmit}
-                disabled={loading || !stripe}
-                className="w-full bg-primary text-primary-foreground py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-60"
+                disabled={loading || !stripe || deliveryPrice === null || deliveryLoading}
+                className="w-full bg-primary text-primary-foreground py-4 rounded-2xl font-semibold text-base hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
                 ) : (
                   <>
                     <CreditCard size={18} />
-                    Payer {total.toFixed(2).replace(".", ",")}€
+                    Payer {(total + (deliveryPrice ?? 0)).toFixed(2).replace(".", ",")}€
                   </>
                 )}
               </button>
