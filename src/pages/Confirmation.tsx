@@ -32,9 +32,11 @@ const Confirmation = () => {
         <div className="bg-white rounded-2xl p-6 mb-8 text-left" style={{ boxShadow: "var(--card-shadow)" }}>
           <div className="flex items-center gap-3 mb-4">
             <span className="text-2xl">🚴</span>
-            <div>
-              <p className="font-semibold">Livraison en cours de préparation</p>
-              <p className="text-sm text-muted-foreground">Livré en 30 minutes · Alpes-Maritimes</p>
+            <div className="flex-1">
+              <p className="font-semibold mb-2">Livraison en cours de préparation</p>
+              <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                <div className="h-full w-1/3 bg-primary rounded-full animate-shimmer" />
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-3">
