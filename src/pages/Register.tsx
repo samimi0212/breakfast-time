@@ -178,7 +178,7 @@ const Register = () => {
                 type="password"
                 value={form.password}
                 onChange={handleChange}
-                placeholder="••••••••"
+                placeholder="Votre mot de passe"
                 className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
               />
               <div className="flex gap-4 mt-2">
@@ -198,7 +198,7 @@ const Register = () => {
                 type="password"
                 value={form.confirmPassword}
                 onChange={handleChange}
-                placeholder="••••••••"
+                placeholder="Confirmez votre mot de passe"
                 className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
               />
             </div>
