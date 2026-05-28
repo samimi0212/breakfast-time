@@ -48,10 +48,10 @@ const Cart = () => {
 
         <h1 className="font-display text-3xl font-bold mb-8">Mon panier</h1>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-5 gap-8">
 
           {/* Liste produits */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             {items.map((item, index) => (
               <div
                 key={index}
@@ -130,14 +130,14 @@ const Cart = () => {
           </div>
 
           {/* Récapitulatif */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <div
-              className="bg-white rounded-2xl p-10 sticky top-24"
+              className="bg-white rounded-2xl p-8 sticky top-24"
               style={{ boxShadow: "var(--card-shadow)" }}
             >
-              <h2 className="font-display text-xl font-bold mb-8">Récapitulatif</h2>
+              <h2 className="font-display text-xl font-bold mb-6">Récapitulatif</h2>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-4 mb-6">
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>Sous-total</span>
                   <span>{total.toFixed(2).replace(".", ",")}€</span>
