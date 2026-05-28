@@ -169,6 +169,19 @@ const MyOrders = () => {
                         <p className="text-muted-foreground mt-1">📝 {order.note}</p>
                       )}
                     </div>
+
+                    {/* Suivi livraison Stuart */}
+                    {order.tracking_url && (
+                      <a
+                        href={order.tracking_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
+                        style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
+                      >
+                        🚴 Suivre ma livraison en temps réel →
+                      </a>
+                    )}
                   </div>
                 )}
               </div>
