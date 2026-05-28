@@ -583,7 +583,7 @@ const CheckoutForm = () => {
                 {errors.heure && <p className="text-red-400 text-xs mt-1">{errors.heure}</p>}
               </div>
               <p className="text-xs text-muted-foreground mt-3">
-                🕐 Livraison disponible de 7h à 15h · Minimum 45 min après commande
+                🕐 Livraison disponible de 8h à 15h · Minimum 45 min après commande
               </p>
             </div>
 
