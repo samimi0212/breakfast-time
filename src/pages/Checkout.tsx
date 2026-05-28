@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CreditCard, Clock, MapPin, User, Lock } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -85,6 +85,9 @@ const CheckoutForm = () => {
   const [deliveryPrice, setDeliveryPrice] = useState<number | null>(null);
   const [deliveryLoading, setDeliveryLoading] = useState(false);
   const [deliveryError, setDeliveryError] = useState("");
+  const [suggestions, setSuggestions] = useState<{ description: string; place_id: string }[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const suggestionsTimer = useRef<any>(null);
 
   useEffect(() => {
     if (items.length === 0) navigate("/panier");
@@ -134,6 +137,50 @@ const CheckoutForm = () => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setForm((prev) => ({ ...prev, adresse: value }));
+    setErrors((prev) => ({ ...prev, adresse: "" }));
+    if (suggestionsTimer.current) clearTimeout(suggestionsTimer.current);
+    if (value.length > 3) {
+      suggestionsTimer.current = setTimeout(async () => {
+        try {
+          const res = await fetch("/api/autocomplete-address", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ input: value }),
+          });
+          const data = await res.json();
+          setSuggestions(data.predictions || []);
+          setShowSuggestions(true);
+        } catch { /* ignore */ }
+      }, 400);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  const selectSuggestion = async (placeId: string, description: string) => {
+    setShowSuggestions(false);
+    setSuggestions([]);
+    setForm((prev) => ({ ...prev, adresse: description }));
+    try {
+      const res = await fetch("/api/place-details", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ place_id: placeId }),
+      });
+      const data = await res.json();
+      setForm((prev) => ({
+        ...prev,
+        adresse: data.adresse || description,
+        ville: data.ville || prev.ville,
+        codePostal: data.codePostal || prev.codePostal,
+      }));
+    } catch { /* garde la description comme adresse */ }
   };
 
   const validate = () => {
@@ -359,9 +406,33 @@ const CheckoutForm = () => {
                 <h2 className="font-display text-lg font-semibold">Adresse de livraison</h2>
               </div>
               <div className="space-y-4">
-                <div>
+                <div className="relative">
                   <label className="block text-sm font-medium mb-1.5">Adresse</label>
-                  <input name="adresse" value={form.adresse} onChange={handleChange} placeholder="12 rue des Fleurs" className={inputClass("adresse")} />
+                  <input
+                    name="adresse"
+                    value={form.adresse}
+                    onChange={handleAddressChange}
+                    onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                    onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+                    placeholder="12 rue des Fleurs"
+                    className={inputClass("adresse")}
+                    autoComplete="off"
+                  />
+                  {showSuggestions && suggestions.length > 0 && (
+                    <div className="absolute z-50 w-full bg-white border border-border rounded-xl shadow-lg mt-1 overflow-hidden">
+                      {suggestions.map((s) => (
+                        <button
+                          key={s.place_id}
+                          type="button"
+                          onMouseDown={() => selectSuggestion(s.place_id, s.description)}
+                          className="w-full text-left px-4 py-3 text-sm hover:bg-muted transition-colors border-b border-border last:border-0 flex items-center gap-2"
+                        >
+                          <span className="text-primary flex-shrink-0">📍</span>
+                          <span className="truncate">{s.description}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                   {errors.adresse && <p className="text-red-400 text-xs mt-1">{errors.adresse}</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-4">
