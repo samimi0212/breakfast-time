@@ -27,7 +27,7 @@ export default async function handler(req: Request): Promise<Response> {
       place_id: s.placePrediction?.placeId || "",
     })).filter((p: any) => p.place_id);
 
-    return new Response(JSON.stringify({ predictions }), {
+    return new Response(JSON.stringify({ predictions, _debug: data }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
