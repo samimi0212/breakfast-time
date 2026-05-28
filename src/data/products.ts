@@ -62,7 +62,21 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/menu-anglais.png",
     desc: "Le breakfast à l'anglaise, généreux et savoureux.",
-    composition: ["2 saucisses fumées", "Œufs brouillés", "Baked Beans", "2 tranches de pain au levain", "Sauce à l'avocat", "1 boisson chaude au choix"],
+    composition: ["2 saucisses fumées", "Œufs brouillés", "Baked Beans", "2 tranches de pain au levain", "Sauce à l'avocat", "1 jus frais au choix", "1 boisson chaude au choix"],
+    options: [
+      {
+        id: "jus",
+        label: "Jus frais",
+        required: true,
+        choices: ["Orange", "Pomme", "Ananas"],
+      },
+      {
+        id: "boisson-chaude",
+        label: "Boisson chaude",
+        required: true,
+        choices: ["Americano", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
+      },
+    ],
   },
   {
     id: "menu-brunch",
