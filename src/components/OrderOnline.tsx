@@ -29,42 +29,24 @@ const OrderOnline = () => (
         className="font-display text-4xl md:text-5xl font-bold mb-4 leading-tight"
         style={{ color: "white" }}
       >
-        Commandez{" "}
+        Commandez, livré{" "}
         <span className="italic" style={{ color: "#DFF057" }}>
-          maintenant
+          aujourd'hui
         </span>
       </h2>
 
       <p className="text-base mb-10 leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-        Commande en ligne · Livraison le jour même · Directement chez vous.
+        Suivi de livraison en temps réel.
       </p>
 
-      {/* Boutons */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      {/* Bouton */}
+      <div className="flex justify-center">
         <a
           href="/commande"
           className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
           style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
         >
           Commander maintenant
-        </a>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
-          style={{ backgroundColor: "hsl(61, 45%, 42%)", color: "white" }}
-        >
-          Deliveroo
-        </a>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
-          style={{ backgroundColor: "hsl(61, 45%, 42%)", color: "white" }}
-        >
-          Uber Eats
         </a>
       </div>
     </div>
