@@ -15,7 +15,7 @@ const generateSlots = (date: string): string[] => {
   const selected = new Date(date);
   const isToday = selected.toDateString() === now.toDateString();
 
-  for (let h = 7; h < 15; h++) {
+  for (let h = 8; h < 15; h++) {
     for (let m = 0; m < 60; m += 30) {
       const slot = new Date(selected);
       slot.setHours(h, m, 0, 0);
