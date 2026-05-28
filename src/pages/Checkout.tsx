@@ -203,13 +203,12 @@ const CheckoutForm = () => {
           }),
         });
         const stuartData = await stuartRes.json();
+        alert("Stuart réponse : " + JSON.stringify(stuartData));
         if (stuartData.tracking_url) {
           trackingUrl = stuartData.tracking_url;
-        } else if (stuartData.error) {
-          console.error("Stuart error:", stuartData.error);
         }
-      } catch (stuartErr) {
-        console.error("Stuart error:", stuartErr);
+      } catch (stuartErr: any) {
+        alert("Stuart erreur : " + stuartErr.message);
       }
 
       // 5. Envoyer l'email de confirmation
