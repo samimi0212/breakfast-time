@@ -132,12 +132,12 @@ const Cart = () => {
           {/* Récapitulatif */}
           <div className="lg:col-span-1">
             <div
-              className="bg-white rounded-2xl p-6 sticky top-24"
+              className="bg-white rounded-2xl p-10 sticky top-24"
               style={{ boxShadow: "var(--card-shadow)" }}
             >
-              <h2 className="font-display text-xl font-bold mb-6">Récapitulatif</h2>
+              <h2 className="font-display text-xl font-bold mb-8">Récapitulatif</h2>
 
-              <div className="space-y-3 mb-6">
+              <div className="space-y-4 mb-8">
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>Sous-total</span>
                   <span>{total.toFixed(2).replace(".", ",")}€</span>
@@ -146,7 +146,7 @@ const Cart = () => {
                   <span>Livraison</span>
                   <span className="text-primary font-semibold">Gratuite</span>
                 </div>
-                <div className="border-t border-border pt-3 flex justify-between font-bold text-lg">
+                <div className="border-t border-border pt-4 flex justify-between font-bold text-lg">
                   <span>Total</span>
                   <span className="text-primary">{total.toFixed(2).replace(".", ",")}€</span>
                 </div>
@@ -154,12 +154,12 @@ const Cart = () => {
 
               <button
                 onClick={() => navigate("/commande")}
-                className="w-full bg-primary text-primary-foreground py-4 rounded-2xl font-semibold text-lg hover:opacity-90 transition-opacity"
+                className="w-full bg-primary text-primary-foreground py-5 rounded-2xl font-semibold text-lg hover:opacity-90 transition-opacity"
               >
                 Passer la commande →
               </button>
 
-              <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground justify-center">
+              <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground justify-center">
                 <span>🚴</span>
                 <span>Livraison en 30 min · 7j/7 de 7h à 15h</span>
               </div>
