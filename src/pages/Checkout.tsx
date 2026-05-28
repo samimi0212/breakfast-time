@@ -588,6 +588,32 @@ const CheckoutForm = () => {
                   <p className="text-sm text-muted-foreground italic">Aucun créneau disponible pour ce jour</p>
                 ) : (
                   <div className="flex gap-2 flex-wrap">
+                    {form.date === todayStr() && (() => {
+                      const now = new Date();
+                      const asap = new Date(now.getTime() + 45 * 60000);
+                      const m = asap.getMinutes() < 30 ? 30 : 0;
+                      const h = asap.getMinutes() < 30 ? asap.getHours() : asap.getHours() + 1;
+                      if (h >= 15) return null;
+                      const asapSlot = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+                      const isSelected = form.heure === asapSlot;
+                      return (
+                        <button
+                          key="maintenant"
+                          type="button"
+                          onClick={() => {
+                            setForm((prev) => ({ ...prev, heure: asapSlot }));
+                            setErrors((prev) => ({ ...prev, heure: "" }));
+                          }}
+                          className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all whitespace-nowrap ${
+                            isSelected
+                              ? "border-primary bg-primary/10 text-primary"
+                              : "border-border bg-background text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          Maintenant · {asapSlot}
+                        </button>
+                      );
+                    })()}
                     {slots.map((s) => (
                       <button
                         key={s}
