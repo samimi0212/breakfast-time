@@ -601,7 +601,7 @@ export const allProducts: Product[] = [
     name: "Brunch Mariage",
     price: "Sur devis",
     category: "Événements",
-    img: "https://static.wixstatic.com/media/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png",
+    img: "/menu-brunch.png",
     desc: "Un brunch d'exception pour votre mariage. Formule personnalisée selon vos envies et le nombre de convives.",
     composition: ["Buffet viennoiseries", "Salé & sucré", "Boissons chaudes & froides", "Décoration incluse", "Service sur place"],
     options: [

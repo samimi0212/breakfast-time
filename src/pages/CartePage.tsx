@@ -22,7 +22,7 @@ const menus = [
     id: "menu-brunch",
     name: "Menu Brunch",
     price: "29,00€",
-    img: "https://static.wixstatic.com/media/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_137b677c57ed4588b83a5cd2f9c99169~mv2.png",
+    img: "/menu-brunch.png",
   },
   {
     id: "menu-famille",
