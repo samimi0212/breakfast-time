@@ -262,7 +262,7 @@ const ProductPage = () => {
         {related.length > 0 && (
           <div className="mt-20">
             <h2 className="font-display text-2xl font-semibold mb-8">Vous aimerez aussi</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {related.map((item) => (
                 <div
                   key={item.id}
@@ -270,16 +270,16 @@ const ProductPage = () => {
                   className="bg-card rounded-2xl overflow-hidden cursor-pointer hover-lift group"
                   style={{ boxShadow: "var(--card-shadow)" }}
                 >
-                  <div className="aspect-square overflow-hidden">
+                  <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={item.img}
                       alt={item.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-4 flex justify-between items-center">
-                    <h3 className="font-display font-semibold">{item.name}</h3>
-                    <span className="text-primary font-bold">{item.price}</span>
+                  <div className="p-3 flex justify-between items-center">
+                    <h3 className="font-display font-semibold text-sm">{item.name}</h3>
+                    <span className="text-primary font-bold text-sm">{item.price}</span>
                   </div>
                 </div>
               ))}
