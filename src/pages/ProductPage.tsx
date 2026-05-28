@@ -252,7 +252,7 @@ const ProductPage = () => {
             <div className="flex items-center gap-3 text-sm text-muted-foreground border border-border rounded-2xl px-4 py-3">
               <span className="text-xl">🚴</span>
               <span>
-                Livré en <strong className="text-foreground">45 minutes</strong> · Suivi de livraison en temps réel
+                Livré en <strong className="text-foreground">30-45 minutes</strong> · Suivi de livraison en temps réel
               </span>
             </div>
           </div>
