@@ -9,7 +9,7 @@ const steps = [
   {
     icon: ShoppingBag,
     title: "Commandez",
-    desc: "Passez commande directement sur Deliveroo ou Uber Eats en quelques clics.",
+    desc: "Passez commande directement sur notre site en quelques clics ou via nos partenaires Deliveroo et Uber Eats.",
   },
   {
     icon: Truck,
