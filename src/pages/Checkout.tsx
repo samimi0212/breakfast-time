@@ -203,12 +203,11 @@ const CheckoutForm = () => {
           }),
         });
         const stuartData = await stuartRes.json();
-        alert("Stuart réponse : " + JSON.stringify(stuartData));
         if (stuartData.tracking_url) {
           trackingUrl = stuartData.tracking_url;
         }
-      } catch (stuartErr: any) {
-        alert("Stuart erreur : " + stuartErr.message);
+      } catch (stuartErr) {
+        console.error("Stuart error:", stuartErr);
       }
 
       // 5. Envoyer l'email de confirmation
@@ -231,6 +230,7 @@ const CheckoutForm = () => {
               items,
               total,
               stripeId: paymentIntent?.id,
+              trackingUrl,
             },
           }),
         });

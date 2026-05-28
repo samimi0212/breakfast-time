@@ -58,6 +58,13 @@ export default async function handler(req: Request): Promise<Response> {
           </div>
 
           ${order.note ? `<div style="margin-top: 20px; padding: 14px; border-left: 4px solid #DFF057; background: #f9f9f4; border-radius: 0 8px 8px 0;"><p style="margin:0; font-size:13px; color:#666;">📝 Note : ${order.note}</p></div>` : ""}
+
+          ${order.trackingUrl ? `
+          <div style="margin-top: 24px; text-align: center;">
+            <a href="${order.trackingUrl}" style="display: inline-block; background-color: #DFF057; color: #3a3a0a; text-decoration: none; font-weight: bold; font-size: 14px; padding: 14px 32px; border-radius: 50px;">
+              🚴 Suivre ma livraison en temps réel →
+            </a>
+          </div>` : ""}
         </div>
 
         <div style="background-color: #3a3a0a; padding: 24px; text-align: center; border-radius: 0 0 16px 16px;">
