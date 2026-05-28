@@ -211,16 +211,39 @@ const CheckoutForm = () => {
     } catch { /* garde la description comme adresse */ }
   };
 
+  const validateField = (name: string, value: string): string => {
+    if (!value) return "Ce champ est requis";
+    if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+      return "Adresse email invalide";
+    if (name === "telephone" && !/^(\+33|0)[1-9](\s?\d{2}){4}$/.test(value.replace(/[\s.\-()]/g, "")))
+      return "Numéro de téléphone invalide";
+    return "";
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const error = validateField(name, value);
+    if (error) setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!form.prenom) e.prenom = "Requis";
-    if (!form.nom) e.nom = "Requis";
-    if (!form.email) e.email = "Requis";
-    if (!form.telephone) e.telephone = "Requis";
-    if (!form.adresse) e.adresse = "Requis";
-    if (!form.ville) e.ville = "Requis";
-    if (!form.codePostal) e.codePostal = "Requis";
-    if (!form.heure) e.heure = "Requis";
+    if (!form.prenom) e.prenom = "Ce champ est requis";
+    if (!form.nom) e.nom = "Ce champ est requis";
+    if (!form.email) {
+      e.email = "Ce champ est requis";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      e.email = "Adresse email invalide";
+    }
+    if (!form.telephone) {
+      e.telephone = "Ce champ est requis";
+    } else if (!/^(\+33|0)[1-9](\s?\d{2}){4}$/.test(form.telephone.replace(/[\s.\-()]/g, ""))) {
+      e.telephone = "Numéro de téléphone invalide";
+    }
+    if (!form.adresse) e.adresse = "Ce champ est requis";
+    if (!form.ville) e.ville = "Ce champ est requis";
+    if (!form.codePostal) e.codePostal = "Ce champ est requis";
+    if (!form.heure) e.heure = "Ce champ est requis";
     if (deliveryPrice === null) e.adresse = "Adresse hors zone de livraison (max 15 km)";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -404,22 +427,22 @@ const CheckoutForm = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Prénom</label>
-                  <input name="prenom" value={form.prenom} onChange={handleChange} placeholder="Marie" className={inputClass("prenom")} />
+                  <input name="prenom" value={form.prenom} onChange={handleChange} onBlur={handleBlur} placeholder="Marie" className={inputClass("prenom")} />
                   {errors.prenom && <p className="text-red-400 text-xs mt-1">{errors.prenom}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Nom</label>
-                  <input name="nom" value={form.nom} onChange={handleChange} placeholder="Dupont" className={inputClass("nom")} />
+                  <input name="nom" value={form.nom} onChange={handleChange} onBlur={handleBlur} placeholder="Dupont" className={inputClass("nom")} />
                   {errors.nom && <p className="text-red-400 text-xs mt-1">{errors.nom}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Email</label>
-                  <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="marie@email.com" className={inputClass("email")} />
+                  <input name="email" type="email" value={form.email} onChange={handleChange} onBlur={handleBlur} placeholder="marie@email.com" className={inputClass("email")} />
                   {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">Téléphone</label>
-                  <input name="telephone" type="tel" value={form.telephone} onChange={handleChange} placeholder="+33 6 00 00 00 00" className={inputClass("telephone")} />
+                  <input name="telephone" type="tel" value={form.telephone} onChange={handleChange} onBlur={handleBlur} placeholder="+33 6 00 00 00 00" className={inputClass("telephone")} />
                   {errors.telephone && <p className="text-red-400 text-xs mt-1">{errors.telephone}</p>}
                 </div>
               </div>
