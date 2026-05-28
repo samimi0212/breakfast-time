@@ -556,16 +556,30 @@ const CheckoutForm = () => {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">Heure</label>
-                <select name="heure" value={form.heure} onChange={handleChange} className={inputClass("heure")}>
-                  {slots.length === 0 ? (
-                    <option value="">Aucun créneau disponible</option>
-                  ) : (
-                    slots.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))
-                  )}
-                </select>
+                <label className="block text-sm font-medium mb-2">Heure</label>
+                {slots.length === 0 ? (
+                  <p className="text-sm text-muted-foreground italic">Aucun créneau disponible pour ce jour</p>
+                ) : (
+                  <div className="flex gap-2 flex-wrap">
+                    {slots.map((s) => (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => {
+                          setForm((prev) => ({ ...prev, heure: s }));
+                          setErrors((prev) => ({ ...prev, heure: "" }));
+                        }}
+                        className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all ${
+                          form.heure === s
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border bg-background text-foreground hover:border-primary/50"
+                        }`}
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 {errors.heure && <p className="text-red-400 text-xs mt-1">{errors.heure}</p>}
               </div>
               <p className="text-xs text-muted-foreground mt-3">
