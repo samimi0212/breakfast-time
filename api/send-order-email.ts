@@ -85,6 +85,20 @@ export default async function handler(req: Request): Promise<Response> {
     });
 
     // Email interne
+    // Calcul pickup et livraison estimée
+    const fmt = (d: Date) => d.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+    let pickupTime: Date;
+    let deliveryTime: Date;
+    if (order.isMaintenant) {
+      pickupTime = new Date(Date.now() + 15 * 60000);
+      deliveryTime = new Date(Date.now() + 45 * 60000);
+    } else {
+      const [y, mo, d] = order.date.split("-").map(Number);
+      const [h, mi] = order.heure.split(":").map(Number);
+      deliveryTime = new Date(y, mo - 1, d, h, mi);
+      pickupTime = new Date(deliveryTime.getTime() - 40 * 60000);
+    }
+
     await resend.emails.send({
       from: "Breakfast Time <noreply@immo-score.fr>",
       to: "contact@breakfast-time.fr",
@@ -97,6 +111,10 @@ export default async function handler(req: Request): Promise<Response> {
           <p><strong>Téléphone :</strong> ${order.telephone}</p>
           <p><strong>Livraison :</strong> ${new Date(order.date).toLocaleDateString("fr-FR")} à ${order.heure}</p>
           <p><strong>Adresse :</strong> ${order.adresse}, ${order.codePostal} ${order.ville}</p>
+          <div style="background:#f0f7e0; border-left:4px solid #6b7c2d; padding:10px 14px; border-radius:0 8px 8px 0; margin:12px 0;">
+            <p style="margin:0 0 4px 0;">🚴 <strong>Stuart récupère à :</strong> ${fmt(pickupTime)}</p>
+            <p style="margin:0;">📦 <strong>Livraison estimée :</strong> ${fmt(deliveryTime)}</p>
+          </div>
           ${order.note ? `<p><strong>Note :</strong> ${order.note}</p>` : ""}
           <hr style="margin: 16px 0; border: none; border-top: 1px solid #e0e0d0;">
           <h3 style="margin: 0 0 8px 0; color: #3a3a0a;">Détail de la commande</h3>

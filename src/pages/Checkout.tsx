@@ -376,6 +376,7 @@ const CheckoutForm = () => {
               codePostal: form.codePostal,
               date: form.date,
               heure: form.heure,
+              isMaintenant: form.isMaintenant,
               note: form.note,
               items,
               total: orderTotal,
