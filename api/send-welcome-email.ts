@@ -46,8 +46,7 @@ export default async function handler(req: Request): Promise<Response> {
         Bonjour <span style="color:#7a7020; font-style:italic;">${prenom}</span> !
       </h1>
       <p style="margin:0 0 28px; font-size:16px; color:#5a5a40; text-align:center; line-height:1.7; font-family: Arial, sans-serif;">
-        Votre compte est créé — vous faites maintenant partie de la famille Breakfast Time.
-        Préparez-vous à vivre vos matins autrement.
+        Votre compte est créé — Félicitations ! Dès à présent vous allez vivre vos matins autrement.
       </p>
 
       <!-- Divider -->
