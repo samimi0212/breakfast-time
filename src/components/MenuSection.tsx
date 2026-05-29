@@ -25,7 +25,7 @@ const options = [
   },
   {
     title: "Planches à partager",
-    desc: "Pour un moment à plusieurs — plateaux de viennoiseries, planches de fromages ou de charcuterie. Posez au centre, profitez ensemble.",
+    desc: "Pour un moment à plusieurs — plateaux de viennoiseries, cakes, pancakes... Posez au centre, profitez ensemble.",
     cta: "Découvrir",
     link: "/carte?tab=carte&cat=À Partager",
     imgIndex: 2,
