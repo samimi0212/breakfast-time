@@ -144,7 +144,7 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>Livraison</span>
-                  <span className="italic text-xs">Calculée à la commande</span>
+                  <span className="italic text-xs">Calculée à l'étape suivante</span>
                 </div>
                 <div className="border-t border-border pt-4 flex justify-between font-bold text-lg">
                   <span>Total</span>
