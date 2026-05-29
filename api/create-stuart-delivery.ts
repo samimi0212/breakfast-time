@@ -45,10 +45,18 @@ export default async function handler(req: Request): Promise<Response> {
 
     const dropoffAddress = `${order.adresse}, ${order.codePostal} ${order.ville}, France`;
 
-    // Calcul de l'heure de pickup : date + heure de livraison demandée
+    // Calcul de l'heure de pickup
     const [year, month, day] = order.date.split("-").map(Number);
     const [hour, minute] = order.heure.split(":").map(Number);
-    const pickupAt = new Date(year, month - 1, day, hour, minute).toISOString();
+    const deliveryTime = new Date(year, month - 1, day, hour, minute);
+
+    // Si "Maintenant" : heure exacte choisie (now + 45min), pas de soustraction
+    // Si créneau planifié : on soustrait 40min pour que Stuart arrive chez le client à l'heure choisie
+    const isMaintenant = order.isMaintenant === true;
+    const pickupTime = isMaintenant
+      ? deliveryTime
+      : new Date(deliveryTime.getTime() - 40 * 60000);
+    const pickupAt = pickupTime.toISOString();
 
     const payload = {
       job: {

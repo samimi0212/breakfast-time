@@ -64,6 +64,7 @@ const CheckoutForm = () => {
     note: "",
     date: todayStr(),
     heure: "",
+    isMaintenant: false,
   });
 
   useEffect(() => {
@@ -337,6 +338,7 @@ const CheckoutForm = () => {
               codePostal: form.codePostal,
               date: form.date,
               heure: form.heure,
+              isMaintenant: form.isMaintenant,
               note: form.note,
               items,
               total,
@@ -602,7 +604,7 @@ const CheckoutForm = () => {
                           key="maintenant"
                           type="button"
                           onClick={() => {
-                            setForm((prev) => ({ ...prev, heure: asapSlot }));
+                            setForm((prev) => ({ ...prev, heure: asapSlot, isMaintenant: true }));
                             setErrors((prev) => ({ ...prev, heure: "" }));
                           }}
                           className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all whitespace-nowrap ${
@@ -627,7 +629,7 @@ const CheckoutForm = () => {
                         key={s}
                         type="button"
                         onClick={() => {
-                          setForm((prev) => ({ ...prev, heure: s }));
+                          setForm((prev) => ({ ...prev, heure: s, isMaintenant: false }));
                           setErrors((prev) => ({ ...prev, heure: "" }));
                         }}
                         className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all ${
