@@ -23,6 +23,14 @@ const MyAccount = () => {
     new: "",
     confirm: "",
   });
+  const [showNewPwd, setShowNewPwd] = useState(false);
+  const [showConfirmPwd, setShowConfirmPwd] = useState(false);
+
+  const EyeIcon = ({ visible }: { visible: boolean }) => visible ? (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+  ) : (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+  );
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -212,25 +220,35 @@ const MyAccount = () => {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-1.5">Nouveau mot de passe</label>
-              <input
-                name="new"
-                type="password"
-                value={passwords.new}
-                onChange={handlePasswordChange}
-                placeholder="••••••••"
-                className={inputClass}
-              />
+              <div className="relative">
+                <input
+                  name="new"
+                  type={showNewPwd ? "text" : "password"}
+                  value={passwords.new}
+                  onChange={handlePasswordChange}
+                  placeholder="••••••••"
+                  className={`${inputClass} pr-12`}
+                />
+                <button type="button" onClick={() => setShowNewPwd(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition" tabIndex={-1}>
+                  <EyeIcon visible={showNewPwd} />
+                </button>
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-1.5">Confirmer le nouveau mot de passe</label>
-              <input
-                name="confirm"
-                type="password"
-                value={passwords.confirm}
-                onChange={handlePasswordChange}
-                placeholder="••••••••"
-                className={inputClass}
-              />
+              <div className="relative">
+                <input
+                  name="confirm"
+                  type={showConfirmPwd ? "text" : "password"}
+                  value={passwords.confirm}
+                  onChange={handlePasswordChange}
+                  placeholder="••••••••"
+                  className={`${inputClass} pr-12`}
+                />
+                <button type="button" onClick={() => setShowConfirmPwd(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition" tabIndex={-1}>
+                  <EyeIcon visible={showConfirmPwd} />
+                </button>
+              </div>
             </div>
 
             <button
