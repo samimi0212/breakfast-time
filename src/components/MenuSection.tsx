@@ -49,7 +49,7 @@ const MenuSection = () => {
             </span>
           </h2>
           <p className="section-subtitle mx-auto">
-            Menus tout compris ou produits à la carte — vous choisissez, on livre en 45 minutes.
+            Menus tout compris ou produits à la carte — vous choisissez, on vous livre.
           </p>
         </div>
 
