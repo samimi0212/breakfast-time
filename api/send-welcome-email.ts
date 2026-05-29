@@ -93,12 +93,12 @@ export default async function handler(req: Request): Promise<Response> {
     <!-- Footer -->
     <div style="background-color:#3a3a0a; border-radius:20px; padding:32px 40px; margin-top:16px; text-align:center;">
       <p style="margin:0 0 6px; font-size:13px; color:rgba(255,255,255,0.6); font-family: Arial, sans-serif;">
-        Une question ? Contactez-nous
+        Une question ?
+        <a href="https://breakfast-time.fr/contact"
+           style="color:#DFF057; font-size:13px; text-decoration:none; font-family: Arial, sans-serif;">
+          Contactez-nous
+        </a>
       </p>
-      <a href="https://breakfast-time.fr/contact"
-         style="color:#DFF057; font-size:13px; text-decoration:none; font-family: Arial, sans-serif;">
-        breakfast-time.fr/contact
-      </a>
       <p style="margin:20px 0 0; font-size:11px; color:rgba(255,255,255,0.25); font-family: Arial, sans-serif;">
         © 2026 Breakfast Time — Alpes-Maritimes
       </p>
