@@ -50,11 +50,11 @@ export default async function handler(req: Request): Promise<Response> {
     const [hour, minute] = order.heure.split(":").map(Number);
     const deliveryTime = new Date(year, month - 1, day, hour, minute);
 
-    // Si "Maintenant" : heure exacte choisie (now + 45min), pas de soustraction
-    // Si créneau planifié : on soustrait 40min pour que Stuart arrive chez le client à l'heure choisie
+    // Si "Maintenant" : pickup dans 15min (temps de préparation), livraison ~30min après = ~45min total
+    // Si créneau planifié : pickup = heure choisie - 40min pour livraison à l'heure
     const isMaintenant = order.isMaintenant === true;
     const pickupTime = isMaintenant
-      ? deliveryTime
+      ? new Date(Date.now() + 15 * 60000)
       : new Date(deliveryTime.getTime() - 40 * 60000);
     const pickupAt = pickupTime.toISOString();
 
