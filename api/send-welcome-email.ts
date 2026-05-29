@@ -68,7 +68,7 @@ export default async function handler(req: Request): Promise<Response> {
           <td width="33%" style="text-align:center; padding: 0 8px;">
             <div style="font-size:26px; margin-bottom:8px;">📅</div>
             <p style="margin:0; font-size:13px; color:#3a3a0a; font-weight:700; font-family: Arial, sans-serif;">7j/7</p>
-            <p style="margin:4px 0 0; font-size:12px; color:#888; font-family: Arial, sans-serif;">Dès 8h</p>
+            <p style="margin:4px 0 0; font-size:12px; color:#888; font-family: Arial, sans-serif;">De 8h à 15h</p>
           </td>
         </tr>
       </table>
