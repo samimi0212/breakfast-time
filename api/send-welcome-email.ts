@@ -23,20 +23,12 @@ export default async function handler(req: Request): Promise<Response> {
 
   <div style="max-width:600px; margin:0 auto; padding: 24px 16px 40px;">
 
-    <!-- Header logo -->
-    <div style="text-align:center; padding: 32px 0 20px;">
+    <!-- Header -->
+    <div style="background-color:#ffffff; border-radius:16px 16px 0 0; padding: 28px 40px 20px; text-align:center; border-bottom: 1px solid #f0ece2;">
       <img src="https://breakfast-time.fr/logo.png"
            alt="Breakfast Time"
-           width="140"
+           width="160"
            style="height:auto; display:inline-block;" />
-    </div>
-
-    <!-- Hero image -->
-    <div style="border-radius: 20px; overflow:hidden; margin-bottom: 0;">
-      <img src="https://breakfast-time.fr/og-image.jpg"
-           alt="Petit-déjeuner Breakfast Time"
-           width="600"
-           style="width:100%; display:block; border-radius:20px 20px 0 0;" />
     </div>
 
     <!-- Main card -->
@@ -101,10 +93,6 @@ export default async function handler(req: Request): Promise<Response> {
 
     <!-- Footer -->
     <div style="background-color:#3a3a0a; border-radius:20px; padding:32px 40px; margin-top:16px; text-align:center;">
-      <img src="https://breakfast-time.fr/logo.png"
-           alt="Breakfast Time"
-           width="100"
-           style="height:auto; display:inline-block; filter:brightness(0) invert(1); margin-bottom:16px; opacity:0.9;" />
       <p style="margin:0 0 6px; font-size:13px; color:rgba(255,255,255,0.6); font-family: Arial, sans-serif;">
         Une question ? Contactez-nous
       </p>
