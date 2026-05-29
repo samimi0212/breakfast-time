@@ -734,16 +734,19 @@ const CheckoutForm = () => {
                   <span>Sous-total</span>
                   <span>{total.toFixed(2).replace(".", ",")}€</span>
                 </div>
-                <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>Livraison</span>
-                  {deliveryLoading ? (
-                    <span className="text-muted-foreground italic">Calcul...</span>
-                  ) : deliveryError ? (
+                <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+                  <div className="flex justify-between">
+                    <span>Livraison</span>
+                    {deliveryLoading ? (
+                      <span className="text-muted-foreground italic">Calcul...</span>
+                    ) : deliveryPrice !== null ? (
+                      <span className="font-semibold text-foreground">{deliveryPrice.toFixed(2).replace(".", ",")}€</span>
+                    ) : !deliveryError ? (
+                      <span className="text-muted-foreground italic text-xs">Saisir une adresse</span>
+                    ) : null}
+                  </div>
+                  {deliveryError && (
                     <span className="text-red-400 text-xs">{deliveryError}</span>
-                  ) : deliveryPrice !== null ? (
-                    <span className="font-semibold text-foreground">{deliveryPrice.toFixed(2).replace(".", ",")}€</span>
-                  ) : (
-                    <span className="text-muted-foreground italic text-xs">Saisir une adresse</span>
                   )}
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t border-border">
