@@ -37,7 +37,7 @@ export default async function handler(req: Request): Promise<Response> {
       <!-- Badge -->
       <div style="text-align:center; margin-bottom:24px;">
         <span style="display:inline-block; background-color:rgba(223,240,87,0.25); color:#5a5a1a; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-family: Arial, sans-serif; font-weight:600; padding:6px 16px; border-radius:50px;">
-          Bienvenue dans la famille ☀️
+          Bienvenue
         </span>
       </div>
 
