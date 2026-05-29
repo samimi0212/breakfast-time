@@ -80,9 +80,6 @@ const Contact = () => {
                 {loading ? <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" /> : "Envoyer le message"}
               </button>
 
-              <div className="pt-2 border-t border-border text-center text-sm text-muted-foreground">
-                Ou par email : <a href="mailto:contact@breakfast-time.fr" className="text-primary hover:underline">contact@breakfast-time.fr</a>
-              </div>
             </div>
           )}
         </div>
