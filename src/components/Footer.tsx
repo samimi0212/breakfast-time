@@ -114,8 +114,8 @@ const Footer = () => {
             </li>
             <li className="flex items-center gap-2">
               <Mail size={14} style={{ color: "#DFF057" }} />
-              <a href="mailto:contact@breakfast-time.fr" className="hover:text-white transition-colors">
-                contact@breakfast-time.fr
+              <a href="/contact" className="hover:text-white transition-colors">
+                Nous contacter
               </a>
             </li>
           </ul>
