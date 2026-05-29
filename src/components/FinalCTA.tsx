@@ -38,7 +38,7 @@ const FinalCTA = () => {
           className="text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
           style={{ color: "rgba(255,255,255,0.75)" }}
         >
-          Petit-déjeuner ou brunch, livré en 45 minutes avec des produits frais préparés le matin même. Commandez dès
+          Petit-déjeuner ou brunch, livré en 30 à 45 minutes avec des produits frais préparés le matin même. Commandez dès
           maintenant.
         </p>
 
