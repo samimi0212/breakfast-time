@@ -63,22 +63,14 @@ const FinalCTA = () => {
           ))}
         </div>
 
-        {/* Boutons plateformes */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            disabled
-            className="flex items-center justify-center gap-2 px-10 py-4 rounded-full text-lg font-semibold opacity-80 cursor-not-allowed"
+        <div className="flex justify-center">
+          <a
+            href="/carte"
+            className="flex items-center justify-center gap-2 px-10 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity"
             style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
           >
-            Uber Eats
-          </button>
-          <button
-            disabled
-            className="px-10 py-4 rounded-full text-lg font-semibold border-2 opacity-80 cursor-not-allowed"
-            style={{ borderColor: "rgba(255,255,255,0.3)", color: "white" }}
-          >
-            Deliveroo
-          </button>
+            Commandez maintenant →
+          </a>
         </div>
       </div>
     </section>
