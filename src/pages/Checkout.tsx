@@ -591,12 +591,10 @@ const CheckoutForm = () => {
                     {form.date === todayStr() && (() => {
                       const now = new Date();
                       const asap = new Date(now.getTime() + 45 * 60000);
-                      // Arrondi au prochain créneau de 30min (Math.ceil)
-                      const totalMin = asap.getHours() * 60 + asap.getMinutes();
-                      const roundedMin = Math.ceil(totalMin / 30) * 30;
-                      const asapH = Math.floor(roundedMin / 60);
-                      const asapM = roundedMin % 60;
+                      const asapH = asap.getHours();
+                      const asapM = asap.getMinutes();
                       if (asapH >= 15) return null;
+                      // Heure exacte ex: "11:05"
                       const asapSlot = `${String(asapH).padStart(2, "0")}:${String(asapM).padStart(2, "0")}`;
                       const isSelected = form.heure === asapSlot;
                       return (
@@ -617,15 +615,13 @@ const CheckoutForm = () => {
                         </button>
                       );
                     })()}
-                    {/* Créneaux réguliers : uniquement ceux APRÈS le créneau "Maintenant" */}
+                    {/* Créneaux réguliers : prochain demi-créneau après now+45min */}
                     {slots.filter((s) => {
                       if (form.date !== todayStr()) return true;
                       const now = new Date();
-                      const asap = new Date(now.getTime() + 45 * 60000);
-                      const totalMin = asap.getHours() * 60 + asap.getMinutes();
-                      const roundedMin = Math.ceil(totalMin / 30) * 30;
+                      const asapMin = (now.getHours() * 60 + now.getMinutes()) + 45;
                       const slotMin = parseInt(s.split(":")[0]) * 60 + parseInt(s.split(":")[1]);
-                      return slotMin > roundedMin;
+                      return slotMin > asapMin;
                     }).map((s) => (
                       <button
                         key={s}
