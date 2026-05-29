@@ -591,10 +591,13 @@ const CheckoutForm = () => {
                     {form.date === todayStr() && (() => {
                       const now = new Date();
                       const asap = new Date(now.getTime() + 45 * 60000);
-                      const m = asap.getMinutes() < 30 ? 30 : 0;
-                      const h = asap.getMinutes() < 30 ? asap.getHours() : asap.getHours() + 1;
-                      if (h >= 15) return null;
-                      const asapSlot = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+                      // Arrondi au prochain créneau de 30min (Math.ceil)
+                      const totalMin = asap.getHours() * 60 + asap.getMinutes();
+                      const roundedMin = Math.ceil(totalMin / 30) * 30;
+                      const asapH = Math.floor(roundedMin / 60);
+                      const asapM = roundedMin % 60;
+                      if (asapH >= 15) return null;
+                      const asapSlot = `${String(asapH).padStart(2, "0")}:${String(asapM).padStart(2, "0")}`;
                       const isSelected = form.heure === asapSlot;
                       return (
                         <button
@@ -610,11 +613,20 @@ const CheckoutForm = () => {
                               : "border-border bg-background text-foreground hover:border-primary/50"
                           }`}
                         >
-                          Maintenant · {asapSlot}
+                          Maintenant
                         </button>
                       );
                     })()}
-                    {slots.map((s) => (
+                    {/* Créneaux réguliers : uniquement ceux APRÈS le créneau "Maintenant" */}
+                    {slots.filter((s) => {
+                      if (form.date !== todayStr()) return true;
+                      const now = new Date();
+                      const asap = new Date(now.getTime() + 45 * 60000);
+                      const totalMin = asap.getHours() * 60 + asap.getMinutes();
+                      const roundedMin = Math.ceil(totalMin / 30) * 30;
+                      const slotMin = parseInt(s.split(":")[0]) * 60 + parseInt(s.split(":")[1]);
+                      return slotMin > roundedMin;
+                    }).map((s) => (
                       <button
                         key={s}
                         type="button"
