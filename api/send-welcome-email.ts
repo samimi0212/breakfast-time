@@ -100,7 +100,7 @@ export default async function handler(req: Request): Promise<Response> {
         </a>
       </p>
       <p style="margin:20px 0 0; font-size:11px; color:rgba(255,255,255,0.25); font-family: Arial, sans-serif;">
-        © 2026 Breakfast Time — Alpes-Maritimes
+        © 2026 Breakfast Time
       </p>
     </div>
 
