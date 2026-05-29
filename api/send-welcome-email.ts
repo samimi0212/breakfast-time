@@ -24,10 +24,10 @@ export default async function handler(req: Request): Promise<Response> {
   <div style="max-width:600px; margin:0 auto; padding: 24px 16px 40px;">
 
     <!-- Header -->
-    <div style="background-color:#ffffff; border-radius:16px 16px 0 0; padding: 28px 40px 20px; text-align:center; border-bottom: 1px solid #f0ece2;">
+    <div style="background-color:#ffffff; border-radius:16px 16px 0 0; padding: 16px 40px 14px; text-align:center; border-bottom: 1px solid #f0ece2;">
       <img src="https://breakfast-time.fr/logo.png"
            alt="Breakfast Time"
-           width="160"
+           width="100"
            style="height:auto; display:inline-block;" />
     </div>
 
