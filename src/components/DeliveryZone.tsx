@@ -1,5 +1,6 @@
 import { MapPin, Clock, Calendar } from "lucide-react";
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryZone = () => {
   const [address, setAddress] = useState("");
@@ -8,6 +9,7 @@ const DeliveryZone = () => {
   const [suggestions, setSuggestions] = useState<{ description: string; place_id: string }[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const timer = useRef<any>(null);
+  const navigate = useNavigate();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -112,7 +114,9 @@ const DeliveryZone = () => {
           )}
           {result === "ko" && (
             <div className="mt-4 flex items-center justify-center gap-2 text-red-500 font-medium text-sm bg-red-50 rounded-xl py-3 px-4">
-              ❌ Adresse hors zone, <a href="mailto:contact@breakfast-time.fr" className="underline hover:opacity-80">contactez-nous</a> pour une demande spéciale
+              ❌ Adresse hors zone,{" "}
+              <button onClick={() => navigate("/contact")} className="underline hover:opacity-80">contactez-nous</button>
+              {" "}pour une demande spéciale
             </div>
           )}
         </div>
