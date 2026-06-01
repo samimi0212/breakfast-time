@@ -100,10 +100,10 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* Panier */}
+          {/* Panier — desktop uniquement */}
           <button
             onClick={() => navigate("/panier")}
-            className="relative flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors"
+            className="hidden md:flex relative items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors"
           >
             <ShoppingBag size={20} className="text-foreground/80" />
             {count > 0 && (
@@ -114,8 +114,8 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Mobile toggle */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-foreground">
+          {/* Menu hamburger — desktop uniquement */}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="hidden md:flex text-foreground">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
