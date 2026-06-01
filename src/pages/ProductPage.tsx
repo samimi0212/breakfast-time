@@ -71,7 +71,180 @@ const ProductPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <div className="pt-24 pb-16 px-6 max-w-6xl mx-auto">
+      {/* ── MOBILE ─────────────────────────────────────────────── */}
+      <div className="md:hidden">
+        {/* Image pleine largeur */}
+        <div className="relative w-full" style={{ height: "45vh" }}>
+          <img
+            src={product.img}
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+          {/* Bouton retour flottant */}
+          <button
+            onClick={() => navigate(-1)}
+            className="absolute top-14 left-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md"
+          >
+            <ArrowLeft size={18} className="text-foreground" />
+          </button>
+          {/* Badge catégorie */}
+          <span className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
+            {product.category}
+          </span>
+        </div>
+
+        {/* Carte blanche qui chevauche l'image */}
+        <div
+          className="relative bg-background rounded-t-3xl -mt-5 pb-32 px-5 pt-6"
+          style={{ boxShadow: "0 -4px 20px rgba(0,0,0,0.08)" }}
+        >
+          {/* Titre + prix */}
+          <div className="flex items-start justify-between gap-3 mb-4">
+            <div className="flex-1">
+              <p className="text-primary text-xs font-semibold tracking-widest uppercase mb-1">{product.category}</p>
+              <h1 className="font-display text-2xl font-bold leading-tight">{product.name}</h1>
+            </div>
+            <span className="text-2xl font-display font-bold text-primary flex-shrink-0 mt-5">{product.price}</span>
+          </div>
+
+          {/* Description */}
+          {product.desc && (
+            <p className="text-muted-foreground text-sm leading-relaxed mb-5">{product.desc}</p>
+          )}
+
+          {/* Composition */}
+          {product.composition.length > 0 && (
+            <div className="bg-muted rounded-2xl p-4 mb-4">
+              <h3 className="font-display font-semibold text-sm mb-2">Détails</h3>
+              <ul className="space-y-1.5">
+                {product.composition.map((item, i) => {
+                  const hasChoice = item.includes("au choix");
+                  const cleanItem = item.replace(" au choix", "");
+                  return (
+                    <li key={i} className="flex items-center gap-2 text-sm text-foreground/80">
+                      <span className="w-4 h-4 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+                        <Check size={10} className="text-primary" />
+                      </span>
+                      <span>{cleanItem}</span>
+                      {hasChoice && (
+                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ backgroundColor: "#DFF057", color: "#5a5a1a" }}>
+                          au choix
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+
+          {/* Allergènes */}
+          {product.allergens && product.allergens.length > 0 && (
+            <div className="bg-muted rounded-2xl p-4 mb-4">
+              <h3 className="font-display font-semibold text-sm mb-2">Allergènes</h3>
+              <div className="flex flex-wrap gap-2">
+                {product.allergens.map((item, i) => {
+                  const icons: Record<string, string> = {
+                    "Gluten": "🌾", "Œufs": "🥚", "Poisson": "🐟", "Crustacés": "🦀",
+                    "Arachide": "🥜", "Soja": "🫘", "Céleri": "🥬", "Lait": "🥛",
+                    "Fruits à coque": "🌰", "Moutarde": "🟡", "Sésame": "🌱",
+                    "Sulfites": "🧪", "Lupin": "🌻", "Mollusques": "🦪",
+                  };
+                  return (
+                    <span key={i} className="inline-flex items-center gap-1 text-xs bg-amber-50 text-amber-700 px-2.5 py-1 rounded-full font-medium">
+                      {icons[item] ?? "⚠️"} {item}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Options */}
+          {product.options && product.options.length > 0 && (
+            <div className="space-y-4 mb-4">
+              {product.options.map((option) => (
+                <div key={option.id}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="font-display font-semibold text-sm">{option.label}</h3>
+                    {option.required && (
+                      <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">
+                        Obligatoire
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {option.choices.map((choice) => {
+                      const isSelected = option.multiSelect
+                        ? ((selections[option.id] as string[]) || []).includes(choice)
+                        : selections[option.id] === choice;
+                      return (
+                        <button
+                          key={choice}
+                          onClick={() => handleSelect(option.id, choice, option.multiSelect)}
+                          className={`px-3 py-2 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
+                            isSelected
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-white border-border text-foreground hover:border-primary"
+                          }`}
+                        >
+                          {choice}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Livraison */}
+          <div className="flex items-center gap-2 text-xs text-muted-foreground border border-border rounded-xl px-3 py-2.5">
+            <span>🚴</span>
+            <span>Livré en <strong className="text-foreground">30-45 min</strong> · Suivi en temps réel</span>
+          </div>
+        </div>
+
+        {/* Barre sticky bas */}
+        <div
+          className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-border px-4 py-3 flex items-center gap-3"
+          style={{ paddingBottom: "calc(12px + env(safe-area-inset-bottom))" }}
+        >
+          {/* Quantité */}
+          <div className="flex items-center gap-2 bg-muted rounded-xl px-2 py-1.5 flex-shrink-0">
+            <button
+              onClick={() => setQty(Math.max(1, qty - 1))}
+              className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+            >
+              <Minus size={13} />
+            </button>
+            <span className="font-semibold w-6 text-center">{qty}</span>
+            <button
+              onClick={() => setQty(qty + 1)}
+              className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+            >
+              <Plus size={13} />
+            </button>
+          </div>
+
+          {/* Bouton ajouter */}
+          <button
+            onClick={handleAdd}
+            disabled={!allSelected}
+            className="flex-1 py-3 rounded-2xl font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            style={added ? { backgroundColor: "#DFF057", color: "#3a3a0a" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
+          >
+            {added ? (
+              <><Check size={16} /> Ajouté !</>
+            ) : (
+              <><ShoppingBag size={16} /> Ajouter au panier · {product.price}</>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* ── DESKTOP ────────────────────────────────────────────── */}
+      <div className="hidden md:block pt-24 pb-16 px-6 max-w-6xl mx-auto">
         {/* Retour */}
         <button
           onClick={() => navigate(-1)}
@@ -88,7 +261,6 @@ const ProductPage = () => {
             <div className="aspect-square rounded-3xl overflow-hidden bg-muted">
               <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
             </div>
-            {/* Badge catégorie */}
             <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
               {product.category}
             </span>
@@ -96,19 +268,16 @@ const ProductPage = () => {
 
           {/* Infos */}
           <div className="flex flex-col gap-6">
-            {/* Titre + prix */}
             <div>
               <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">{product.category}</p>
               <h1 className="font-display text-4xl lg:text-5xl font-bold leading-tight mb-4">{product.name}</h1>
               <p className="text-muted-foreground text-lg leading-relaxed">{product.desc}</p>
             </div>
 
-            {/* Prix */}
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-display font-bold text-primary">{product.price}</span>
             </div>
 
-            {/* Composition */}
             {product.composition.length > 0 && (
               <div className="bg-muted rounded-2xl p-5">
                 <h3 className="font-display font-semibold text-lg mb-3">Détails</h3>
@@ -123,10 +292,7 @@ const ProductPage = () => {
                         </span>
                         <span>{cleanItem}</span>
                         {hasChoice && (
-                          <span
-                            className="text-xs font-semibold px-2 py-0.5 rounded-full"
-                            style={{ backgroundColor: "#DFF057", color: "#5a5a1a" }}
-                          >
+                          <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ backgroundColor: "#DFF057", color: "#5a5a1a" }}>
                             au choix
                           </span>
                         )}
@@ -137,27 +303,16 @@ const ProductPage = () => {
               </div>
             )}
 
-            {/* Allergènes */}
             {product.allergens && product.allergens.length > 0 && (
               <div className="bg-muted rounded-2xl p-5">
                 <h3 className="font-display font-semibold text-lg mb-3">Allergènes</h3>
                 <ul className="space-y-2">
                   {product.allergens.map((item, i) => {
                     const icons: Record<string, string> = {
-                      "Gluten": "🌾",
-                      "Œufs": "🥚",
-                      "Poisson": "🐟",
-                      "Crustacés": "🦀",
-                      "Arachide": "🥜",
-                      "Soja": "🫘",
-                      "Céleri": "🥬",
-                      "Lait": "🥛",
-                      "Fruits à coque": "🌰",
-                      "Moutarde": "🟡",
-                      "Sésame": "🌱",
-                      "Sulfites": "🧪",
-                      "Lupin": "🌻",
-                      "Mollusques": "🦪",
+                      "Gluten": "🌾", "Œufs": "🥚", "Poisson": "🐟", "Crustacés": "🦀",
+                      "Arachide": "🥜", "Soja": "🫘", "Céleri": "🥬", "Lait": "🥛",
+                      "Fruits à coque": "🌰", "Moutarde": "🟡", "Sésame": "🌱",
+                      "Sulfites": "🧪", "Lupin": "🌻", "Mollusques": "🦪",
                     };
                     return (
                       <li key={i} className="flex items-center gap-3 text-sm text-foreground/80">
@@ -172,7 +327,6 @@ const ProductPage = () => {
               </div>
             )}
 
-            {/* Options */}
             {product.options && product.options.length > 0 && (
               <div className="space-y-5">
                 {product.options.map((option) => (
@@ -210,7 +364,6 @@ const ProductPage = () => {
               </div>
             )}
 
-            {/* Quantité + Ajouter au panier */}
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2 bg-muted rounded-xl px-3 py-2.5 flex-shrink-0">
@@ -248,12 +401,9 @@ const ProductPage = () => {
               )}
             </div>
 
-            {/* Livraison */}
             <div className="flex items-center gap-3 text-sm text-muted-foreground border border-border rounded-2xl px-4 py-3">
               <span className="text-xl">🚴</span>
-              <span>
-                Livré en <strong className="text-foreground">30-45 minutes</strong> · Suivi de livraison en temps réel
-              </span>
+              <span>Livré en <strong className="text-foreground">30-45 minutes</strong> · Suivi de livraison en temps réel</span>
             </div>
           </div>
         </div>
