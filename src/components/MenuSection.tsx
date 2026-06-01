@@ -55,8 +55,8 @@ const MenuSection = () => {
 
         {/* Split screen */}
         <div className="grid lg:grid-cols-2 gap-6 items-stretch">
-          {/* Gauche — Image */}
-          <div className="relative rounded-3xl overflow-hidden min-h-96">
+          {/* Gauche — Image (desktop uniquement) */}
+          <div className="relative rounded-3xl overflow-hidden min-h-96 hidden lg:block">
             {visuals.map((src, i) => (
               <img
                 key={i}
@@ -77,18 +77,32 @@ const MenuSection = () => {
                 key={i}
                 onMouseEnter={() => setActiveImg(option.imgIndex)}
                 onClick={() => navigate(option.link)}
-                className="group flex-1 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+                className="group flex-1 rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.02] overflow-hidden"
                 style={{ backgroundColor: "white", boxShadow: "var(--card-shadow)" }}
               >
-                <h3 className="font-display text-2xl font-bold mb-2">{option.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{option.desc}</p>
-                <span
-                  className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full transition-all group-hover:gap-3"
-                  style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
-                >
-                  {option.cta}
-                  <ArrowRight size={14} />
-                </span>
+                {/* Layout mobile : image à gauche + texte à droite */}
+                <div className="flex lg:block">
+                  {/* Vignette mobile */}
+                  <div className="lg:hidden w-24 h-24 flex-shrink-0">
+                    <img
+                      src={visuals[option.imgIndex]}
+                      alt={option.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Contenu */}
+                  <div className="p-4 lg:p-6 flex flex-col justify-center flex-1">
+                    <h3 className="font-display text-lg lg:text-2xl font-bold mb-1 lg:mb-2">{option.title}</h3>
+                    <p className="text-muted-foreground text-xs lg:text-sm leading-relaxed mb-3 lg:mb-4 hidden sm:block">{option.desc}</p>
+                    <span
+                      className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 lg:px-4 lg:py-2 rounded-full transition-all group-hover:gap-3 self-start"
+                      style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
+                    >
+                      {option.cta}
+                      <ArrowRight size={12} />
+                    </span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
