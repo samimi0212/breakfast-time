@@ -5,7 +5,6 @@ import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import MenuSection from "@/components/MenuSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import Testimonials from "@/components/Testimonials";
 import AboutSection from "@/components/AboutSection";
 import DeliveryZone from "@/components/DeliveryZone";
 import EventsPromo from "@/components/EventsPromo";
@@ -72,7 +71,6 @@ const Index = () => {
       <EventsPromo />
       <HowItWorks />
       <WhyChooseUs />
-      <Testimonials />
       <AboutSection />
       <DeliveryZone />
       <FinalCTA />
