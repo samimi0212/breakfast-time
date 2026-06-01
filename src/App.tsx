@@ -22,6 +22,7 @@ import Confidentialite from "./pages/Confidentialite.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
+import BottomNav from "./components/BottomNav.tsx";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <BottomNav />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/connexion" element={<Login />} />

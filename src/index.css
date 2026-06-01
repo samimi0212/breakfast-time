@@ -111,3 +111,10 @@
     animation: shimmer 1.5s ease-in-out infinite;
   }
 }
+
+/* Espace pour la bottom nav sur mobile */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+}
