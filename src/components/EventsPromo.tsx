@@ -60,42 +60,38 @@ const EventsPromo = () => {
           {formules.map(({ label, tag, price, image }) => (
             <div
               key={label}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer"
-              style={{ aspectRatio: "3/2" }}
               onClick={() => navigate("/evenements")}
+              className="group cursor-pointer rounded-2xl overflow-hidden"
+              style={{ backgroundColor: "white", boxShadow: "var(--card-shadow)" }}
             >
-              {/* Photo */}
-              <img
-                src={image}
-                alt={label}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-
-              {/* Overlay dégradé */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-              {/* Price tag */}
-              <div
-                className="absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-bold"
-                style={{ backgroundColor: "rgba(223,240,87,0.95)", color: "#3a3a0a" }}
-              >
-                {price}
+              {/* Desktop : image pleine avec overlay */}
+              <div className="hidden md:block relative" style={{ aspectRatio: "3/2" }}>
+                <img src={image} alt={label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-bold" style={{ backgroundColor: "rgba(223,240,87,0.95)", color: "#3a3a0a" }}>
+                  {price}
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-xs font-semibold tracking-widest uppercase mb-1.5" style={{ color: "rgba(255,255,255,0.6)" }}>{tag}</p>
+                  <h3 className="font-display text-2xl font-bold text-white mb-3">Brunch {label}</h3>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: "#DFF057" }}>
+                    Découvrir <ArrowRight size={12} />
+                  </span>
+                </div>
               </div>
 
-              {/* Text bas */}
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-xs font-semibold tracking-widest uppercase mb-1.5" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  {tag}
-                </p>
-                <h3 className="font-display text-2xl font-bold text-white mb-3">
-                  Brunch {label}
-                </h3>
-                <span
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ color: "#DFF057" }}
-                >
-                  Découvrir <ArrowRight size={12} />
-                </span>
+              {/* Mobile : vignette à gauche + texte à droite */}
+              <div className="flex md:hidden items-center">
+                <div className="w-24 h-24 flex-shrink-0">
+                  <img src={image} alt={label} className="w-full h-full object-cover" />
+                </div>
+                <div className="px-4 py-3 flex-1">
+                  <p className="text-xs font-semibold tracking-widest uppercase mb-0.5" style={{ color: "#8a8a60" }}>{tag}</p>
+                  <h3 className="font-display text-base font-bold mb-1" style={{ color: "#2a2a08" }}>Brunch {label}</h3>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                    {price}
+                  </span>
+                </div>
               </div>
             </div>
           ))}
