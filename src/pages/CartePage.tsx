@@ -377,7 +377,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
 const categories = Object.keys(produits);
 const allProduits = Object.values(produits).flat();
 
-const CardItem = ({ id, name, price, img }: { id: string; name: string; price: string; img: string }) => {
+const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; name: string; price: string; img: string; hasOptions?: boolean }) => {
   const navigate = useNavigate();
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
@@ -419,13 +419,19 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
           <h3 className="font-display text-sm font-semibold leading-tight">{name}</h3>
           <div className="flex items-center justify-between gap-2">
             <span className="text-primary font-bold text-sm">{price}</span>
-            <button
-              onClick={handleAddToCart}
-              className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-200 flex-shrink-0"
-              style={{ backgroundColor: added ? "#3a3a0a" : "#DFF057", color: added ? "#DFF057" : "#3a3a0a" }}
-            >
-              {added ? "✓ Ajouté" : <><ShoppingCart size={11} /> Ajouter</>}
-            </button>
+            {hasOptions ? (
+              <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                Voir →
+              </span>
+            ) : (
+              <button
+                onClick={handleAddToCart}
+                className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-200 flex-shrink-0"
+                style={{ backgroundColor: added ? "#3a3a0a" : "#DFF057", color: added ? "#DFF057" : "#3a3a0a" }}
+              >
+                {added ? "✓ Ajouté" : <><ShoppingCart size={11} /> Ajouter</>}
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -542,7 +548,10 @@ const CartePage = () => {
               {filteredMenus.length + filteredProduits.length} résultat(s) pour "<strong>{search}</strong>"
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
-              {[...filteredMenus, ...filteredProduits].map((item) => (
+              {filteredMenus.map((item) => (
+                <CardItem key={item.id} {...item} hasOptions={true} />
+              ))}
+              {filteredProduits.map((item) => (
                 <CardItem key={item.id} {...item} />
               ))}
             </div>
@@ -646,7 +655,7 @@ const CartePage = () => {
             {tab === "menus" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
                 {menus.map((item) => (
-                  <CardItem key={item.id} {...item} />
+                  <CardItem key={item.id} {...item} hasOptions={true} />
                 ))}
               </div>
             )}
