@@ -70,9 +70,9 @@ const Index = () => {
       <OrderOnline />
       <EventsPromo />
       <HowItWorks />
+      <DeliveryZone />
       <WhyChooseUs />
       <AboutSection />
-      <DeliveryZone />
       <FinalCTA />
     </main>
     <Footer />
