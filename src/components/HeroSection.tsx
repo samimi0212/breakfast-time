@@ -89,17 +89,17 @@ const HeroSection = () => (
     </div>
 
     {/* Bandeau défilant */}
-    <div className="relative z-20 py-4 overflow-hidden" style={{ backgroundColor: "#DFF057" }}>
+    <div className="relative z-20 py-3 overflow-hidden" style={{ backgroundColor: "#DFF057" }}>
       <div className="flex animate-marquee whitespace-nowrap">
         {badges.map((badge, i) => (
           <div
             key={i}
-            className="inline-flex items-center gap-2 mx-8 text-sm font-semibold flex-shrink-0"
+            className="inline-flex items-center gap-1.5 mx-4 text-sm font-semibold flex-shrink-0"
             style={{ color: "#3a3a0a" }}
           >
-            <badge.icon size={16} />
+            <badge.icon size={14} />
             <span>{badge.text}</span>
-            <span className="mx-4 opacity-40">✦</span>
+            <span className="mx-2 opacity-40">✦</span>
           </div>
         ))}
       </div>
