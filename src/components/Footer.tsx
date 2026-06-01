@@ -106,7 +106,7 @@ const Footer = () => {
           <ul className="space-y-3 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
             <li className="flex items-center gap-2">
               <Clock size={14} style={{ color: "#DFF057" }} />
-              Lun. – Dim. : 7h – 15h
+              Lun. – Dim. : 8h – 15h
             </li>
             <li className="flex items-center gap-2">
               <MapPin size={14} style={{ color: "#DFF057" }} />
