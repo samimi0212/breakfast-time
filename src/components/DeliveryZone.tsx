@@ -121,21 +121,35 @@ const DeliveryZone = () => {
           )}
         </div>
 
-        {/* 3 cartes */}
-        <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        {/* 3 cartes — desktop : grille centrée / mobile : liste horizontale */}
+        <div className="hidden sm:grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {[
             { icon: MapPin, label: "Zone", value: "Alpes-Maritimes" },
             { icon: Clock, label: "Horaires", value: "8h – 15h" },
             { icon: Calendar, label: "Jours", value: "Lun. – Dim." },
           ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-card rounded-2xl p-6 text-center"
-              style={{ boxShadow: "var(--card-shadow)" }}
-            >
+            <div key={i} className="bg-card rounded-2xl p-6 text-center" style={{ boxShadow: "var(--card-shadow)" }}>
               <item.icon className="w-8 h-8 text-primary mx-auto mb-3" />
               <p className="text-sm text-muted-foreground mb-1">{item.label}</p>
               <p className="font-display text-lg font-semibold">{item.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-3 sm:hidden max-w-sm mx-auto w-full">
+          {[
+            { icon: MapPin, label: "Zone", value: "Alpes-Maritimes" },
+            { icon: Clock, label: "Horaires", value: "8h – 15h" },
+            { icon: Calendar, label: "Jours", value: "Lun. – Dim." },
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-4 bg-card rounded-2xl px-4 py-3" style={{ boxShadow: "var(--card-shadow)" }}>
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <item.icon className="w-5 h-5 text-primary" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-muted-foreground">{item.label}</p>
+                <p className="font-display text-base font-semibold">{item.value}</p>
+              </div>
             </div>
           ))}
         </div>
