@@ -404,12 +404,14 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
             loading="lazy"
           />
         </div>
-        <div className="flex-1 px-3 py-2 flex flex-col justify-center gap-1">
+        <div className="flex-1 px-3 py-2 flex flex-col justify-center gap-2">
           <h3 className="font-display text-sm font-semibold leading-tight">{name}</h3>
-          <span className="text-primary font-bold text-sm">{price}</span>
-          <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full self-start" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-            Voir →
-          </span>
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-primary font-bold text-sm">{price}</span>
+            <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+              Voir →
+            </span>
+          </div>
         </div>
       </div>
 
