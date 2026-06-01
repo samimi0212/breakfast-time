@@ -43,7 +43,7 @@ const BottomNav = () => {
               key={href}
               onClick={() => navigate(href)}
               className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5 relative transition-colors"
-              style={{ color: isActive ? "#3a3a0a" : "#9ca3af" }}
+              style={{ color: isActive ? "#DFF057" : "#9ca3af" }}
             >
               <div className="relative">
                 <Icon size={22} strokeWidth={isActive ? 2.2 : 1.8} />
@@ -60,7 +60,7 @@ const BottomNav = () => {
               {isActive && (
                 <span
                   className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full"
-                  style={{ backgroundColor: "#3a3a0a" }}
+                  style={{ backgroundColor: "#DFF057" }}
                 />
               )}
             </button>
