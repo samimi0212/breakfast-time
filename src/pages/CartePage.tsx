@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Search, BookOpen, ShoppingBasket, ArrowRight } from "lucide-react";
+import { Search, BookOpen, ShoppingBasket, ArrowRight, ShoppingCart } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useCart } from "@/context/CartContext";
 
 const menus = [
   {
@@ -378,6 +379,16 @@ const allProduits = Object.values(produits).flat();
 
 const CardItem = ({ id, name, price, img }: { id: string; name: string; price: string; img: string }) => {
   const navigate = useNavigate();
+  const { addItem } = useCart();
+  const [added, setAdded] = useState(false);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    addItem({ id, name, price, img, qty: 1 });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  };
+
   return (
     <div
       onClick={() => navigate(`/produit/${id}`)}
@@ -408,9 +419,13 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
           <h3 className="font-display text-sm font-semibold leading-tight">{name}</h3>
           <div className="flex items-center justify-between gap-2">
             <span className="text-primary font-bold text-sm">{price}</span>
-            <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-              Voir →
-            </span>
+            <button
+              onClick={handleAddToCart}
+              className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-200 flex-shrink-0"
+              style={{ backgroundColor: added ? "#3a3a0a" : "#DFF057", color: added ? "#DFF057" : "#3a3a0a" }}
+            >
+              {added ? "✓ Ajouté" : <><ShoppingCart size={11} /> Ajouter</>}
+            </button>
           </div>
         </div>
       </div>
