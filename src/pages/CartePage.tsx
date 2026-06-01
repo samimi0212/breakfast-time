@@ -450,40 +450,45 @@ const CartePage = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
 
-      {/* Header */}
-      <div className="bg-foreground pt-24 pb-6 md:pb-12 px-6 text-center">
-        <p className="text-primary text-xs font-semibold tracking-widest uppercase mb-2 md:mb-3">
+      {/* Header desktop */}
+      <div className="hidden md:block bg-foreground pt-28 pb-16 px-6 text-center">
+        <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">
           Livraison 7j/7 · Alpes-Maritimes
         </p>
-        <h1 className="font-display text-2xl md:text-5xl font-bold mb-2 md:mb-4" style={{ color: "white" }}>
+        <h1 className="font-display text-5xl font-bold mb-4" style={{ color: "white" }}>
           Notre{" "}
-          <span className="italic" style={{ color: "#DFF057" }}>
-            Carte
-          </span>
+          <span className="italic" style={{ color: "#DFF057" }}>Carte</span>
         </h1>
-        <p className="hidden md:block text-lg max-w-xl mx-auto mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
+        <p className="text-lg max-w-xl mx-auto mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
           Des produits frais, locaux et préparés le matin même pour commencer la journée en beauté.
         </p>
-
-        {/* Barre de recherche */}
-        <div className="max-w-md mx-auto relative mt-4">
+        <div className="max-w-md mx-auto relative">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+          <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder="Rechercher un produit..."
-            className="w-full pl-11 pr-4 py-3 rounded-full border-0 bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
+            className="w-full pl-11 pr-4 py-3.5 rounded-full border-0 bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
           />
         </div>
       </div>
 
-      {/* Breadcrumb */}
-      <div className="px-6 py-4 max-w-7xl mx-auto w-full">
+      {/* Header mobile — blanc épuré */}
+      <div className="md:hidden bg-white pt-20 pb-4 px-5">
+        <h1 className="font-display text-2xl font-bold mb-3 text-foreground">
+          Notre <span className="italic" style={{ color: "#7a7020" }}>Carte</span>
+        </h1>
+        <div className="relative">
+          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+            placeholder="Rechercher un produit..."
+            className="w-full pl-10 pr-4 py-2.5 rounded-full border border-border bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary text-sm"
+          />
+        </div>
+      </div>
+
+      {/* Breadcrumb desktop uniquement */}
+      <div className="hidden md:block px-6 py-4 max-w-7xl mx-auto w-full">
         <p className="text-sm text-muted-foreground">
-          <a href="/" className="hover:text-primary transition-colors">
-            Accueil
-          </a>
+          <a href="/" className="hover:text-primary transition-colors">Accueil</a>
           <span className="mx-2">›</span>
           <span className="text-foreground font-medium">La Carte</span>
         </p>
@@ -544,29 +549,25 @@ const CartePage = () => {
                   ))}
                 </div>
 
-                {/* Mobile : vignette à gauche + texte à droite */}
-                <div className="flex flex-col gap-3 sm:hidden">
+                {/* Mobile : 2 cartes photo carrées côte à côte */}
+                <div className="grid grid-cols-2 gap-3 sm:hidden">
                   {[
-                    { tab: "menus", img: "/menu-highlight.jpg", icon: BookOpen, title: "Nos Menus", price: "À partir de 12,90€", cta: "Voir les menus" },
-                    { tab: "carte", img: "/hero-breakfast.jpg", icon: ShoppingBasket, title: "Produits à la Carte", price: "Dès 1,50€ le produit", cta: "Composer mon breakfast" },
-                  ].map(({ tab: t, img, icon: Icon, title, price, cta }) => (
+                    { tab: "menus", img: "/menu-highlight.jpg", title: "Nos Menus", price: "Dès 12,90€", cta: "Voir les menus" },
+                    { tab: "carte", img: "/hero-breakfast.jpg", title: "À la Carte", price: "Dès 1,50€", cta: "Commander" },
+                  ].map(({ tab: t, img, title, price, cta }) => (
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
-                      className="group text-left rounded-2xl bg-white overflow-hidden flex items-center border-2 border-transparent hover:border-primary transition-all"
-                      style={{ boxShadow: "var(--card-shadow)" }}>
-                      <div className="w-24 h-24 flex-shrink-0 overflow-hidden">
-                        <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                      </div>
-                      <div className="px-4 py-3 flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
-                            <Icon size={14} style={{ color: "#6b7a10" }} />
-                          </div>
-                          <h2 className="font-display text-base font-bold text-foreground">{title}</h2>
-                        </div>
-                        <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">{price}</p>
-                        <div className="flex items-center gap-1 text-xs font-semibold" style={{ color: "#6b7a10" }}>
-                          {cta} <ArrowRight size={12} />
-                        </div>
+                      className="group relative rounded-2xl overflow-hidden"
+                      style={{ aspectRatio: "3/4" }}>
+                      <img src={img} alt={title} className="w-full h-full object-cover group-active:scale-105 transition-transform duration-300" />
+                      {/* Dégradé */}
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)" }} />
+                      {/* Contenu bas */}
+                      <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
+                        <p className="text-white font-display font-bold text-base leading-tight mb-1">{title}</p>
+                        <p className="text-xs mb-2.5" style={{ color: "rgba(255,255,255,0.7)" }}>{price}</p>
+                        <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                          {cta} <ArrowRight size={10} />
+                        </span>
                       </div>
                     </button>
                   ))}
