@@ -381,10 +381,11 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
   return (
     <div
       onClick={() => navigate(`/produit/${id}`)}
-      className="bg-card rounded-2xl overflow-hidden hover-lift group cursor-pointer flex flex-col h-full"
+      className="bg-card rounded-2xl overflow-hidden hover-lift group cursor-pointer flex flex-col sm:flex-col h-full"
       style={{ boxShadow: "var(--card-shadow)" }}
     >
-      <div className="relative overflow-hidden aspect-square">
+      {/* Desktop : image carrée en haut */}
+      <div className="relative overflow-hidden aspect-square hidden sm:block">
         <img
           src={img}
           alt={name}
@@ -392,7 +393,28 @@ const CardItem = ({ id, name, price, img }: { id: string; name: string; price: s
           loading="lazy"
         />
       </div>
-      <div className="p-4 flex flex-col flex-1">
+
+      {/* Mobile : vignette gauche + texte droite */}
+      <div className="flex sm:hidden">
+        <div className="w-24 h-24 flex-shrink-0 overflow-hidden">
+          <img
+            src={img}
+            alt={name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        </div>
+        <div className="flex-1 px-3 py-2 flex flex-col justify-center gap-1">
+          <h3 className="font-display text-sm font-semibold leading-tight">{name}</h3>
+          <span className="text-primary font-bold text-sm">{price}</span>
+          <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full self-start" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+            Voir →
+          </span>
+        </div>
+      </div>
+
+      {/* Desktop : texte en bas */}
+      <div className="p-4 flex-col flex-1 hidden sm:flex">
         <div className="flex items-start justify-between gap-2 mb-3 flex-1">
           <h3 className="font-display text-base font-semibold leading-tight">{name}</h3>
           <span className="text-primary font-bold text-base flex-shrink-0">{price}</span>
@@ -502,7 +524,7 @@ const CartePage = () => {
             <p className="text-muted-foreground text-sm mb-6">
               {filteredMenus.length + filteredProduits.length} résultat(s) pour "<strong>{search}</strong>"
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
               {[...filteredMenus, ...filteredProduits].map((item) => (
                 <CardItem key={item.id} {...item} />
               ))}
@@ -605,7 +627,7 @@ const CartePage = () => {
 
             {/* Nos Menus */}
             {tab === "menus" && (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
                 {menus.map((item) => (
                   <CardItem key={item.id} {...item} />
                 ))}
@@ -630,7 +652,7 @@ const CartePage = () => {
                     </button>
                   ))}
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
                   {produits[catActive].map((item) => (
                     <CardItem key={item.id} {...item} />
                   ))}
