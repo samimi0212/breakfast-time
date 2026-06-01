@@ -72,9 +72,9 @@ const ProductPage = () => {
       <Navbar />
 
       {/* ── MOBILE ─────────────────────────────────────────────── */}
-      <div className="md:hidden">
+      <div className="md:hidden" style={{ paddingTop: "80px" }}>
         {/* Image pleine largeur */}
-        <div className="relative w-full" style={{ height: "45vh" }}>
+        <div className="relative w-full" style={{ height: "42vh" }}>
           <img
             src={product.img}
             alt={product.name}
@@ -83,7 +83,7 @@ const ProductPage = () => {
           {/* Bouton retour flottant */}
           <button
             onClick={() => navigate(-1)}
-            className="absolute top-14 left-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md"
+            className="absolute top-3 left-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md"
           >
             <ArrowLeft size={18} className="text-foreground" />
           </button>
