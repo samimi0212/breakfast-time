@@ -578,7 +578,7 @@ const CartePage = () => {
             {/* Onglets (visibles une fois un choix fait) */}
             {tab !== null && (
               <div className="flex justify-center mb-10 mt-4">
-                <div className="bg-muted rounded-2xl p-1.5 flex gap-2 flex-wrap justify-center">
+                <div className="bg-muted rounded-2xl p-1.5 flex gap-2 justify-center">
                   <button
                     onClick={() => switchTab("menus")}
                     className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
