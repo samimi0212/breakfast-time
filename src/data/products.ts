@@ -62,7 +62,7 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/menu-anglais.png",
     desc: "Le breakfast à l'anglaise, généreux et savoureux.",
-    composition: ["2 saucisses fumées", "Œufs brouillés", "Baked Beans", "2 tranches de pain au levain", "Sauce à l'avocat", "1 jus frais au choix", "1 boisson chaude au choix"],
+    composition: ["3 breakfast sausage", "Œufs brouillés", "Baked Beans", "2 tranches de pain au levain", "Sauce à l'avocat", "1 jus frais au choix", "1 boisson chaude au choix"],
     options: [
       {
         id: "jus",
