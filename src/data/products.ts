@@ -81,7 +81,7 @@ export const allProducts: Product[] = [
         label: "Supplément",
         required: false,
         multiSelect: true,
-        choices: ["Bacon (+1,50€)"],
+        choices: ["Bacon (+1,50€)", "Saucisse (+2,50€)"],
       },
     ],
   },
