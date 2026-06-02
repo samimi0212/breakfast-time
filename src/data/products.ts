@@ -510,6 +510,7 @@ export const allProducts: Product[] = [
     img: "/cafe-latte.png",
     desc: "",
     composition: [],
+    options: [{ id: "lait", label: "Lait", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
   },
   {
     id: "capuccino",
@@ -519,6 +520,7 @@ export const allProducts: Product[] = [
     img: "/capuccino.png",
     desc: "",
     composition: [],
+    options: [{ id: "lait", label: "Lait", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
   },
   {
     id: "americano",
@@ -537,6 +539,7 @@ export const allProducts: Product[] = [
     img: "/chocolat-chaud.png",
     desc: "",
     composition: [],
+    options: [{ id: "lait", label: "Lait", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
   },
   {
     id: "cafe-frappe",
@@ -546,6 +549,7 @@ export const allProducts: Product[] = [
     img: "/iced-latte.png",
     desc: "Café glacé, onctueux et rafraîchissant.",
     composition: ["Espresso", "Lait", "Glaçons", "Sucre"],
+    options: [{ id: "lait", label: "Lait", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
   },
   {
     id: "smoothie-banane",
