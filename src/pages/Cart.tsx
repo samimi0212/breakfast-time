@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, UtensilsCrossed } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import logo from "@/assets/logo.png";
+import { useState } from "react";
 
 const Cart = () => {
   const { items, removeItem, updateQty, total, clearCart } = useCart();
   const navigate = useNavigate();
+  const [wantsCutlery, setWantsCutlery] = useState(false);
+  const [cutleryQty, setCutleryQty] = useState(1);
 
   if (items.length === 0) {
     return (
@@ -118,6 +121,57 @@ const Cart = () => {
                 </div>
               </div>
             ))}
+
+            {/* Couverts */}
+            <div
+              className="bg-white rounded-2xl p-4 mt-2"
+              style={{ boxShadow: "var(--card-shadow)" }}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <UtensilsCrossed size={18} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm">Couverts</p>
+                    <p className="text-xs text-muted-foreground">Souhaitez-vous des couverts ?</p>
+                  </div>
+                </div>
+                {/* Toggle */}
+                <button
+                  onClick={() => setWantsCutlery(!wantsCutlery)}
+                  className="relative w-12 h-6 rounded-full transition-colors duration-200 flex-shrink-0"
+                  style={{ backgroundColor: wantsCutlery ? "hsl(61,45%,42%)" : "#e5e7eb" }}
+                >
+                  <span
+                    className="absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-200"
+                    style={{ left: wantsCutlery ? "calc(100% - 22px)" : "2px" }}
+                  />
+                </button>
+              </div>
+
+              {/* Quantité */}
+              {wantsCutlery && (
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
+                  <p className="text-sm text-muted-foreground">Nombre de couverts</p>
+                  <div className="flex items-center gap-2 bg-muted rounded-xl px-2 py-1">
+                    <button
+                      onClick={() => setCutleryQty(Math.max(1, cutleryQty - 1))}
+                      className="w-6 h-6 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <Minus size={12} />
+                    </button>
+                    <span className="font-semibold text-sm w-6 text-center">{cutleryQty}</span>
+                    <button
+                      onClick={() => setCutleryQty(cutleryQty + 1)}
+                      className="w-6 h-6 rounded-full bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                    >
+                      <Plus size={12} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Vider le panier */}
             <button
