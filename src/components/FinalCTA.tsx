@@ -45,9 +45,9 @@ const FinalCTA = () => {
         {/* Stats */}
         <div className="flex flex-wrap justify-center gap-8 mb-12">
           {[
-            { icon: Clock, value: "30 min", label: "Délai de livraison" },
+            { icon: Clock, value: "30-45 min", label: "Délai de livraison" },
             { icon: Star, value: "100%", label: "Produits frais" },
-            { icon: Star, value: "7j/7", label: "7h à 15h" },
+            { icon: Star, value: "7j/7", label: "8h à 15h" },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
