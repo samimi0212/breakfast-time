@@ -133,7 +133,7 @@ const Cart = () => {
                     <UtensilsCrossed size={18} className="text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-sm">Couverts</p>
+                    <p className="font-semibold text-sm">Couverts <span className="text-muted-foreground font-normal">— 0,80€ / set</span></p>
                     <p className="text-xs text-muted-foreground">Souhaitez-vous des couverts ?</p>
                   </div>
                 </div>
@@ -196,13 +196,19 @@ const Cart = () => {
                   <span>Sous-total</span>
                   <span>{total.toFixed(2).replace(".", ",")}€</span>
                 </div>
+                {wantsCutlery && (
+                  <div className="flex justify-between text-sm text-muted-foreground">
+                    <span>Couverts × {cutleryQty}</span>
+                    <span>{(cutleryQty * 0.80).toFixed(2).replace(".", ",")}€</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>Livraison</span>
                   <span className="italic text-xs">Calculée à l'étape suivante</span>
                 </div>
                 <div className="border-t border-border pt-4 flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span className="text-primary">{total.toFixed(2).replace(".", ",")}€</span>
+                  <span className="text-primary">{(total + (wantsCutlery ? cutleryQty * 0.80 : 0)).toFixed(2).replace(".", ",")}€</span>
                 </div>
               </div>
 
