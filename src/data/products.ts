@@ -51,7 +51,7 @@ export const allProducts: Product[] = [
       id: "boisson-chaude",
       label: "Boisson chaude",
       required: true,
-      choices: ["Americano", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
+      choices: ["Americano", "Thé Earl Grey", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
     },
   ],
 },
@@ -74,7 +74,7 @@ export const allProducts: Product[] = [
         id: "boisson-chaude",
         label: "Boisson chaude",
         required: true,
-        choices: ["Americano", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
+        choices: ["Americano", "Thé Earl Grey", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
       },
       {
         id: "supplement-bacon",
