@@ -100,7 +100,7 @@ export const allProducts: Product[] = [
     name: "Menu Famille",
     price: "49,00€",
     category: "Nos Menus",
-    img: "/menu-famille.jpg",
+    img: "/menu-famille.png",
     desc: "Un petit-déjeuner généreux pour toute la famille.",
     composition: [
       "2 bagels au choix",

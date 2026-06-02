@@ -29,7 +29,7 @@ const menus = [
     id: "menu-famille",
     name: "Menu Famille",
     price: "49,00€",
-    img: "/menu-famille.jpg",
+    img: "/menu-famille.png",
   },
   {
     id: "menu-veggie",
