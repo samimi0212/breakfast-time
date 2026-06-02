@@ -76,6 +76,13 @@ export const allProducts: Product[] = [
         required: true,
         choices: ["Americano", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
       },
+      {
+        id: "supplement-bacon",
+        label: "Supplément",
+        required: false,
+        multiSelect: true,
+        choices: ["Bacon (+1,50€)"],
+      },
     ],
   },
   {
