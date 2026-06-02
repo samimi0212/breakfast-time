@@ -42,7 +42,7 @@ const OrderOnline = () => (
       {/* Bouton */}
       <div className="flex justify-center">
         <a
-          href="/commande"
+          href="/carte"
           className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
           style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
         >
