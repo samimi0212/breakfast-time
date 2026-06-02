@@ -29,7 +29,7 @@ const menus = [
     id: "menu-famille",
     name: "Menu Famille",
     price: "49,00€",
-    img: "https://static.wixstatic.com/media/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg",
+    img: "/menu-famille.jpg",
   },
   {
     id: "menu-veggie",
