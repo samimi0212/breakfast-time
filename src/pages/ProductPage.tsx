@@ -21,11 +21,33 @@ const ProductPage = () => {
   const product = allProducts.find((p) => p.id === id);
 
   const allSelected = product?.options
-    ? product.options.filter((o) => o.required).every((o) => selections[o.id])
+    ? product.options.filter((o) => o.required).every((o) => {
+        if (o.maxSelect) {
+          const arr = (selections[o.id] as string[]) || [];
+          return arr.length === o.maxSelect;
+        }
+        return selections[o.id] && (selections[o.id] as string[]).length > 0 || typeof selections[o.id] === "string";
+      })
     : true;
 
-  const handleSelect = (optionId: string, choice: string, multiSelect?: boolean) => {
-    if (multiSelect) {
+  const handleSelect = (optionId: string, choice: string, multiSelect?: boolean, maxSelect?: number) => {
+    if (maxSelect) {
+      // Mode compteur : chaque clic ajoute 1, chaque clic sur un choix déjà compté retire 1
+      setSelections((prev) => {
+        const current = (prev[optionId] as string[]) || [];
+        const total = current.length;
+        const countForChoice = current.filter((c) => c === choice).length;
+        if (countForChoice > 0) {
+          // Retirer un exemplaire de ce choix
+          const idx = current.lastIndexOf(choice);
+          const updated = [...current.slice(0, idx), ...current.slice(idx + 1)];
+          return { ...prev, [optionId]: updated };
+        } else if (total < maxSelect) {
+          return { ...prev, [optionId]: [...current, choice] };
+        }
+        return prev;
+      });
+    } else if (multiSelect) {
       setSelections((prev) => {
         const current = (prev[optionId] as string[]) || [];
         const updated = current.includes(choice)
@@ -173,22 +195,42 @@ const ProductPage = () => {
                       </span>
                     )}
                   </div>
+                  {/* Compteur restant si maxSelect */}
+                  {option.maxSelect && (
+                    <p className="text-xs text-muted-foreground mb-2">
+                      {((selections[option.id] as string[]) || []).length} / {option.maxSelect} sélectionné(s)
+                    </p>
+                  )}
                   <div className="flex flex-wrap gap-2">
                     {option.choices.map((choice) => {
-                      const isSelected = option.multiSelect
-                        ? ((selections[option.id] as string[]) || []).includes(choice)
+                      const arr = (selections[option.id] as string[]) || [];
+                      const count = option.maxSelect ? arr.filter((c) => c === choice).length : 0;
+                      const isSelected = option.maxSelect
+                        ? count > 0
+                        : option.multiSelect
+                        ? arr.includes(choice)
                         : selections[option.id] === choice;
+                      const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
                       return (
                         <button
                           key={choice}
-                          onClick={() => handleSelect(option.id, choice, option.multiSelect)}
-                          className={`px-3 py-2 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
+                          onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect)}
+                          disabled={totalReached && count === 0}
+                          className={`relative px-3 py-2 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
                             isSelected
                               ? "bg-primary text-primary-foreground border-primary"
+                              : totalReached && count === 0
+                              ? "bg-white border-border text-muted-foreground opacity-40 cursor-not-allowed"
                               : "bg-white border-border text-foreground hover:border-primary"
                           }`}
                         >
                           {choice}
+                          {count > 1 && (
+                            <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
+                              style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                              ×{count}
+                            </span>
+                          )}
                         </button>
                       );
                     })}
@@ -339,22 +381,41 @@ const ProductPage = () => {
                         </span>
                       )}
                     </div>
+                    {option.maxSelect && (
+                      <p className="text-xs text-muted-foreground mb-2">
+                        {((selections[option.id] as string[]) || []).length} / {option.maxSelect} sélectionné(s)
+                      </p>
+                    )}
                     <div className="flex flex-wrap gap-2">
                       {option.choices.map((choice) => {
-                        const isSelected = option.multiSelect
-                          ? ((selections[option.id] as string[]) || []).includes(choice)
+                        const arr = (selections[option.id] as string[]) || [];
+                        const count = option.maxSelect ? arr.filter((c) => c === choice).length : 0;
+                        const isSelected = option.maxSelect
+                          ? count > 0
+                          : option.multiSelect
+                          ? arr.includes(choice)
                           : selections[option.id] === choice;
+                        const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
                         return (
                           <button
                             key={choice}
-                            onClick={() => handleSelect(option.id, choice, option.multiSelect)}
-                            className={`px-4 py-2.5 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
+                            onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect)}
+                            disabled={totalReached && count === 0}
+                            className={`relative px-4 py-2.5 rounded-xl text-sm font-semibold border-2 transition-all duration-200 ${
                               isSelected
                                 ? "bg-primary text-primary-foreground border-primary"
+                                : totalReached && count === 0
+                                ? "bg-white border-border text-muted-foreground opacity-40 cursor-not-allowed"
                                 : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
                             }`}
                           >
                             {choice}
+                            {count > 1 && (
+                              <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
+                                style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                                ×{count}
+                              </span>
+                            )}
                           </button>
                         );
                       })}

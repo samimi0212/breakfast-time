@@ -3,6 +3,7 @@ export interface ProductOption {
   label: string;
   required: boolean;
   multiSelect?: boolean;
+  maxSelect?: number;
   choices: string[];
 }
 
@@ -116,6 +117,7 @@ export const allProducts: Product[] = [
         label: "Bagels (2 au choix)",
         required: true,
         multiSelect: true,
+        maxSelect: 2,
         choices: ["Bagel chèvre miel", "Bagel Bacon Cheddar", "Bagel Saumon Avocat"],
       },
       {
@@ -123,6 +125,7 @@ export const allProducts: Product[] = [
         label: "Burritos (2 au choix)",
         required: true,
         multiSelect: true,
+        maxSelect: 2,
         choices: ["Breakfast Burrito", "Chicken Burrito"],
       },
       {
@@ -130,6 +133,7 @@ export const allProducts: Product[] = [
         label: "Extras (2 au choix)",
         required: true,
         multiSelect: true,
+        maxSelect: 2,
         choices: ["Muffin myrtilles", "Muffin chocolat", "Cookie pépite de chocolat"],
       },
       {
@@ -137,6 +141,7 @@ export const allProducts: Product[] = [
         label: "Jus frais (4 au choix)",
         required: true,
         multiSelect: true,
+        maxSelect: 4,
         choices: ["Orange", "Pomme", "Pamplemousse"],
       },
       {
@@ -144,6 +149,7 @@ export const allProducts: Product[] = [
         label: "Boissons chaudes (4 au choix)",
         required: true,
         multiSelect: true,
+        maxSelect: 4,
         choices: ["Americano", "Thé Earl Grey", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
       },
     ],
