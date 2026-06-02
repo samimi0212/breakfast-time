@@ -45,7 +45,7 @@ export const allProducts: Product[] = [
       id: "jus",
       label: "Jus frais",
       required: true,
-      choices: ["Orange", "Pomme", "Ananas"],
+      choices: ["Orange", "Pomme", "Pamplemousse"],
     },
     {
       id: "boisson-chaude",
@@ -68,7 +68,7 @@ export const allProducts: Product[] = [
         id: "jus",
         label: "Jus frais",
         required: true,
-        choices: ["Orange", "Pomme", "Ananas"],
+        choices: ["Orange", "Pomme", "Pamplemousse"],
       },
       {
         id: "boisson-chaude",
