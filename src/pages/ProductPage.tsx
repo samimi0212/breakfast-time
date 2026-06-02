@@ -37,13 +37,14 @@ const ProductPage = () => {
         const current = (prev[optionId] as string[]) || [];
         const total = current.length;
         const countForChoice = current.filter((c) => c === choice).length;
-        if (countForChoice > 0) {
-          // Retirer un exemplaire de ce choix
+        if (total < maxSelect) {
+          // Ajouter un exemplaire (toujours, tant que le max n'est pas atteint)
+          return { ...prev, [optionId]: [...current, choice] };
+        } else if (countForChoice > 0) {
+          // Max atteint → retirer un exemplaire de ce choix
           const idx = current.lastIndexOf(choice);
           const updated = [...current.slice(0, idx), ...current.slice(idx + 1)];
           return { ...prev, [optionId]: updated };
-        } else if (total < maxSelect) {
-          return { ...prev, [optionId]: [...current, choice] };
         }
         return prev;
       });
@@ -410,7 +411,7 @@ const ProductPage = () => {
                             }`}
                           >
                             {choice}
-                            {count > 1 && (
+                            {count >= 1 && (
                               <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
                                 style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
                                 ×{count}
