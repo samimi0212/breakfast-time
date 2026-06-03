@@ -160,8 +160,30 @@ export const allProducts: Product[] = [
     price: "21,90€",
     category: "Nos Menus",
     img: "/menu-veggie.png",
-    desc: "Un menu végétarien frais et gourmand, plein d'énergie pour bien démarrer la journée.",
-    composition: ["Tartine Avocat Halloumi", "Smoothie fruits rouges", "Granola bowl végétal"],
+    desc: "Un menu vegan frais et gourmand, plein d'énergie.",
+    composition: [
+      "1 Toast méditerranéen",
+      "1 Frite de patates douces",
+      "1 Cookie vegan",
+      "1 jus frais au choix",
+      "1 boisson chaude au choix",
+    ],
+    options: [
+      {
+        id: "jus",
+        label: "Jus frais (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Orange", "Pomme", "Pamplemousse"],
+      },
+      {
+        id: "boisson-chaude",
+        label: "Boisson chaude (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Americano", "Thé Earl Grey", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
+      },
+    ],
   },
   {
     id: "menu-duo",
