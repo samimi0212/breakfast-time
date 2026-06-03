@@ -109,6 +109,7 @@ const ProductPage = () => {
     : [];
   const supplementsTotal = selectedSupplements.reduce((acc, c) => acc + extractSupplement(c), 0);
   const totalPrice = parsePrice(product.price) + supplementsTotal;
+  const totalWithQty = totalPrice * qty;
   const fmt = (n: number) => n.toFixed(2).replace(".", ",") + "€";
 
   return (
@@ -299,7 +300,7 @@ const ProductPage = () => {
                 <span key={i} className="text-muted-foreground">+ {s}</span>
               ))}
               <span className="text-muted-foreground">=</span>
-              <span className="font-bold text-foreground">{fmt(totalPrice)}</span>
+              <span className="font-bold text-foreground">{fmt(totalWithQty)}</span>
             </div>
           )}
           {/* Quantité + bouton */}
@@ -328,7 +329,7 @@ const ProductPage = () => {
               {added ? (
                 <><Check size={16} /> Ajouté !</>
               ) : (
-                <><ShoppingBag size={16} /> Ajouter au panier · {supplementsTotal > 0 ? fmt(totalPrice) : product.price}</>
+                <><ShoppingBag size={16} /> Ajouter au panier · {fmt(totalWithQty)}</>
               )}
             </button>
           </div>
@@ -493,7 +494,7 @@ const ProductPage = () => {
                     <span key={i} className="text-muted-foreground">+ {s}</span>
                   ))}
                   <span className="text-muted-foreground">=</span>
-                  <span className="font-bold text-foreground text-base">{fmt(totalPrice)}</span>
+                  <span className="font-bold text-foreground text-base">{fmt(totalWithQty)}</span>
                 </div>
               )}
               <div className="flex items-center gap-4">
@@ -521,7 +522,7 @@ const ProductPage = () => {
                   {added ? (
                     <><Check size={20} /> Ajouté au panier !</>
                   ) : (
-                    <><ShoppingBag size={20} /> Ajouter au panier · {supplementsTotal > 0 ? fmt(totalPrice) : product.price}</>
+                    <><ShoppingBag size={20} /> Ajouter au panier · {fmt(totalWithQty)}</>
                   )}
                 </button>
               </div>
