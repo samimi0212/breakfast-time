@@ -94,6 +94,23 @@ const ProductPage = () => {
 
   const related = allProducts.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
 
+  const parsePrice = (s: string) => parseFloat(s.replace("€", "").replace(",", ".").trim()) || 0;
+  const extractSupplement = (choice: string) => {
+    const m = choice.match(/\(\+([0-9,]+)€\)/);
+    return m ? parseFloat(m[1].replace(",", ".")) : 0;
+  };
+  const selectedSupplements = product.options
+    ? product.options.flatMap((opt) => {
+        const sel = selections[opt.id];
+        if (!sel) return [];
+        const arr = Array.isArray(sel) ? sel : typeof sel === "string" && sel ? [sel] : [];
+        return arr.filter((c) => extractSupplement(c) > 0);
+      })
+    : [];
+  const supplementsTotal = selectedSupplements.reduce((acc, c) => acc + extractSupplement(c), 0);
+  const totalPrice = parsePrice(product.price) + supplementsTotal;
+  const fmt = (n: number) => n.toFixed(2).replace(".", ",") + "€";
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -254,39 +271,48 @@ const ProductPage = () => {
         </div>
 
         {/* Barre sticky bas */}
-        <div
-          className="fixed bottom-14 left-0 right-0 z-40 bg-white border-t border-border px-4 py-3 flex items-center gap-3"
-        >
-          {/* Quantité */}
-          <div className="flex items-center gap-2 bg-muted rounded-xl px-2 py-1.5 flex-shrink-0">
+        <div className="fixed bottom-14 left-0 right-0 z-40 bg-white border-t border-border px-4 pt-2 pb-3 flex flex-col gap-2">
+          {/* Détail prix */}
+          {selectedSupplements.length > 0 && (
+            <div className="flex items-center gap-1 text-xs flex-wrap">
+              <span className="text-muted-foreground">{product.price}</span>
+              {selectedSupplements.map((s, i) => (
+                <span key={i} className="text-muted-foreground">+ {s}</span>
+              ))}
+              <span className="text-muted-foreground">=</span>
+              <span className="font-bold text-foreground">{fmt(totalPrice)}</span>
+            </div>
+          )}
+          {/* Quantité + bouton */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-muted rounded-xl px-2 py-1.5 flex-shrink-0">
+              <button
+                onClick={() => setQty(Math.max(1, qty - 1))}
+                className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+              >
+                <Minus size={13} />
+              </button>
+              <span className="font-semibold w-6 text-center">{qty}</span>
+              <button
+                onClick={() => setQty(qty + 1)}
+                className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+              >
+                <Plus size={13} />
+              </button>
+            </div>
             <button
-              onClick={() => setQty(Math.max(1, qty - 1))}
-              className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+              onClick={handleAdd}
+              disabled={!allSelected}
+              className="flex-1 py-3 rounded-2xl font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              style={added ? { backgroundColor: "#DFF057", color: "#3a3a0a" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
             >
-              <Minus size={13} />
-            </button>
-            <span className="font-semibold w-6 text-center">{qty}</span>
-            <button
-              onClick={() => setQty(qty + 1)}
-              className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-            >
-              <Plus size={13} />
+              {added ? (
+                <><Check size={16} /> Ajouté !</>
+              ) : (
+                <><ShoppingBag size={16} /> Ajouter au panier · {supplementsTotal > 0 ? fmt(totalPrice) : product.price}</>
+              )}
             </button>
           </div>
-
-          {/* Bouton ajouter */}
-          <button
-            onClick={handleAdd}
-            disabled={!allSelected}
-            className="flex-1 py-3 rounded-2xl font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            style={added ? { backgroundColor: "#DFF057", color: "#3a3a0a" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
-          >
-            {added ? (
-              <><Check size={16} /> Ajouté !</>
-            ) : (
-              <><ShoppingBag size={16} /> Ajouter au panier · {product.price}</>
-            )}
-          </button>
         </div>
       </div>
 
@@ -422,6 +448,16 @@ const ProductPage = () => {
             )}
 
             <div className="flex flex-col gap-3">
+              {selectedSupplements.length > 0 && (
+                <div className="flex items-center gap-1.5 text-sm flex-wrap">
+                  <span className="text-muted-foreground">{product.price}</span>
+                  {selectedSupplements.map((s, i) => (
+                    <span key={i} className="text-muted-foreground">+ {s}</span>
+                  ))}
+                  <span className="text-muted-foreground">=</span>
+                  <span className="font-bold text-foreground text-base">{fmt(totalPrice)}</span>
+                </div>
+              )}
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2 bg-muted rounded-xl px-3 py-2.5 flex-shrink-0">
                   <button
@@ -447,7 +483,7 @@ const ProductPage = () => {
                   {added ? (
                     <><Check size={20} /> Ajouté au panier !</>
                   ) : (
-                    <><ShoppingBag size={20} /> Ajouter au panier</>
+                    <><ShoppingBag size={20} /> Ajouter au panier · {supplementsTotal > 0 ? fmt(totalPrice) : product.price}</>
                   )}
                 </button>
               </div>
