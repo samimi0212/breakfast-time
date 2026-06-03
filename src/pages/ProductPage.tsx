@@ -197,7 +197,7 @@ const ProductPage = () => {
                       <h3 className="font-display font-semibold text-sm">{option.label}</h3>
                       {option.required && (
                         <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">
-                          Obligatoire
+                          Choix requis
                         </span>
                       )}
                     </div>
@@ -382,7 +382,7 @@ const ProductPage = () => {
                       <div className="flex items-center gap-2 mb-3">
                         <h3 className="font-display font-semibold text-lg">{option.label}</h3>
                         {option.required && (
-                          <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">Obligatoire</span>
+                          <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">Choix requis</span>
                         )}
                       </div>
                       {option.maxSelect && (
