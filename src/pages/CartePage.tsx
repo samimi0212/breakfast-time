@@ -26,12 +26,6 @@ const menus = [
     img: "/menu-brunch.png",
   },
   {
-    id: "menu-famille",
-    name: "Menu Famille",
-    price: "49,00€",
-    img: "/menu-famille.png",
-  },
-  {
     id: "menu-veggie",
     name: "Menu Veggie",
     price: "21,90€",
@@ -42,6 +36,12 @@ const menus = [
     name: "Menu Duo",
     price: "39,00€",
     img: "/menu-duo.png",
+  },
+  {
+    id: "menu-famille",
+    name: "Menu Famille",
+    price: "49,00€",
+    img: "/menu-famille.png",
   },
   {
     id: "birthday-box",
