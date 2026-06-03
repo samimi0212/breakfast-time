@@ -484,7 +484,16 @@ export const allProducts: Product[] = [
     category: "Le Salé",
     img: "/avocado-toast.png",
     desc: "Toast croustillant garni d'avocat frais et ses toppings.",
-    composition: ["Pain de campagne toasté", "Avocat", "Citron", "Piment", "Graines de sésame"],
+    composition: ["Tranche de pain toasté", "Sauce avocat", "Stracciatella", "Tranches d'avocat", "Grenade", "Germe de betterave"],
+    options: [
+      {
+        id: "supplement",
+        label: "Supplément",
+        required: false,
+        multiSelect: false,
+        choices: ["Saumon fumé (+2,00€)"],
+      },
+    ],
   },
   {
     id: "oeufs-benedicte",
