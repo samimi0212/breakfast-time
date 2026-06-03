@@ -93,7 +93,37 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/menu-brunch.png",
     desc: "Le brunch complet pour bien commencer la journée.",
-    composition: ["1 bagel au choix", "1 œufs brouillés", "1 viennoiserie au choix", "1 granola", "1 jus de fruit frais au choix"],
+    composition: ["1 bagel au choix", "1 œufs brouillés", "1 viennoiserie au choix", "1 Granola Bowl Parfait", "1 jus frais au choix", "1 boisson chaude au choix"],
+    options: [
+      {
+        id: "bagel",
+        label: "Bagel (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Bagel chèvre miel", "Bagel Bacon Cheddar", "Bagel Saumon Avocat"],
+      },
+      {
+        id: "viennoiserie",
+        label: "Viennoiserie",
+        required: true,
+        multiSelect: false,
+        choices: ["Croissant", "Pain au chocolat"],
+      },
+      {
+        id: "jus",
+        label: "Jus frais (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Orange", "Pomme", "Pamplemousse"],
+      },
+      {
+        id: "boisson-chaude",
+        label: "Boisson chaude (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Americano", "Thé Earl Grey", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
+      },
+    ],
   },
   {
     id: "menu-veggie",
