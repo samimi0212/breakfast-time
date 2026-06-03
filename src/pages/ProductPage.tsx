@@ -191,34 +191,6 @@ const ProductPage = () => {
           {product.options && product.options.length > 0 && (
             <div className="space-y-3 mb-4">
               {product.options.map((option) => {
-                const isSingleToggle = !option.required && !option.multiSelect && !option.maxSelect && option.choices.length <= 2;
-
-                if (isSingleToggle) {
-                  // Style "Détails" avec checkmark pour les options simples non obligatoires
-                  return (
-                    <div key={option.id} className="bg-muted rounded-2xl p-4">
-                      <h3 className="font-display font-semibold text-sm mb-2">{option.label}</h3>
-                      <ul className="space-y-1.5">
-                        {option.choices.map((choice) => {
-                          const isSelected = selections[option.id] === choice;
-                          return (
-                            <li key={choice}
-                              onClick={() => handleSelect(option.id, choice, false, undefined)}
-                              className="flex items-center gap-2 text-sm cursor-pointer group"
-                            >
-                              <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${isSelected ? "bg-primary" : "bg-primary/15 group-hover:bg-primary/30"}`}>
-                                <Check size={11} className={isSelected ? "text-white" : "text-primary"} />
-                              </span>
-                              <span className={isSelected ? "font-semibold text-foreground" : "text-foreground/70"}>{choice}</span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  );
-                }
-
-                // Style boutons pour les options multi/obligatoires
                 return (
                   <div key={option.id}>
                     <div className="flex items-center gap-2 mb-2">
@@ -283,8 +255,7 @@ const ProductPage = () => {
 
         {/* Barre sticky bas */}
         <div
-          className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-border px-4 py-3 flex items-center gap-3"
-          style={{ paddingBottom: "calc(12px + env(safe-area-inset-bottom))" }}
+          className="fixed bottom-14 left-0 right-0 z-40 bg-white border-t border-border px-4 py-3 flex items-center gap-3"
         >
           {/* Quantité */}
           <div className="flex items-center gap-2 bg-muted rounded-xl px-2 py-1.5 flex-shrink-0">
@@ -406,28 +377,6 @@ const ProductPage = () => {
             {product.options && product.options.length > 0 && (
               <div className="space-y-4">
                 {product.options.map((option) => {
-                  const isSingleToggle = !option.required && !option.multiSelect && !option.maxSelect && option.choices.length <= 2;
-                  if (isSingleToggle) {
-                    return (
-                      <div key={option.id} className="bg-muted rounded-2xl p-5">
-                        <h3 className="font-display font-semibold text-lg mb-3">{option.label}</h3>
-                        <ul className="space-y-2">
-                          {option.choices.map((choice) => {
-                            const isSelected = selections[option.id] === choice;
-                            return (
-                              <li key={choice} onClick={() => handleSelect(option.id, choice, false, undefined)}
-                                className="flex items-center gap-3 text-sm cursor-pointer group">
-                                <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${isSelected ? "bg-primary" : "bg-primary/15 group-hover:bg-primary/30"}`}>
-                                  <Check size={11} className={isSelected ? "text-white" : "text-primary"} />
-                                </span>
-                                <span className={isSelected ? "font-semibold text-foreground" : "text-foreground/70"}>{choice}</span>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    );
-                  }
                   return (
                     <div key={option.id}>
                       <div className="flex items-center gap-2 mb-3">
