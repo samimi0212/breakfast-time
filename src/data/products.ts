@@ -665,6 +665,15 @@ export const allProducts: Product[] = [
     composition: [],
   },
   {
+    id: "cookie-vegan",
+    name: "Cookie Vegan",
+    price: "2,80€",
+    category: "Le Sucré",
+    img: "/cookie-vegan.png",
+    desc: "",
+    composition: [],
+  },
+  {
     id: "cake-marbre",
     name: "Cake marbré",
     price: "10,50€",
