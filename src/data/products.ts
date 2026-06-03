@@ -278,7 +278,38 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/birthday-box.png",
     desc: "Offrez un menu anniversaire à personnaliser, une attention gourmande et originale.",
-    composition: ["Sélection de viennoiseries", "Granola parfait", "Jus de fruit frais", "Surprise anniversaire", "Décoration incluse"],
+    composition: [
+      "1 gâteau de pancakes au Nutella",
+      "4 mini viennoiseries",
+      "1 burrito au choix",
+      "1 smoothie au choix",
+      "1 boisson chaude au choix",
+      "2 bougies scintillantes",
+      "1 message personnalisé",
+    ],
+    options: [
+      {
+        id: "burrito",
+        label: "Burrito (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Breakfast Burrito", "Chicken Burrito"],
+      },
+      {
+        id: "smoothie",
+        label: "Smoothie (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Smoothie Banane", "Smoothie Fruits Rouges"],
+      },
+      {
+        id: "boisson-chaude",
+        label: "Boisson chaude (1 au choix)",
+        required: true,
+        multiSelect: false,
+        choices: ["Americano", "Thé Earl Grey", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
+      },
+    ],
   },
   // ---- VIENNOISERIES ----
   {
