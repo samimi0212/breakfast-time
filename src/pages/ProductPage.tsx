@@ -57,7 +57,11 @@ const ProductPage = () => {
         return { ...prev, [optionId]: updated };
       });
     } else {
-      setSelections((prev) => ({ ...prev, [optionId]: choice }));
+      // Toggle : reclique sur le même choix → désélectionne
+      setSelections((prev) => ({
+        ...prev,
+        [optionId]: prev[optionId] === choice ? "" : choice,
+      }));
     }
   };
 
