@@ -502,7 +502,7 @@ export const allProducts: Product[] = [
     category: "Le Salé",
     img: "/oeuf-benedicte.png",
     desc: "Œufs pochés sur toast, sauce hollandaise maison.",
-    composition: ["Œufs pochés", "Muffin anglais", "Sauce hollandaise", "Jambon fumé", "Ciboulette"],
+    composition: ["Muffin toastée", "Bacon caramélisé", "Oeufs brouillés", "Pickles d'oignons rouges", "Gomasio", "Sauce hollandaise"],
   },
   {
     id: "oeufs-brouilles-truffe",
