@@ -209,13 +209,18 @@ const ProductPage = () => {
             <div className="space-y-3 mb-4">
               {product.options.map((option) => {
                 if (option.type === "text") {
+                  const val = (selections[option.id] as string) || "";
                   return (
                     <div key={option.id}>
-                      <h3 className="font-display font-semibold text-sm mb-2">{option.label}</h3>
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-display font-semibold text-sm">{option.label}</h3>
+                        <span className="text-xs text-muted-foreground">{val.length}/50</span>
+                      </div>
                       <textarea
                         rows={3}
+                        maxLength={50}
                         placeholder={option.placeholder}
-                        value={(selections[option.id] as string) || ""}
+                        value={val}
                         onChange={(e) => setSelections((prev) => ({ ...prev, [option.id]: e.target.value }))}
                         className="w-full rounded-xl border-2 border-border bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none resize-none"
                       />
@@ -418,13 +423,18 @@ const ProductPage = () => {
               <div className="space-y-4">
                 {product.options.map((option) => {
                   if (option.type === "text") {
+                    const val = (selections[option.id] as string) || "";
                     return (
                       <div key={option.id}>
-                        <h3 className="font-display font-semibold text-lg mb-3">{option.label}</h3>
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="font-display font-semibold text-lg">{option.label}</h3>
+                          <span className="text-xs text-muted-foreground">{val.length}/50</span>
+                        </div>
                         <textarea
                           rows={3}
+                          maxLength={50}
                           placeholder={option.placeholder}
-                          value={(selections[option.id] as string) || ""}
+                          value={val}
                           onChange={(e) => setSelections((prev) => ({ ...prev, [option.id]: e.target.value }))}
                           className="w-full rounded-xl border-2 border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none resize-none"
                         />
