@@ -5,6 +5,8 @@ export interface ProductOption {
   multiSelect?: boolean;
   maxSelect?: number;
   choices: string[];
+  type?: "text";
+  placeholder?: string;
 }
 
 export interface Product {
@@ -308,6 +310,14 @@ export const allProducts: Product[] = [
         required: true,
         multiSelect: false,
         choices: ["Americano", "Thé Earl Grey", "Café Latte (+1,50€)", "Chocolat chaud (+1,50€)"],
+      },
+      {
+        id: "message",
+        label: "Message personnalisé",
+        required: false,
+        type: "text",
+        placeholder: "Entrez votre texte...",
+        choices: [],
       },
     ],
   },

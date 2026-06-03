@@ -208,6 +208,20 @@ const ProductPage = () => {
           {product.options && product.options.length > 0 && (
             <div className="space-y-3 mb-4">
               {product.options.map((option) => {
+                if (option.type === "text") {
+                  return (
+                    <div key={option.id}>
+                      <h3 className="font-display font-semibold text-sm mb-2">{option.label}</h3>
+                      <textarea
+                        rows={3}
+                        placeholder={option.placeholder}
+                        value={(selections[option.id] as string) || ""}
+                        onChange={(e) => setSelections((prev) => ({ ...prev, [option.id]: e.target.value }))}
+                        className="w-full rounded-xl border-2 border-border bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none resize-none"
+                      />
+                    </div>
+                  );
+                }
                 return (
                   <div key={option.id}>
                     <div className="flex items-center gap-2 mb-2">
@@ -403,6 +417,20 @@ const ProductPage = () => {
             {product.options && product.options.length > 0 && (
               <div className="space-y-4">
                 {product.options.map((option) => {
+                  if (option.type === "text") {
+                    return (
+                      <div key={option.id}>
+                        <h3 className="font-display font-semibold text-lg mb-3">{option.label}</h3>
+                        <textarea
+                          rows={3}
+                          placeholder={option.placeholder}
+                          value={(selections[option.id] as string) || ""}
+                          onChange={(e) => setSelections((prev) => ({ ...prev, [option.id]: e.target.value }))}
+                          className="w-full rounded-xl border-2 border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none resize-none"
+                        />
+                      </div>
+                    );
+                  }
                   return (
                     <div key={option.id}>
                       <div className="flex items-center gap-2 mb-3">
