@@ -278,6 +278,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/cookie-sans-gluten.png",
     },
     {
+      id: "cookie-vegan",
+      name: "Cookie Vegan",
+      price: "2,80€",
+      img: "/cookie-vegan.png",
+    },
+    {
       id: "muffin-myrtilles",
       name: "Muffin myrtilles",
       price: "2,70€",
