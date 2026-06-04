@@ -529,7 +529,7 @@ export const allProducts: Product[] = [
     category: "Le Salé",
     img: "/breakfast-burrito.png",
     desc: "Un burrito généreux garni pour un petit-déjeuner qui tient au corps.",
-    composition: ["Tortilla", "Œufs brouillés", "Bacon", "Cheddar", "Salsa"],
+    composition: ["Sauce avocat", "Bacon croustillant", "Galette de pomme de terre", "Oeufs brouillés"],
   },
   {
     id: "pancakes-a-composer",
