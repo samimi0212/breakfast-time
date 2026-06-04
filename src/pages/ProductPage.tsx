@@ -259,9 +259,10 @@ const ProductPage = () => {
                           : selections[option.id] === choice;
                         const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
                         const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "");
-                        const withPriceArr = arr.filter((c) => extractSupplement(c) > 0);
-                        const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : withPriceArr;
-                        const isPaid = isSelected && paidItems.includes(choice);
+                        const selArr = Array.isArray(selections[option.id]) ? (selections[option.id] as string[]) : [];
+                        const withPriceArr = option.firstFree ? selArr.filter((c) => extractSupplement(c) > 0) : [];
+                        const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
+                        const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : false;
                         const supplement = extractSupplement(choice);
                         return (
                           <button
@@ -478,9 +479,10 @@ const ProductPage = () => {
                           const isSelected = option.maxSelect ? count > 0 : option.multiSelect ? arr.includes(choice) : selections[option.id] === choice;
                           const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
                           const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "");
-                          const withPriceArr = arr.filter((c) => extractSupplement(c) > 0);
-                          const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : withPriceArr;
-                          const isPaid = isSelected && paidItems.includes(choice);
+                          const selArr = Array.isArray(selections[option.id]) ? (selections[option.id] as string[]) : [];
+                          const withPriceArr = option.firstFree ? selArr.filter((c) => extractSupplement(c) > 0) : [];
+                          const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
+                          const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : false;
                           const supplement = extractSupplement(choice);
                           return (
                             <button key={choice}
