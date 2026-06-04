@@ -834,7 +834,7 @@ export const allProducts: Product[] = [
     category: "À Partager",
     img: "/plateau-mini.png",
     desc: "Un beau plateau de viennoiseries fraîches à partager.",
-    composition: ["Croissants", "Pains au chocolat", "Pains aux raisins", "Suisses"],
+    composition: ["5 Croissants", "5 Pains au chocolat"],
   },
   {
     id: "brioche-partager",
