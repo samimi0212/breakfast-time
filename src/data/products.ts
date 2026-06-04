@@ -562,7 +562,7 @@ export const allProducts: Product[] = [
     category: "Le Salé",
     img: "/breakfast-bowl.png",
     desc: "",
-    composition: ["Salade verte Falafel", "Pois chiches croustillants", "Houmous", "Grenade", "Menthe fraîche", "Pickles oignons rouge", "Sauce onctueuse citronnée"],
+    composition: ["Salade verte", "Falafel", "Pois chiches croustillants", "Houmous", "Grenade", "Menthe fraîche", "Pickles oignons rouge", "Sauce onctueuse citronnée"],
   },
   {
     id: "rostis",
