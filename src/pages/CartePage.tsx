@@ -207,6 +207,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "17,90€",
       img: "/toast-med.png",
     },
+    {
+      id: "potatoe-saumon",
+      name: "Potatoe Saumon",
+      price: "9,50€",
+      img: "/potatoe-saumon.png",
+    },
   ],
   "Extra": [
     {
