@@ -580,7 +580,7 @@ export const allProducts: Product[] = [
     category: "Le Salé",
     img: "/chicken-burrito.png",
     desc: "",
-    composition: [],
+    composition: ["Poulet mariné", "Sauce spicy", "Pickles oignons rouge", "Salade", "Chou blanc", "Betterave"],
   },
   {
     id: "toast-mediterraneen",
