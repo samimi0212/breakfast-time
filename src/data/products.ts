@@ -843,7 +843,7 @@ export const allProducts: Product[] = [
     category: "À Partager",
     img: "/brioche-partager.png",
     desc: "",
-    composition: [],
+    composition: ["8-10 parts"],
   },
   // ---- ÉVÉNEMENTS ----
   {
