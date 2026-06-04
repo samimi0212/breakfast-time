@@ -482,8 +482,8 @@ const ProductPage = () => {
                           const selArr = Array.isArray(selections[option.id]) ? (selections[option.id] as string[]) : [];
                           const withPriceArr = option.firstFree ? selArr.filter((c) => extractSupplement(c) > 0) : [];
                           const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
-                          const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
                           const supplement = extractSupplement(choice);
+                          const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
                           return (
                             <button key={choice}
                               onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect)}
