@@ -779,7 +779,16 @@ export const allProducts: Product[] = [
     category: "Boissons",
     img: "/smoothie-banane.png",
     desc: "Smoothie onctueux à la banane, préparé avec des fruits frais.",
-    composition: ["Banane", "Lait d'amande", "Miel", "Vanille"],
+    composition: ["Bananes", "Lait", "Vanille", "Miel"],
+    options: [
+      {
+        id: "lait",
+        label: "Option lait",
+        required: false,
+        multiSelect: false,
+        choices: ["Lait d'avoine (+0,50€)"],
+      },
+    ],
   },
   {
     id: "smoothie-fruits-rouges",
