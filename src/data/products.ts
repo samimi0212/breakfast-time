@@ -701,7 +701,7 @@ export const allProducts: Product[] = [
     category: "À Partager",
     img: "/cake-marbre.png",
     desc: "Cake marbré vanille-chocolat moelleux, fait maison.",
-    composition: ["Farine", "Beurre", "Œufs", "Sucre", "Chocolat", "Vanille"],
+    composition: ["8-10 parts"],
   },
   {
     id: "muffin-myrtilles",
