@@ -599,7 +599,7 @@ export const allProducts: Product[] = [
     category: "Extra",
     img: "/salade-verte.png",
     desc: "",
-    composition: [],
+    composition: ["Mélange de salades", "Grenade", "Germe de betteraves", "Sauce vinaigrette"],
   },
   {
     id: "frites-patates-douces",
