@@ -258,6 +258,11 @@ const ProductPage = () => {
                           ? arr.includes(choice)
                           : selections[option.id] === choice;
                         const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
+                        const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "");
+                        const withPriceArr = arr.filter((c) => extractSupplement(c) > 0);
+                        const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : withPriceArr;
+                        const isPaid = isSelected && paidItems.includes(choice);
+                        const supplement = extractSupplement(choice);
                         return (
                           <button
                             key={choice}
@@ -271,11 +276,17 @@ const ProductPage = () => {
                                 : "bg-white border-border text-foreground hover:border-primary"
                             }`}
                           >
-                            {choice}
-                            {count >= 1 && (
+                            {cleanChoice}
+                            {count >= 1 && !option.firstFree && (
                               <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
                                 style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
                                 ×{count}
+                              </span>
+                            )}
+                            {isPaid && supplement > 0 && (
+                              <span className="absolute -top-2 -right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-md leading-none"
+                                style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                                +{supplement.toFixed(2).replace(".", ",")}€
                               </span>
                             )}
                           </button>
@@ -466,6 +477,11 @@ const ProductPage = () => {
                           const count = option.maxSelect ? arr.filter((c) => c === choice).length : 0;
                           const isSelected = option.maxSelect ? count > 0 : option.multiSelect ? arr.includes(choice) : selections[option.id] === choice;
                           const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
+                          const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "");
+                          const withPriceArr = arr.filter((c) => extractSupplement(c) > 0);
+                          const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : withPriceArr;
+                          const isPaid = isSelected && paidItems.includes(choice);
+                          const supplement = extractSupplement(choice);
                           return (
                             <button key={choice}
                               onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect)}
@@ -476,10 +492,16 @@ const ProductPage = () => {
                                 : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
                               }`}
                             >
-                              {choice}
-                              {count >= 1 && (
+                              {cleanChoice}
+                              {count >= 1 && !option.firstFree && (
                                 <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
                                   style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>×{count}</span>
+                              )}
+                              {isPaid && supplement > 0 && (
+                                <span className="absolute -top-2 -right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-md leading-none"
+                                  style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                                  +{supplement.toFixed(2).replace(".", ",")}€
+                                </span>
                               )}
                             </button>
                           );
