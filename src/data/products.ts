@@ -630,7 +630,16 @@ export const allProducts: Product[] = [
     category: "Le Sucré",
     img: "/brioche-perdue.png",
     desc: "Brioche perdue dorée, servie avec fruits frais et coulis.",
-    composition: ["Brioche maison", "Œufs", "Lait", "Coulis de fruits", "Sucre glace"],
+    composition: ["Brioche perdue", "Nutella", "Eclats de noisettes grillées"],
+    options: [
+      {
+        id: "supplement",
+        label: "Supplément",
+        required: false,
+        multiSelect: true,
+        choices: ["Fruits rouges (+0,50€)", "Caramel beurre salé (+0,50€)"],
+      },
+    ],
   },
   {
     id: "pudding-chia",
