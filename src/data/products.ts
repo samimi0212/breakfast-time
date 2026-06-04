@@ -571,7 +571,7 @@ export const allProducts: Product[] = [
     category: "Extra",
     img: "/rostis.png",
     desc: "",
-    composition: [],
+    composition: ["4 Rösti de pommes de terre", "Sauce fraîche aux herbes"],
   },
   {
     id: "chicken-burrito",
