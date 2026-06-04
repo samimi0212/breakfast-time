@@ -797,7 +797,16 @@ export const allProducts: Product[] = [
     category: "Boissons",
     img: "/smoothie-fruits-rouges.png",
     desc: "Smoothie vitaminé aux fruits rouges frais de saison.",
-    composition: ["Fraises", "Framboises", "Myrtilles", "Yaourt", "Miel"],
+    composition: ["Mix de fruits rouges", "Lait", "Vanille", "Miel"],
+    options: [
+      {
+        id: "lait",
+        label: "Option",
+        required: false,
+        multiSelect: false,
+        choices: ["Lait d'avoine (+0,50€)"],
+      },
+    ],
   },
   {
     id: "jus-orange-presse",
