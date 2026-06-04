@@ -854,6 +854,25 @@ export const allProducts: Product[] = [
     desc: "",
     composition: ["8-10 parts"],
   },
+  {
+    id: "plateau-pancakes",
+    name: "Plateau de pancakes",
+    price: "24,90€",
+    category: "À Partager",
+    img: "/pancakes-partager.png",
+    desc: "",
+    composition: ["10 pancakes", "3 nappages au choix"],
+    options: [
+      {
+        id: "nappage",
+        label: "Choix des nappages (3 au choix)",
+        required: true,
+        multiSelect: true,
+        maxSelect: 3,
+        choices: ["Nutella", "Confiture de fraise", "Sirop d'érable", "Caramel beurre salé"],
+      },
+    ],
+  },
   // ---- ÉVÉNEMENTS ----
   {
     id: "brunch-mariage",
