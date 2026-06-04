@@ -233,12 +233,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "6,50€",
       img: "/rostis.png",
     },
-    {
-      id: "breakfast-burrito",
-      name: "Breakfast Burrito",
-      price: "14,90€",
-      img: "/breakfast-burrito.png",
-    },
   ],
   "Le Sucré": [
     {
