@@ -104,7 +104,12 @@ const ProductPage = () => {
         const sel = selections[opt.id];
         if (!sel) return [];
         const arr = Array.isArray(sel) ? sel : typeof sel === "string" && sel ? [sel] : [];
-        return arr.filter((c) => extractSupplement(c) > 0);
+        const withPrice = arr.filter((c) => extractSupplement(c) > 0);
+        // firstFree : les N premiers toppings avec prix sont offerts
+        if (opt.firstFree && withPrice.length > 0) {
+          return withPrice.slice(opt.firstFree);
+        }
+        return withPrice;
       })
     : [];
   const supplementsTotal = selectedSupplements.reduce((acc, c) => acc + extractSupplement(c), 0);

@@ -7,6 +7,7 @@ export interface ProductOption {
   choices: string[];
   type?: "text";
   placeholder?: string;
+  firstFree?: number;
 }
 
 export interface Product {
@@ -544,14 +545,16 @@ export const allProducts: Product[] = [
         id: "nappage",
         label: "Choix du nappage",
         required: true,
-        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir"],
+        multiSelect: false,
+        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy"],
       },
       {
         id: "toppings",
-        label: "Choix des toppings",
+        label: "Choix des toppings (1 inclus)",
         required: false,
         multiSelect: true,
-        choices: ["Eclats de noisettes", "Noix de pécan", "Fruits rouges", "Banane", "Beurre de cacahuètes"],
+        firstFree: 1,
+        choices: ["Eclats de noisettes (+0,90€)", "Noix de pécan (+0,90€)", "Fruits rouges (+0,90€)", "Banane (+0,90€)"],
       },
     ],
   },
