@@ -511,7 +511,7 @@ export const allProducts: Product[] = [
     category: "Le Salé",
     img: "/oeufs-brouilles-truffe.png",
     desc: "Œufs brouillés onctueux à la truffe noire, un délice raffiné.",
-    composition: ["Œufs frais", "Crème fraîche", "Truffe noire", "Beurre", "Fleur de sel"],
+    composition: ["Œufs frais de plein air", "Truffe noire du Périgord", "Fleur de sel", "1 toast"],
   },
   {
     id: "oeufs-brouilles",
