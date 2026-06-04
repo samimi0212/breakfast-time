@@ -551,7 +551,7 @@ export const allProducts: Product[] = [
       {
         id: "toppings",
         label: "Choix des toppings (1 inclus)",
-        required: false,
+        required: true,
         multiSelect: true,
         firstFree: 1,
         choices: ["Eclats de noisettes (+0,90€)", "Noix de pécan (+0,90€)", "Fruits rouges (+0,90€)", "Banane (+0,90€)"],
