@@ -643,12 +643,12 @@ export const allProducts: Product[] = [
   },
   {
     id: "pudding-chia",
-    name: "Pudding Chia Bowl",
+    name: "Granola Bowl Pistache",
     price: "9,50€",
     category: "Le Sucré",
-    img: "/chia-pudding.png",
+    img: "/bowl-pistache.png",
     desc: "Pudding de graines de chia onctueux, garni de fruits frais.",
-    composition: ["Graines de chia", "Lait de coco", "Fruits frais", "Miel", "Granola"],
+    composition: ["Yaourt végétal", "Vanille", "Crème de pistache", "Pistaches concassées", "Granola", "Myrtilles"],
   },
   {
     id: "granola-parfait",
