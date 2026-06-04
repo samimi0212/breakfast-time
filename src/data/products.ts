@@ -539,7 +539,7 @@ export const allProducts: Product[] = [
     category: "Le Sucré",
     img: "/pancakes-composer.png",
     desc: "Pancakes moelleux à personnaliser selon vos envies.",
-    composition: [],
+    composition: ["2 pancakes", "1 nappage au choix", "1 topping au choix"],
     options: [
       {
         id: "nappage",
