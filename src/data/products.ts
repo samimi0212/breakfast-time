@@ -783,7 +783,7 @@ export const allProducts: Product[] = [
     options: [
       {
         id: "lait",
-        label: "Option lait",
+        label: "Option",
         required: false,
         multiSelect: false,
         choices: ["Lait d'avoine (+0,50€)"],
