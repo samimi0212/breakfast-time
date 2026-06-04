@@ -617,7 +617,7 @@ export const allProducts: Product[] = [
     category: "Extra",
     img: "/halloumi.png",
     desc: "",
-    composition: [],
+    composition: ["4 tranches de Halloumi AOP", "Fleur de sel", "Sauce fraîche aux herbes"],
   },
   // ---- LE SUCRÉ ----
   {
