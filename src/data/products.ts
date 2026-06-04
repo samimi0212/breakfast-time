@@ -608,7 +608,7 @@ export const allProducts: Product[] = [
     category: "Extra",
     img: "/frites-patate-douce.png",
     desc: "",
-    composition: [],
+    composition: ["Patates douces", "Fleur de sel", "Sauce fraîche aux herbes"],
   },
   {
     id: "halloumi-grille",
