@@ -594,6 +594,15 @@ export const allProducts: Product[] = [
     desc: "Pain au levain toasté garni de houmous, labneh et halloumi toasté.",
     composition: ["Pain au levain", "Houmous", "Labneh", "Halloumi toasté", "Pois chiches croustillants", "Œuf émietté", "Épices zaatar", "Menthe fraîche"],
   },
+  {
+    id: "potatoe-saumon",
+    name: "Potatoe Saumon",
+    price: "9,50€",
+    category: "Le Salé",
+    img: "/potatoe-saumon.png",
+    desc: "",
+    composition: ["Gaufre de pommes de terre", "Saumon fumé", "Labneh citronné", "Pickles oignons rouges", "Roquette", "Gomasio"],
+  },
   // ---- EXTRA ----
   {
     id: "salade-verte",
