@@ -520,7 +520,7 @@ export const allProducts: Product[] = [
     category: "Le Salé",
     img: "/oeufs-brouilles.png",
     desc: "Œufs brouillés moelleux, préparés à la minute.",
-    composition: ["Œufs frais", "Beurre", "Sel", "Poivre"],
+    composition: ["Œufs frais de plein air", "Beurre de Baratte", "Fleur de sel", "1 toast"],
   },
   {
     id: "breakfast-burrito",
