@@ -583,16 +583,16 @@ const CartePage = () => {
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
                       className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-border hover:border-primary hover:shadow-lg transition-all duration-300 text-left">
                       {/* Vignette image */}
-                      <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                      <div className="w-28 h-28 rounded-xl overflow-hidden flex-shrink-0">
                         <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       </div>
                       {/* Texte */}
                       <div className="flex-1 min-w-0">
-                        <h2 className="font-display text-lg font-bold text-foreground mb-0.5">{title}</h2>
-                        <p className="text-xs text-muted-foreground truncate mb-3">{sub}</p>
-                        <div className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
+                        <h2 className="font-display text-xl font-bold text-foreground mb-1">{title}</h2>
+                        <p className="text-sm text-muted-foreground truncate mb-4">{sub}</p>
+                        <div className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full"
                           style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-                          {cta} <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+                          {cta} <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
                     </button>
