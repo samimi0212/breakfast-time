@@ -95,7 +95,7 @@ export const allProducts: Product[] = [
     price: "29,00€",
     category: "Nos Menus",
     img: "/menu-brunch.png",
-    desc: "Le brunch complet pour bien commencer la journée.",
+    desc: "",
     composition: ["1 bagel au choix", "1 œufs brouillés", "1 viennoiserie au choix", "1 Granola Bowl Parfait", "1 jus frais au choix", "1 boisson chaude au choix"],
     options: [
       {
