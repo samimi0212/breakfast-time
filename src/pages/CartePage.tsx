@@ -99,8 +99,8 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
   Pains: [
     {
       id: "baguette",
-      name: "Baguette",
-      price: "1,30€",
+      name: "1/2 baguette",
+      price: "1,20€",
       img: "/baguette.png",
     },
     {
