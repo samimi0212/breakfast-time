@@ -577,34 +577,20 @@ const CartePage = () => {
                 {/* Desktop : 2 grandes cartes côte à côte */}
                 <div className="hidden sm:grid sm:grid-cols-2 gap-6">
                   {[
-                    { tab: "menus", img: "/menu-brunch.png", badge: "Nos Menus", price: "Dès 12,90€", cta: "Voir les menus →" },
-                    { tab: "carte", img: "/avocado-toast.png", badge: "À la Carte", price: "Dès 1,50€", cta: "Composer mon breakfast →" },
-                  ].map(({ tab: t, img, badge, price, cta }) => (
+                    { tab: "menus", img: "/menu-brunch.png", title: "Nos Menus", cta: "Voir les menus" },
+                    { tab: "carte", img: "/avocado-toast.png", title: "À la Carte", cta: "Composer mon breakfast" },
+                  ].map(({ tab: t, img, title, cta }) => (
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
                       className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
                       style={{ aspectRatio: "4/3" }}>
-                      <img src={img} alt={badge} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      {/* Léger vignettage */}
-                      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.35) 100%)" }} />
-                      {/* Badge titre — haut gauche */}
-                      <div className="absolute top-5 left-5">
-                        <span className="font-display text-lg font-bold text-white px-4 py-2 rounded-full"
-                          style={{ backgroundColor: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)" }}>
-                          {badge}
-                        </span>
-                      </div>
-                      {/* Prix — haut droite */}
-                      <div className="absolute top-5 right-5">
-                        <span className="text-xs font-semibold text-white/80 px-3 py-1.5 rounded-full"
-                          style={{ backgroundColor: "rgba(0,0,0,0.35)", backdropFilter: "blur(8px)" }}>
-                          {price}
-                        </span>
-                      </div>
-                      {/* CTA — bas droite */}
-                      <div className="absolute bottom-5 right-5">
-                        <div className="flex items-center gap-1.5 font-semibold text-sm px-4 py-2.5 rounded-full group-hover:gap-2 transition-all duration-200"
-                          style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-                          {cta}
+                      <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      {/* Gradient bas */}
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 45%, transparent 100%)" }} />
+                      {/* Bas : titre gauche + CTA droite */}
+                      <div className="absolute bottom-0 left-0 right-0 px-6 py-5 flex items-center justify-between">
+                        <span className="font-display text-2xl font-bold text-white tracking-tight">{title}</span>
+                        <div className="flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border border-white/60 text-white group-hover:bg-white group-hover:text-foreground transition-all duration-300">
+                          {cta} <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
                     </button>
