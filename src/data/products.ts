@@ -417,7 +417,7 @@ export const allProducts: Product[] = [
   {
     id: "petit-pain-gluten-free",
     name: "Pain Gluten Free",
-    price: "2,50€",
+    price: "2,40€",
     category: "Pains",
     img: "/pain-sans-gluten.png",
     desc: "",
