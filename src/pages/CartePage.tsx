@@ -16,7 +16,7 @@ const menus = [
   {
     id: "menu-anglais",
     name: "Menu Anglais",
-    price: "12,90€",
+    price: "16,90€",
     img: "/menu-anglais.png",
   },
   {
@@ -28,25 +28,25 @@ const menus = [
   {
     id: "menu-veggie",
     name: "Menu Veggie",
-    price: "21,90€",
+    price: "23,90€",
     img: "/menu-veggie.png",
   },
   {
     id: "menu-duo",
     name: "Menu Duo",
-    price: "39,00€",
+    price: "35,00€",
     img: "/menu-duo.png",
   },
   {
     id: "menu-famille",
     name: "Menu Famille",
-    price: "49,00€",
+    price: "59,00€",
     img: "/menu-famille.png",
   },
   {
     id: "birthday-box",
     name: "Birthday Box",
-    price: "45,00€",
+    price: "35,00€",
     img: "/birthday-box.png",
   },
 ];
