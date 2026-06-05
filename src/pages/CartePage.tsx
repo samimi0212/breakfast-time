@@ -136,7 +136,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "pain-ciabatta",
       name: "Pain Ciabatta",
-      price: "3,50€",
+      price: "1,60€",
       img: "/ciabatta.png",
     },
     {

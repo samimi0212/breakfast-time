@@ -444,11 +444,11 @@ export const allProducts: Product[] = [
   {
     id: "pain-ciabatta",
     name: "Pain Ciabatta",
-    price: "3,50€",
+    price: "1,60€",
     category: "Pains",
     img: "/ciabatta.png",
     desc: "",
-    composition: [],
+    composition: ["140g", "Farine de blé"],
   },
   {
     id: "pain-nordique",
