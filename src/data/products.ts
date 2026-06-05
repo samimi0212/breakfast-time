@@ -425,12 +425,12 @@ export const allProducts: Product[] = [
   },
   {
     id: "petit-pain-campagne",
-    name: "Petit pain campagne",
-    price: "1,50€",
+    name: "Pavé de campagne",
+    price: "0,90€",
     category: "Pains",
-    img: "/mini-pain-campagne.png",
+    img: "/petit-pain-campagne.png",
     desc: "",
-    composition: [],
+    composition: ["50g", "Farine de blé", "Levain"],
   },
   {
     id: "pain-ciabatta",

@@ -123,9 +123,9 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     },
     {
       id: "petit-pain-campagne",
-      name: "Petit pain campagne",
-      price: "1,50€",
-      img: "/mini-pain-campagne.png",
+      name: "Pavé de campagne",
+      price: "0,90€",
+      img: "/petit-pain-campagne.png",
     },
     {
       id: "pain-ciabatta",
