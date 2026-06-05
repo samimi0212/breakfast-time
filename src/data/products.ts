@@ -490,7 +490,7 @@ export const allProducts: Product[] = [
   {
     id: "avocado-toast",
     name: "Avocado Toast",
-    price: "13,50€",
+    price: "10,90€",
     category: "Le Salé",
     img: "/avocado-toast.png",
     desc: "",
@@ -501,7 +501,7 @@ export const allProducts: Product[] = [
         label: "Supplément",
         required: false,
         multiSelect: false,
-        choices: ["Saumon fumé (+2,00€)"],
+        choices: ["Saumon fumé (+3,00€)"],
       },
     ],
   },

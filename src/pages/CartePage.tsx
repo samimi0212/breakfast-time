@@ -168,7 +168,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "avocado-toast",
       name: "Avocado Toast",
-      price: "13,50€",
+      price: "10,90€",
       img: "/avocado-toast.png",
     },
     {
