@@ -30,7 +30,7 @@ export const allProducts: Product[] = [
   price: "12,90€",
   category: "Nos Menus",
   img: "/menu-francais.png",
-  desc: "Le classique à la française pour bien commencer la journée.",
+  desc: "",
   composition: ["1/2 baguette", "1 beurre", "1 nappage au choix", "1 viennoiserie au choix", "1 jus frais au choix", "1 boisson chaude au choix"],
   options: [
     {
@@ -65,7 +65,7 @@ export const allProducts: Product[] = [
     price: "12,90€",
     category: "Nos Menus",
     img: "/menu-anglais.png",
-    desc: "Le breakfast à l'anglaise, généreux et savoureux.",
+    desc: "",
     composition: ["3 breakfast sausage", "Œufs brouillés", "Baked Beans", "2 tranches de pain toastées", "Sauce à l'avocat", "1 jus frais au choix", "1 boisson chaude au choix"],
     options: [
       {
@@ -134,7 +134,7 @@ export const allProducts: Product[] = [
     price: "21,90€",
     category: "Nos Menus",
     img: "/menu-veggie.png",
-    desc: "Un menu vegan frais et gourmand, plein d'énergie.",
+    desc: "",
     composition: [
       "1 Toast méditerranéen",
       "1 Frite de patates douces",
@@ -165,7 +165,7 @@ export const allProducts: Product[] = [
     price: "39,00€",
     category: "Nos Menus",
     img: "/menu-duo.png",
-    desc: "Le petit-déjeuner idéal pour deux, généreux et complet.",
+    desc: "",
     composition: [
       "1 bagel au choix",
       "1 burrito au choix",
@@ -221,7 +221,7 @@ export const allProducts: Product[] = [
     price: "49,00€",
     category: "Nos Menus",
     img: "/menu-famille.png",
-    desc: "Un petit-déjeuner généreux pour toute la famille.",
+    desc: "",
     composition: [
       "2 bagels au choix",
       "2 burritos au choix",
@@ -280,7 +280,7 @@ export const allProducts: Product[] = [
     price: "45,00€",
     category: "Nos Menus",
     img: "/birthday-box.png",
-    desc: "Offrez un menu anniversaire à personnaliser, une attention gourmande et originale.",
+    desc: "",
     composition: [
       "1 gâteau de pancakes au Nutella",
       "4 mini viennoiseries",
@@ -329,7 +329,7 @@ export const allProducts: Product[] = [
     price: "1,50€",
     category: "Viennoiseries",
     img: "/croissant.png",
-    desc: "Croissant pur beurre, feuilleté et doré, préparé le matin même.",
+    desc: "",
     composition: ["Farine", "Beurre pur", "Levure", "Sel", "Sucre"],
   },
   {
@@ -338,7 +338,7 @@ export const allProducts: Product[] = [
     price: "1,60€",
     category: "Viennoiseries",
     img: "/pain-chocolat.png",
-    desc: "Pain au chocolat pur beurre, feuilleté et fondant, avec deux barres de chocolat noir.",
+    desc: "",
     composition: ["Farine", "Beurre pur", "Chocolat noir", "Levure", "Sel", "Sucre"],
   },
   {
@@ -347,7 +347,7 @@ export const allProducts: Product[] = [
     price: "1,60€",
     category: "Viennoiseries",
     img: "/chausson-pommes.png",
-    desc: "Chausson feuilleté pur beurre garni de compote de pommes maison, doré au four.",
+    desc: "",
     composition: ["Pâte feuilletée", "Compote de pommes", "Beurre pur", "Sucre"],
   },
   {
@@ -356,7 +356,7 @@ export const allProducts: Product[] = [
     price: "1,80€",
     category: "Viennoiseries",
     img: "/pain-raisins.png",
-    desc: "Pain aux raisins moelleux, à la crème pâtissière maison.",
+    desc: "",
     composition: ["Pâte feuilletée", "Crème pâtissière", "Raisins secs"],
   },
   {
@@ -365,7 +365,7 @@ export const allProducts: Product[] = [
     price: "1,70€",
     category: "Viennoiseries",
     img: "/suisse.png",
-    desc: "Viennoiserie moelleuse aux pépites de chocolat et crème pâtissière.",
+    desc: "",
     composition: ["Pâte briochée", "Crème pâtissière", "Pépites de chocolat"],
   },
   {
@@ -374,7 +374,7 @@ export const allProducts: Product[] = [
     price: "3,90€",
     category: "Viennoiseries",
     img: "/mini-viennoiseries.png",
-    desc: "Assortiment de mini viennoiseries fraîches du matin.",
+    desc: "",
     composition: ["Mini croissants", "Mini pains au chocolat", "Mini pains aux raisins"],
   },
   {
@@ -383,7 +383,7 @@ export const allProducts: Product[] = [
     price: "8,50€",
     category: "Viennoiseries",
     img: "/briochette.png",
-    desc: "Brioche maison moelleuse, légèrement sucrée et filante.",
+    desc: "",
     composition: ["Farine", "Œufs", "Beurre", "Sucre", "Levure"],
   },
   // ---- PAINS ----
@@ -393,7 +393,7 @@ export const allProducts: Product[] = [
     price: "1,30€",
     category: "Pains",
     img: "/baguette.png",
-    desc: "Baguette tradition croustillante, cuite le matin même.",
+    desc: "",
     composition: ["Farine de blé", "Eau", "Sel", "Levure"],
   },
   {
@@ -402,7 +402,7 @@ export const allProducts: Product[] = [
     price: "2,10€",
     category: "Pains",
     img: "/baguette-cereales.png",
-    desc: "Baguette bio aux graines variées, riche en fibres et en saveurs.",
+    desc: "",
     composition: ["Farine bio", "Graines de sésame", "Graines de tournesol", "Graines de lin"],
   },
   {
@@ -411,7 +411,7 @@ export const allProducts: Product[] = [
     price: "2,80€",
     category: "Pains",
     img: "/pain-complet.png",
-    desc: "Pain complet moelleux, riche en fibres pour bien commencer la journée.",
+    desc: "",
     composition: ["Farine complète", "Eau", "Sel", "Levain"],
   },
   {
@@ -457,7 +457,7 @@ export const allProducts: Product[] = [
     price: "13,50€",
     category: "Le Salé",
     img: "/bagel-chevre.png",
-    desc: "Un bagel gourmand avec du chèvre fondant et un filet de miel.",
+    desc: "",
     composition: ["Bagel maison", "Fromage de chèvre", "Miel", "Roquette", "Noix"],
   },
   {
@@ -466,7 +466,7 @@ export const allProducts: Product[] = [
     price: "13,50€",
     category: "Le Salé",
     img: "/bagel-cheddar.png",
-    desc: "Le bagel généreux au bacon croustillant et cheddar fondant.",
+    desc: "",
     composition: ["Bagel maison", "Bacon croustillant", "Cheddar", "Salade", "Sauce maison"],
   },
   {
@@ -475,7 +475,7 @@ export const allProducts: Product[] = [
     price: "13,50€",
     category: "Le Salé",
     img: "/bagel-saumon.png",
-    desc: "Bagel frais au saumon fumé et avocat crémeux.",
+    desc: "",
     composition: ["Bagel maison", "Saumon fumé", "Avocat", "Cream cheese", "Aneth"],
   },
   {
@@ -484,7 +484,7 @@ export const allProducts: Product[] = [
     price: "13,50€",
     category: "Le Salé",
     img: "/avocado-toast.png",
-    desc: "Toast croustillant garni d'avocat frais et ses toppings.",
+    desc: "",
     composition: ["Tranche de pain toasté", "Sauce avocat", "Stracciatella", "Tranches d'avocat", "Grenade", "Germe de betterave"],
     options: [
       {
@@ -502,7 +502,7 @@ export const allProducts: Product[] = [
     price: "8,50€",
     category: "Le Salé",
     img: "/oeuf-benedicte.png",
-    desc: "Œufs pochés sur toast, sauce hollandaise maison.",
+    desc: "",
     composition: ["Muffin toastée", "Bacon caramélisé", "Oeufs brouillés", "Pickles d'oignons rouges", "Gomasio", "Sauce hollandaise"],
   },
   {
@@ -511,7 +511,7 @@ export const allProducts: Product[] = [
     price: "7,50€",
     category: "Le Salé",
     img: "/oeufs-brouilles-truffe.png",
-    desc: "Œufs brouillés onctueux à la truffe noire, un délice raffiné.",
+    desc: "",
     composition: ["Œufs frais de plein air", "Truffe noire du Périgord", "Fleur de sel", "1 toast"],
   },
   {
@@ -520,7 +520,7 @@ export const allProducts: Product[] = [
     price: "4,50€",
     category: "Le Salé",
     img: "/oeufs-brouilles.png",
-    desc: "Œufs brouillés moelleux, préparés à la minute.",
+    desc: "",
     composition: ["Œufs frais de plein air", "Beurre de Baratte", "Fleur de sel", "1 toast"],
   },
   {
@@ -529,7 +529,7 @@ export const allProducts: Product[] = [
     price: "14,90€",
     category: "Le Salé",
     img: "/breakfast-burrito.png",
-    desc: "Un burrito généreux garni pour un petit-déjeuner qui tient au corps.",
+    desc: "",
     composition: ["Sauce avocat", "Bacon croustillant", "Galette de pomme de terre", "Oeufs brouillés"],
   },
   {
@@ -538,7 +538,7 @@ export const allProducts: Product[] = [
     price: "4,50€",
     category: "Le Sucré",
     img: "/pancakes-composer.png",
-    desc: "Pancakes moelleux à personnaliser selon vos envies.",
+    desc: "",
     composition: ["2 pancakes", "1 nappage au choix", "1 topping au choix"],
     options: [
       {
@@ -591,7 +591,7 @@ export const allProducts: Product[] = [
     price: "17,90€",
     category: "Le Salé",
     img: "/toast-med.png",
-    desc: "Pain au levain toasté garni de houmous, labneh et halloumi toasté.",
+    desc: "",
     composition: ["Pain au levain", "Houmous", "Labneh", "Halloumi toasté", "Pois chiches croustillants", "Œuf émietté", "Épices zaatar", "Menthe fraîche"],
   },
   {
@@ -638,7 +638,7 @@ export const allProducts: Product[] = [
     price: "12,90€",
     category: "Le Sucré",
     img: "/brioche-perdue.png",
-    desc: "Brioche perdue dorée, servie avec fruits frais et coulis.",
+    desc: "",
     composition: ["Brioche perdue", "Nutella", "Eclats de noisettes grillées"],
     options: [
       {
@@ -656,7 +656,7 @@ export const allProducts: Product[] = [
     price: "9,50€",
     category: "Le Sucré",
     img: "/bowl-pistache.png",
-    desc: "Pudding de graines de chia onctueux, garni de fruits frais.",
+    desc: "",
     composition: ["Yaourt végétal", "Vanille", "Crème de pistache", "Pistaches concassées", "Granola", "Myrtilles"],
   },
   {
@@ -665,7 +665,7 @@ export const allProducts: Product[] = [
     price: "8,50€",
     category: "Le Sucré",
     img: "/granola-bowl.png",
-    desc: "Granola croustillant maison, yaourt et fruits de saison.",
+    desc: "",
     composition: ["Granola maison", "Yaourt grec", "Fruits de saison", "Miel"],
     options: [
       {
@@ -682,7 +682,7 @@ export const allProducts: Product[] = [
     price: "3,50€",
     category: "Le Sucré",
     img: "/cookie-choco.png",
-    desc: "Cookie moelleux aux pépites de chocolat, cuit le matin même.",
+    desc: "",
     composition: ["Farine", "Beurre", "Pépites de chocolat", "Sucre", "Œuf"],
   },
   {
@@ -709,7 +709,7 @@ export const allProducts: Product[] = [
     price: "10,50€",
     category: "À Partager",
     img: "/cake-marbre.png",
-    desc: "Cake marbré vanille-chocolat moelleux, fait maison.",
+    desc: "",
     composition: ["8-10 parts"],
   },
   {
@@ -718,7 +718,7 @@ export const allProducts: Product[] = [
     price: "2,70€",
     category: "Le Sucré",
     img: "/muffin-myrtilles.png",
-    desc: "Muffin moelleux aux myrtilles, fait maison.",
+    desc: "",
     composition: ["Farine", "Myrtilles", "Beurre", "Œufs", "Sucre"],
     allergens: ["Gluten", "Œufs", "Lait"],
   },
@@ -777,7 +777,7 @@ export const allProducts: Product[] = [
     price: "5,50€",
     category: "Boissons",
     img: "/iced-latte.png",
-    desc: "Café glacé, onctueux et rafraîchissant.",
+    desc: "",
     composition: ["Espresso", "Lait", "Glaçons", "Sucre"],
     options: [{ id: "lait", label: "Options", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
   },
@@ -787,7 +787,7 @@ export const allProducts: Product[] = [
     price: "6,50€",
     category: "Boissons",
     img: "/smoothie-banane.png",
-    desc: "Smoothie onctueux à la banane, préparé avec des fruits frais.",
+    desc: "",
     composition: ["Bananes", "Lait", "Vanille", "Miel"],
     options: [
       {
@@ -805,7 +805,7 @@ export const allProducts: Product[] = [
     price: "6,50€",
     category: "Boissons",
     img: "/smoothie-fruits-rouges.png",
-    desc: "Smoothie vitaminé aux fruits rouges frais de saison.",
+    desc: "",
     composition: ["Mix de fruits rouges", "Lait", "Vanille", "Miel"],
     options: [
       {
@@ -823,7 +823,7 @@ export const allProducts: Product[] = [
     price: "3,50€",
     category: "Boissons",
     img: "/jus-orange.png",
-    desc: "Jus d'orange fraîchement pressé, 100% pur jus sans sucre ajouté.",
+    desc: "",
     composition: ["Oranges fraîches pressées"],
   },
   {
@@ -832,7 +832,7 @@ export const allProducts: Product[] = [
     price: "3,50€",
     category: "Boissons",
     img: "/jus-pamplemousse.png",
-    desc: "Jus de pamplemousse fraîchement pressé, légèrement acidulé et vitaminé.",
+    desc: "",
     composition: ["Pamplemousses frais pressés"],
   },
   // ---- À PARTAGER ----
@@ -842,7 +842,7 @@ export const allProducts: Product[] = [
     price: "17,00€",
     category: "À Partager",
     img: "/plateau-mini.png",
-    desc: "Un beau plateau de viennoiseries fraîches à partager.",
+    desc: "",
     composition: ["5 Croissants", "5 Pains au chocolat"],
   },
   {
@@ -880,7 +880,7 @@ export const allProducts: Product[] = [
     price: "Sur devis",
     category: "Événements",
     img: "/menu-brunch.png",
-    desc: "Un brunch d'exception pour votre mariage. Formule personnalisée selon vos envies et le nombre de convives.",
+    desc: "",
     composition: ["Buffet viennoiseries", "Salé & sucré", "Boissons chaudes & froides", "Décoration incluse", "Service sur place"],
     options: [
       {
@@ -897,7 +897,7 @@ export const allProducts: Product[] = [
     price: "Sur devis",
     category: "Événements",
     img: "https://static.wixstatic.com/media/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg",
-    desc: "Offrez à vos équipes un moment gourmand et convivial. Idéal pour réunions, séminaires ou team building.",
+    desc: "",
     composition: ["Viennoiseries fraîches", "Plateaux salé", "Fruits frais", "Café & jus de fruits", "Livraison & installation"],
     options: [
       {
@@ -914,7 +914,7 @@ export const allProducts: Product[] = [
     price: "Sur devis",
     category: "Événements",
     img: "https://static.wixstatic.com/media/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png",
-    desc: "Anniversaire, enterrement de vie, réunion de famille… Partagez un moment unique autour d'un brunch généreux.",
+    desc: "",
     composition: ["Buffet viennoiseries & pains", "Sucré & salé", "Boissons fraîches", "Décoration thématique possible"],
     options: [
       {
@@ -931,7 +931,7 @@ export const allProducts: Product[] = [
     price: "Sur devis",
     category: "Événements",
     img: "https://static.wixstatic.com/media/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png/v1/fill/w_980,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_b9896374a7884f76b153e6af574a0bdd~mv2.png",
-    desc: "Offrez une box petit-déjeuner personnalisée pour marquer une occasion spéciale.",
+    desc: "",
     composition: ["Box personnalisée", "Viennoiseries & gourmandises", "Message manuscrit", "Emballage cadeau", "Livraison incluse"],
     options: [
       {
@@ -948,7 +948,7 @@ export const allProducts: Product[] = [
     price: "Sur devis",
     category: "Événements",
     img: "/menu-francais.png",
-    desc: "Démarrez votre séminaire du bon pied avec un petit-déjeuner professionnel livré sur site.",
+    desc: "",
     composition: ["Viennoiseries individuelles", "Café & thé", "Jus de fruits frais", "Fruits de saison", "Service discret & ponctuel"],
     options: [
       {
