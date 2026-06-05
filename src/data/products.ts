@@ -408,7 +408,7 @@ export const allProducts: Product[] = [
   {
     id: "pain-complet",
     name: "Pain complet",
-    price: "2,80€",
+    price: "3,70€",
     category: "Pains",
     img: "/pain-complet.png",
     desc: "",
