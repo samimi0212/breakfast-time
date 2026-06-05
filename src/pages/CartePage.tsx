@@ -587,9 +587,6 @@ const CartePage = () => {
                         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35), transparent)" }} />
                       </div>
                       <div className="p-7 flex flex-col gap-3 flex-1">
-                        <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
-                          <Icon size={22} style={{ color: "#6b7a10" }} />
-                        </div>
                         <div>
                           <h2 className="font-display text-2xl font-bold text-foreground mb-1">{title}</h2>
                           <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
