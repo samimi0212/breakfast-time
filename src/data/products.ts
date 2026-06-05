@@ -398,12 +398,12 @@ export const allProducts: Product[] = [
   },
   {
     id: "baguette-bio",
-    name: "Baguette céréales",
-    price: "2,10€",
+    name: "1/2 baguette céréales",
+    price: "1,50€",
     category: "Pains",
     img: "/baguette-cereales.png",
     desc: "",
-    composition: ["Farine bio", "Graines de sésame", "Graines de tournesol", "Graines de lin"],
+    composition: ["140g", "Farine de blé", "Graines de tournesol", "Graines de pavot", "Graines de sésame", "Graines de lin"],
   },
   {
     id: "pain-complet",

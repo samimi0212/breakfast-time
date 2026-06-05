@@ -105,8 +105,8 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     },
     {
       id: "baguette-bio",
-      name: "Baguette céréales",
-      price: "2,10€",
+      name: "1/2 baguette céréales",
+      price: "1,50€",
       img: "/baguette-cereales.png",
     },
     {
