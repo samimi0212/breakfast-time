@@ -577,7 +577,7 @@ const CartePage = () => {
                 {/* Desktop : 2 grandes cartes côte à côte */}
                 <div className="hidden sm:grid sm:grid-cols-2 gap-6">
                   {[
-                    { tab: "menus", img: "/menu-highlight.jpg", icon: BookOpen, title: "Nos Menus", desc: "Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.", price: "À partir de 12,90€", cta: "Voir les menus" },
+                    { tab: "menus", img: "/menu-brunch.png", icon: BookOpen, title: "Nos Menus", desc: "Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.", price: "À partir de 12,90€", cta: "Voir les menus" },
                     { tab: "carte", img: "/avocado-toast.png", icon: ShoppingBasket, title: "Produits à la Carte", desc: "Composez votre breakfast à votre guise. Viennoiseries, salé, sucré, boissons…", price: "Dès 1,50€ le produit", cta: "Composer mon breakfast" },
                   ].map(({ tab: t, img, title, cta }) => (
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
