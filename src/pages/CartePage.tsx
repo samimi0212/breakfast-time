@@ -574,30 +574,26 @@ const CartePage = () => {
             {/* Choix initial */}
             {tab === null && (
               <div className="mt-6 max-w-3xl mx-auto">
-                {/* Desktop : editorial horizontal */}
-                <div className="hidden sm:flex flex-col gap-4 mt-2">
+                {/* Desktop : 2 cards compactes côte à côte */}
+                <div className="hidden sm:grid sm:grid-cols-2 gap-4 mt-2">
                   {[
-                    { tab: "menus",  img: "/menu-brunch.png",   title: "Nos Menus",   sub: "Des formules complètes préparées avec soin, livrées chez vous.", cta: "Voir les menus",        reverse: false },
-                    { tab: "carte",  img: "/avocado-toast.png", title: "À la Carte",  sub: "Composez votre breakfast à la pièce, selon vos envies du moment.",  cta: "Composer mon breakfast", reverse: true  },
-                  ].map(({ tab: t, img, title, sub, cta, reverse }) => (
+                    { tab: "menus", img: "/menu-brunch.png",   title: "Nos Menus",  sub: "Formules complètes livrées chez vous", cta: "Voir les menus" },
+                    { tab: "carte", img: "/avocado-toast.png", title: "À la Carte", sub: "Composez votre breakfast à la pièce",   cta: "Composer" },
+                  ].map(({ tab: t, img, title, sub, cta }) => (
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
-                      className={`group flex ${reverse ? "flex-row-reverse" : "flex-row"} h-64 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500`}
-                      style={{ backgroundColor: "#1c2410" }}>
-                      {/* Côté texte */}
-                      <div className="flex-1 flex flex-col justify-center px-10 gap-3 text-left">
-                        <p className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#DFF057" }}>
-                          {reverse ? "Produits à la carte" : "Formules & menus"}
-                        </p>
-                        <h2 className="font-display text-4xl font-bold text-white leading-tight">{title}</h2>
-                        <p className="text-sm text-white/50 leading-relaxed max-w-xs">{sub}</p>
-                        <div className="mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full group-hover:gap-3 transition-all duration-200"
-                          style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-                          {cta} <ArrowRight size={14} />
-                        </div>
+                      className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-border hover:border-primary hover:shadow-lg transition-all duration-300 text-left">
+                      {/* Vignette image */}
+                      <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                        <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       </div>
-                      {/* Côté image */}
-                      <div className="flex-1 overflow-hidden">
-                        <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" />
+                      {/* Texte */}
+                      <div className="flex-1 min-w-0">
+                        <h2 className="font-display text-lg font-bold text-foreground mb-0.5">{title}</h2>
+                        <p className="text-xs text-muted-foreground truncate mb-3">{sub}</p>
+                        <div className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
+                          style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                          {cta} <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+                        </div>
                       </div>
                     </button>
                   ))}
