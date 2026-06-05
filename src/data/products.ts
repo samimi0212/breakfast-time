@@ -342,9 +342,18 @@ export const allProducts: Product[] = [
     composition: ["Farine", "Beurre pur", "Chocolat noir", "Levure", "Sel", "Sucre"],
   },
   {
+    id: "brioche",
+    name: "Brioche",
+    price: "1,30€",
+    category: "Viennoiseries",
+    img: "/briochette.png",
+    desc: "",
+    composition: ["Farine", "Œufs", "Beurre", "Sucre", "Levure"],
+  },
+  {
     id: "chausson-pommes",
     name: "Chausson aux pommes",
-    price: "1,60€",
+    price: "2,70€",
     category: "Viennoiseries",
     img: "/chausson-pommes.png",
     desc: "",
@@ -353,7 +362,7 @@ export const allProducts: Product[] = [
   {
     id: "pain-aux-raisins",
     name: "Pain aux raisins",
-    price: "1,80€",
+    price: "2,20€",
     category: "Viennoiseries",
     img: "/pain-raisins.png",
     desc: "",
@@ -362,7 +371,7 @@ export const allProducts: Product[] = [
   {
     id: "suisse",
     name: "Suisse",
-    price: "1,70€",
+    price: "2,10€",
     category: "Viennoiseries",
     img: "/suisse.png",
     desc: "",
@@ -371,20 +380,11 @@ export const allProducts: Product[] = [
   {
     id: "mini-viennoiseries",
     name: "Mini viennoiseries",
-    price: "3,90€",
+    price: "3,20€",
     category: "Viennoiseries",
     img: "/mini-viennoiseries.png",
     desc: "",
     composition: ["Mini croissants", "Mini pains au chocolat", "Mini pains aux raisins"],
-  },
-  {
-    id: "brioche",
-    name: "Brioche",
-    price: "8,50€",
-    category: "Viennoiseries",
-    img: "/briochette.png",
-    desc: "",
-    composition: ["Farine", "Œufs", "Beurre", "Sucre", "Levure"],
   },
   // ---- PAINS ----
   {
