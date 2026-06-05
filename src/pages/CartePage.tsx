@@ -142,7 +142,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "pain-nordique",
       name: "Pain Nordique",
-      price: "4,50€",
+      price: "4,70€",
       img: "/pain-nordique.png",
     },
   ],
