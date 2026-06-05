@@ -499,7 +499,7 @@ const ProductPage = () => {
                                 <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
                                   style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>×{count}</span>
                               )}
-                              {isPaid && supplement > 0 && (
+                              {supplement > 0 && (
                                 <span className="absolute -top-2 -right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-md leading-none"
                                   style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
                                   +{supplement.toFixed(2).replace(".", ",")}€
