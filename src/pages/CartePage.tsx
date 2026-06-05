@@ -502,16 +502,16 @@ const CartePage = () => {
       <Navbar />
 
       {/* Header desktop */}
-      <div className="hidden md:block bg-foreground pt-28 pb-16 px-6 text-center">
-        <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">
+      <div className="hidden md:block bg-foreground pt-24 pb-10 px-6 text-center">
+        <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">
           Livraison 7j/7 · Alpes-Maritimes
         </p>
-        <h1 className="font-display text-5xl font-bold mb-4" style={{ color: "white" }}>
+        <h1 className="font-display text-4xl font-bold mb-3" style={{ color: "white" }}>
           Notre{" "}
           <span className="italic" style={{ color: "#DFF057" }}>Carte</span>
         </h1>
-        <p className="text-lg max-w-xl mx-auto mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
-          Des produits frais, locaux et préparés le matin même pour commencer la journée en beauté.
+        <p className="text-base max-w-lg mx-auto mb-7" style={{ color: "rgba(255,255,255,0.7)" }}>
+          Des produits de qualité, préparés le matin même pour un petit-déjeuner aussi frais que gourmand.
         </p>
         <div className="max-w-md mx-auto relative">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
