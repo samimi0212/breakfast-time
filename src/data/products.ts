@@ -406,15 +406,6 @@ export const allProducts: Product[] = [
     composition: ["140g", "Farine de blé", "Graines de tournesol", "Graines de pavot", "Graines de sésame", "Graines de lin"],
   },
   {
-    id: "pain-complet",
-    name: "Pain complet",
-    price: "3,70€",
-    category: "Pains",
-    img: "/pain-complet.png",
-    desc: "",
-    composition: ["330g", "Farine complète de blé T150"],
-  },
-  {
     id: "petit-pain-gluten-free",
     name: "Pain Gluten Free",
     price: "2,40€",
@@ -440,6 +431,15 @@ export const allProducts: Product[] = [
     img: "/pain-pepites.png",
     desc: "",
     composition: ["60g", "Farine de blé", "Chocolat noir"],
+  },
+  {
+    id: "pain-complet",
+    name: "Pain complet",
+    price: "3,70€",
+    category: "Pains",
+    img: "/pain-complet.png",
+    desc: "",
+    composition: ["330g", "Farine complète de blé T150"],
   },
   {
     id: "pain-ciabatta",
