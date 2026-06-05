@@ -150,19 +150,19 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "bagel-chevre-miel",
       name: "Bagel chèvre miel",
-      price: "13,50€",
+      price: "9,50€",
       img: "/bagel-chevre.png",
     },
     {
       id: "bagel-bacon-cheddar",
       name: "Bagel Bacon Cheddar",
-      price: "13,50€",
+      price: "10,90€",
       img: "/bagel-cheddar.png",
     },
     {
       id: "bagel-saumon-avocat",
       name: "Bagel Saumon Avocat",
-      price: "13,50€",
+      price: "11,50€",
       img: "/bagel-saumon.png",
     },
     {

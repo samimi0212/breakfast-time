@@ -463,7 +463,7 @@ export const allProducts: Product[] = [
   {
     id: "bagel-chevre-miel",
     name: "Bagel chèvre miel",
-    price: "13,50€",
+    price: "9,50€",
     category: "Le Salé",
     img: "/bagel-chevre.png",
     desc: "",
@@ -472,7 +472,7 @@ export const allProducts: Product[] = [
   {
     id: "bagel-bacon-cheddar",
     name: "Bagel Bacon Cheddar",
-    price: "13,50€",
+    price: "10,90€",
     category: "Le Salé",
     img: "/bagel-cheddar.png",
     desc: "",
@@ -481,7 +481,7 @@ export const allProducts: Product[] = [
   {
     id: "bagel-saumon-avocat",
     name: "Bagel Saumon Avocat",
-    price: "13,50€",
+    price: "11,50€",
     category: "Le Salé",
     img: "/bagel-saumon.png",
     desc: "",
