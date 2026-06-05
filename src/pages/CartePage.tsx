@@ -110,6 +110,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/baguette-cereales.png",
     },
     {
+      id: "pain-ciabatta",
+      name: "Pain Ciabatta",
+      price: "1,60€",
+      img: "/ciabatta.png",
+    },
+    {
       id: "petit-pain-gluten-free",
       name: "Pain Gluten Free",
       price: "2,40€",
@@ -132,12 +138,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       name: "Pain complet",
       price: "3,70€",
       img: "/pain-complet.png",
-    },
-    {
-      id: "pain-ciabatta",
-      name: "Pain Ciabatta",
-      price: "1,60€",
-      img: "/ciabatta.png",
     },
     {
       id: "pain-nordique",
