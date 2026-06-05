@@ -128,6 +128,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/petit-pain-campagne.png",
     },
     {
+      id: "pain-pepites",
+      name: "Pain pépites de chocolat",
+      price: "1,90€",
+      img: "/pain-pepites.png",
+    },
+    {
       id: "pain-ciabatta",
       name: "Pain Ciabatta",
       price: "3,50€",

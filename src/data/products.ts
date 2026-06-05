@@ -433,6 +433,15 @@ export const allProducts: Product[] = [
     composition: ["50g", "Farine de blé", "Levain"],
   },
   {
+    id: "pain-pepites",
+    name: "Pain pépites de chocolat",
+    price: "1,90€",
+    category: "Pains",
+    img: "/pain-pepites.png",
+    desc: "",
+    composition: ["60g", "Farine de blé", "Chocolat noir"],
+  },
+  {
     id: "pain-ciabatta",
     name: "Pain Ciabatta",
     price: "3,50€",
