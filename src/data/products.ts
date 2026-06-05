@@ -412,7 +412,7 @@ export const allProducts: Product[] = [
     category: "Pains",
     img: "/pain-complet.png",
     desc: "",
-    composition: ["Farine complète", "Eau", "Sel", "Levain"],
+    composition: ["330g", "Farine complète de blé T150"],
   },
   {
     id: "petit-pain-gluten-free",
