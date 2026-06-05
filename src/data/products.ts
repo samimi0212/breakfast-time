@@ -330,7 +330,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/croissant.png",
     desc: "",
-    composition: ["Farine", "Beurre pur", "Levure", "Sel", "Sucre"],
+    composition: ["Pur beurre"],
   },
   {
     id: "pain-au-chocolat",
@@ -339,7 +339,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/pain-chocolat.png",
     desc: "",
-    composition: ["Farine", "Beurre pur", "Chocolat noir", "Levure", "Sel", "Sucre"],
+    composition: ["Pur beurre"],
   },
   {
     id: "brioche",
@@ -348,7 +348,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/briochette.png",
     desc: "",
-    composition: ["Farine", "Œufs", "Beurre", "Sucre", "Levure"],
+    composition: ["Pur beurre"],
   },
   {
     id: "chausson-pommes",
@@ -357,7 +357,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/chausson-pommes.png",
     desc: "",
-    composition: ["Pâte feuilletée", "Compote de pommes", "Beurre pur", "Sucre"],
+    composition: ["Pur beurre"],
   },
   {
     id: "pain-aux-raisins",
@@ -366,7 +366,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/pain-raisins.png",
     desc: "",
-    composition: ["Pâte feuilletée", "Crème pâtissière", "Raisins secs"],
+    composition: ["Pur beurre"],
   },
   {
     id: "suisse",
@@ -375,7 +375,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/suisse.png",
     desc: "",
-    composition: ["Pâte briochée", "Crème pâtissière", "Pépites de chocolat"],
+    composition: ["Pur beurre"],
   },
   {
     id: "mini-viennoiseries",
@@ -384,7 +384,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/mini-viennoiseries.png",
     desc: "",
-    composition: ["Mini croissants", "Mini pains au chocolat", "Mini pains aux raisins"],
+    composition: ["Pur beurre"],
   },
   // ---- PAINS ----
   {
