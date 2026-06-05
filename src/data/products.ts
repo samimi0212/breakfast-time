@@ -416,12 +416,12 @@ export const allProducts: Product[] = [
   },
   {
     id: "petit-pain-gluten-free",
-    name: "Petit pain Gluten Free",
+    name: "Pain Gluten Free",
     price: "2,50€",
     category: "Pains",
     img: "/pain-sans-gluten.png",
     desc: "",
-    composition: [],
+    composition: ["45g", "Farine de riz complet", "Farine de millet", "Farine de sarrasin"],
   },
   {
     id: "petit-pain-campagne",

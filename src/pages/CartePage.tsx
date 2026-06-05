@@ -117,7 +117,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     },
     {
       id: "petit-pain-gluten-free",
-      name: "Petit pain Gluten Free",
+      name: "Pain Gluten Free",
       price: "2,50€",
       img: "/pain-sans-gluten.png",
     },
