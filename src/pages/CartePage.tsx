@@ -579,18 +579,17 @@ const CartePage = () => {
                   {[
                     { tab: "menus", img: "/menu-highlight.jpg", icon: BookOpen, title: "Nos Menus", desc: "Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.", price: "À partir de 12,90€", cta: "Voir les menus" },
                     { tab: "carte", img: "/avocado-toast.png", icon: ShoppingBasket, title: "Produits à la Carte", desc: "Composez votre breakfast à votre guise. Viennoiseries, salé, sucré, boissons…", price: "Dès 1,50€ le produit", cta: "Composer mon breakfast" },
-                  ].map(({ tab: t, img, icon: Icon, title, desc, price, cta }) => (
+                  ].map(({ tab: t, img, title, cta }) => (
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
-                      className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 overflow-hidden flex flex-col">
-                      <div className="relative h-52 w-full overflow-hidden">
-                        <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35), transparent)" }} />
-                      </div>
-                      <div className="p-6 flex items-center justify-between" style={{ backgroundColor: "#2d3a1e" }}>
-                        <h2 className="font-display text-2xl font-bold text-white">{title}</h2>
-                        <div className="flex items-center gap-2 font-semibold text-sm px-4 py-2 rounded-full flex-shrink-0"
+                      className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                      style={{ aspectRatio: "4/3" }}>
+                      <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.15) 50%, transparent 100%)" }} />
+                      <div className="absolute bottom-0 left-0 right-0 p-7 flex items-end justify-between gap-4">
+                        <h2 className="font-display text-3xl font-bold text-white leading-tight">{title}</h2>
+                        <div className="flex items-center gap-1.5 font-semibold text-sm px-4 py-2.5 rounded-full flex-shrink-0 group-hover:gap-2.5 transition-all duration-200"
                           style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-                          {cta} <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                          {cta} <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
                     </button>
