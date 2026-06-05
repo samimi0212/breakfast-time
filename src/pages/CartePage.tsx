@@ -581,9 +581,9 @@ const CartePage = () => {
                     { tab: "carte", img: "/avocado-toast.png", title: "À la Carte", sub: "Composez votre breakfast à la pièce",   cta: "Composer" },
                   ].map(({ tab: t, img, title, sub, cta }) => (
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
-                      className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-border hover:border-primary hover:shadow-lg transition-all duration-300 text-left">
+                      className="group flex items-center gap-5 p-6 rounded-2xl bg-white border border-border hover:border-primary hover:shadow-lg transition-all duration-300 text-left">
                       {/* Vignette image */}
-                      <div className="w-28 h-28 rounded-xl overflow-hidden flex-shrink-0">
+                      <div className="w-36 h-36 rounded-xl overflow-hidden flex-shrink-0">
                         <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                       </div>
                       {/* Texte */}
