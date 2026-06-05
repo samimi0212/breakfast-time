@@ -464,7 +464,6 @@ const CartePage = () => {
   );
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [hoveredSide, setHoveredSide] = useState<"menus" | "carte" | null>(null);
   const [tab, setTab] = useState<"menus" | "carte" | null>(() => {
     const t = searchParams.get("tab");
     if (t === "carte") return "carte";
@@ -575,54 +574,31 @@ const CartePage = () => {
             {/* Choix initial */}
             {tab === null && (
               <div className="mt-6 max-w-3xl mx-auto">
-                {/* Desktop : Split screen dynamique */}
-                <div className="hidden sm:flex h-[75vh] rounded-3xl overflow-hidden shadow-2xl -mx-6 mt-2">
+                {/* Desktop : 2 grandes cartes côte à côte */}
+                <div className="hidden sm:grid sm:grid-cols-2 gap-6">
                   {[
-                    { tab: "menus", img: "/menu-highlight.jpg", title: "Nos Menus", desc: "Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.", price: "À partir de 12,90€", cta: "Voir les menus" },
-                    { tab: "carte", img: "/hero-breakfast.jpg", title: "Produits à la Carte", desc: "Composez votre breakfast à votre guise. Viennoiseries, salé, sucré, boissons…", price: "Dès 1,50€ le produit", cta: "Composer mon breakfast" },
-                  ].map(({ tab: t, img, title, desc, price, cta }) => (
-                    <button
-                      key={t}
-                      onClick={() => switchTab(t as "menus" | "carte")}
-                      onMouseEnter={() => setHoveredSide(t as "menus" | "carte")}
-                      onMouseLeave={() => setHoveredSide(null)}
-                      className="group relative overflow-hidden text-left"
-                      style={{
-                        flex: hoveredSide === t ? 1.65 : hoveredSide !== null ? 0.55 : 1,
-                        transition: "flex 0.5s cubic-bezier(0.4,0,0.2,1)",
-                      }}
-                    >
-                      <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)" }} />
-                      {/* Contenu */}
-                      <div className="absolute bottom-0 left-0 right-0 p-10 text-white">
-                        <p className="text-xs font-semibold tracking-widest uppercase mb-3 opacity-70">{price}</p>
-                        <h2 className="font-display text-5xl font-bold mb-4 leading-tight">{title}</h2>
-                        <p
-                          className="text-sm leading-relaxed mb-8 max-w-sm"
-                          style={{
-                            opacity: hoveredSide === t ? 0.85 : 0,
-                            transform: hoveredSide === t ? "translateY(0)" : "translateY(8px)",
-                            transition: "opacity 0.4s ease, transform 0.4s ease",
-                          }}
-                        >
-                          {desc}
-                        </p>
-                        <div
-                          className="inline-flex items-center gap-2 font-semibold text-sm px-5 py-2.5 rounded-full"
-                          style={{
-                            backgroundColor: "#DFF057",
-                            color: "#3a3a0a",
-                            opacity: hoveredSide === t ? 1 : 0,
-                            transform: hoveredSide === t ? "translateY(0)" : "translateY(10px)",
-                            transition: "opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s",
-                          }}
-                        >
-                          {cta} <ArrowRight size={15} />
+                    { tab: "menus", img: "/menu-highlight.jpg", icon: BookOpen, title: "Nos Menus", desc: "Formules complètes pour commencer la journée. Tout est inclus, livré chez vous.", price: "À partir de 12,90€", cta: "Voir les menus" },
+                    { tab: "carte", img: "/avocado-toast.png", icon: ShoppingBasket, title: "Produits à la Carte", desc: "Composez votre breakfast à votre guise. Viennoiseries, salé, sucré, boissons…", price: "Dès 1,50€ le produit", cta: "Composer mon breakfast" },
+                  ].map(({ tab: t, img, icon: Icon, title, desc, price, cta }) => (
+                    <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
+                      className="group text-left rounded-3xl border-2 border-transparent bg-white shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 overflow-hidden flex flex-col">
+                      <div className="relative h-52 w-full overflow-hidden">
+                        <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35), transparent)" }} />
+                      </div>
+                      <div className="p-7 flex flex-col gap-3 flex-1">
+                        <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.2)" }}>
+                          <Icon size={22} style={{ color: "#6b7a10" }} />
+                        </div>
+                        <div>
+                          <h2 className="font-display text-2xl font-bold text-foreground mb-1">{title}</h2>
+                          <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
+                        </div>
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">{price}</p>
+                        <div className="flex items-center gap-2 font-semibold text-sm mt-auto pt-2" style={{ color: "#6b7a10" }}>
+                          {cta} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
-                      {/* Séparateur */}
-                      {t === "menus" && <div className="absolute right-0 top-0 bottom-0 w-px bg-white/20" />}
                     </button>
                   ))}
                 </div>
