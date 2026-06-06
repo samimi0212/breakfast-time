@@ -535,11 +535,11 @@ export const allProducts: Product[] = [
   {
     id: "breakfast-burrito",
     name: "Breakfast Burrito",
-    price: "14,90€",
+    price: "9,50€",
     category: "Le Salé",
     img: "/breakfast-burrito.png",
     desc: "",
-    composition: ["Sauce avocat", "Bacon croustillant", "Galette de pomme de terre", "Oeufs brouillés"],
+    composition: ["Sauce avocat", "Bacon crispy", "Galette de pomme de terre", "Oeufs brouillés"],
   },
   {
     id: "pancakes-a-composer",

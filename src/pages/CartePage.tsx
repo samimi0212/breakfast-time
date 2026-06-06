@@ -192,7 +192,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "breakfast-burrito",
       name: "Breakfast Burrito",
-      price: "14,90€",
+      price: "9,50€",
       img: "/breakfast-burrito.png",
     },
     {
