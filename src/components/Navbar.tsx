@@ -114,10 +114,6 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Menu hamburger — desktop uniquement */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="hidden md:flex text-foreground">
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
       </div>
 
