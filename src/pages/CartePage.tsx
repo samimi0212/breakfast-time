@@ -174,7 +174,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "oeufs-benedicte",
       name: "Oeufs bénédicte",
-      price: "8,50€",
+      price: "9,50€",
       img: "/oeuf-benedicte.png",
     },
     {
