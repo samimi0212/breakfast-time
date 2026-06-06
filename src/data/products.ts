@@ -588,7 +588,7 @@ export const allProducts: Product[] = [
   {
     id: "chicken-burrito",
     name: "Chicken Burrito",
-    price: "8,50€",
+    price: "9,50€",
     category: "Le Salé",
     img: "/chicken-burrito.png",
     desc: "",

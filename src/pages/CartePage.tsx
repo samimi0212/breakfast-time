@@ -204,7 +204,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "chicken-burrito",
       name: "Chicken Burrito",
-      price: "8,50€",
+      price: "9,50€",
       img: "/chicken-burrito.png",
     },
     {
