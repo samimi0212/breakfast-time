@@ -660,6 +660,15 @@ export const allProducts: Product[] = [
     ],
   },
   {
+    id: "brioche-perdue-caramel",
+    name: "Brioche Perdue Caramel",
+    price: "6,50€",
+    category: "Le Sucré",
+    img: "/brioche-perdue-caramel.png",
+    desc: "",
+    composition: ["Brioche Nanterre pur beurre", "Caramel artisanal au beurre salé de Guérande", "Noix de pécan", "Myrtilles"],
+  },
+  {
     id: "pudding-chia",
     name: "Granola Bowl Pistache",
     price: "9,50€",

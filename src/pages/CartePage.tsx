@@ -260,6 +260,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/brioche-perdue.png",
     },
     {
+      id: "brioche-perdue-caramel",
+      name: "Brioche Perdue Caramel",
+      price: "6,50€",
+      img: "/brioche-perdue-caramel.png",
+    },
+    {
       id: "pudding-chia",
       name: "Granola Bowl Pistache",
       price: "9,50€",
