@@ -1,4 +1,4 @@
-import heroImg from "@/assets/hero-breakfast.jpg";
+import heroImg from "@/assets/image-accueil.png";
 import { Clock, MapPin, Croissant, Bike, CalendarCheck } from "lucide-react";
 
 const badges = [
