@@ -219,22 +219,19 @@ const Cart = () => {
               </div>
 
               {/* Barre minimum de commande */}
-              <div className="mb-5">
-                <div className="flex justify-between text-xs font-medium mb-2">
-                  <span className={`flex items-center gap-1 ${isMinReached ? "text-green-600" : "text-muted-foreground"}`}>
-                    {isMinReached && <CheckCircle2 size={14} style={{ color: "#DFF057", filter: "drop-shadow(0 0 1px #aaa)" }} />}
-                    {isMinReached ? "Minimum atteint" : "Min. de commande : 15,00€"}
-                  </span>
-                </div>
-                {!isMinReached && (
+              {!isMinReached && (
+                <div className="mb-5">
+                  <div className="flex text-xs font-medium mb-2">
+                    <span className="text-muted-foreground">Min. de commande : 15,00€</span>
+                  </div>
                   <div className="h-2 rounded-full bg-muted overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-500"
                       style={{ width: `${progressPct}%`, backgroundColor: "#DFF057" }}
                     />
                   </div>
-                )}
-              </div>
+                </div>
+              )}
 
               <button
                 onClick={() => isMinReached && navigate("/commande")}
