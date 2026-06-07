@@ -223,8 +223,7 @@ export const allProducts: Product[] = [
     img: "/menu-famille.png",
     desc: "",
     composition: [
-      "2 bagels au choix",
-      "2 burritos au choix",
+      "4 bagels / burritos au choix",
       "2 Granola Bowl Parfait",
       "2 extras au choix",
       "6 mini viennoiseries",
@@ -233,20 +232,12 @@ export const allProducts: Product[] = [
     ],
     options: [
       {
-        id: "bagels",
-        label: "Bagels (2 au choix)",
+        id: "bagels-burritos",
+        label: "Bagels / Burritos (4 au choix)",
         required: true,
         multiSelect: true,
-        maxSelect: 2,
-        choices: ["Bagel chèvre miel", "Bagel Bacon Cheddar", "Bagel Saumon Avocat"],
-      },
-      {
-        id: "burritos",
-        label: "Burritos (2 au choix)",
-        required: true,
-        multiSelect: true,
-        maxSelect: 2,
-        choices: ["Breakfast Burrito", "Chicken Burrito"],
+        maxSelect: 4,
+        choices: ["Bagel chèvre miel", "Bagel Bacon Cheddar", "Bagel Saumon Avocat", "Breakfast Burrito", "Chicken Burrito"],
       },
       {
         id: "extras",
