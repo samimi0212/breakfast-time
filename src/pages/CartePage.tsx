@@ -10,7 +10,7 @@ const menus = [
   {
     id: "menu-francais",
     name: "Menu Français",
-    price: "12,90€",
+    price: "11,90€",
     img: "/menu-francais.png",
   },
   {
@@ -620,7 +620,7 @@ const CartePage = () => {
                 {/* Mobile : 2 cartes photo carrées côte à côte */}
                 <div className="grid grid-cols-2 gap-3 sm:hidden">
                   {[
-                    { tab: "menus", img: "/menu-highlight.jpg", title: "Nos Menus", price: "Dès 12,90€", cta: "Voir les menus" },
+                    { tab: "menus", img: "/menu-highlight.jpg", title: "Nos Menus", price: "Dès 11,90€", cta: "Voir les menus" },
                     { tab: "carte", img: "/hero-breakfast.jpg", title: "À la Carte", price: "Dès 1,50€", cta: "Voir la carte" },
                   ].map(({ tab: t, img, title, price, cta }) => (
                     <button key={t} onClick={() => switchTab(t as "menus" | "carte")}

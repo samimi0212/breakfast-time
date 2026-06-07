@@ -27,7 +27,7 @@ export const allProducts: Product[] = [
   {
     id: "menu-francais",
     name: "Menu Français",
-  price: "12,90€",
+  price: "11,90€",
   category: "Nos Menus",
   img: "/menu-francais.png",
   desc: "",
