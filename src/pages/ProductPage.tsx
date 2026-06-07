@@ -141,10 +141,6 @@ const ProductPage = () => {
           >
             <ArrowLeft size={18} className="text-foreground" />
           </button>
-          {/* Badge catégorie */}
-          <span className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-            {product.category}
-          </span>
         </div>
 
         {/* Carte blanche qui chevauche l'image */}
@@ -375,9 +371,6 @@ const ProductPage = () => {
             <div className="aspect-square rounded-3xl overflow-hidden bg-muted">
               <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
             </div>
-            <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-              {product.category}
-            </span>
           </div>
 
           {/* Infos */}
