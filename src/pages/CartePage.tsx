@@ -216,7 +216,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "potatoe-saumon",
       name: "Potatoe Saumon",
-      price: "9,50€",
+      price: "10,90€",
       img: "/potatoe-saumon.png",
     },
   ],

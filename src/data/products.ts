@@ -597,7 +597,7 @@ export const allProducts: Product[] = [
   {
     id: "potatoe-saumon",
     name: "Potatoe Saumon",
-    price: "9,50€",
+    price: "10,90€",
     category: "Le Salé",
     img: "/potatoe-saumon.png",
     desc: "",
