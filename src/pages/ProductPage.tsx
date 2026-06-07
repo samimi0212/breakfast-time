@@ -30,20 +30,19 @@ const ProductPage = () => {
       })
     : true;
 
-  const handleSelect = (optionId: string, choice: string, multiSelect?: boolean, maxSelect?: number, delta?: number) => {
+  const handleSelect = (optionId: string, choice: string, multiSelect?: boolean, maxSelect?: number) => {
     if (maxSelect) {
+      // Mode compteur : chaque clic ajoute 1, chaque clic sur un choix déjà compté retire 1
       setSelections((prev) => {
         const current = (prev[optionId] as string[]) || [];
         const total = current.length;
         const countForChoice = current.filter((c) => c === choice).length;
-        if (delta === -1 && countForChoice > 0) {
-          // Retirer un exemplaire
+        if (total < maxSelect) {
+          return { ...prev, [optionId]: [...current, choice] };
+        } else if (countForChoice > 0) {
           const idx = current.lastIndexOf(choice);
           const updated = [...current.slice(0, idx), ...current.slice(idx + 1)];
           return { ...prev, [optionId]: updated };
-        } else if (delta === 1 && total < maxSelect) {
-          // Ajouter un exemplaire
-          return { ...prev, [optionId]: [...current, choice] };
         }
         return prev;
       });
@@ -247,7 +246,7 @@ const ProductPage = () => {
                         {((selections[option.id] as string[]) || []).length} / {option.maxSelect} sélectionné(s)
                       </p>
                     )}
-                    <div className={option.maxSelect ? "flex flex-col gap-2" : "flex flex-wrap gap-2"}>
+                    <div className="flex flex-wrap gap-2">
                       {option.choices.map((choice) => {
                         const arr = (selections[option.id] as string[]) || [];
                         const count = option.maxSelect ? arr.filter((c) => c === choice).length : 0;
@@ -263,33 +262,6 @@ const ProductPage = () => {
                         const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
                         const supplement = extractSupplement(choice);
                         const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
-
-                        if (option.maxSelect) {
-                          return (
-                            <div key={choice} className={`flex items-center justify-between px-3 py-2.5 rounded-xl border-2 transition-all duration-200 ${
-                              count > 0 ? "border-primary bg-primary/5" : "border-border bg-white"
-                            }`}>
-                              <span className={`text-sm font-semibold ${count > 0 ? "text-primary" : "text-foreground"}`}>
-                                {cleanChoice}
-                              </span>
-                              <div className="flex items-center gap-2">
-                                <button
-                                  onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect, -1)}
-                                  disabled={count === 0}
-                                  className="w-7 h-7 rounded-full border-2 border-border flex items-center justify-center text-base font-bold disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
-                                >−</button>
-                                <span className="w-5 text-center text-sm font-bold">{count}</span>
-                                <button
-                                  onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect, 1)}
-                                  disabled={totalReached}
-                                  className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-base font-bold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                                  style={!totalReached ? { borderColor: "#DFF057", backgroundColor: "#DFF057", color: "#3a3a0a" } : { borderColor: "#e5e7eb" }}
-                                >+</button>
-                              </div>
-                            </div>
-                          );
-                        }
-
                         return (
                           <button
                             key={choice}
@@ -498,7 +470,7 @@ const ProductPage = () => {
                           {((selections[option.id] as string[]) || []).length} / {option.maxSelect} sélectionné(s)
                         </p>
                       )}
-                      <div className={option.maxSelect ? "flex flex-col gap-2" : "flex flex-wrap gap-2"}>
+                      <div className="flex flex-wrap gap-2">
                         {option.choices.map((choice) => {
                           const arr = (selections[option.id] as string[]) || [];
                           const count = option.maxSelect ? arr.filter((c) => c === choice).length : 0;
@@ -510,33 +482,6 @@ const ProductPage = () => {
                           const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
                           const supplement = extractSupplement(choice);
                           const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
-
-                          if (option.maxSelect) {
-                            return (
-                              <div key={choice} className={`flex items-center justify-between px-3 py-2.5 rounded-xl border-2 transition-all duration-200 ${
-                                count > 0 ? "border-primary bg-primary/5" : "border-border bg-white"
-                              }`}>
-                                <span className={`text-sm font-semibold ${count > 0 ? "text-primary" : "text-foreground"}`}>
-                                  {cleanChoice}
-                                </span>
-                                <div className="flex items-center gap-2">
-                                  <button
-                                    onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect, -1)}
-                                    disabled={count === 0}
-                                    className="w-7 h-7 rounded-full border-2 border-border flex items-center justify-center text-base font-bold disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
-                                  >−</button>
-                                  <span className="w-5 text-center text-sm font-bold">{count}</span>
-                                  <button
-                                    onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect, 1)}
-                                    disabled={totalReached}
-                                    className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-base font-bold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                                    style={!totalReached ? { borderColor: "#DFF057", backgroundColor: "#DFF057", color: "#3a3a0a" } : { borderColor: "#e5e7eb" }}
-                                  >+</button>
-                                </div>
-                              </div>
-                            );
-                          }
-
                           return (
                             <button key={choice}
                               onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect)}
