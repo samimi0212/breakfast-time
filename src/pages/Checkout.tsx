@@ -534,6 +534,7 @@ const CheckoutForm = () => {
                     d.setDate(d.getDate() + i);
                     const iso = d.toISOString().split("T")[0];
                     const isSelected = form.date === iso && !showCustomDate;
+                    const isUnavailable = i === 0 && generateSlots(iso).length === 0;
                     const label = i === 0
                       ? "Aujourd'hui"
                       : i === 1
@@ -543,13 +544,17 @@ const CheckoutForm = () => {
                       <button
                         key={iso}
                         type="button"
+                        disabled={isUnavailable}
                         onClick={() => {
+                          if (isUnavailable) return;
                           setForm((prev) => ({ ...prev, date: iso }));
                           setErrors((prev) => ({ ...prev, date: "" }));
                           setShowCustomDate(false);
                         }}
                         className={`px-3 py-2 rounded-xl border-2 text-sm font-medium transition-all whitespace-nowrap ${
-                          isSelected
+                          isUnavailable
+                            ? "border-border bg-background text-muted-foreground opacity-40 cursor-not-allowed"
+                            : isSelected
                             ? "border-primary bg-primary/10 text-primary"
                             : "border-border bg-background text-foreground hover:border-primary/50"
                         }`}
