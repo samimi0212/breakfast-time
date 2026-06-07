@@ -225,9 +225,6 @@ const Cart = () => {
                     {isMinReached && <CheckCircle2 size={14} style={{ color: "#DFF057", filter: "drop-shadow(0 0 1px #aaa)" }} />}
                     {isMinReached ? "Minimum atteint" : "Min. de commande : 15,00€"}
                   </span>
-                  <span className={isMinReached ? "text-green-600 font-bold" : "text-foreground font-bold"}>
-                    {orderTotal.toFixed(2).replace(".", ",")}€ / 15,00€
-                  </span>
                 </div>
                 <div className="h-2 rounded-full bg-muted overflow-hidden">
                   <div
