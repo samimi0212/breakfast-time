@@ -11,6 +11,12 @@ const Cart = () => {
   const [wantsCutlery, setWantsCutlery] = useState(false);
   const [cutleryQty, setCutleryQty] = useState(1);
 
+  const MIN_ORDER = 15;
+  const orderTotal = total + (wantsCutlery ? cutleryQty * 0.80 : 0);
+  const isMinReached = orderTotal >= MIN_ORDER;
+  const progressPct = Math.min((orderTotal / MIN_ORDER) * 100, 100);
+  const remaining = Math.max(MIN_ORDER - orderTotal, 0);
+
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-background">
@@ -208,13 +214,44 @@ const Cart = () => {
                 </div>
                 <div className="border-t border-border pt-4 flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span className="text-primary">{(total + (wantsCutlery ? cutleryQty * 0.80 : 0)).toFixed(2).replace(".", ",")}€</span>
+                  <span className="text-primary">{orderTotal.toFixed(2).replace(".", ",")}€</span>
                 </div>
               </div>
 
+              {/* Barre minimum de commande */}
+              <div className="mb-5">
+                <div className="flex justify-between text-xs font-medium mb-2">
+                  <span className={isMinReached ? "text-green-600" : "text-muted-foreground"}>
+                    {isMinReached ? "✓ Minimum atteint" : `Minimum de commande : 15,00€`}
+                  </span>
+                  <span className={isMinReached ? "text-green-600 font-bold" : "text-foreground font-bold"}>
+                    {orderTotal.toFixed(2).replace(".", ",")}€ / 15,00€
+                  </span>
+                </div>
+                <div className="h-2 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-500"
+                    style={{
+                      width: `${progressPct}%`,
+                      backgroundColor: isMinReached ? "#4ade80" : "#DFF057",
+                    }}
+                  />
+                </div>
+                {!isMinReached && (
+                  <p className="text-xs text-muted-foreground mt-1.5 text-center">
+                    Plus que <strong>{remaining.toFixed(2).replace(".", ",")}€</strong> pour valider votre commande
+                  </p>
+                )}
+              </div>
+
               <button
-                onClick={() => navigate("/commande")}
-                className="w-full bg-primary text-primary-foreground py-5 rounded-2xl font-semibold text-lg hover:opacity-90 transition-opacity"
+                onClick={() => isMinReached && navigate("/commande")}
+                disabled={!isMinReached}
+                className={`w-full py-5 rounded-2xl font-semibold text-lg transition-opacity ${
+                  isMinReached
+                    ? "bg-primary text-primary-foreground hover:opacity-90 cursor-pointer"
+                    : "bg-muted text-muted-foreground cursor-not-allowed"
+                }`}
               >
                 Passer la commande →
               </button>
