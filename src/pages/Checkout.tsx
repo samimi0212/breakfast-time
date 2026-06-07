@@ -527,7 +527,7 @@ const CheckoutForm = () => {
             >
               <SectionTitle icon={Clock} title="Créneau de livraison" complete={isCreneauComplete} />
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">Date</label>
+                <label className="block text-sm font-bold mb-2">Date</label>
                 <div className="flex gap-2 flex-wrap">
                   {Array.from({ length: 7 }, (_, i) => {
                     const d = new Date();
@@ -591,7 +591,7 @@ const CheckoutForm = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Heure</label>
+                <label className="block text-sm font-bold mb-2">Heure</label>
                 {slots.length === 0 ? (
                   <p className="text-sm text-muted-foreground italic">Aucun créneau disponible pour ce jour</p>
                 ) : (
