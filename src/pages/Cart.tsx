@@ -226,15 +226,14 @@ const Cart = () => {
                     {isMinReached ? "Minimum atteint" : "Min. de commande : 15,00€"}
                   </span>
                 </div>
-                <div className="h-2 rounded-full bg-muted overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-500"
-                    style={{
-                      width: `${progressPct}%`,
-                      backgroundColor: isMinReached ? "#4ade80" : "#DFF057",
-                    }}
-                  />
-                </div>
+                {!isMinReached && (
+                  <div className="h-2 rounded-full bg-muted overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${progressPct}%`, backgroundColor: "#DFF057" }}
+                    />
+                  </div>
+                )}
               </div>
 
               <button
