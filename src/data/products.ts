@@ -762,6 +762,16 @@ export const allProducts: Product[] = [
     options: [{ id: "lait", label: "Options", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
   },
   {
+    id: "chai-latte",
+    name: "Chai Latte",
+    price: "5,50€",
+    category: "Boissons",
+    img: "/chai-latte.png",
+    desc: "",
+    composition: ["Thé noir", "Epices", "Vanille"],
+    options: [],
+  },
+  {
     id: "americano",
     name: "Americano",
     price: "3,00€",

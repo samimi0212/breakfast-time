@@ -322,6 +322,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/capuccino.png",
     },
     {
+      id: "chai-latte",
+      name: "Chai Latte",
+      price: "5,50€",
+      img: "/chai-latte.png",
+    },
+    {
       id: "americano",
       name: "Americano",
       price: "3,00€",
