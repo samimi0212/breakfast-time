@@ -47,8 +47,8 @@ const ProductPage = () => {
         const idx = current.lastIndexOf(choice);
         const updated = [...current.slice(0, idx), ...current.slice(idx + 1)];
         setSelections((prev) => ({ ...prev, [optionId]: updated }));
-      } else if (total < maxSelect && !justRemovedThis) {
-        // Ajouter un exemplaire
+      } else if (total < maxSelect && (countForChoice === 0 || !justRemovedThis)) {
+        // Ajouter un exemplaire (countForChoice===0 : item entièrement désélectionné → toujours autoriser)
         lastRemovedRef.current = null;
         setSelections((prev) => ({ ...prev, [optionId]: [...current, choice] }));
       }
