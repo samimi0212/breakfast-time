@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, UtensilsCrossed } from "lucide-react";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, UtensilsCrossed, CheckCircle2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import logo from "@/assets/logo.png";
@@ -221,8 +221,9 @@ const Cart = () => {
               {/* Barre minimum de commande */}
               <div className="mb-5">
                 <div className="flex justify-between text-xs font-medium mb-2">
-                  <span className={isMinReached ? "text-green-600" : "text-muted-foreground"}>
-                    {isMinReached ? "✓ Minimum atteint" : `Minimum de commande : 15,00€`}
+                  <span className={`flex items-center gap-1 ${isMinReached ? "text-green-600" : "text-muted-foreground"}`}>
+                    {isMinReached && <CheckCircle2 size={14} style={{ color: "#DFF057", filter: "drop-shadow(0 0 1px #aaa)" }} />}
+                    {isMinReached ? "Minimum atteint" : "Min. de commande : 15,00€"}
                   </span>
                   <span className={isMinReached ? "text-green-600 font-bold" : "text-foreground font-bold"}>
                     {orderTotal.toFixed(2).replace(".", ",")}€ / 15,00€
@@ -237,11 +238,6 @@ const Cart = () => {
                     }}
                   />
                 </div>
-                {!isMinReached && (
-                  <p className="text-xs text-muted-foreground mt-1.5 text-center">
-                    Plus que <strong>{remaining.toFixed(2).replace(".", ",")}€</strong> pour valider votre commande
-                  </p>
-                )}
               </div>
 
               <button
@@ -249,9 +245,10 @@ const Cart = () => {
                 disabled={!isMinReached}
                 className={`w-full py-5 rounded-2xl font-semibold text-lg transition-opacity ${
                   isMinReached
-                    ? "bg-primary text-primary-foreground hover:opacity-90 cursor-pointer"
+                    ? "hover:opacity-90 cursor-pointer text-white"
                     : "bg-muted text-muted-foreground cursor-not-allowed"
                 }`}
+                style={isMinReached ? { backgroundColor: "#4ade80" } : {}}
               >
                 Passer la commande →
               </button>
