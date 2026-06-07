@@ -92,7 +92,7 @@ export const allProducts: Product[] = [
   {
     id: "menu-brunch",
     name: "Menu Brunch",
-    price: "29,00€",
+    price: "27,90€",
     category: "Nos Menus",
     img: "/menu-brunch.png",
     desc: "",

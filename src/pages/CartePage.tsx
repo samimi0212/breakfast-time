@@ -22,7 +22,7 @@ const menus = [
   {
     id: "menu-brunch",
     name: "Menu Brunch",
-    price: "29,00€",
+    price: "27,90€",
     img: "/menu-brunch.png",
   },
   {
