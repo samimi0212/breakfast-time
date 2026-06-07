@@ -32,19 +32,19 @@ const ProductPage = () => {
 
   const handleSelect = (optionId: string, choice: string, multiSelect?: boolean, maxSelect?: number) => {
     if (maxSelect) {
-      // Mode compteur : chaque clic ajoute 1, chaque clic sur un choix déjà compté retire 1
+      // Mode compteur : retrait prioritaire si déjà sélectionné, ajout si pas encore sélectionné et max non atteint
       setSelections((prev) => {
         const current = (prev[optionId] as string[]) || [];
         const total = current.length;
         const countForChoice = current.filter((c) => c === choice).length;
-        if (total < maxSelect) {
-          // Ajouter un exemplaire (toujours, tant que le max n'est pas atteint)
-          return { ...prev, [optionId]: [...current, choice] };
-        } else if (countForChoice > 0) {
-          // Max atteint → retirer un exemplaire de ce choix
+        if (countForChoice > 0) {
+          // Déjà sélectionné → toujours retirer un exemplaire (permet la désélection complète)
           const idx = current.lastIndexOf(choice);
           const updated = [...current.slice(0, idx), ...current.slice(idx + 1)];
           return { ...prev, [optionId]: updated };
+        } else if (total < maxSelect) {
+          // Pas encore sélectionné et max non atteint → ajouter
+          return { ...prev, [optionId]: [...current, choice] };
         }
         return prev;
       });
