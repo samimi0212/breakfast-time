@@ -588,7 +588,7 @@ export const allProducts: Product[] = [
   {
     id: "toast-mediterraneen",
     name: "Toast méditerranéen",
-    price: "17,90€",
+    price: "11,50€",
     category: "Le Salé",
     img: "/toast-med.png",
     desc: "",

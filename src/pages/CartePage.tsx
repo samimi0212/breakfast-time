@@ -210,7 +210,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "toast-mediterraneen",
       name: "Toast méditerranéen",
-      price: "17,90€",
+      price: "11,50€",
       img: "/toast-med.png",
     },
     {
