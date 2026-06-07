@@ -1,6 +1,6 @@
 import { useCart } from "@/context/CartContext";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ShoppingBag, Check, Minus, Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { allProducts } from "@/data/products";
@@ -12,6 +12,8 @@ const ProductPage = () => {
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
   const [selections, setSelections] = useState<Record<string, string | string[]>>({});
+  // Mémorise le dernier choix retiré pour continuer la désélection même sous le max
+  const lastRemovedRef = useRef<{ optionId: string; choice: string } | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,20 +34,24 @@ const ProductPage = () => {
 
   const handleSelect = (optionId: string, choice: string, multiSelect?: boolean, maxSelect?: number) => {
     if (maxSelect) {
-      // Mode compteur : chaque clic ajoute 1, chaque clic sur un choix déjà compté retire 1
-      setSelections((prev) => {
-        const current = (prev[optionId] as string[]) || [];
-        const total = current.length;
-        const countForChoice = current.filter((c) => c === choice).length;
-        if (total < maxSelect) {
-          return { ...prev, [optionId]: [...current, choice] };
-        } else if (countForChoice > 0) {
-          const idx = current.lastIndexOf(choice);
-          const updated = [...current.slice(0, idx), ...current.slice(idx + 1)];
-          return { ...prev, [optionId]: updated };
-        }
-        return prev;
-      });
+      const current = (selections[optionId] as string[]) || [];
+      const total = current.length;
+      const countForChoice = current.filter((c) => c === choice).length;
+      const justRemovedThis =
+        lastRemovedRef.current?.optionId === optionId &&
+        lastRemovedRef.current?.choice === choice;
+
+      if (countForChoice > 0 && (total >= maxSelect || justRemovedThis)) {
+        // Retirer un exemplaire (au max OU on vient d'en retirer un → on continue)
+        lastRemovedRef.current = { optionId, choice };
+        const idx = current.lastIndexOf(choice);
+        const updated = [...current.slice(0, idx), ...current.slice(idx + 1)];
+        setSelections((prev) => ({ ...prev, [optionId]: updated }));
+      } else if (total < maxSelect && !justRemovedThis) {
+        // Ajouter un exemplaire
+        lastRemovedRef.current = null;
+        setSelections((prev) => ({ ...prev, [optionId]: [...current, choice] }));
+      }
     } else if (multiSelect) {
       setSelections((prev) => {
         const current = (prev[optionId] as string[]) || [];
