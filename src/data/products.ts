@@ -772,6 +772,16 @@ export const allProducts: Product[] = [
     options: [],
   },
   {
+    id: "the-earl-grey",
+    name: "Thé Earl Grey",
+    price: "3,00€",
+    category: "Boissons",
+    img: "/the.png",
+    desc: "",
+    composition: ["Thé noir à la Bergamote"],
+    options: [],
+  },
+  {
     id: "americano",
     name: "Americano",
     price: "3,00€",

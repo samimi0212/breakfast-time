@@ -328,6 +328,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/chai-latte.png",
     },
     {
+      id: "the-earl-grey",
+      name: "Thé Earl Grey",
+      price: "3,00€",
+      img: "/the.png",
+    },
+    {
       id: "americano",
       name: "Americano",
       price: "3,00€",
