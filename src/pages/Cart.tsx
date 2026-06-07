@@ -238,10 +238,9 @@ const Cart = () => {
                 disabled={!isMinReached}
                 className={`w-full py-5 rounded-2xl font-semibold text-lg transition-opacity ${
                   isMinReached
-                    ? "hover:opacity-90 cursor-pointer text-white"
+                    ? "bg-primary text-primary-foreground hover:opacity-90 cursor-pointer"
                     : "bg-muted text-muted-foreground cursor-not-allowed"
                 }`}
-                style={isMinReached ? { backgroundColor: "#4ade80" } : {}}
               >
                 Passer la commande →
               </button>
