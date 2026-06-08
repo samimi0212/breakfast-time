@@ -295,34 +295,7 @@ const CheckoutForm = () => {
         return;
       }
 
-      // 3. Enregistrer la commande dans Supabase
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      const { data: insertedOrder, error: dbError } = await supabase.from("commandes").insert({
-        user_id: session?.user?.id || null,
-        user_email: form.email,
-        user_prenom: form.prenom,
-        user_nom: form.nom,
-        user_telephone: form.telephone,
-        adresse: form.complement ? `${form.adresse} — ${form.complement}` : form.adresse,
-        ville: form.ville,
-        code_postal: form.codePostal,
-        date_livraison: form.date,
-        heure_livraison: form.heure,
-        note: form.note,
-        items,
-        total: orderTotal,
-        frais_livraison: deliveryPrice,
-        statut: "Payée",
-      }).select().single();
-
-      if (dbError) {
-        console.error("Supabase insert error:", dbError);
-      }
-
-      // 4. Créer la livraison Stuart
+      // 3. Créer la livraison Stuart en premier pour récupérer le tracking_url
       let trackingUrl = "";
       try {
         const stuartRes = await fetch("/api/create-stuart-delivery", {
@@ -348,16 +321,37 @@ const CheckoutForm = () => {
         const stuartData = await stuartRes.json();
         if (stuartData.tracking_url) {
           trackingUrl = stuartData.tracking_url;
-          // Mettre à jour la commande avec l'URL de suivi Stuart
-          if (insertedOrder?.id) {
-            await supabase
-              .from("commandes")
-              .update({ tracking_url: trackingUrl })
-              .eq("id", insertedOrder.id);
-          }
         }
       } catch (stuartErr) {
         console.error("Stuart error:", stuartErr);
+      }
+
+      // 4. Enregistrer la commande dans Supabase avec le tracking_url inclus
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      const { error: dbError } = await supabase.from("commandes").insert({
+        user_id: session?.user?.id || null,
+        user_email: form.email,
+        user_prenom: form.prenom,
+        user_nom: form.nom,
+        user_telephone: form.telephone,
+        adresse: form.complement ? `${form.adresse} — ${form.complement}` : form.adresse,
+        ville: form.ville,
+        code_postal: form.codePostal,
+        date_livraison: form.date,
+        heure_livraison: form.heure,
+        note: form.note,
+        items,
+        total: orderTotal,
+        frais_livraison: deliveryPrice,
+        statut: "Payée",
+        tracking_url: trackingUrl || null,
+      });
+
+      if (dbError) {
+        console.error("Supabase insert error:", dbError);
       }
 
       // 5. Envoyer l'email de confirmation
