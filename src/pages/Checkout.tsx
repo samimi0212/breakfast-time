@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CreditCard, Clock, MapPin, User, Lock } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import type { PaymentRequest } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements, PaymentRequestButtonElement } from "@stripe/react-stripe-js";
 import { useCart } from "@/context/CartContext";
 import { supabase } from "@/lib/supabase";
 import Navbar from "@/components/Navbar";
@@ -92,6 +93,17 @@ const CheckoutForm = () => {
   const suggestionsTimer = useRef<any>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [showCustomDate, setShowCustomDate] = useState(false);
+  const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(null);
+
+  // Refs pour capturer les valeurs courantes dans le handler paymentmethod
+  const formRef = useRef(form);
+  useEffect(() => { formRef.current = form; }, [form]);
+  const deliveryPriceRef = useRef(deliveryPrice);
+  useEffect(() => { deliveryPriceRef.current = deliveryPrice; }, [deliveryPrice]);
+  const itemsRef = useRef(items);
+  useEffect(() => { itemsRef.current = items; }, [items]);
+  const totalRef = useRef(total);
+  useEffect(() => { totalRef.current = total; }, [total]);
 
   const isCoordComplete = !!(form.prenom && form.nom && form.email && form.telephone);
   const isAdresseComplete = !!(form.adresse && form.ville && form.codePostal && deliveryPrice !== null);
@@ -129,6 +141,182 @@ const CheckoutForm = () => {
     setSlots(newSlots);
     setForm((prev) => ({ ...prev, heure: newSlots[0] || "" }));
   }, [form.date]);
+
+  // Initialiser le Payment Request (Google Pay / Apple Pay)
+  useEffect(() => {
+    if (!stripe) return;
+
+    const pr = stripe.paymentRequest({
+      country: "FR",
+      currency: "eur",
+      total: { label: "Breakfast Time", amount: 100 },
+    });
+
+    pr.canMakePayment().then((result) => {
+      if (result) setPaymentRequest(pr);
+    });
+
+    pr.on("paymentmethod", async (ev) => {
+      const f = formRef.current;
+      const dp = deliveryPriceRef.current;
+      const itms = itemsRef.current;
+      const tot = totalRef.current;
+
+      // Validation du formulaire
+      const errs: Record<string, string> = {};
+      if (!f.prenom) errs.prenom = "Ce champ est requis";
+      if (!f.nom) errs.nom = "Ce champ est requis";
+      if (!f.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) errs.email = "Email invalide";
+      if (!f.telephone) errs.telephone = "Ce champ est requis";
+      if (!f.adresse) errs.adresse = "Ce champ est requis";
+      if (!f.ville) errs.ville = "Ce champ est requis";
+      if (!f.codePostal) errs.codePostal = "Ce champ est requis";
+      if (!f.heure) errs.heure = "Sélectionnez un créneau";
+      if (dp === null) errs.adresse = "Adresse hors zone de livraison (max 15 km)";
+
+      if (Object.keys(errs).length > 0) {
+        ev.complete("fail");
+        setErrors(errs);
+        return;
+      }
+
+      const orderTotal = tot + (dp ?? 0);
+
+      try {
+        // Créer le PaymentIntent
+        const res = await fetch("/api/create-payment-intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: orderTotal }),
+        });
+        const data = await res.json();
+        if (!res.ok || data.error) {
+          ev.complete("fail");
+          setErrors({ general: data.error || "Erreur lors de la création du paiement" });
+          return;
+        }
+
+        // Confirmer le paiement (sans déclencher les actions 3DS pour l'instant)
+        const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(
+          data.clientSecret,
+          { payment_method: ev.paymentMethod.id },
+          { handleActions: false }
+        );
+
+        if (confirmError) {
+          ev.complete("fail");
+          setErrors({ general: confirmError.message || "Paiement refusé" });
+          return;
+        }
+
+        ev.complete("success");
+
+        // Si 3DS requis, le déclencher après
+        if (paymentIntent?.status === "requires_action") {
+          const { error } = await stripe.confirmCardPayment(data.clientSecret);
+          if (error) {
+            setErrors({ general: error.message || "Paiement refusé" });
+            return;
+          }
+        }
+
+        setLoading(true);
+
+        // Stuart delivery
+        let trackingUrl = "";
+        try {
+          const stuartRes = await fetch("/api/create-stuart-delivery", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              order: {
+                prenom: f.prenom,
+                nom: f.nom,
+                telephone: f.telephone,
+                adresse: f.complement ? `${f.adresse} — ${f.complement}` : f.adresse,
+                ville: f.ville,
+                codePostal: f.codePostal,
+                date: f.date,
+                heure: f.heure,
+                isMaintenant: f.isMaintenant,
+                note: f.note,
+                items: itms,
+                total: tot,
+              },
+            }),
+          });
+          const stuartData = await stuartRes.json();
+          if (stuartData.tracking_url) trackingUrl = stuartData.tracking_url;
+        } catch (stuartErr) {
+          console.error("Stuart error:", stuartErr);
+        }
+
+        // Supabase
+        const { data: { session } } = await supabase.auth.getSession();
+        await supabase.from("commandes").insert({
+          user_id: session?.user?.id || null,
+          user_email: f.email,
+          user_prenom: f.prenom,
+          user_nom: f.nom,
+          user_telephone: f.telephone,
+          adresse: f.complement ? `${f.adresse} — ${f.complement}` : f.adresse,
+          ville: f.ville,
+          code_postal: f.codePostal,
+          date_livraison: f.date,
+          heure_livraison: f.heure,
+          note: f.note,
+          items: itms,
+          total: orderTotal,
+          frais_livraison: dp,
+          statut: "Payée",
+          tracking_url: trackingUrl || null,
+        });
+
+        // Email de confirmation
+        try {
+          await fetch("/api/send-order-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              order: {
+                prenom: f.prenom,
+                nom: f.nom,
+                email: f.email,
+                telephone: f.telephone,
+                adresse: f.complement ? `${f.adresse} — ${f.complement}` : f.adresse,
+                ville: f.ville,
+                codePostal: f.codePostal,
+                date: f.date,
+                heure: f.heure,
+                isMaintenant: f.isMaintenant,
+                note: f.note,
+                items: itms,
+                total: orderTotal,
+                fraisLivraison: dp,
+                stripeId: paymentIntent?.id,
+                trackingUrl,
+              },
+            }),
+          });
+        } catch { /* ignore */ }
+
+        clearCart();
+        navigate("/confirmation");
+      } catch (err: any) {
+        ev.complete("fail");
+        setErrors({ general: err.message || "Erreur. Veuillez réessayer." });
+        setLoading(false);
+      }
+    });
+  }, [stripe]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Mettre à jour le montant du Payment Request quand le total change
+  useEffect(() => {
+    if (!paymentRequest || deliveryPrice === null) return;
+    paymentRequest.update({
+      total: { label: "Breakfast Time", amount: Math.round((total + deliveryPrice) * 100) },
+    });
+  }, [paymentRequest, total, deliveryPrice]);
 
   // Calcul des frais de livraison dès que l'adresse est complète
   useEffect(() => {
@@ -671,13 +859,36 @@ const CheckoutForm = () => {
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                   <CreditCard size={16} className="text-primary" />
                 </div>
-                <h2 className="font-display text-lg font-semibold">Paiement par carte</h2>
+                <h2 className="font-display text-lg font-semibold">Paiement</h2>
               </div>
 
               {deliveryError && (
                 <p className="text-red-400 text-sm mb-3 flex items-center gap-1.5">
                   <span>⚠️</span> Veuillez d'abord renseigner une adresse dans notre zone de livraison.
                 </p>
+              )}
+
+              {/* Google Pay / Apple Pay */}
+              {paymentRequest && (
+                <div className="mb-5">
+                  <PaymentRequestButtonElement
+                    options={{
+                      paymentRequest,
+                      style: {
+                        paymentRequestButton: {
+                          type: "default",
+                          theme: "dark",
+                          height: "48px",
+                        },
+                      },
+                    }}
+                  />
+                  <div className="flex items-center gap-3 mt-4">
+                    <div className="flex-1 h-px bg-border" />
+                    <span className="text-xs text-muted-foreground">ou payer par carte</span>
+                    <div className="flex-1 h-px bg-border" />
+                  </div>
+                </div>
               )}
 
               <div className="border-2 border-border rounded-xl px-4 py-4 focus-within:border-primary transition">
