@@ -375,7 +375,7 @@ export const allProducts: Product[] = [
     category: "Viennoiseries",
     img: "/mini-viennoiseries.png",
     desc: "",
-    composition: ["Pur beurre"],
+    composition: ["Pur beurre", "2 mini pains au chocolat", "2 mini croissants"],
   },
   // ---- PAINS ----
   {
