@@ -16,11 +16,10 @@ async function getStuartToken(): Promise<string> {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": `Basic ${credentials}`,
     },
     body: new URLSearchParams({
       grant_type: "client_credentials",
-      client_id: clientId,
-      client_secret: clientSecret,
     }),
   });
 
