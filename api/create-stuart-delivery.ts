@@ -25,7 +25,7 @@ async function getStuartToken(): Promise<string> {
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`Auth Stuart échouée [id:${clientId?.slice(0,6)}... secret:${clientSecret?.slice(0,6)}...]: ${err}`);
+    throw new Error(`Auth Stuart échouée — status:${res.status} — body:${err} — id:${clientId} — secret:${clientSecret?.slice(0,8)}...`);
   }
 
   const data: any = await res.json();
