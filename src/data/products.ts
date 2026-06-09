@@ -546,7 +546,7 @@ export const allProducts: Product[] = [
         label: "Choix du nappage",
         required: true,
         multiSelect: false,
-        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy"],
+        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy", "Crème de pistache"],
       },
       {
         id: "toppings",
