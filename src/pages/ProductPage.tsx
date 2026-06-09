@@ -264,7 +264,7 @@ const ProductPage = () => {
                         const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
                         const supplement = extractSupplement(choice);
                         const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
-                        const showPriceBadge = supplement > 0 && (!option.firstFree || withPriceArr.length >= option.firstFree);
+                        const showPriceBadge = supplement > 0 && (isSelected ? isPaid : (!option.firstFree || withPriceArr.length >= option.firstFree));
                         return (
                           <button
                             key={choice}
@@ -482,7 +482,7 @@ const ProductPage = () => {
                           const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
                           const supplement = extractSupplement(choice);
                           const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
-                          const showPriceBadge = supplement > 0 && (!option.firstFree || withPriceArr.length >= option.firstFree);
+                          const showPriceBadge = supplement > 0 && (isSelected ? isPaid : (!option.firstFree || withPriceArr.length >= option.firstFree));
                           return (
                             <button key={choice}
                               onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect)}
