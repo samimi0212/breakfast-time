@@ -635,7 +635,7 @@ export const allProducts: Product[] = [
   {
     id: "brioche-perdue",
     name: "Brioche Perdue Gourmande",
-    price: "12,90€",
+    price: "7,50€",
     category: "Le Sucré",
     img: "/brioche-perdue.png",
     desc: "",
