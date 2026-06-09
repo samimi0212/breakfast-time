@@ -264,6 +264,7 @@ const ProductPage = () => {
                         const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
                         const supplement = extractSupplement(choice);
                         const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
+                        const showPriceBadge = supplement > 0 && (!option.firstFree || withPriceArr.length >= option.firstFree);
                         return (
                           <button
                             key={choice}
@@ -284,7 +285,7 @@ const ProductPage = () => {
                                 ×{count}
                               </span>
                             )}
-                            {supplement > 0 && (
+                            {showPriceBadge && (
                               <span className="absolute -top-2 -right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-md leading-none"
                                 style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
                                 +{supplement.toFixed(2).replace(".", ",")}€
@@ -481,6 +482,7 @@ const ProductPage = () => {
                           const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
                           const supplement = extractSupplement(choice);
                           const isPaid = option.firstFree ? isSelected && paidItems.includes(choice) : isSelected && supplement > 0;
+                          const showPriceBadge = supplement > 0 && (!option.firstFree || withPriceArr.length >= option.firstFree);
                           return (
                             <button key={choice}
                               onClick={() => handleSelect(option.id, choice, option.multiSelect, option.maxSelect)}
@@ -496,7 +498,7 @@ const ProductPage = () => {
                                 <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
                                   style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>×{count}</span>
                               )}
-                              {supplement > 0 && (
+                              {showPriceBadge && (
                                 <span className="absolute -top-2 -right-2 text-[10px] font-bold px-1.5 py-0.5 rounded-md leading-none"
                                   style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
                                   +{supplement.toFixed(2).replace(".", ",")}€
