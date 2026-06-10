@@ -49,7 +49,7 @@ export const allProducts: Product[] = [
       id: "jus",
       label: "Jus frais",
       required: true,
-      choices: ["Orange", "Pomme", "Pamplemousse"],
+      choices: ["Orange", "Pamplemousse", "Abricot"],
     },
     {
       id: "boisson-chaude",
@@ -72,7 +72,7 @@ export const allProducts: Product[] = [
         id: "jus",
         label: "Jus frais",
         required: true,
-        choices: ["Orange", "Pomme", "Pamplemousse"],
+        choices: ["Orange", "Pamplemousse", "Abricot"],
       },
       {
         id: "boisson-chaude",
@@ -117,7 +117,7 @@ export const allProducts: Product[] = [
         label: "Jus frais (1 au choix)",
         required: true,
         multiSelect: false,
-        choices: ["Orange", "Pomme", "Pamplemousse"],
+        choices: ["Orange", "Pamplemousse", "Abricot"],
       },
       {
         id: "boisson-chaude",
@@ -148,7 +148,7 @@ export const allProducts: Product[] = [
         label: "Jus frais (1 au choix)",
         required: true,
         multiSelect: false,
-        choices: ["Orange", "Pomme", "Pamplemousse"],
+        choices: ["Orange", "Pamplemousse", "Abricot"],
       },
       {
         id: "boisson-chaude",
@@ -203,7 +203,7 @@ export const allProducts: Product[] = [
         required: true,
         multiSelect: true,
         maxSelect: 2,
-        choices: ["Orange", "Pomme", "Pamplemousse"],
+        choices: ["Orange", "Pamplemousse", "Abricot"],
       },
       {
         id: "boissons-chaudes",
@@ -253,7 +253,7 @@ export const allProducts: Product[] = [
         required: true,
         multiSelect: true,
         maxSelect: 4,
-        choices: ["Orange", "Pomme", "Pamplemousse"],
+        choices: ["Orange", "Pamplemousse", "Abricot"],
       },
       {
         id: "boissons-chaudes",
