@@ -24,9 +24,13 @@ const Login = () => {
   };
 
   const handleOAuth = async (provider: "google" | "apple") => {
+    // Sauvegarde la destination avant OAuth (Google redirige toujours vers /)
+    if (redirectTo && redirectTo !== "/") {
+      localStorage.setItem("post_auth_redirect", redirectTo);
+    }
     await supabase.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: `${window.location.origin}${redirectTo}` },
+      options: { redirectTo: `${window.location.origin}/` },
     });
   };
 
