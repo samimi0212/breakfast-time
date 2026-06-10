@@ -81,6 +81,38 @@
         d.getElementsByTagName("head")[0].appendChild(s);
       })();
     </script>
+    <!-- Remonte le bouton Crisp au-dessus de la bottom nav sur mobile -->
+    <script type="text/javascript">
+      (function() {
+        function adjustCrisp() {
+          if (window.innerWidth >= 768) return;
+          var bottomNav = 64;
+          var safeArea = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sab') || '0') || 0;
+          var offset = bottomNav + safeArea + 8;
+          // Injecte un style dans le <head> pour forcer la position
+          var id = 'crisp-mobile-fix';
+          var existing = document.getElementById(id);
+          if (existing) existing.remove();
+          var style = document.createElement('style');
+          style.id = id;
+          style.textContent = [
+            '@media (max-width: 767px) {',
+            '  #crisp-chatbox { bottom: ' + offset + 'px !important; }',
+            '  .crisp-client { bottom: ' + offset + 'px !important; }',
+            '  .cc-tlyw { bottom: ' + offset + 'px !important; }',
+            '}'
+          ].join('');
+          document.head.appendChild(style);
+        }
+        // On attend que Crisp soit chargé
+        document.addEventListener('DOMContentLoaded', function() {
+          adjustCrisp();
+          // Relance après le chargement complet de Crisp (délai)
+          setTimeout(adjustCrisp, 2000);
+        });
+        window.addEventListener('resize', adjustCrisp);
+      })();
+    </script>
     <!--End of Crisp Script-->
   </body>
 </html>
