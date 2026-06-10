@@ -73,47 +73,16 @@
     <script type="text/javascript">
       window.$crisp=[];
       window.CRISP_WEBSITE_ID="b5573395-055a-4e50-b62d-94c82f57f3c2";
+      // Sur mobile : déplace le bouton à gauche pour ne pas masquer la bottom nav
+      if (window.innerWidth < 768) {
+        window.$crisp.push(["config", "position:reverse", true]);
+      }
       (function(){
         var d=document;
         var s=d.createElement("script");
         s.src="https://client.crisp.chat/l.js";
         s.async=1;
         d.getElementsByTagName("head")[0].appendChild(s);
-      })();
-    </script>
-    <!-- Remonte le bouton Crisp au-dessus de la bottom nav sur mobile -->
-    <script type="text/javascript">
-      (function() {
-        if (window.innerWidth >= 768) return;
-        var OFFSET = '72px';
-
-        function fixCrisp(el) {
-          el.style.setProperty('bottom', OFFSET, 'important');
-        }
-
-        // Observer : dès que #crisp-chatbox apparaît dans le DOM, on le corrige
-        var observer = new MutationObserver(function(mutations) {
-          for (var i = 0; i < mutations.length; i++) {
-            var nodes = mutations[i].addedNodes;
-            for (var j = 0; j < nodes.length; j++) {
-              var node = nodes[j];
-              if (node.id === 'crisp-chatbox') {
-                fixCrisp(node);
-                // Surveille aussi les mutations internes (Crisp peut réappliquer ses styles)
-                var inner = new MutationObserver(function() { fixCrisp(node); });
-                inner.observe(node, { attributes: true, attributeFilter: ['style'], subtree: true });
-                return;
-              }
-            }
-          }
-        });
-        observer.observe(document.body, { childList: true });
-
-        // Fallback : si Crisp est déjà là au chargement
-        document.addEventListener('DOMContentLoaded', function() {
-          var el = document.getElementById('crisp-chatbox');
-          if (el) fixCrisp(el);
-        });
       })();
     </script>
     <!--End of Crisp Script-->
