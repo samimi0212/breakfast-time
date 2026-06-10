@@ -84,33 +84,36 @@
     <!-- Remonte le bouton Crisp au-dessus de la bottom nav sur mobile -->
     <script type="text/javascript">
       (function() {
-        function adjustCrisp() {
-          if (window.innerWidth >= 768) return;
-          var bottomNav = 64;
-          var safeArea = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sab') || '0') || 0;
-          var offset = bottomNav + safeArea + 8;
-          // Injecte un style dans le <head> pour forcer la position
-          var id = 'crisp-mobile-fix';
-          var existing = document.getElementById(id);
-          if (existing) existing.remove();
-          var style = document.createElement('style');
-          style.id = id;
-          style.textContent = [
-            '@media (max-width: 767px) {',
-            '  #crisp-chatbox { bottom: ' + offset + 'px !important; }',
-            '  .crisp-client { bottom: ' + offset + 'px !important; }',
-            '  .cc-tlyw { bottom: ' + offset + 'px !important; }',
-            '}'
-          ].join('');
-          document.head.appendChild(style);
+        if (window.innerWidth >= 768) return;
+        var OFFSET = '72px';
+
+        function fixCrisp(el) {
+          el.style.setProperty('bottom', OFFSET, 'important');
         }
-        // On attend que Crisp soit chargé
-        document.addEventListener('DOMContentLoaded', function() {
-          adjustCrisp();
-          // Relance après le chargement complet de Crisp (délai)
-          setTimeout(adjustCrisp, 2000);
+
+        // Observer : dès que #crisp-chatbox apparaît dans le DOM, on le corrige
+        var observer = new MutationObserver(function(mutations) {
+          for (var i = 0; i < mutations.length; i++) {
+            var nodes = mutations[i].addedNodes;
+            for (var j = 0; j < nodes.length; j++) {
+              var node = nodes[j];
+              if (node.id === 'crisp-chatbox') {
+                fixCrisp(node);
+                // Surveille aussi les mutations internes (Crisp peut réappliquer ses styles)
+                var inner = new MutationObserver(function() { fixCrisp(node); });
+                inner.observe(node, { attributes: true, attributeFilter: ['style'], subtree: true });
+                return;
+              }
+            }
+          }
         });
-        window.addEventListener('resize', adjustCrisp);
+        observer.observe(document.body, { childList: true });
+
+        // Fallback : si Crisp est déjà là au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+          var el = document.getElementById('crisp-chatbox');
+          if (el) fixCrisp(el);
+        });
       })();
     </script>
     <!--End of Crisp Script-->
