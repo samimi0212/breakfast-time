@@ -83,38 +83,17 @@
     </script>
     <!-- Remonte le bouton Crisp au-dessus de la bottom nav sur mobile -->
     <script type="text/javascript">
-      (function() {
-        if (window.innerWidth >= 768) return;
-        var BOTTOM = '72px';
-
-        function applyFix() {
+      if (window.innerWidth < 768) {
+        // CRISP_READY_TRIGGER = callback officiel Crisp quand le widget est prêt
+        window.CRISP_READY_TRIGGER = function() {
           var box = document.getElementById('crisp-chatbox');
-          if (!box) return false;
-          // Cible le container ET tous ses enfants directs (iframes inclus)
-          box.style.setProperty('bottom', BOTTOM, 'important');
-          var children = box.children;
-          for (var i = 0; i < children.length; i++) {
-            children[i].style.setProperty('bottom', BOTTOM, 'important');
-          }
-          return true;
-        }
-
-        // Relance la correction toutes les 500ms pendant 10s pour contrer Crisp
-        var attempts = 0;
-        var interval = setInterval(function() {
-          applyFix();
-          attempts++;
-          if (attempts >= 20) clearInterval(interval);
-        }, 500);
-
-        // Aussi via le callback Crisp natif
-        window.$crisp.push(["safe", function() {
-          applyFix();
-          // Réapplique à chaque ouverture/fermeture du chat
-          window.$crisp.push(["on", "chat:opened", applyFix]);
-          window.$crisp.push(["on", "chat:closed", applyFix]);
-        }]);
-      })();
+          if (!box) return;
+          // transform : Crisp ne le réinitialise jamais (contrairement à bottom/right)
+          // De plus, transform crée un stacking context : les iframes fixed à l'intérieur
+          // se positionnent par rapport au container transformé, pas par rapport au viewport
+          box.style.transform = 'translateY(-72px)';
+        };
+      }
     </script>
     <!--End of Crisp Script-->
   </body>
