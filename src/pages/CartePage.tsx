@@ -250,7 +250,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "pancakes-a-composer",
       name: "Pancakes à composer",
-      price: "4,50€",
+      price: "5,50€",
       img: "/pancakes-composer.png",
     },
     {

@@ -535,7 +535,7 @@ export const allProducts: Product[] = [
   {
     id: "pancakes-a-composer",
     name: "Pancakes à composer",
-    price: "4,50€",
+    price: "5,50€",
     category: "Le Sucré",
     img: "/pancakes-composer.png",
     desc: "",
