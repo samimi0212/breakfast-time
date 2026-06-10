@@ -56,7 +56,7 @@ const Navbar = () => {
           {user && (
             <button
               onClick={handleLogout}
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-red-50 transition-colors text-red-400"
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-muted transition-colors text-gray-300"
               title="Déconnexion"
             >
               <LogOut size={20} />
