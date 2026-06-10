@@ -387,6 +387,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "3,50€",
       img: "/jus-pamplemousse.png",
     },
+    {
+      id: "jus-abricot",
+      name: "Jus d'abricot",
+      price: "3,50€",
+      img: "/jus-abricot.png",
+    },
   ],
   "À Partager": [
     {

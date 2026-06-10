@@ -897,7 +897,7 @@ export const allProducts: Product[] = [
     category: "Boissons",
     img: "/jus-orange.png",
     desc: "",
-    composition: ["Oranges fraîches pressées"],
+    composition: ["100% pur jus pressé, sans sucres ajoutés"],
   },
   {
     id: "jus-pamplemousse-presse",
@@ -906,7 +906,16 @@ export const allProducts: Product[] = [
     category: "Boissons",
     img: "/jus-pamplemousse.png",
     desc: "",
-    composition: ["Pamplemousses frais pressés"],
+    composition: ["100% pur jus pressé, sans sucres ajoutés"],
+  },
+  {
+    id: "jus-abricot",
+    name: "Jus d'abricot",
+    price: "3,50€",
+    category: "Boissons",
+    img: "/jus-abricot.png",
+    desc: "",
+    composition: ["Nectar d'abricot"],
   },
   // ---- À PARTAGER ----
   {
