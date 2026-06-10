@@ -81,20 +81,6 @@
         d.getElementsByTagName("head")[0].appendChild(s);
       })();
     </script>
-    <!-- Remonte le bouton Crisp au-dessus de la bottom nav sur mobile -->
-    <script type="text/javascript">
-      if (window.innerWidth < 768) {
-        // CRISP_READY_TRIGGER = callback officiel Crisp quand le widget est prêt
-        window.CRISP_READY_TRIGGER = function() {
-          var box = document.getElementById('crisp-chatbox');
-          if (!box) return;
-          // transform : Crisp ne le réinitialise jamais (contrairement à bottom/right)
-          // De plus, transform crée un stacking context : les iframes fixed à l'intérieur
-          // se positionnent par rapport au container transformé, pas par rapport au viewport
-          box.style.transform = 'translateY(-72px)';
-        };
-      }
-    </script>
     <!--End of Crisp Script-->
   </body>
 </html>

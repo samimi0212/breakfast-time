@@ -119,9 +119,15 @@
   }
 }
 
-/* Remonte le bouton Crisp au-dessus de la bottom nav sur mobile */
+/* Remonte le bouton Crisp au-dessus de la bottom nav sur mobile.
+   On cible le launcher (la bulle minimisée) via ses attributs Crisp stables
+   role="button" + data-maximized="false" — pas les classes hashées (cc-xxxx)
+   qui changent entre versions. On utilise transform : Crisp réinitialise
+   bottom/right mais jamais transform. À ne PAS appliquer sur #crisp-chatbox
+   lui-même : un transform sur le conteneur crée un containing block et envoie
+   le bouton fixed hors écran. */
 @media (max-width: 767px) {
-  #crisp-chatbox {
-    bottom: calc(64px + env(safe-area-inset-bottom)) !important;
+  #crisp-chatbox [role="button"][data-maximized="false"] {
+    transform: translateY(-72px) !important;
   }
 }
