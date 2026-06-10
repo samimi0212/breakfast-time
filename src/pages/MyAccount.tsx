@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, Mail, Phone, Lock, Check } from "lucide-react";
+import { User, Mail, Phone, Lock, Check, ShoppingBag, ChevronRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import Navbar from "@/components/Navbar";
 
@@ -131,6 +131,24 @@ const MyAccount = () => {
             {error}
           </div>
         )}
+
+        {/* Mes commandes — accès rapide */}
+        <button
+          onClick={() => navigate("/mes-commandes")}
+          className="w-full bg-white rounded-2xl p-5 mb-6 flex items-center justify-between hover:shadow-md transition-shadow"
+          style={{ boxShadow: "var(--card-shadow)" }}
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+              <ShoppingBag size={18} className="text-primary" />
+            </div>
+            <div className="text-left">
+              <p className="font-semibold text-foreground">Mes commandes</p>
+              <p className="text-xs text-muted-foreground">Historique & suivi de livraison</p>
+            </div>
+          </div>
+          <ChevronRight size={20} className="text-muted-foreground" />
+        </button>
 
         {/* Infos personnelles */}
         <div className="bg-white rounded-2xl p-6 mb-6" style={{ boxShadow: "var(--card-shadow)" }}>
