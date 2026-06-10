@@ -52,6 +52,16 @@ const Navbar = () => {
 
         {/* Right */}
         <div className="flex-1 flex justify-end items-center gap-3">
+          {/* Déconnexion — mobile uniquement, quand connecté */}
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-red-50 transition-colors text-red-400"
+              title="Déconnexion"
+            >
+              <LogOut size={20} />
+            </button>
+          )}
           {user ? (
             <div className="hidden md:flex items-center gap-3 relative group">
               <button className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
