@@ -845,16 +845,6 @@ export const allProducts: Product[] = [
     options: [{ id: "lait", label: "Options", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
   },
   {
-    id: "cafe-frappe",
-    name: "Iced latte",
-    price: "5,50€",
-    category: "Boissons",
-    img: "/iced-latte.png",
-    desc: "",
-    composition: ["Espresso", "Lait", "Glaçons", "Sucre"],
-    options: [{ id: "lait", label: "Options", required: false, multiSelect: false, choices: ["Lait d'avoine (+0,50€)"] }],
-  },
-  {
     id: "smoothie-banane",
     name: "Smoothie banane",
     price: "6,50€",

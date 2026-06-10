@@ -358,12 +358,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/chocolat-chaud.png",
     },
     {
-      id: "cafe-frappe",
-      name: "Iced latte",
-      price: "5,50€",
-      img: "/iced-latte.png",
-    },
-    {
       id: "smoothie-banane",
       name: "Smoothie banane",
       price: "6,50€",
