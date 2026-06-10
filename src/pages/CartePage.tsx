@@ -254,9 +254,15 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/pancakes-composer.png",
     },
     {
+      id: "gaufre-composer",
+      name: "Gaufre à composer",
+      price: "6,50€",
+      img: "/gaufre-composer.png",
+    },
+    {
       id: "brioche-perdue",
       name: "Brioche Perdue Gourmande",
-      price: "12,90€",
+      price: "7,50€",
       img: "/brioche-perdue.png",
     },
     {
