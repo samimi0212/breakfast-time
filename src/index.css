@@ -118,3 +118,10 @@
     padding-bottom: calc(64px + env(safe-area-inset-bottom));
   }
 }
+
+/* Remonte le bouton Crisp au-dessus de la bottom nav sur mobile */
+@media (max-width: 767px) {
+  #crisp-chatbox {
+    bottom: calc(64px + env(safe-area-inset-bottom)) !important;
+  }
+}
