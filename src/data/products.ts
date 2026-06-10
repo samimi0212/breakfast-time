@@ -887,7 +887,7 @@ export const allProducts: Product[] = [
     category: "Boissons",
     img: "/jus-orange.png",
     desc: "",
-    composition: ["100% pur jus pressé, sans sucres ajoutés"],
+    composition: ["100% jus pressé, sans sucres ajoutés"],
   },
   {
     id: "jus-pamplemousse-presse",
@@ -896,7 +896,7 @@ export const allProducts: Product[] = [
     category: "Boissons",
     img: "/jus-pamplemousse.png",
     desc: "",
-    composition: ["100% pur jus pressé, sans sucres ajoutés"],
+    composition: ["100% jus pressé, sans sucres ajoutés"],
   },
   {
     id: "jus-abricot",
