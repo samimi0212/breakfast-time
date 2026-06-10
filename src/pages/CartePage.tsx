@@ -290,10 +290,10 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/cookie-choco.png",
     },
     {
-      id: "cookie-gluten-free",
-      name: "Cookie Gluten Free",
-      price: "2,60€",
-      img: "/cookie-sans-gluten.png",
+      id: "cookie-caramel",
+      name: "Cookie Caramel Salé",
+      price: "3,80€",
+      img: "/cookie-caramel.png",
     },
     {
       id: "brownie-pecan",

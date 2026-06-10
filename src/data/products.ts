@@ -721,13 +721,13 @@ export const allProducts: Product[] = [
     composition: ["Farine", "Beurre", "Pépites de chocolat", "Sucre", "Œuf"],
   },
   {
-    id: "cookie-gluten-free",
-    name: "Cookie Gluten Free",
-    price: "2,60€",
+    id: "cookie-caramel",
+    name: "Cookie Caramel Salé",
+    price: "3,80€",
     category: "Le Sucré",
-    img: "/cookie-sans-gluten.png",
+    img: "/cookie-caramel.png",
     desc: "",
-    composition: [],
+    composition: ["Caramel", "Beurre salé de Guérande"],
   },
   {
     id: "brownie-pecan",
