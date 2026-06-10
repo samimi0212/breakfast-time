@@ -750,7 +750,7 @@ export const allProducts: Product[] = [
   {
     id: "muffin-myrtilles",
     name: "Muffin myrtilles",
-    price: "2,70€",
+    price: "3,50€",
     category: "Le Sucré",
     img: "/muffin-myrtilles.png",
     desc: "",
@@ -760,7 +760,7 @@ export const allProducts: Product[] = [
   {
     id: "muffin-choco",
     name: "Muffin Chocolat",
-    price: "4,50€",
+    price: "3,50€",
     category: "Le Sucré",
     img: "/muffin-choco.png",
     desc: "",

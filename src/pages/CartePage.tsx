@@ -304,13 +304,13 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "muffin-myrtilles",
       name: "Muffin myrtilles",
-      price: "2,70€",
+      price: "3,50€",
       img: "/muffin-myrtilles.png",
     },
     {
       id: "muffin-choco",
       name: "Muffin Chocolat",
-      price: "4,50€",
+      price: "3,50€",
       img: "/muffin-choco.png",
     },
   ],
