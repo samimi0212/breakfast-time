@@ -73,16 +73,47 @@
     <script type="text/javascript">
       window.$crisp=[];
       window.CRISP_WEBSITE_ID="b5573395-055a-4e50-b62d-94c82f57f3c2";
-      // Sur mobile : déplace le bouton à gauche pour ne pas masquer la bottom nav
-      if (window.innerWidth < 768) {
-        window.$crisp.push(["config", "position:reverse", true]);
-      }
       (function(){
         var d=document;
         var s=d.createElement("script");
         s.src="https://client.crisp.chat/l.js";
         s.async=1;
         d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
+    <!-- Remonte le bouton Crisp au-dessus de la bottom nav sur mobile -->
+    <script type="text/javascript">
+      (function() {
+        if (window.innerWidth >= 768) return;
+        var BOTTOM = '72px';
+
+        function applyFix() {
+          var box = document.getElementById('crisp-chatbox');
+          if (!box) return false;
+          // Cible le container ET tous ses enfants directs (iframes inclus)
+          box.style.setProperty('bottom', BOTTOM, 'important');
+          var children = box.children;
+          for (var i = 0; i < children.length; i++) {
+            children[i].style.setProperty('bottom', BOTTOM, 'important');
+          }
+          return true;
+        }
+
+        // Relance la correction toutes les 500ms pendant 10s pour contrer Crisp
+        var attempts = 0;
+        var interval = setInterval(function() {
+          applyFix();
+          attempts++;
+          if (attempts >= 20) clearInterval(interval);
+        }, 500);
+
+        // Aussi via le callback Crisp natif
+        window.$crisp.push(["safe", function() {
+          applyFix();
+          // Réapplique à chaque ouverture/fermeture du chat
+          window.$crisp.push(["on", "chat:opened", applyFix]);
+          window.$crisp.push(["on", "chat:closed", applyFix]);
+        }]);
       })();
     </script>
     <!--End of Crisp Script-->
