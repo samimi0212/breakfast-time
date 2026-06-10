@@ -712,6 +712,24 @@ export const allProducts: Product[] = [
     ],
   },
   {
+    id: "acai-bowl",
+    name: "Acaï Bowl",
+    price: "10,50€",
+    category: "Le Sucré",
+    img: "/acai-bowl.png",
+    desc: "",
+    composition: ["Acai", "Bananes", "Fruits rouges", "Granola maison", "Miel"],
+    options: [
+      {
+        id: "supplement",
+        label: "Supplément (+0,90€ chacun)",
+        required: false,
+        multiSelect: true,
+        choices: ["Beurre de cacahuètes (+0,90€)", "Noix de coco (+0,90€)", "Noisettes torréfiées (+0,90€)"],
+      },
+    ],
+  },
+  {
     id: "cookie-chocolat",
     name: "Cookie chocolat",
     price: "3,50€",

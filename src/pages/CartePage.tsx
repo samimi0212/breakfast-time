@@ -284,6 +284,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/granola-bowl.png",
     },
     {
+      id: "acai-bowl",
+      name: "Acaï Bowl",
+      price: "10,50€",
+      img: "/acai-bowl.png",
+    },
+    {
       id: "cookie-chocolat",
       name: "Cookie chocolat",
       price: "3,50€",
