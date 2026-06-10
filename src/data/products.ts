@@ -559,6 +559,32 @@ export const allProducts: Product[] = [
     ],
   },
   {
+    id: "gaufre-composer",
+    name: "Gaufre à composer",
+    price: "6,50€",
+    category: "Le Sucré",
+    img: "/gaufre-composer.png",
+    desc: "",
+    composition: ["1 gaufre de Liège", "1 nappage au choix", "1 topping au choix"],
+    options: [
+      {
+        id: "nappage",
+        label: "Choix du nappage",
+        required: true,
+        multiSelect: false,
+        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy", "Crème de pistache"],
+      },
+      {
+        id: "toppings",
+        label: "Choix des toppings (1 inclus)",
+        required: true,
+        multiSelect: true,
+        firstFree: 1,
+        choices: ["Eclats de noisettes (+0,90€)", "Noix de pécan (+0,90€)", "Fruits rouges (+0,90€)", "Banane (+0,90€)"],
+      },
+    ],
+  },
+  {
     id: "breakfast-bowl",
     name: "Breakfast Bowl",
     price: "11,50€",
