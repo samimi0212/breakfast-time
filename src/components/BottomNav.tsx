@@ -26,7 +26,7 @@ const BottomNav = () => {
     { icon: Home, label: "Accueil", href: "/" },
     { icon: UtensilsCrossed, label: "Carte", href: "/carte" },
     { icon: ShoppingBag, label: "Panier", href: "/panier" },
-    { icon: User, label: "Compte", href: user ? "/mon-compte" : "/connexion" },
+    { icon: User, label: "Compte", href: user ? "/mon-compte" : `/connexion?redirect=${encodeURIComponent(typeof window !== "undefined" ? window.location.pathname : "/")}` },
   ];
 
   return (

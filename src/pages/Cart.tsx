@@ -4,6 +4,7 @@ import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import logo from "@/assets/logo.png";
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 const Cart = () => {
   const { items, removeItem, updateQty, total, clearCart } = useCart();
@@ -234,7 +235,15 @@ const Cart = () => {
               )}
 
               <button
-                onClick={() => isMinReached && navigate("/commande")}
+                onClick={async () => {
+                  if (!isMinReached) return;
+                  const { data: { session } } = await supabase.auth.getSession();
+                  if (session) {
+                    navigate("/commande");
+                  } else {
+                    navigate("/connexion?redirect=%2Fcommande");
+                  }
+                }}
                 disabled={!isMinReached}
                 className={`w-full py-5 rounded-2xl font-semibold text-lg transition-opacity ${
                   isMinReached
