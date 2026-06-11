@@ -2,59 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Pages principales -->
-  <url>
-    <loc>https://breakfast-time.fr/</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://breakfast-time.fr/carte</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://breakfast-time.fr/evenements</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://breakfast-time.fr/contact</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://breakfast-time.fr/mentions-legales</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://breakfast-time.fr/cgv</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://breakfast-time.fr/confidentialite</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
+  <url><loc>https://breakfast-time.fr/</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://breakfast-time.fr/carte</loc><lastmod>2026-06-11</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://breakfast-time.fr/evenements</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://breakfast-time.fr/contact</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://breakfast-time.fr/mentions-legales</loc><lastmod>2026-06-11</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://breakfast-time.fr/cgv</loc><lastmod>2026-06-11</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://breakfast-time.fr/confidentialite</loc><lastmod>2026-06-11</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
 
   <!-- Menus -->
-  <url><loc>https://breakfast-time.fr/produit/menu-francais</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/menu-anglais</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/menu-brunch</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/menu-veggie</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/menu-duo</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/menu-famille</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/birthday-box</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/menu-francais</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/menu-anglais</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/menu-brunch</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/menu-veggie</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/menu-duo</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/menu-famille</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/birthday-box</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- Viennoiseries & Boulangerie -->
+  <!-- Viennoiseries -->
   <url><loc>https://breakfast-time.fr/produit/croissant</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/pain-au-chocolat</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/brioche</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -62,6 +27,8 @@
   <url><loc>https://breakfast-time.fr/produit/pain-aux-raisins</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/suisse</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/mini-viennoiseries</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Pains -->
   <url><loc>https://breakfast-time.fr/produit/baguette</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/baguette-bio</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/pain-ciabatta</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -71,38 +38,37 @@
   <url><loc>https://breakfast-time.fr/produit/pain-complet</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/pain-nordique</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
-  <!-- Bagels & Toasts -->
+  <!-- Le Salé -->
   <url><loc>https://breakfast-time.fr/produit/bagel-chevre-miel</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/bagel-bacon-cheddar</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/bagel-saumon-avocat</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/avocado-toast</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/toast-mediterraneen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/potatoe-saumon</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- Œufs & Plats -->
   <url><loc>https://breakfast-time.fr/produit/oeufs-benedicte</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/oeufs-brouilles-truffe</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/oeufs-brouilles</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/breakfast-burrito</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/pancakes-a-composer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/breakfast-bowl</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/rostis</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/chicken-burrito</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/toast-mediterraneen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/potatoe-saumon</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/breakfast-bowl</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- Accompagnements -->
+  <!-- Extra -->
+  <url><loc>https://breakfast-time.fr/produit/rostis</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/salade-verte</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://breakfast-time.fr/produit/frites-patates-douces</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://breakfast-time.fr/produit/halloumi-grille</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
-  <!-- Sucrés -->
+  <!-- Le Sucré -->
+  <url><loc>https://breakfast-time.fr/produit/pancakes-a-composer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/gaufre-composer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/brioche-perdue</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/brioche-perdue-caramel</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/pudding-chia</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/granola-parfait</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/acai-bowl</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/cookie-chocolat</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/cookie-gluten-free</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/cookie-vegan</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/cake-marbre</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/cookie-caramel</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/brownie-pecan</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/muffin-myrtilles</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/muffin-choco</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
@@ -113,16 +79,19 @@
   <url><loc>https://breakfast-time.fr/produit/the-earl-grey</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://breakfast-time.fr/produit/americano</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://breakfast-time.fr/produit/chocolat-chaud</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://breakfast-time.fr/produit/cafe-frappe</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://breakfast-time.fr/produit/smoothie-banane</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://breakfast-time.fr/produit/smoothie-fruits-rouges</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://breakfast-time.fr/produit/jus-orange-presse</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/jus-pamplemousse-presse</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/jus-abricot</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
-  <!-- Plateaux & Événements -->
+  <!-- À Partager -->
   <url><loc>https://breakfast-time.fr/produit/plateau-viennoiseries</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://breakfast-time.fr/produit/brioche-partager</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://breakfast-time.fr/produit/cake-marbre</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://breakfast-time.fr/produit/plateau-pancakes</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Événements -->
   <url><loc>https://breakfast-time.fr/produit/brunch-mariage</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://breakfast-time.fr/produit/brunch-entreprise</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://breakfast-time.fr/produit/brunch-groupe</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
