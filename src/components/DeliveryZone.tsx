@@ -65,7 +65,8 @@ const DeliveryZone = () => {
     <section id="delivery" className="section-padding bg-secondary">
       <div className="max-w-6xl mx-auto text-center">
         <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Zone de livraison</p>
-        <h2 className="section-title mb-8">Nous livrons dans les Alpes-Maritimes</h2>
+        <h2 className="section-title mb-3">Nous livrons dans les Alpes-Maritimes</h2>
+        <p className="text-sm text-muted-foreground mb-8">Cannes, Antibes, Nice et alentours</p>
 
         {/* Vérificateur d'adresse */}
         <div className="max-w-xl mx-auto mb-12">
