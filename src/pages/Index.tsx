@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   usePageMeta(
     "Breakfast Time — Petit-déjeuner & brunch livré à domicile",
-    "Livraison de petits-déjeuners et brunch à domicile dans les Alpes Maritimes. Commande et livraison le jour même. 7j/7, 8h-15h. Produits frais et de saison. Large choix de menus et produits à la carte.",
+    "Livraison de petits-déjeuners et brunch à domicile dans les Alpes Maritimes. Commande et livraison le jour même. 7j/7, 8h-15h. Produits frais et de saison. Large choix de menus et produits à la carte. Cannes, Antibes, Nice et alentours.",
     "/"
   );
 
