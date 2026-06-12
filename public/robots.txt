@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://breakfast-time.fr/sitemap.xml
+Sitemap: https://www.breakfast-time.fr/sitemap.xml
