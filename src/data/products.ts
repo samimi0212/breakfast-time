@@ -167,8 +167,7 @@ export const allProducts: Product[] = [
     img: "/menu-duo.png",
     desc: "",
     composition: [
-      "1 bagel au choix",
-      "1 burrito au choix",
+      "2 bagels / burritos au choix",
       "1 Granola Bowl Parfait",
       "1 extra au choix",
       "2 œufs brouillés",
@@ -177,18 +176,12 @@ export const allProducts: Product[] = [
     ],
     options: [
       {
-        id: "bagel",
-        label: "Bagel (1 au choix)",
+        id: "bagels-burritos",
+        label: "Bagels / Burritos (2 au choix)",
         required: true,
-        multiSelect: false,
-        choices: ["Bagel chèvre miel", "Bagel Bacon Cheddar", "Bagel Saumon Avocat"],
-      },
-      {
-        id: "burrito",
-        label: "Burrito (1 au choix)",
-        required: true,
-        multiSelect: false,
-        choices: ["Breakfast Burrito", "Chicken Burrito"],
+        multiSelect: true,
+        maxSelect: 2,
+        choices: ["Bagel chèvre miel", "Bagel Bacon Cheddar", "Bagel Saumon Avocat", "Breakfast Burrito", "Chicken Burrito"],
       },
       {
         id: "extra",
