@@ -39,39 +39,96 @@ export default async function handler(req: Request): Promise<Response> {
     await resend.emails.send({
       from: "Breakfast Time <noreply@immo-score.fr>",
       to: email,
-      subject: "Bienvenue dans la famille Breakfast Time !",
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background-color: #3a3a0a; padding: 40px; text-align: center; border-radius: 16px 16px 0 0;">
-            <p style="margin: 0 0 8px 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #DFF057;">Breakfast Time</p>
-            <h1 style="margin: 0; font-size: 28px; color: #ffffff; font-weight: normal;">Bonjour et bienvenue !</h1>
-            <p style="margin: 12px 0 0 0; font-size: 15px; color: rgba(255,255,255,0.6);">Votre inscription est confirmée</p>
-          </div>
-          <div style="padding: 40px; background: #ffffff;">
-            <p style="font-size: 16px; color: #3a3a0a; line-height: 1.7; margin: 0 0 20px 0;">
-              Merci de rejoindre la communauté Breakfast Time ! Vous serez parmi les premiers informés de :
-            </p>
-            <div style="background: #f9f9f4; border-radius: 12px; padding: 24px; margin-bottom: 28px;">
-              <p style="margin: 0 0 12px 0; font-size: 14px; color: #3a3a0a;">🥐 <strong>Nos nouvelles créations</strong> — viennoiseries et formules inédites</p>
-              <p style="margin: 0 0 12px 0; font-size: 14px; color: #3a3a0a;">🎁 <strong>Offres exclusives</strong> — promotions réservées à nos abonnés</p>
-              <p style="margin: 0; font-size: 14px; color: #3a3a0a;">📅 <strong>Nos événements</strong> — brunchs privatisés et pop-ups</p>
-            </div>
-            <div style="border-left: 4px solid #DFF057; padding-left: 16px; margin-bottom: 32px;">
-              <p style="margin: 0; font-size: 15px; color: #3a3a0a; line-height: 1.6; font-style: italic;">
-                "Le petit-déjeuner, c'est le repas qui donne le ton de toute une journée. Chez Breakfast Time, on le prend très au sérieux."
-              </p>
-            </div>
-            <div style="text-align: center;">
-              <a href="https://breakfast-time.fr" style="display: inline-block; background-color: #DFF057; color: #3a3a0a; text-decoration: none; font-weight: bold; font-size: 14px; padding: 14px 32px; border-radius: 50px;">
-                Découvrir notre carte →
-              </a>
-            </div>
-          </div>
-          <div style="background-color: #3a3a0a; padding: 24px; text-align: center; border-radius: 0 0 16px 16px;">
-            <p style="margin: 0; font-size: 12px; color: rgba(255,255,255,0.5);">© 2026 Breakfast Time · Tous droits réservés</p>
-          </div>
+      subject: "Bienvenue chez Breakfast Time ☀️",
+      html: `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body style="margin:0;padding:0;background-color:#f2ede4;font-family:Arial,Helvetica,sans-serif;">
+
+  <div style="max-width:580px;margin:0 auto;padding:32px 16px 48px;">
+
+    <!-- Logo -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <img src="https://www.breakfast-time.fr/logo.png" alt="Breakfast Time" width="80" style="display:inline-block;height:auto;" />
+    </div>
+
+    <!-- Card principale -->
+    <div style="background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.07);">
+
+      <!-- Bande couleur top -->
+      <div style="height:5px;background:linear-gradient(90deg,#3a3a0a,#DFF057);"></div>
+
+      <!-- Contenu -->
+      <div style="padding:44px 40px 40px;">
+
+        <!-- Badge confirmation -->
+        <div style="text-align:center;margin-bottom:28px;">
+          <span style="display:inline-block;background:#f2ede4;color:#3a3a0a;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:7px 18px;border-radius:50px;">
+            Inscription confirmée
+          </span>
         </div>
-      `,
+
+        <!-- Titre -->
+        <h1 style="margin:0 0 14px;text-align:center;font-size:32px;font-weight:800;color:#1e1e06;line-height:1.2;letter-spacing:-0.5px;">
+          Bienvenue ☀️
+        </h1>
+        <p style="margin:0 0 36px;text-align:center;font-size:16px;color:#6b6b4a;line-height:1.6;">
+          Vous êtes en avant-première sur tout ce qu'on prépare.
+        </p>
+
+        <!-- Séparateur -->
+        <div style="border-top:1px solid #eee8da;margin-bottom:32px;"></div>
+
+        <!-- 3 avantages -->
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:36px;">
+          <tr>
+            <td style="padding:10px 0;vertical-align:top;width:40px;font-size:22px;">🥐</td>
+            <td style="padding:10px 0 10px 12px;vertical-align:top;border-bottom:1px solid #f5f0e8;">
+              <span style="font-size:14px;font-weight:700;color:#1e1e06;">Nouveautés en avant-première</span><br/>
+              <span style="font-size:13px;color:#9a9478;">Nouvelles créations, menus du moment</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0;vertical-align:top;font-size:22px;">🎁</td>
+            <td style="padding:10px 0 10px 12px;vertical-align:top;border-bottom:1px solid #f5f0e8;">
+              <span style="font-size:14px;font-weight:700;color:#1e1e06;">Offres exclusives abonnés</span><br/>
+              <span style="font-size:13px;color:#9a9478;">Promotions et surprises réservées</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0;vertical-align:top;font-size:22px;">📍</td>
+            <td style="padding:10px 0 10px 12px;vertical-align:top;">
+              <span style="font-size:14px;font-weight:700;color:#1e1e06;">Événements & pop-ups</span><br/>
+              <span style="font-size:13px;color:#9a9478;">Brunchs privatisés, collaborations</span>
+            </td>
+          </tr>
+        </table>
+
+        <!-- CTA -->
+        <div style="text-align:center;">
+          <a href="https://www.breakfast-time.fr/carte"
+             style="display:inline-block;background-color:#DFF057;color:#1e1e06;text-decoration:none;font-weight:800;font-size:15px;padding:16px 40px;border-radius:50px;letter-spacing:0.2px;">
+            Voir la carte →
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="margin-top:24px;text-align:center;">
+      <p style="margin:0;font-size:12px;color:#b0a98a;line-height:1.7;">
+        Livraison 7j/7 · 8h–15h · Alpes-Maritimes<br/>
+        <span style="color:#c8c0a4;">© 2026 Breakfast Time</span>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>`,
     });
 
     await resend.emails.send({
