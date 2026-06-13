@@ -515,6 +515,15 @@ export const allProducts: Product[] = [
     img: "/oeufs-brouilles.png",
     desc: "",
     composition: ["Œufs frais de plein air", "Beurre de Baratte", "Fleur de sel", "1 toast"],
+    options: [
+      {
+        id: "supplement",
+        label: "Supplément",
+        required: false,
+        multiSelect: false,
+        choices: ["Bacon crispy (+1,00€)"],
+      },
+    ],
   },
   {
     id: "breakfast-burrito",
