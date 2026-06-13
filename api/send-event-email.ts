@@ -30,7 +30,7 @@ export default async function handler(req: Request): Promise<Response> {
 
     await resend.emails.send({
       from: "Breakfast Time <noreply@immo-score.fr>",
-      to: "contact@breakfast-time.fr",
+      to: "deborah.catalano@gmail.com",
       subject: `Nouvelle demande de devis - ${eventTypeLabels[data.eventType]}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
