@@ -16,65 +16,128 @@ export default async function handler(req: Request): Promise<Response> {
       .map(
         (item: any) => `
         <tr>
-          <td style="padding: 10px 0; border-bottom: 1px solid #f0f0e8;">
-            <strong>${item.name}</strong>${
+          <td style="padding:12px 0;border-bottom:1px solid #f0ece2;vertical-align:top;">
+            <span style="font-size:14px;font-weight:700;color:#2a2a08;">${item.name}</span>${
           item.options && Object.keys(item.options).length > 0
-            ? `<br><span style="font-size:12px;color:#999;">${Object.values(item.options).flatMap((v: any) => Array.isArray(v) ? v : [v]).join(", ")}</span>`
+            ? `<br><span style="font-size:12px;color:#aaa;margin-top:2px;display:inline-block;">${Object.values(item.options).flatMap((v: any) => Array.isArray(v) ? v : [v]).join(", ")}</span>`
             : ""
         }
           </td>
-          <td style="padding: 10px 0; border-bottom: 1px solid #f0f0e8; text-align:center;">x${item.qty}</td>
-          <td style="padding: 10px 0; border-bottom: 1px solid #f0f0e8; text-align:right; font-weight:bold; color:#6b7c2d;">
-            ${(parseFloat(item.price.replace("€", "").replace(",", ".")) * item.qty).toFixed(2).replace(".", ",")}€
+          <td style="padding:12px 8px;border-bottom:1px solid #f0ece2;text-align:center;vertical-align:top;">
+            <span style="font-size:13px;color:#999;background:#f5f3ee;padding:2px 8px;border-radius:20px;">×${item.qty}</span>
+          </td>
+          <td style="padding:12px 0;border-bottom:1px solid #f0ece2;text-align:right;vertical-align:top;">
+            <span style="font-size:14px;font-weight:700;color:#2a2a08;">${(parseFloat(item.price.replace("€", "").replace(",", ".")) * item.qty).toFixed(2).replace(".", ",")}€</span>
           </td>
         </tr>`
       )
       .join("");
 
-    const emailHtml = `
-      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a0a;">
-        <div style="background-color: #3a3a0a; padding: 40px; text-align: center; border-radius: 16px 16px 0 0;">
-          <p style="margin: 0 0 8px 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #DFF057;">Breakfast Time</p>
-          <h1 style="margin: 0; font-size: 26px; color: #ffffff; font-weight: normal;">Commande confirmée !</h1>
-          <p style="margin: 10px 0 0 0; font-size: 14px; color: rgba(255,255,255,0.6);">Merci pour votre commande 🎉</p>
+    const dateStr = new Date(order.date).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+
+    const emailHtml = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commande confirmée — Breakfast Time</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f2ede4;font-family:Arial,Helvetica,sans-serif;">
+
+  <div style="max-width:600px;margin:0 auto;padding:28px 16px 44px;">
+
+    <!-- Card principale -->
+    <div style="background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.07);">
+
+      <!-- Barre dégradé top -->
+      <div style="height:5px;background:linear-gradient(90deg,#3a3a0a 0%,#DFF057 100%);"></div>
+
+      <!-- Header -->
+      <div style="padding:36px 40px 28px;text-align:center;">
+        <div style="display:inline-block;background:#DFF057;color:#3a3a0a;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:5px 18px;border-radius:50px;margin-bottom:22px;">
+          Commande confirmée
         </div>
+        <div style="width:68px;height:68px;background:#3a3a0a;border-radius:50%;margin:0 auto 18px;line-height:68px;text-align:center;font-size:30px;color:#DFF057;">
+          ✓
+        </div>
+        <h1 style="margin:0 0 10px;font-size:26px;font-weight:700;color:#2a2a08;line-height:1.2;">Merci ${order.prenom} !</h1>
+        <p style="margin:0;font-size:15px;color:#7a7a50;line-height:1.6;">Votre commande est confirmée et en cours de préparation.</p>
+      </div>
 
-        <div style="padding: 40px; background: #ffffff;">
-          <p style="font-size: 16px; margin: 0 0 24px 0;">Bonjour <strong>${order.prenom}</strong>, votre commande a bien été reçue et est en cours de préparation.</p>
-
-          <div style="background: #f9f9f4; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
-            <p style="margin: 0 0 4px 0; font-size: 13px; color: #999; text-transform: uppercase; letter-spacing: 1px;">Livraison prévue</p>
-            <p style="margin: 0; font-size: 16px; font-weight: bold;">📅 ${new Date(order.date).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })} à ${order.heure}</p>
-            <p style="margin: 6px 0 0 0; font-size: 14px; color: #666;">📍 ${order.adresse}, ${order.codePostal} ${order.ville}</p>
-          </div>
-
-          <h3 style="margin: 0 0 12px 0; font-size: 15px;">Récapitulatif</h3>
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px;">
-            ${itemsHtml}
+      <!-- Bloc livraison -->
+      <div style="margin:0 32px 24px;">
+        <div style="background:#f9f7f0;border-radius:14px;padding:20px 24px;">
+          <p style="margin:0 0 14px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;font-weight:700;">Livraison prévue</p>
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="28" valign="top" style="font-size:20px;padding-top:1px;">📅</td>
+              <td style="font-size:15px;font-weight:700;color:#2a2a08;padding-bottom:10px;">${dateStr} à ${order.heure}</td>
+            </tr>
+            <tr>
+              <td width="28" valign="top" style="font-size:18px;padding-top:2px;">📍</td>
+              <td style="font-size:14px;color:#666;">${order.adresse}, ${order.codePostal} ${order.ville}</td>
+            </tr>
           </table>
-
-          <div style="text-align: right; padding-top: 12px; border-top: 1px solid #f0f0e8; margin-bottom: 4px;">
-            <span style="font-size: 14px; color: #999;">Frais de livraison : ${Number(order.fraisLivraison ?? 0).toFixed(2).replace(".", ",")}€</span>
-          </div>
-          <div style="text-align: right; padding-top: 8px; border-top: 2px solid #3a3a0a;">
-            <span style="font-size: 18px; font-weight: bold; color: #3a3a0a;">Total : ${Number(order.total).toFixed(2).replace(".", ",")}€</span>
-          </div>
-
-          ${order.note ? `<div style="margin-top: 20px; padding: 14px; border-left: 4px solid #DFF057; background: #f9f9f4; border-radius: 0 8px 8px 0;"><p style="margin:0; font-size:13px; color:#666;">📝 Note : ${order.note}</p></div>` : ""}
-
-          ${order.trackingUrl ? `
-          <div style="margin-top: 24px; text-align: center;">
-            <a href="${order.trackingUrl}" style="display: inline-block; background-color: #DFF057; color: #3a3a0a; text-decoration: none; font-weight: bold; font-size: 14px; padding: 14px 32px; border-radius: 50px;">
-              🚴 Suivre ma livraison en temps réel →
-            </a>
-          </div>` : ""}
         </div>
+      </div>
 
-        <div style="background-color: #3a3a0a; padding: 24px; text-align: center; border-radius: 0 0 16px 16px;">
-          <p style="margin: 0 0 4px 0; font-size: 13px; color: rgba(255,255,255,0.7);">Une question ? Contactez-nous</p>
-          <p style="margin: 0; font-size: 13px; color: #DFF057;">contact@breakfast-time.fr</p>
-        </div>
-      </div>`;
+      <!-- Séparateur -->
+      <div style="height:1px;background:#f0ece2;margin:0 32px 24px;"></div>
+
+      <!-- Récapitulatif -->
+      <div style="margin:0 32px 8px;">
+        <p style="margin:0 0 4px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;font-weight:700;">Votre commande</p>
+      </div>
+      <div style="margin:0 32px 20px;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          ${itemsHtml}
+        </table>
+        <!-- Frais + total -->
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;">
+          <tr>
+            <td style="font-size:13px;color:#bbb;padding-bottom:6px;">Frais de livraison</td>
+            <td style="font-size:13px;color:#bbb;text-align:right;padding-bottom:6px;">${Number(order.fraisLivraison ?? 0).toFixed(2).replace(".", ",")}€</td>
+          </tr>
+          <tr>
+            <td style="border-top:2px solid #f0ece2;padding-top:12px;font-size:17px;font-weight:700;color:#2a2a08;">Total</td>
+            <td style="border-top:2px solid #f0ece2;padding-top:12px;font-size:17px;font-weight:700;color:#2a2a08;text-align:right;">${Number(order.total).toFixed(2).replace(".", ",")}€</td>
+          </tr>
+        </table>
+      </div>
+
+      ${order.note ? `
+      <!-- Note -->
+      <div style="margin:0 32px 20px;padding:14px 18px;border-left:4px solid #DFF057;background:#f9f7f0;border-radius:0 10px 10px 0;">
+        <p style="margin:0;font-size:13px;color:#666;">📝 <strong>Note :</strong> ${order.note}</p>
+      </div>` : ""}
+
+      ${order.trackingUrl ? `
+      <!-- CTA suivi -->
+      <div style="text-align:center;padding:8px 32px 28px;">
+        <a href="${order.trackingUrl}" style="display:inline-block;background:#DFF057;color:#2a2a08;text-decoration:none;font-weight:700;font-size:14px;padding:15px 36px;border-radius:50px;letter-spacing:0.2px;">
+          🚴 Suivre ma livraison →
+        </a>
+      </div>` : `<div style="height:8px;"></div>`}
+
+      <!-- Séparateur -->
+      <div style="height:1px;background:#f0ece2;margin:0 32px 20px;"></div>
+
+      <!-- Contact -->
+      <div style="padding:0 40px 28px;text-align:center;">
+        <p style="margin:0;font-size:13px;color:#bbb;">
+          Une question ? <a href="mailto:contact@breakfast-time.fr" style="color:#3a3a0a;font-weight:600;text-decoration:none;">contact@breakfast-time.fr</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#3a3a0a;border-radius:16px;padding:22px 32px;margin-top:14px;text-align:center;">
+      <p style="margin:0;font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.3px;">© 2026 Breakfast Time — Livraison dans les Alpes-Maritimes</p>
+    </div>
+
+  </div>
+</body>
+</html>`;
 
     // Email au client + copie en BCC pour Breakfast Time
     await resend.emails.send({
