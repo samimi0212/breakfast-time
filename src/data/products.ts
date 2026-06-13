@@ -686,6 +686,15 @@ export const allProducts: Product[] = [
     img: "/bowl-pistache.png",
     desc: "",
     composition: ["Yaourt végétal", "Vanille", "Crème de pistache", "Pistaches concassées", "Granola", "Myrtilles"],
+    options: [
+      {
+        id: "taille",
+        label: "Taille",
+        required: false,
+        multiSelect: false,
+        choices: ["Taille XL (+1,50€)"],
+      },
+    ],
   },
   {
     id: "granola-parfait",
@@ -696,6 +705,13 @@ export const allProducts: Product[] = [
     desc: "",
     composition: ["Granola maison", "Yaourt grec", "Fruits de saison", "Miel"],
     options: [
+      {
+        id: "taille",
+        label: "Taille",
+        required: false,
+        multiSelect: false,
+        choices: ["Taille XL (+1,50€)"],
+      },
       {
         id: "extras",
         label: "Extras",
@@ -713,6 +729,13 @@ export const allProducts: Product[] = [
     desc: "",
     composition: ["Acai", "Bananes", "Fruits rouges", "Granola maison", "Miel"],
     options: [
+      {
+        id: "taille",
+        label: "Taille",
+        required: false,
+        multiSelect: false,
+        choices: ["Taille XL (+1,50€)"],
+      },
       {
         id: "supplement",
         label: "Supplément (+0,90€ chacun)",
