@@ -494,7 +494,7 @@ export const allProducts: Product[] = [
     name: "Oeufs bénédicte",
     price: "9,50€",
     category: "Le Salé",
-    img: "/oeuf-benedicte.png",
+    img: "/oeufs-benedicte.png",
     desc: "",
     composition: ["Muffin toastée", "Bacon crispy", "Oeufs brouillés", "Pickles d'oignons rouges", "Gomasio", "Sauce hollandaise artisanale"],
   },
