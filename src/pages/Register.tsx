@@ -95,13 +95,52 @@ const Register = () => {
   if (success) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
+        <style>{`
+          @keyframes bounceIn {
+            0%   { transform: scale(0); opacity: 0; }
+            55%  { transform: scale(1.22); opacity: 1; }
+            75%  { transform: scale(0.92); }
+            90%  { transform: scale(1.06); }
+            100% { transform: scale(1); }
+          }
+          @keyframes checkDraw {
+            to { stroke-dashoffset: 0; }
+          }
+          @keyframes confetti1 { 0% { transform: translate(0,0) rotate(0deg); opacity:1; } 100% { transform: translate(-38px,-72px) rotate(-260deg); opacity:0; } }
+          @keyframes confetti2 { 0% { transform: translate(0,0) rotate(0deg); opacity:1; } 100% { transform: translate(42px,-80px) rotate(300deg); opacity:0; } }
+          @keyframes confetti3 { 0% { transform: translate(0,0) rotate(0deg); opacity:1; } 100% { transform: translate(-60px,-40px) rotate(180deg); opacity:0; } }
+          @keyframes confetti4 { 0% { transform: translate(0,0) rotate(0deg); opacity:1; } 100% { transform: translate(58px,-50px) rotate(-220deg); opacity:0; } }
+          @keyframes confetti5 { 0% { transform: translate(0,0) rotate(0deg); opacity:1; } 100% { transform: translate(-20px,-90px) rotate(400deg); opacity:0; } }
+          @keyframes confetti6 { 0% { transform: translate(0,0) rotate(0deg); opacity:1; } 100% { transform: translate(30px,-85px) rotate(-340deg); opacity:0; } }
+          .success-circle { animation: bounceIn 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+          .success-check  { stroke-dasharray: 40; stroke-dashoffset: 40; animation: checkDraw 0.35s ease-out 0.5s forwards; }
+          .cf1 { animation: confetti1 0.7s ease-out 0.3s both; }
+          .cf2 { animation: confetti2 0.75s ease-out 0.35s both; }
+          .cf3 { animation: confetti3 0.65s ease-out 0.28s both; }
+          .cf4 { animation: confetti4 0.8s ease-out 0.4s both; }
+          .cf5 { animation: confetti5 0.7s ease-out 0.32s both; }
+          .cf6 { animation: confetti6 0.72s ease-out 0.38s both; }
+        `}</style>
         <div className="w-full max-w-lg text-center">
           <a href="/">
             <img src={logo} alt="Breakfast Time" className="h-20 w-auto mx-auto mb-8" />
           </a>
           <div className="bg-white rounded-3xl p-8 shadow-lg">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-3xl">✅</span>
+            <div className="flex items-center justify-center mb-4" style={{ height: '96px' }}>
+              <div style={{ position: 'relative', width: '80px', height: '80px' }}>
+                {/* Confetti */}
+                <div className="cf1" style={{ position:'absolute', top:'50%', left:'50%', width:'10px', height:'10px', borderRadius:'50%', background:'#3a3a0a', marginTop:'-5px', marginLeft:'-5px' }} />
+                <div className="cf2" style={{ position:'absolute', top:'50%', left:'50%', width:'8px', height:'8px', borderRadius:'2px', background:'#DFF057', border:'1.5px solid #3a3a0a', marginTop:'-4px', marginLeft:'-4px' }} />
+                <div className="cf3" style={{ position:'absolute', top:'50%', left:'50%', width:'9px', height:'9px', borderRadius:'50%', background:'#7a8a10', marginTop:'-4px', marginLeft:'-4px' }} />
+                <div className="cf4" style={{ position:'absolute', top:'50%', left:'50%', width:'7px', height:'11px', borderRadius:'3px', background:'#DFF057', marginTop:'-5px', marginLeft:'-3px' }} />
+                <div className="cf5" style={{ position:'absolute', top:'50%', left:'50%', width:'8px', height:'8px', borderRadius:'50%', background:'#3a3a0a', marginTop:'-4px', marginLeft:'-4px' }} />
+                <div className="cf6" style={{ position:'absolute', top:'50%', left:'50%', width:'10px', height:'7px', borderRadius:'2px', background:'#c8c820', marginTop:'-3px', marginLeft:'-5px' }} />
+                {/* Cercle + checkmark */}
+                <svg className="success-circle" width="80" height="80" viewBox="0 0 80 80" style={{ position:'absolute', top:0, left:0 }}>
+                  <circle cx="40" cy="40" r="38" fill="#DFF057" />
+                  <polyline className="success-check" points="24,41 35,52 56,28" stroke="#1e1e06" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                </svg>
+              </div>
             </div>
             <h1 className="font-display text-2xl font-bold mb-2">Compte créé !</h1>
             <p className="text-muted-foreground mb-6">
