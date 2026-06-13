@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { Calendar, Clock, Phone, Mail, User, MessageSquare } from "lucide-react";
+import { Phone, Mail, User } from "lucide-react";
 
 interface FormData {
   eventType: "mariage" | "entreprise" | "groupe";
   name: string;
   email: string;
   phone: string;
-  eventDate: string;
-  guestCount: string;
-  message: string;
 }
 
 const EventBookingForm = () => {
@@ -17,9 +14,6 @@ const EventBookingForm = () => {
     name: "",
     email: "",
     phone: "",
-    eventDate: "",
-    guestCount: "",
-    message: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -53,15 +47,7 @@ const EventBookingForm = () => {
 
       setSubmitted(true);
       setTimeout(() => {
-        setFormData({
-          eventType: "mariage",
-          name: "",
-          email: "",
-          phone: "",
-          eventDate: "",
-          guestCount: "",
-          message: "",
-        });
+        setFormData({ eventType: "mariage", name: "", email: "", phone: "" });
         setSubmitted(false);
       }, 3000);
     } catch (err) {
@@ -163,52 +149,6 @@ const EventBookingForm = () => {
           </div>
         </div>
 
-        {/* Nombre de convives */}
-        <div>
-          <label className="block text-sm font-semibold mb-2">Nombre de convives *</label>
-          <input
-            type="number"
-            name="guestCount"
-            value={formData.guestCount}
-            onChange={handleChange}
-            required
-            min="1"
-            className="w-full px-4 py-3 border-2 border-muted rounded-xl focus:border-primary focus:outline-none transition-colors"
-            placeholder="Ex: 20"
-          />
-        </div>
-
-        {/* Date de l'événement */}
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-semibold mb-2">Date souhaitée *</label>
-          <div className="relative">
-            <Calendar size={18} className="absolute left-3 top-3.5 text-muted-foreground" />
-            <input
-              type="date"
-              name="eventDate"
-              value={formData.eventDate}
-              onChange={handleChange}
-              required
-              className="w-full pl-10 pr-4 py-3 border-2 border-muted rounded-xl focus:border-primary focus:outline-none transition-colors"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Message */}
-      <div className="mb-8">
-        <label className="block text-sm font-semibold mb-2">Message (optionnel)</label>
-        <div className="relative">
-          <MessageSquare size={18} className="absolute left-3 top-3.5 text-muted-foreground" />
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            rows={4}
-            className="w-full pl-10 pr-4 py-3 border-2 border-muted rounded-xl focus:border-primary focus:outline-none transition-colors resize-none"
-            placeholder="Détails supplémentaires, régime alimentaires, etc."
-          />
-        </div>
       </div>
 
       {error && <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">{error}</div>}
