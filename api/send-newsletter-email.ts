@@ -53,7 +53,7 @@ export default async function handler(req: Request): Promise<Response> {
 
     <!-- Logo flamme -->
     <div style="text-align:center;margin-bottom:28px;">
-      <img src="https://www.breakfast-time.fr/apple-touch-icon.png" alt="Breakfast Time" width="44" style="display:inline-block;height:auto;" />
+      <img src="https://www.breakfast-time.fr/flamme-email.png" alt="Breakfast Time" width="52" style="display:inline-block;height:auto;" />
     </div>
 
     <!-- Card principale -->
