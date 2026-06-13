@@ -96,7 +96,7 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/menu-brunch.png",
     desc: "",
-    composition: ["1 bagel au choix", "1 œufs brouillés", "1 viennoiserie au choix", "1 Granola Bowl Parfait", "1 jus frais au choix", "1 boisson chaude au choix"],
+    composition: ["1 bagel au choix", "1 œufs brouillés", "1 viennoiserie au choix", "1 granola bowl parfait", "1 jus frais au choix", "1 boisson chaude au choix"],
     options: [
       {
         id: "bagel",
