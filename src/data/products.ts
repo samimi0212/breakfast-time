@@ -31,7 +31,7 @@ export const allProducts: Product[] = [
   category: "Nos Menus",
   img: "/menu-francais.png",
   desc: "",
-  composition: ["1/2 baguette", "1 beurre", "1 nappage au choix", "1 viennoiserie au choix", "1 jus frais au choix", "1 boisson chaude au choix"],
+  composition: ["1/2 Baguette", "1 Beurre", "1 Nappage au choix", "1 Viennoiserie au choix", "1 Jus frais au choix", "1 Boisson chaude au choix"],
   options: [
     {
       id: "viennoiserie",
@@ -66,7 +66,7 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/menu-anglais.png",
     desc: "",
-    composition: ["3 breakfast sausage", "Œufs brouillés", "Baked Beans", "2 tranches de pain toastées", "Sauce à l'avocat", "1 jus frais au choix", "1 boisson chaude au choix"],
+    composition: ["3 Breakfast sausage", "Œufs brouillés", "Baked Beans", "2 Tranches de pain toastées", "Sauce à l'avocat", "1 Jus frais au choix", "1 Boisson chaude au choix"],
     options: [
       {
         id: "jus",
@@ -96,7 +96,7 @@ export const allProducts: Product[] = [
     category: "Nos Menus",
     img: "/menu-brunch.png",
     desc: "",
-    composition: ["1 bagel au choix", "1 œufs brouillés", "1 viennoiserie au choix", "1 granola bowl parfait", "1 jus frais au choix", "1 boisson chaude au choix"],
+    composition: ["1 Bagel au choix", "1 Œufs brouillés", "1 Viennoiserie au choix", "1 Granola bowl parfait", "1 Jus frais au choix", "1 Boisson chaude au choix"],
     options: [
       {
         id: "bagel",
@@ -139,8 +139,8 @@ export const allProducts: Product[] = [
       "1 Toast méditerranéen",
       "1 Frite de patates douces",
       "1 Cookie vegan",
-      "1 jus frais au choix",
-      "1 boisson chaude au choix",
+      "1 Jus frais au choix",
+      "1 Boisson chaude au choix",
     ],
     options: [
       {
@@ -167,12 +167,12 @@ export const allProducts: Product[] = [
     img: "/menu-duo.png",
     desc: "",
     composition: [
-      "2 bagels / burritos au choix",
-      "1 Granola Bowl Parfait",
-      "1 extra au choix",
-      "2 œufs brouillés",
-      "2 jus frais au choix",
-      "2 boissons chaudes au choix",
+      "2 Bagels / burritos au choix",
+      "1 Granola bowl parfait",
+      "1 Extra au choix",
+      "2 Œufs brouillés",
+      "2 Jus frais au choix",
+      "2 Boissons chaudes au choix",
     ],
     options: [
       {
@@ -216,12 +216,12 @@ export const allProducts: Product[] = [
     img: "/menu-famille.png",
     desc: "",
     composition: [
-      "4 bagels / burritos au choix",
-      "2 Granola Bowl Parfait",
-      "2 extras au choix",
-      "6 mini viennoiseries",
-      "4 jus frais au choix",
-      "4 boissons chaudes au choix",
+      "4 Bagels / burritos au choix",
+      "2 Granola bowl parfait",
+      "2 Extras au choix",
+      "6 Mini viennoiseries",
+      "4 Jus frais au choix",
+      "4 Boissons chaudes au choix",
     ],
     options: [
       {
@@ -266,13 +266,13 @@ export const allProducts: Product[] = [
     img: "/birthday-box.png",
     desc: "",
     composition: [
-      "1 gâteau de pancakes au Nutella",
-      "4 mini viennoiseries",
-      "1 burrito au choix",
-      "1 smoothie au choix",
-      "1 boisson chaude au choix",
-      "2 bougies scintillantes",
-      "1 message personnalisé",
+      "1 Gâteau de pancakes au Nutella",
+      "4 Mini viennoiseries",
+      "1 Burrito au choix",
+      "1 Smoothie au choix",
+      "1 Boisson chaude au choix",
+      "2 Bougies scintillantes",
+      "1 Message personnalisé",
     ],
     options: [
       {
@@ -532,7 +532,7 @@ export const allProducts: Product[] = [
     category: "Le Sucré",
     img: "/pancakes-composer.png",
     desc: "",
-    composition: ["2 pancakes", "1 nappage au choix", "1 topping au choix"],
+    composition: ["2 Pancakes", "1 Nappage au choix", "1 Topping au choix"],
     options: [
       {
         id: "nappage",
@@ -558,7 +558,7 @@ export const allProducts: Product[] = [
     category: "Le Sucré",
     img: "/gaufre-composer.png",
     desc: "",
-    composition: ["1 gaufre de Liège", "1 nappage au choix", "1 topping au choix"],
+    composition: ["1 Gaufre de Liège", "1 Nappage au choix", "1 Topping au choix"],
     options: [
       {
         id: "nappage",
@@ -779,7 +779,7 @@ export const allProducts: Product[] = [
     category: "À Partager",
     img: "/cake-marbre.png",
     desc: "",
-    composition: ["8-10 parts"],
+    composition: ["8-10 Parts"],
   },
   {
     id: "muffin-myrtilles",
@@ -949,7 +949,7 @@ export const allProducts: Product[] = [
     category: "À Partager",
     img: "/brioche-partager.png",
     desc: "",
-    composition: ["8-10 parts"],
+    composition: ["8-10 Parts"],
   },
   {
     id: "plateau-pancakes",
@@ -958,7 +958,7 @@ export const allProducts: Product[] = [
     category: "À Partager",
     img: "/pancakes-partager.png",
     desc: "",
-    composition: ["10 pancakes", "3 nappages au choix"],
+    composition: ["10 Pancakes", "3 Nappages au choix"],
     options: [
       {
         id: "nappage",
