@@ -76,10 +76,11 @@ export default async function handler(req: Request): Promise<Response> {
         </div>
       </div>`;
 
-    // Email au client
+    // Email au client + copie en BCC pour Breakfast Time
     await resend.emails.send({
       from: "Breakfast Time <noreply@immo-score.fr>",
       to: order.email,
+      bcc: "contact@breakfast-time.fr",
       subject: `Commande confirmée — livraison le ${new Date(order.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })} à ${order.heure}`,
       html: emailHtml,
     });
