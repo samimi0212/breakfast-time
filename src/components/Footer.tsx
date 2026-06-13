@@ -167,7 +167,7 @@ const Footer = () => {
                   <span className="text-sm font-semibold">Inscription confirmée !</span>
                 </div>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  Bienvenue dans la famille Breakfast Time ☀️ Un email de confirmation vient de vous être envoyé.
+                  Bienvenue ☀️ Un email de confirmation vient de vous être envoyé.
                 </p>
               </div>
             ) : status === "already" ? (
