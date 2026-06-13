@@ -95,7 +95,7 @@ const Register = () => {
   if (success) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <div className="w-full max-w-md text-center">
+        <div className="w-full max-w-lg text-center">
           <a href="/">
             <img src={logo} alt="Breakfast Time" className="h-20 w-auto mx-auto mb-8" />
           </a>
@@ -121,7 +121,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-lg">
         <div className="text-center mb-8">
           <a href="/">
             <img src={logo} alt="Breakfast Time" className="h-20 w-auto mx-auto" />
