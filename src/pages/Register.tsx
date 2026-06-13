@@ -58,6 +58,10 @@ const Register = () => {
       setError("Le mot de passe doit contenir au moins une majuscule.");
       return;
     }
+    if (!/[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(form.password)) {
+      setError("Le mot de passe doit contenir au moins un chiffre ou caractère spécial.");
+      return;
+    }
 
     setLoading(true);
     const { error } = await supabase.auth.signUp({
@@ -218,12 +222,15 @@ const Register = () => {
                   <EyeIcon visible={showPassword} />
                 </button>
               </div>
-              <div className="flex gap-4 mt-2">
+              <div className="flex flex-wrap gap-3 mt-2">
                 <span className={`flex items-center gap-1 text-xs ${form.password.length >= 8 ? "text-green-600" : "text-muted-foreground"}`}>
                   <span>{form.password.length >= 8 ? "✓" : "○"}</span> 8 caractères minimum
                 </span>
                 <span className={`flex items-center gap-1 text-xs ${/[A-Z]/.test(form.password) ? "text-green-600" : "text-muted-foreground"}`}>
                   <span>{/[A-Z]/.test(form.password) ? "✓" : "○"}</span> Une majuscule
+                </span>
+                <span className={`flex items-center gap-1 text-xs ${/[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(form.password) ? "text-green-600" : "text-muted-foreground"}`}>
+                  <span>{/[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(form.password) ? "✓" : "○"}</span> 1 chiffre ou caractère spécial
                 </span>
               </div>
             </div>
@@ -243,6 +250,9 @@ const Register = () => {
                   <EyeIcon visible={showConfirm} />
                 </button>
               </div>
+              {form.confirmPassword && form.password !== form.confirmPassword && (
+                <p className="text-xs text-red-500 mt-1.5">Les mots de passe ne correspondent pas.</p>
+              )}
             </div>
 
             <button
