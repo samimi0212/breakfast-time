@@ -520,7 +520,7 @@ const CartePage = () => {
   const switchTab = (t: "menus" | "carte") => {
     setTab(t);
     setSearchParams({ tab: t }, { replace: true });
-    setTimeout(() => window.scrollTo({ top: 460, behavior: "smooth" }), 50);
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
   };
 
   const switchCat = (cat: string) => {
