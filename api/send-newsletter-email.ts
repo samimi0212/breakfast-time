@@ -45,14 +45,15 @@ export default async function handler(req: Request): Promise<Response> {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet" />
 </head>
 <body style="margin:0;padding:0;background-color:#f2ede4;font-family:Arial,Helvetica,sans-serif;">
 
   <div style="max-width:580px;margin:0 auto;padding:32px 16px 48px;">
 
-    <!-- Logo -->
+    <!-- Logo flamme -->
     <div style="text-align:center;margin-bottom:28px;">
-      <img src="https://www.breakfast-time.fr/logo.png" alt="Breakfast Time" width="80" style="display:inline-block;height:auto;" />
+      <img src="https://www.breakfast-time.fr/apple-touch-icon.png" alt="Breakfast Time" width="44" style="display:inline-block;height:auto;" />
     </div>
 
     <!-- Card principale -->
@@ -72,7 +73,7 @@ export default async function handler(req: Request): Promise<Response> {
         </div>
 
         <!-- Titre -->
-        <h1 style="margin:0 0 14px;text-align:center;font-size:32px;font-weight:800;color:#1e1e06;line-height:1.2;letter-spacing:-0.5px;">
+        <h1 style="margin:0 0 14px;text-align:center;font-size:36px;font-weight:400;font-style:italic;color:#1e1e06;line-height:1.2;font-family:'DM Serif Display',Georgia,serif;">
           Bienvenue ☀️
         </h1>
         <p style="margin:0 0 36px;text-align:center;font-size:16px;color:#6b6b4a;line-height:1.6;">
