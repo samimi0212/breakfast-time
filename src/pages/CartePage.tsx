@@ -387,6 +387,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "3,50€",
       img: "/jus-abricot.png",
     },
+    {
+      id: "iced-matcha-latte",
+      name: "Iced Matcha Latte",
+      price: "6,90€",
+      img: "/matcha.png",
+    },
   ],
   "À Partager": [
     {

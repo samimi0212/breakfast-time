@@ -900,6 +900,15 @@ export const allProducts: Product[] = [
     desc: "",
     composition: ["Nectar d'abricot"],
   },
+  {
+    id: "iced-matcha-latte",
+    name: "Iced Matcha Latte",
+    price: "6,90€",
+    category: "Boissons",
+    img: "/matcha.png",
+    desc: "",
+    composition: ["Thé Matcha", "Lait d'avoine"],
+  },
   // ---- À PARTAGER ----
   {
     id: "plateau-viennoiseries",
