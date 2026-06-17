@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, UtensilsCrossed, CheckCircle2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, UtensilsCrossed } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
-import logo from "@/assets/logo.png";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 const Cart = () => {
   const { items, removeItem, updateQty, total, clearCart } = useCart();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const [wantsCutlery, setWantsCutlery] = useState(false);
   const [cutleryQty, setCutleryQty] = useState(1);
 
@@ -16,7 +19,6 @@ const Cart = () => {
   const orderTotal = total + (wantsCutlery ? cutleryQty * 0.80 : 0);
   const isMinReached = orderTotal >= MIN_ORDER;
   const progressPct = Math.min((orderTotal / MIN_ORDER) * 100, 100);
-  const remaining = Math.max(MIN_ORDER - orderTotal, 0);
 
   if (items.length === 0) {
     return (
@@ -26,15 +28,15 @@ const Cart = () => {
           <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
             <ShoppingBag size={32} className="text-muted-foreground" />
           </div>
-          <h1 className="font-display text-3xl font-bold mb-3">Votre panier est vide</h1>
+          <h1 className="font-display text-3xl font-bold mb-3">{t("cart.emptyTitle")}</h1>
           <p className="text-muted-foreground mb-8">
-            Découvrez nos produits frais et commencez votre commande !
+            {t("cart.emptyText")}
           </p>
           <button
-            onClick={() => navigate("/#menu")}
+            onClick={() => navigate(lp("/") + "#menu")}
             className="bg-primary text-primary-foreground px-8 py-3.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
           >
-            Voir la carte
+            {t("cart.emptyCta")}
           </button>
         </div>
       </div>
@@ -53,10 +55,10 @@ const Cart = () => {
           className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Continuer mes achats</span>
+          <span className="text-sm font-medium">{t("cart.backBtn")}</span>
         </button>
 
-        <h1 className="font-display text-3xl font-bold mb-8">Mon panier</h1>
+        <h1 className="font-display text-3xl font-bold mb-8">{t("cart.title")}</h1>
 
         <div className="grid lg:grid-cols-5 gap-8">
 
@@ -140,8 +142,8 @@ const Cart = () => {
                     <UtensilsCrossed size={18} className="text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-sm">Couverts <span className="text-muted-foreground font-normal">— 0,80€ / set</span></p>
-                    <p className="text-xs text-muted-foreground">Souhaitez-vous des couverts ?</p>
+                    <p className="font-semibold text-sm">{t("cart.cutleryTitle")} <span className="text-muted-foreground font-normal">— {t("cart.cutleryPrice")}</span></p>
+                    <p className="text-xs text-muted-foreground">{t("cart.cutleryQuestion")}</p>
                   </div>
                 </div>
                 {/* Toggle */}
@@ -160,7 +162,7 @@ const Cart = () => {
               {/* Quantité */}
               {wantsCutlery && (
                 <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
-                  <p className="text-sm text-muted-foreground">Nombre de couverts</p>
+                  <p className="text-sm text-muted-foreground">{t("cart.cutleryQtyLabel")}</p>
                   <div className="flex items-center gap-2 bg-muted rounded-xl px-2 py-1">
                     <button
                       onClick={() => setCutleryQty(Math.max(1, cutleryQty - 1))}
@@ -186,7 +188,7 @@ const Cart = () => {
               className="text-sm text-muted-foreground hover:text-red-500 transition-colors flex items-center gap-1 mt-2"
             >
               <Trash2 size={14} />
-              Vider le panier
+              {t("cart.clearCart")}
             </button>
           </div>
 
@@ -196,25 +198,25 @@ const Cart = () => {
               className="bg-white rounded-2xl p-8 sticky top-24"
               style={{ boxShadow: "var(--card-shadow)" }}
             >
-              <h2 className="font-display text-xl font-bold mb-6">Récapitulatif</h2>
+              <h2 className="font-display text-xl font-bold mb-6">{t("cart.summaryTitle")}</h2>
 
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>Sous-total</span>
+                  <span>{t("cart.subtotal")}</span>
                   <span>{total.toFixed(2).replace(".", ",")}€</span>
                 </div>
                 {wantsCutlery && (
                   <div className="flex justify-between text-sm text-muted-foreground">
-                    <span>Couverts × {cutleryQty}</span>
+                    <span>{t("cart.cutleryLine", { count: cutleryQty })}</span>
                     <span>{(cutleryQty * 0.80).toFixed(2).replace(".", ",")}€</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>Livraison</span>
-                  <span className="italic text-xs">Calculée à l'étape suivante</span>
+                  <span>{t("cart.deliveryLabel")}</span>
+                  <span className="italic text-xs">{t("cart.deliveryCalc")}</span>
                 </div>
                 <div className="border-t border-border pt-4 flex justify-between font-bold text-lg">
-                  <span>Total</span>
+                  <span>{t("cart.total")}</span>
                   <span className="text-primary">{orderTotal.toFixed(2).replace(".", ",")}€</span>
                 </div>
               </div>
@@ -223,7 +225,7 @@ const Cart = () => {
               {!isMinReached && (
                 <div className="mb-5">
                   <div className="flex text-xs font-medium mb-2">
-                    <span className="text-muted-foreground">Min. de commande : 15,00€</span>
+                    <span className="text-muted-foreground">{t("cart.minOrder")}</span>
                   </div>
                   <div className="h-2 rounded-full bg-muted overflow-hidden">
                     <div
@@ -239,9 +241,9 @@ const Cart = () => {
                   if (!isMinReached) return;
                   const { data: { session } } = await supabase.auth.getSession();
                   if (session) {
-                    navigate("/commande");
+                    navigate(lp("/commande"));
                   } else {
-                    navigate("/connexion?redirect=%2Fcommande");
+                    navigate(lp("/connexion") + "?redirect=%2Fcommande");
                   }
                 }}
                 disabled={!isMinReached}
@@ -251,7 +253,7 @@ const Cart = () => {
                     : "bg-muted text-muted-foreground cursor-not-allowed"
                 }`}
               >
-                Passer la commande →
+                {t("cart.checkoutBtn")}
               </button>
 
             </div>

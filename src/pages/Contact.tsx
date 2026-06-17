@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useTranslation } from "react-i18next";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Contact = () => {
+  const { t } = useTranslation();
   usePageMeta("Contact | Breakfast Time", "Contactez Breakfast Time pour toute question ou demande spéciale.", "/contact", true);
 
   const [form, setForm] = useState({ nom: "", email: "", message: "" });
@@ -17,7 +19,7 @@ const Contact = () => {
 
   const handleSubmit = async () => {
     if (!form.nom || !form.email || !form.message) {
-      setError("Merci de remplir tous les champs.");
+      setError(t("contact.errorRequired"));
       return;
     }
     setLoading(true);
@@ -32,7 +34,7 @@ const Contact = () => {
       setSuccess(true);
       setForm({ nom: "", email: "", message: "" });
     } catch {
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      setError(t("contact.errorGeneric"));
     } finally {
       setLoading(false);
     }
@@ -46,30 +48,30 @@ const Contact = () => {
       <main className="min-h-screen bg-background pt-32 pb-16 px-6">
         <div className="max-w-lg mx-auto">
           <div className="text-center mb-10">
-            <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Contact</p>
-            <h1 className="font-display text-3xl font-bold mb-3">Nous contacter</h1>
-            <p className="text-muted-foreground">Une question, une demande spéciale ? On vous répond rapidement.</p>
+            <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">{t("contact.label")}</p>
+            <h1 className="font-display text-3xl font-bold mb-3">{t("contact.title")}</h1>
+            <p className="text-muted-foreground">{t("contact.subtitle")}</p>
           </div>
 
           {success ? (
             <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-8 text-center">
               <div className="text-4xl mb-4">✅</div>
-              <h2 className="font-display text-xl font-semibold mb-2">Message envoyé !</h2>
-              <p className="text-muted-foreground">Nous vous répondrons dans les plus brefs délais.</p>
+              <h2 className="font-display text-xl font-semibold mb-2">{t("contact.successTitle")}</h2>
+              <p className="text-muted-foreground">{t("contact.successText")}</p>
             </div>
           ) : (
             <div className="bg-white rounded-2xl p-8 space-y-5" style={{ boxShadow: "var(--card-shadow)" }}>
               <div>
-                <label className="block text-sm font-medium mb-1.5">Nom</label>
-                <input name="nom" value={form.nom} onChange={handleChange} placeholder="Votre nom" className={inputClass} />
+                <label className="block text-sm font-medium mb-1.5">{t("contact.nameLabel")}</label>
+                <input name="nom" value={form.nom} onChange={handleChange} placeholder={t("contact.namePlaceholder")} className={inputClass} />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">Email</label>
-                <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="votre@email.com" className={inputClass} />
+                <label className="block text-sm font-medium mb-1.5">{t("contact.emailLabel")}</label>
+                <input name="email" type="email" value={form.email} onChange={handleChange} placeholder={t("contact.emailPlaceholder")} className={inputClass} />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">Message</label>
-                <textarea name="message" value={form.message} onChange={handleChange} placeholder="Votre message..." rows={5} className={`${inputClass} resize-none`} />
+                <label className="block text-sm font-medium mb-1.5">{t("contact.messageLabel")}</label>
+                <textarea name="message" value={form.message} onChange={handleChange} placeholder={t("contact.messagePlaceholder")} rows={5} className={`${inputClass} resize-none`} />
               </div>
               {error && <p className="text-red-400 text-sm">{error}</p>}
               <button
@@ -77,9 +79,8 @@ const Contact = () => {
                 disabled={loading}
                 className="w-full bg-primary text-primary-foreground py-3.5 rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2"
               >
-                {loading ? <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" /> : "Envoyer le message"}
+                {loading ? <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" /> : t("contact.submit")}
               </button>
-
             </div>
           )}
         </div>

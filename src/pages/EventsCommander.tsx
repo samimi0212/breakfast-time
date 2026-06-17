@@ -1,27 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useCart } from "@/context/CartContext";
+import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowLeft, ShoppingBag, Check, Minus, Plus } from "lucide-react";
 import plateauViennoiserie from "@/assets/plateau-viennoiserie-entre.png";
 
-const eventProducts = [
-  {
-    id: "evt-plateau-mini-viennoiseries",
-    name: "Plateau mini viennoiseries",
-    price: "29,00€",
-    img: plateauViennoiserie,
-    composition: ["30 mini viennoiseries", "Croissants", "Pains au chocolat"],
-  },
-];
-
 const EventProductCard = ({
   product,
 }: {
-  product: (typeof eventProducts)[0];
+  product: { id: string; name: string; price: string; img: string; composition: string[] };
 }) => {
   const { addItem } = useCart();
+  const { t } = useTranslation();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
@@ -78,7 +71,7 @@ const EventProductCard = ({
             }}
           >
             {added ? <Check size={14} /> : <ShoppingBag size={14} />}
-            {added ? "Ajouté !" : "Ajouter au panier"}
+            {added ? t("eventsCommander.addedBtn") : t("eventsCommander.addBtn")}
           </button>
         </div>
       </div>
@@ -88,7 +81,23 @@ const EventProductCard = ({
 
 const EventsCommander = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const { count } = useCart();
+
+  const eventProducts = [
+    {
+      id: "evt-plateau-mini-viennoiseries",
+      name: t("eventsCommander.plateauName"),
+      price: "29,00€",
+      img: plateauViennoiserie,
+      composition: [
+        t("eventsCommander.plateauC1"),
+        t("eventsCommander.plateauC2"),
+        t("eventsCommander.plateauC3"),
+      ],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -97,16 +106,16 @@ const EventsCommander = () => {
       {/* Header */}
       <div className="bg-foreground pt-28 pb-16 px-6 text-center">
         <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">
-          Livraison & installation incluses
+          {t("eventsCommander.badge")}
         </p>
         <h1 className="font-display text-4xl md:text-5xl font-bold mb-4" style={{ color: "white" }}>
-          Commander pour votre{" "}
+          {t("eventsCommander.title")}{" "}
           <span className="italic" style={{ color: "#DFF057" }}>
-            événement
+            {t("eventsCommander.titleItalic")}
           </span>
         </h1>
         <p className="text-lg max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
-          Sélectionnez vos formules et ajoutez-les au panier. Nous nous occupons du reste.
+          {t("eventsCommander.subtitle")}
         </p>
       </div>
 
@@ -114,11 +123,11 @@ const EventsCommander = () => {
       <div className="px-6 py-4 max-w-7xl mx-auto w-full">
         <p className="text-sm text-muted-foreground flex items-center gap-2">
           <button
-            onClick={() => navigate("/evenements")}
+            onClick={() => navigate(lp("/evenements"))}
             className="hover:text-primary transition-colors inline-flex items-center gap-1"
           >
             <ArrowLeft size={13} />
-            Retour aux événements
+            {t("eventsCommander.backBtn")}
           </button>
         </p>
       </div>
@@ -137,12 +146,14 @@ const EventsCommander = () => {
         <div className="sticky bottom-0 left-0 right-0 p-4 z-40" style={{ backgroundColor: "#f4f1ea" }}>
           <div className="max-w-7xl mx-auto">
             <button
-              onClick={() => navigate("/panier")}
+              onClick={() => navigate(lp("/panier"))}
               className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-sm font-semibold transition-all hover:scale-[1.01]"
               style={{ backgroundColor: "#3a3a0a", color: "white" }}
             >
               <ShoppingBag size={16} />
-              Voir le panier · {count} article{count > 1 ? "s" : ""}
+              {count > 1
+                ? t("eventsCommander.viewCartPlural", { count })
+                : t("eventsCommander.viewCart", { count })}
             </button>
           </div>
         </div>

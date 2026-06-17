@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Instagram, Facebook, Mail, MapPin, Clock, CheckCircle, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useLangPath } from "@/hooks/useLangPath";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "already" | "error">("idle");
 
@@ -57,22 +61,22 @@ const Footer = () => {
       <div className="grid grid-cols-2 gap-4 mb-6">
         {/* Navigation */}
         <div>
-          <h4 className="font-semibold text-xs tracking-widest uppercase mb-3" style={{ color: "#DFF057" }}>Navigation</h4>
+          <h4 className="font-semibold text-xs tracking-widest uppercase mb-3" style={{ color: "#DFF057" }}>{t("footer.navigationTitle")}</h4>
           <ul className="space-y-2 text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
-            <li><a href="/carte" className="hover:text-white transition-colors">La Carte</a></li>
-            <li><a href="/#how" className="hover:text-white transition-colors">Comment ça marche</a></li>
-            <li><a href="/#about" className="hover:text-white transition-colors">À propos</a></li>
-            <li><a href="/#delivery" className="hover:text-white transition-colors">Zone de livraison</a></li>
-            <li><a href="/connexion" className="hover:text-white transition-colors">Mon compte</a></li>
+            <li><a href={lp("/carte")} className="hover:text-white transition-colors">{t("footer.menuLink")}</a></li>
+            <li><a href={lp("/#how")} className="hover:text-white transition-colors">{t("footer.howItWorksLink")}</a></li>
+            <li><a href={lp("/#about")} className="hover:text-white transition-colors">{t("footer.aboutLink")}</a></li>
+            <li><a href={lp("/#delivery")} className="hover:text-white transition-colors">{t("footer.deliveryLink")}</a></li>
+            <li><a href={lp("/connexion")} className="hover:text-white transition-colors">{t("footer.accountLink")}</a></li>
           </ul>
         </div>
         {/* Infos pratiques */}
         <div>
-          <h4 className="font-semibold text-xs tracking-widest uppercase mb-3" style={{ color: "#DFF057" }}>Infos pratiques</h4>
+          <h4 className="font-semibold text-xs tracking-widest uppercase mb-3" style={{ color: "#DFF057" }}>{t("footer.infoTitle")}</h4>
           <ul className="space-y-2 text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
-            <li className="flex items-center gap-1.5"><Clock size={12} style={{ color: "#DFF057" }} />Lun. – Dim. : 8h – 15h</li>
-            <li className="flex items-center gap-1.5"><MapPin size={12} style={{ color: "#DFF057" }} />Alpes-Maritimes</li>
-            <li className="flex items-center gap-1.5"><Mail size={12} style={{ color: "#DFF057" }} /><a href="/contact" className="hover:text-white transition-colors">Nous contacter</a></li>
+            <li className="flex items-center gap-1.5"><Clock size={12} style={{ color: "#DFF057" }} />{t("footer.hours")}</li>
+            <li className="flex items-center gap-1.5"><MapPin size={12} style={{ color: "#DFF057" }} />{t("footer.zone")}</li>
+            <li className="flex items-center gap-1.5"><Mail size={12} style={{ color: "#DFF057" }} /><a href={lp("/contact")} className="hover:text-white transition-colors">{t("footer.contactLink")}</a></li>
           </ul>
         </div>
       </div>
@@ -81,7 +85,7 @@ const Footer = () => {
       {status === "success" || status === "already" ? (
         <div className="flex items-center gap-2 text-xs" style={{ color: "#DFF057" }}>
           <CheckCircle size={14} />
-          <span>{status === "success" ? "Inscription confirmée !" : "Déjà inscrit(e) !"}</span>
+          <span>{status === "success" ? t("footer.newsletterSuccessTextShort") : t("footer.newsletterAlreadyTextShort")}</span>
         </div>
       ) : (
         <form onSubmit={handleSubscribe} className="flex gap-2">
@@ -89,7 +93,7 @@ const Footer = () => {
             type="email"
             value={email}
             onChange={(e) => { setEmail(e.target.value); if (status === "error" || status === "already") setStatus("idle"); }}
-            placeholder="votre@email.com"
+            placeholder={t("footer.newsletterPlaceholder")}
             required
             className="flex-1 px-3 py-2 rounded-xl text-xs bg-white/10 border border-white/20 placeholder:text-white/30 focus:outline-none focus:border-primary min-w-0"
             style={{ color: "white" }}
@@ -100,17 +104,17 @@ const Footer = () => {
             className="px-3 py-2 rounded-xl text-xs font-semibold flex-shrink-0 flex items-center gap-1"
             style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
           >
-            {status === "loading" ? <Loader2 size={12} className="animate-spin" /> : "S'abonner"}
+            {status === "loading" ? <Loader2 size={12} className="animate-spin" /> : t("footer.newsletterSubscribe")}
           </button>
         </form>
       )}
 
       {/* Copyright */}
       <div className="border-t mt-6 pt-4 flex flex-wrap justify-between gap-2 text-xs" style={{ borderColor: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.3)" }}>
-        <p>© 2026 Breakfast Time</p>
+        <p>{t("footer.copyright")}</p>
         <div className="flex gap-3">
-          <a href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</a>
-          <a href="/cgv" className="hover:text-white transition-colors">CGV</a>
+          <a href={lp("/mentions-legales")} className="hover:text-white transition-colors">{t("footer.legalLink")}</a>
+          <a href={lp("/cgv")} className="hover:text-white transition-colors">{t("footer.cgvLink")}</a>
         </div>
       </div>
     </div>
@@ -123,7 +127,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <img src={logo} alt="Breakfast Time" className="h-16 w-auto mb-4 brightness-0 invert" />
             <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-              Des petits-déjeuners et brunchs, livrés chez vous en moins de 45 minutes. Alpes-Maritimes, 7j/7.
+              {t("footer.description")}
             </p>
             <div className="flex gap-3 mt-6">
               <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
@@ -137,70 +141,70 @@ const Footer = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="font-semibold text-sm tracking-widest uppercase mb-5" style={{ color: "#DFF057" }}>Navigation</h4>
+            <h4 className="font-semibold text-sm tracking-widest uppercase mb-5" style={{ color: "#DFF057" }}>{t("footer.navigationTitle")}</h4>
             <ul className="space-y-3 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-              <li><a href="/carte" className="hover:text-white transition-colors">La Carte</a></li>
-              <li><a href="/#how" className="hover:text-white transition-colors">Comment ça marche</a></li>
-              <li><a href="/#about" className="hover:text-white transition-colors">À propos</a></li>
-              <li><a href="/#delivery" className="hover:text-white transition-colors">Zone de livraison</a></li>
-              <li><a href="/connexion" className="hover:text-white transition-colors">Mon compte</a></li>
+              <li><a href={lp("/carte")} className="hover:text-white transition-colors">{t("footer.menuLink")}</a></li>
+              <li><a href={lp("/#how")} className="hover:text-white transition-colors">{t("footer.howItWorksLink")}</a></li>
+              <li><a href={lp("/#about")} className="hover:text-white transition-colors">{t("footer.aboutLink")}</a></li>
+              <li><a href={lp("/#delivery")} className="hover:text-white transition-colors">{t("footer.deliveryLink")}</a></li>
+              <li><a href={lp("/connexion")} className="hover:text-white transition-colors">{t("footer.accountLink")}</a></li>
             </ul>
           </div>
 
           {/* Infos pratiques */}
           <div>
-            <h4 className="font-semibold text-sm tracking-widest uppercase mb-5" style={{ color: "#DFF057" }}>Infos pratiques</h4>
+            <h4 className="font-semibold text-sm tracking-widest uppercase mb-5" style={{ color: "#DFF057" }}>{t("footer.infoTitle")}</h4>
             <ul className="space-y-3 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
-              <li className="flex items-center gap-2"><Clock size={14} style={{ color: "#DFF057" }} />Lun. – Dim. : 8h – 15h</li>
-              <li className="flex items-center gap-2"><MapPin size={14} style={{ color: "#DFF057" }} />Alpes-Maritimes</li>
-              <li className="flex items-center gap-2"><Mail size={14} style={{ color: "#DFF057" }} /><a href="/contact" className="hover:text-white transition-colors">Nous contacter</a></li>
+              <li className="flex items-center gap-2"><Clock size={14} style={{ color: "#DFF057" }} />{t("footer.hours")}</li>
+              <li className="flex items-center gap-2"><MapPin size={14} style={{ color: "#DFF057" }} />{t("footer.zone")}</li>
+              <li className="flex items-center gap-2"><Mail size={14} style={{ color: "#DFF057" }} /><a href={lp("/contact")} className="hover:text-white transition-colors">{t("footer.contactLink")}</a></li>
             </ul>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-semibold text-sm tracking-widest uppercase mb-5" style={{ color: "#DFF057" }}>Newsletter</h4>
+            <h4 className="font-semibold text-sm tracking-widest uppercase mb-5" style={{ color: "#DFF057" }}>{t("footer.newsletterTitle")}</h4>
             {status === "success" ? (
               <div className="flex flex-col items-start gap-3">
                 <div className="flex items-center gap-2" style={{ color: "#DFF057" }}>
                   <CheckCircle size={18} />
-                  <span className="text-sm font-semibold">Inscription confirmée !</span>
+                  <span className="text-sm font-semibold">{t("footer.newsletterSuccessTitle")}</span>
                 </div>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  Bienvenue ☀️ Un email de confirmation vient de vous être envoyé.
+                  {t("footer.newsletterSuccessText")}
                 </p>
               </div>
             ) : status === "already" ? (
               <div className="flex flex-col items-start gap-3">
                 <div className="flex items-center gap-2" style={{ color: "#DFF057" }}>
                   <CheckCircle size={18} />
-                  <span className="text-sm font-semibold">Vous êtes déjà inscrit(e) !</span>
+                  <span className="text-sm font-semibold">{t("footer.newsletterAlreadyTitle")}</span>
                 </div>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  Cette adresse email est déjà abonnée à notre newsletter.
+                  {t("footer.newsletterAlreadyText")}
                 </p>
               </div>
             ) : (
               <>
-                <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>Recevez nos nouveautés et offres exclusives.</p>
+                <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>{t("footer.newsletterText")}</p>
                 <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); if (status === "error" || status === "already") setStatus("idle"); }}
-                    placeholder="votre@email.com"
+                    placeholder={t("footer.newsletterPlaceholder")}
                     required
                     className="w-full px-4 py-2.5 rounded-xl text-sm bg-white/10 border border-white/20 placeholder:text-white/30 focus:outline-none focus:border-primary"
                     style={{ color: "white", borderColor: status === "error" ? "#ff6b6b" : undefined }}
                   />
-                  {status === "error" && <p className="text-xs" style={{ color: "#ff9999" }}>Une erreur est survenue, veuillez réessayer.</p>}
+                  {status === "error" && <p className="text-xs" style={{ color: "#ff9999" }}>{t("footer.newsletterError")}</p>}
                   <button
                     type="submit"
                     disabled={status === "loading"}
                     className="w-full py-2.5 rounded-xl text-sm font-semibold transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
                   >
-                    {status === "loading" ? <><Loader2 size={14} className="animate-spin" />Inscription…</> : "S'abonner"}
+                    {status === "loading" ? <><Loader2 size={14} className="animate-spin" />{t("footer.newsletterSubscribing")}</> : t("footer.newsletterSubscribe")}
                   </button>
                 </form>
               </>
@@ -212,11 +216,11 @@ const Footer = () => {
       {/* Bas de page desktop */}
       <div className="border-t px-6 py-6" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
-          <p>© 2026 Breakfast Time. Tous droits réservés.</p>
+          <p>{t("footer.copyrightFull")}</p>
           <div className="flex gap-6">
-            <a href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</a>
-            <a href="/cgv" className="hover:text-white transition-colors">CGV</a>
-            <a href="/confidentialite" className="hover:text-white transition-colors">Confidentialité</a>
+            <a href={lp("/mentions-legales")} className="hover:text-white transition-colors">{t("footer.legalLink")}</a>
+            <a href={lp("/cgv")} className="hover:text-white transition-colors">{t("footer.cgvLink")}</a>
+            <a href={lp("/confidentialite")} className="hover:text-white transition-colors">{t("footer.privacyLink")}</a>
           </div>
         </div>
       </div>

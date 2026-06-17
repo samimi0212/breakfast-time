@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EventBookingForm from "@/components/EventBookingForm";
@@ -10,60 +12,6 @@ import brunchMariage from "@/assets/brunch-mariage.jpg";
 import brunchEntreprise from "@/assets/brunch-entreprise.jpg";
 import brunchGroupe from "@/assets/brunch-groupe.png";
 
-const eventDetails = [
-  {
-    id: "mariage",
-    name: "Brunch Mariage",
-    price: "12€",
-    image: brunchMariage,
-    icon: Heart,
-    accroche: "Le plus beau jour mérite un buffet d'exception",
-    description:
-      "Célébrez votre mariage avec un brunch raffiné. Buffet généreux, décoration personnalisable et service discret pour un moment inoubliable.",
-    features: [
-      "Buffet viennoiseries premium",
-      "Sélection salé & sucré gourmande",
-      "Boissons chaudes & froides",
-      "Décoration & présentation soignée",
-      "Service sur place professionnel",
-    ],
-  },
-  {
-    id: "entreprise",
-    name: "Brunch Entreprise",
-    price: "9€",
-    image: brunchEntreprise,
-    icon: Briefcase,
-    accroche: "Boostez vos réunions et séminaires",
-    description:
-      "Une pause gourmande pour dynamiser vos équipes. Idéal pour réunions, séminaires, formations ou team building. Livraison & installation incluses.",
-    features: [
-      "Installation rapide sur site",
-      "Formule adaptée à vos horaires",
-      "Viennoiseries fraîches du matin",
-      "Fruits & produits locaux",
-      "Service ponctuel et discret",
-    ],
-  },
-  {
-    id: "groupe",
-    name: "Brunch Groupe",
-    price: "8€",
-    image: brunchGroupe,
-    icon: Users,
-    accroche: "Tous vos moments de partage",
-    description:
-      "Anniversaire, enterrement de vie, retrouvailles entre amis ou en famille... Un brunch convivial et généreux pour des souvenirs mémorables.",
-    features: [
-      "Buffet viennoiseries & pains",
-      "Plateaux sucré & salé",
-      "Boissons fraîches variées",
-      "Ambiance chaleureuse",
-      "Décoration thématique possible",
-    ],
-  },
-];
-
 const Events = () => {
   usePageMeta(
     "Événements — Mariage, Entreprise, Groupe | Breakfast Time",
@@ -71,8 +19,61 @@ const Events = () => {
     "/evenements"
   );
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const [showAppointment, setShowAppointment] = useState(false);
   const [showDevis, setShowDevis] = useState(false);
+
+  const eventDetails = [
+    {
+      id: "mariage",
+      name: t("eventsPage.mariageName"),
+      price: t("eventsPage.mariagePrice"),
+      image: brunchMariage,
+      icon: Heart,
+      accroche: t("eventsPage.mariageAccroche"),
+      description: t("eventsPage.mariageDescription"),
+      features: [
+        t("eventsPage.mariageF1"),
+        t("eventsPage.mariageF2"),
+        t("eventsPage.mariageF3"),
+        t("eventsPage.mariageF4"),
+        t("eventsPage.mariageF5"),
+      ],
+    },
+    {
+      id: "entreprise",
+      name: t("eventsPage.entrepriseName"),
+      price: t("eventsPage.entreprisePrice"),
+      image: brunchEntreprise,
+      icon: Briefcase,
+      accroche: t("eventsPage.entrepriseAccroche"),
+      description: t("eventsPage.entrepriseDescription"),
+      features: [
+        t("eventsPage.entrepriseF1"),
+        t("eventsPage.entrepriseF2"),
+        t("eventsPage.entrepriseF3"),
+        t("eventsPage.entrepriseF4"),
+        t("eventsPage.entrepriseF5"),
+      ],
+    },
+    {
+      id: "groupe",
+      name: t("eventsPage.groupeName"),
+      price: t("eventsPage.groupePrice"),
+      image: brunchGroupe,
+      icon: Users,
+      accroche: t("eventsPage.groupeAccroche"),
+      description: t("eventsPage.groupeDescription"),
+      features: [
+        t("eventsPage.groupeF1"),
+        t("eventsPage.groupeF2"),
+        t("eventsPage.groupeF3"),
+        t("eventsPage.groupeF4"),
+        t("eventsPage.groupeF5"),
+      ],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -86,25 +87,25 @@ const Events = () => {
             style={{ backgroundColor: "rgba(58,58,10,0.08)", color: "#5a5a1a" }}
           >
             <Sparkles size={12} />
-            Sur mesure pour chaque occasion
+            {t("eventsPage.badge")}
           </div>
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-5 leading-tight" style={{ color: "#2a2a08" }}>
-            Vos événements,{" "}
+            {t("eventsPage.heroTitle")}{" "}
             <span className="italic" style={{ color: "#7a7020" }}>
-              notre signature
+              {t("eventsPage.heroTitleItalic")}
             </span>
           </h1>
           <p className="text-base leading-relaxed mb-10 max-w-xl mx-auto" style={{ color: "#5a5a40" }}>
-            De l'intime au grand format, nous créons l'expérience gourmande qui vous ressemble — mariage, entreprise, anniversaire, EVJF et bien plus
+            {t("eventsPage.heroSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
-              onClick={() => {}}
+              onClick={() => navigate(lp("/evenements/commander"))}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold transition-all hover:scale-105"
               style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
             >
               <ShoppingBag size={16} />
-              Commander en ligne
+              {t("eventsPage.orderOnline")}
             </button>
             <button
               onClick={() => setShowAppointment(true)}
@@ -112,7 +113,7 @@ const Events = () => {
               style={{ backgroundColor: "#3a3a0a", color: "#ffffff" }}
             >
               <Phone size={16} />
-              Demande de rappel
+              {t("eventsPage.callbackBtn")}
             </button>
             <button
               onClick={() => setShowDevis(true)}
@@ -120,7 +121,7 @@ const Events = () => {
               style={{ borderColor: "rgba(58,58,10,0.25)", color: "#3a3a0a" }}
             >
               <FileText size={16} />
-              Demander un devis
+              {t("eventsPage.quoteBtn")}
             </button>
           </div>
         </div>
@@ -149,7 +150,7 @@ const Events = () => {
                       className="absolute top-6 left-6 px-4 py-2 rounded-full text-sm font-bold backdrop-blur-md"
                       style={{ backgroundColor: "rgba(223, 240, 87, 0.95)", color: "#3a3a0a" }}
                     >
-                      À partir de {event.price}/pers.
+                      {t("eventsPage.priceFrom", { price: event.price })}
                     </div>
                   </div>
                 </div>
@@ -182,12 +183,12 @@ const Events = () => {
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <button
-                      onClick={() => {}}
+                      onClick={() => navigate(lp("/evenements/commander"))}
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:scale-105"
                       style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
                     >
                       <ShoppingBag size={16} />
-                      Commander en ligne
+                      {t("eventsPage.orderOnline")}
                     </button>
                     <button
                       onClick={() => setShowAppointment(true)}
@@ -195,7 +196,7 @@ const Events = () => {
                       style={{ backgroundColor: "#3a3a0a", color: "#ffffff" }}
                     >
                       <Phone size={16} />
-                      Demande de rappel
+                      {t("eventsPage.callbackBtn")}
                     </button>
                     <button
                       onClick={() => setShowDevis(true)}
@@ -203,7 +204,7 @@ const Events = () => {
                       style={{ borderColor: "rgba(58,58,10,0.25)", color: "#3a3a0a" }}
                     >
                       <FileText size={16} />
-                      Demander un devis
+                      {t("eventsPage.quoteBtn")}
                     </button>
                   </div>
                 </div>
@@ -220,22 +221,22 @@ const Events = () => {
       >
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="font-display text-3xl md:text-5xl font-bold mb-6" style={{ color: "white" }}>
-            Un projet en tête ?{" "}
+            {t("eventsPage.ctaTitle")}{" "}
             <span className="italic" style={{ color: "#DFF057" }}>
-              Parlons-en
+              {t("eventsPage.ctaTitleItalic")}
             </span>
           </h2>
           <p className="text-lg mb-10" style={{ color: "rgba(255,255,255,0.75)" }}>
-            Notre équipe vous accompagne de A à Z pour faire de votre événement un moment unique.
+            {t("eventsPage.ctaSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => {}}
+              onClick={() => navigate(lp("/evenements/commander"))}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold transition-all hover:scale-105"
               style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
             >
               <ShoppingBag size={18} />
-              Commander en ligne
+              {t("eventsPage.orderOnline")}
             </button>
             <button
               onClick={() => setShowAppointment(true)}
@@ -243,7 +244,7 @@ const Events = () => {
               style={{ backgroundColor: "rgba(255,255,255,0.15)", color: "white", border: "2px solid rgba(255,255,255,0.4)" }}
             >
               <Phone size={18} />
-              Demande de rappel
+              {t("eventsPage.callbackBtn")}
             </button>
             <button
               onClick={() => setShowDevis(true)}
@@ -251,7 +252,7 @@ const Events = () => {
               style={{ borderColor: "rgba(255,255,255,0.3)", color: "white" }}
             >
               <FileText size={18} />
-              Demander un devis
+              {t("eventsPage.quoteBtn")}
             </button>
           </div>
         </div>
@@ -296,9 +297,9 @@ const Events = () => {
             >
               <X size={20} />
             </button>
-            <h2 className="font-display text-3xl font-bold text-center mb-3">Demander un devis</h2>
+            <h2 className="font-display text-3xl font-bold text-center mb-3">{t("eventsPage.quoteModalTitle")}</h2>
             <p className="text-center text-muted-foreground mb-8">
-              Remplissez le formulaire et nous vous proposerons une formule adaptée.
+              {t("eventsPage.quoteModalSubtitle")}
             </p>
             <EventBookingForm />
           </div>

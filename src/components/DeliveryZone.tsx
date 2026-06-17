@@ -1,8 +1,12 @@
 import { MapPin, Clock, Calendar } from "lucide-react";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLangPath } from "@/hooks/useLangPath";
 
 const DeliveryZone = () => {
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const [address, setAddress] = useState("");
   const [result, setResult] = useState<"ok" | "ko" | null>(null);
   const [loading, setLoading] = useState(false);
@@ -61,16 +65,21 @@ const DeliveryZone = () => {
     checkAddress(description);
   };
 
+  const infoItems = [
+    { icon: MapPin,    label: t("delivery.infoZoneLabel"),  value: t("delivery.infoZoneValue") },
+    { icon: Clock,     label: t("delivery.infoHoursLabel"), value: t("delivery.infoHoursValue") },
+    { icon: Calendar,  label: t("delivery.infoDaysLabel"),  value: t("delivery.infoDaysValue") },
+  ];
+
   return (
     <section id="delivery" className="section-padding bg-secondary">
       <div className="max-w-6xl mx-auto text-center">
-        <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">Zone de livraison</p>
-        <h2 className="section-title mb-3">Nous livrons dans les Alpes-Maritimes</h2>
-        <p className="text-sm text-muted-foreground mb-8">Cannes, Antibes, Nice et alentours</p>
+        <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">{t("delivery.label")}</p>
+        <h2 className="section-title mb-3">{t("delivery.title")}</h2>
+        <p className="text-sm text-muted-foreground mb-8">{t("delivery.subtitle")}</p>
 
-        {/* Vérificateur d'adresse */}
         <div className="max-w-xl mx-auto mb-12">
-          <p className="text-sm font-medium mb-3 text-foreground">Vérifiez si votre adresse est éligible à la livraison</p>
+          <p className="text-sm font-medium mb-3 text-foreground">{t("delivery.checkLabel")}</p>
           <div className="relative">
             <div className="flex gap-2">
               <input
@@ -79,7 +88,7 @@ const DeliveryZone = () => {
                 onChange={handleInput}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
                 onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
-                placeholder="Entrez votre adresse..."
+                placeholder={t("delivery.placeholder")}
                 autoComplete="off"
                 className="flex-1 px-4 py-3 rounded-xl border-2 border-border bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition text-sm"
               />
@@ -88,7 +97,7 @@ const DeliveryZone = () => {
                 disabled={loading || !address}
                 className="px-5 py-3 bg-primary text-primary-foreground rounded-xl font-semibold text-sm hover:opacity-90 transition disabled:opacity-50 whitespace-nowrap"
               >
-                {loading ? "..." : "Vérifier"}
+                {loading ? "..." : t("delivery.checkBtn")}
               </button>
             </div>
             {showSuggestions && suggestions.length > 0 && (
@@ -110,25 +119,21 @@ const DeliveryZone = () => {
 
           {result === "ok" && (
             <div className="mt-4 flex items-center justify-center gap-2 text-green-600 font-medium text-sm bg-green-50 rounded-xl py-3 px-4">
-              ✅ Nous livrons à votre adresse !
+              {t("delivery.resultOk")}
             </div>
           )}
           {result === "ko" && (
             <div className="mt-4 flex items-center justify-center gap-2 text-red-500 font-medium text-sm bg-red-50 rounded-xl py-3 px-4">
-              ❌ Adresse hors zone,{" "}
-              <button onClick={() => navigate("/contact")} className="underline hover:opacity-80">contactez-nous</button>
-              {" "}pour une demande spéciale
+              {t("delivery.resultKo")}{" "}
+              <button onClick={() => navigate(lp("/contact"))} className="underline hover:opacity-80">{t("delivery.resultKoLink")}</button>
+              {" "}{t("delivery.resultKoSuffix")}
             </div>
           )}
         </div>
 
-        {/* 3 cartes — desktop : grille centrée / mobile : liste horizontale */}
+        {/* Desktop */}
         <div className="hidden sm:grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-          {[
-            { icon: MapPin, label: "Zone", value: "Alpes-Maritimes" },
-            { icon: Clock, label: "Horaires", value: "8h – 15h" },
-            { icon: Calendar, label: "Jours", value: "Lun. – Dim." },
-          ].map((item, i) => (
+          {infoItems.map((item, i) => (
             <div key={i} className="bg-card rounded-2xl p-6 text-center" style={{ boxShadow: "var(--card-shadow)" }}>
               <item.icon className="w-8 h-8 text-primary mx-auto mb-3" />
               <p className="text-sm text-muted-foreground mb-1">{item.label}</p>
@@ -137,12 +142,9 @@ const DeliveryZone = () => {
           ))}
         </div>
 
+        {/* Mobile */}
         <div className="flex flex-col gap-3 sm:hidden max-w-sm mx-auto w-full">
-          {[
-            { icon: MapPin, label: "Zone", value: "Alpes-Maritimes" },
-            { icon: Clock, label: "Horaires", value: "8h – 15h" },
-            { icon: Calendar, label: "Jours", value: "Lun. – Dim." },
-          ].map((item, i) => (
+          {infoItems.map((item, i) => (
             <div key={i} className="flex items-center gap-4 bg-card rounded-2xl px-4 py-3" style={{ boxShadow: "var(--card-shadow)" }}>
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <item.icon className="w-5 h-5 text-primary" />

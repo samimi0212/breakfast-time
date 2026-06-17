@@ -2,9 +2,13 @@ import { Home, UtensilsCrossed, ShoppingBag, User } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/lib/supabase";
+import { useLangPath } from "@/hooks/useLangPath";
 
 const BottomNav = () => {
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const location = useLocation();
   const navigate = useNavigate();
   const { count } = useCart();
@@ -23,10 +27,10 @@ const BottomNav = () => {
   const path = location.pathname;
 
   const items = [
-    { icon: Home, label: "Accueil", href: "/" },
-    { icon: UtensilsCrossed, label: "Carte", href: "/carte" },
-    { icon: ShoppingBag, label: "Panier", href: "/panier" },
-    { icon: User, label: "Compte", href: user ? "/mon-compte" : `/connexion?redirect=${encodeURIComponent(typeof window !== "undefined" ? window.location.pathname : "/")}` },
+    { icon: Home, label: t("bottomNav.home"), href: lp("/") },
+    { icon: UtensilsCrossed, label: t("bottomNav.menu"), href: lp("/carte") },
+    { icon: ShoppingBag, label: t("bottomNav.cart"), href: lp("/panier") },
+    { icon: User, label: t("bottomNav.account"), href: user ? lp("/mon-compte") : lp(`/connexion?redirect=${encodeURIComponent(typeof window !== "undefined" ? window.location.pathname : "/")}`) },
   ];
 
   return (
@@ -35,8 +39,8 @@ const BottomNav = () => {
       <div className="flex items-stretch">
         {items.map(({ icon: Icon, label, href }) => {
           const isActive =
-            href === "/" ? path === "/" : path.startsWith(href);
-          const isCart = href === "/panier";
+            href === lp("/") ? path === href : path.startsWith(href.split("?")[0]);
+          const isCart = href.startsWith(lp("/panier"));
 
           return (
             <button

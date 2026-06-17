@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ShoppingBag, Clock, MapPin, ChevronDown, ChevronUp } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
 
 const statusColors: Record<string, string> = {
@@ -14,15 +16,25 @@ const statusColors: Record<string, string> = {
 
 const MyOrders = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const { lp } = useLangPath();
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  const statusLabels: Record<string, string> = {
+    "En attente": t("myOrders.statusPending"),
+    "En préparation": t("myOrders.statusPreparing"),
+    "En livraison": t("myOrders.statusDelivering"),
+    "Livré": t("myOrders.statusDelivered"),
+    "Annulé": t("myOrders.statusCancelled"),
+  };
 
   useEffect(() => {
     const fetchOrders = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        navigate("/connexion");
+        navigate(lp("/connexion"));
         return;
       }
 
@@ -40,8 +52,9 @@ const MyOrders = () => {
   }, []);
 
   const formatDate = (dateStr: string) => {
+    const locale = i18n.language === "en" ? "en-GB" : "fr-FR";
     const d = new Date(dateStr);
-    return d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    return d.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" });
   };
 
   if (loading) {
@@ -63,8 +76,8 @@ const MyOrders = () => {
 
         {/* Titre */}
         <div className="mb-8">
-          <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">Historique</p>
-          <h1 className="font-display text-3xl font-bold">Mes commandes</h1>
+          <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">{t("myOrders.historyLabel")}</p>
+          <h1 className="font-display text-3xl font-bold">{t("myOrders.title")}</h1>
         </div>
 
         {orders.length === 0 ? (
@@ -72,13 +85,13 @@ const MyOrders = () => {
             <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
               <ShoppingBag size={32} className="text-muted-foreground" />
             </div>
-            <h2 className="font-display text-xl font-semibold mb-2">Aucune commande</h2>
-            <p className="text-muted-foreground mb-6">Vous n'avez pas encore passé de commande.</p>
+            <h2 className="font-display text-xl font-semibold mb-2">{t("myOrders.emptyTitle")}</h2>
+            <p className="text-muted-foreground mb-6">{t("myOrders.emptyText")}</p>
             <button
-              onClick={() => navigate("/#menu")}
+              onClick={() => navigate(lp("/") + "#menu")}
               className="bg-primary text-primary-foreground px-8 py-3.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
             >
-              Découvrir la carte
+              {t("myOrders.discoverCta")}
             </button>
           </div>
         ) : (
@@ -98,7 +111,7 @@ const MyOrders = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <span className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColors[order.statut] || "bg-muted text-muted-foreground"}`}>
-                          {order.statut}
+                          {statusLabels[order.statut] || order.statut}
                         </span>
                         <span className="text-xs text-muted-foreground">
                           {formatDate(order.created_at)}
@@ -108,7 +121,7 @@ const MyOrders = () => {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Clock size={14} />
-{order.heure_livraison} · {new Date(order.date_livraison).toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })}
+                          {order.heure_livraison} · {new Date(order.date_livraison).toLocaleDateString(i18n.language === "en" ? "en-GB" : "fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })}
                         </span>
                         <span className="flex items-center gap-1">
                           <MapPin size={14} />
@@ -134,7 +147,7 @@ const MyOrders = () => {
                   <div className="border-t border-border px-5 pb-5 pt-4">
 
                     {/* Produits */}
-                    <h3 className="font-semibold text-sm mb-3">Produits commandés</h3>
+                    <h3 className="font-semibold text-sm mb-3">{t("myOrders.orderedItems")}</h3>
                     <div className="space-y-3 mb-4">
                       {order.items?.map((item: any, i: number) => (
                         <div key={i} className="flex items-center gap-3">
@@ -161,7 +174,7 @@ const MyOrders = () => {
 
                     {/* Adresse */}
                     <div className="bg-muted rounded-xl p-3 text-sm">
-                      <p className="font-semibold mb-1">Adresse de livraison</p>
+                      <p className="font-semibold mb-1">{t("myOrders.deliveryAddress")}</p>
                       <p className="text-muted-foreground">
                         {order.adresse}, {order.code_postal} {order.ville}
                       </p>
@@ -179,7 +192,7 @@ const MyOrders = () => {
                         className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm transition-opacity hover:opacity-80"
                         style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
                       >
-                        🚴 Suivre ma livraison en temps réel →
+                        🚴 {t("myOrders.trackDelivery")}
                       </a>
                     )}
                   </div>

@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import { Menu, X, User, LogOut, ShoppingBag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/lib/supabase";
 import { useCart } from "@/context/CartContext";
+import { useLangPath } from "@/hooks/useLangPath";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
@@ -29,7 +34,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate("/");
+    navigate(lp("/"));
   };
 
   const { count } = useCart();
@@ -46,18 +51,19 @@ const Navbar = () => {
         <div className="flex-1" />
 
         {/* Center — Logo */}
-        <a href="/" className="flex-1 flex justify-center">
+        <a href={lp("/")} className="flex-1 flex justify-center">
           <img src={logo} alt="Breakfast Time" className="h-20 w-auto" />
         </a>
 
         {/* Right */}
         <div className="flex-1 flex justify-end items-center gap-3">
+          <LanguageSwitcher className="hidden md:flex" />
           {/* Déconnexion — mobile uniquement, quand connecté */}
           {user && (
             <button
               onClick={handleLogout}
               className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-muted transition-colors text-gray-300"
-              title="Déconnexion"
+              title={t("navbar.logout")}
             >
               <LogOut size={20} />
             </button>
@@ -66,22 +72,22 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-3 relative group">
               <button className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
                 <User size={16} className="text-primary" />
-                Bonjour {prenom} !
+                {t("navbar.greeting", { name: prenom })}
               </button>
               <div className="absolute top-8 right-0 bg-white rounded-2xl shadow-lg border border-border py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <a
-                  href="/mon-compte"
+                  href={lp("/mon-compte")}
                   className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-muted transition-colors"
                 >
                   <User size={15} className="text-primary" />
-                  Mon compte
+                  {t("navbar.myAccount")}
                 </a>
                 <a
-                  href="/mes-commandes"
+                  href={lp("/mes-commandes")}
                   className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-muted transition-colors"
                 >
                   <ShoppingBag size={15} className="text-primary" />
-                  Mes commandes
+                  {t("navbar.myOrders")}
                 </a>
                 <div className="border-t border-border my-1" />
                 <button
@@ -89,30 +95,30 @@ const Navbar = () => {
                   className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"
                 >
                   <LogOut size={15} />
-                  Déconnexion
+                  {t("navbar.logout")}
                 </button>
               </div>
             </div>
           ) : (
             <div className="hidden md:flex items-center gap-3">
               <a
-                href="/connexion"
+                href={lp("/connexion")}
                 className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
               >
-                Connexion
+                {t("navbar.login")}
               </a>
               <a
-                href="/inscription"
+                href={lp("/inscription")}
                 className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
               >
-                S'inscrire
+                {t("navbar.register")}
               </a>
             </div>
           )}
 
           {/* Panier — desktop uniquement */}
           <button
-            onClick={() => navigate("/panier")}
+            onClick={() => navigate(lp("/panier"))}
             className="hidden md:flex relative items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors"
           >
             <ShoppingBag size={20} className="text-foreground/80" />
@@ -131,26 +137,27 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-border animate-fade-in">
           <div className="flex flex-col px-6 py-4 gap-4">
+            <LanguageSwitcher />
             {user ? (
               <div className="flex flex-col gap-2">
-                <p className="text-foreground font-medium py-2">Bonjour {prenom} !</p>
-                <a href="/mon-compte" className="text-foreground py-2 text-sm">
-                  Mon compte
+                <p className="text-foreground font-medium py-2">{t("navbar.greeting", { name: prenom })}</p>
+                <a href={lp("/mon-compte")} className="text-foreground py-2 text-sm">
+                  {t("navbar.myAccount")}
                 </a>
                 <button onClick={handleLogout} className="text-red-500 font-medium py-2 text-left text-sm">
-                  Déconnexion
+                  {t("navbar.logout")}
                 </button>
               </div>
             ) : (
               <div className="flex flex-col gap-4">
-                <a href="/connexion" className="text-foreground font-medium py-2">
-                  Connexion
+                <a href={lp("/connexion")} className="text-foreground font-medium py-2">
+                  {t("navbar.login")}
                 </a>
                 <a
-                  href="/inscription"
+                  href={lp("/inscription")}
                   className="bg-primary text-primary-foreground text-center px-5 py-3 rounded-full font-semibold"
                 >
-                  S'inscrire
+                  {t("navbar.register")}
                 </a>
               </div>
             )}

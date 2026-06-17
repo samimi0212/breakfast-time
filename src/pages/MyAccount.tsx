@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { User, Mail, Phone, Lock, Check, ShoppingBag, ChevronRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
 
 const MyAccount = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
@@ -36,7 +40,7 @@ const MyAccount = () => {
     supabase.auth.getSession().then(({ data }) => {
       const u = data.session?.user;
       if (!u) {
-        navigate("/connexion");
+        navigate(lp("/connexion"));
         return;
       }
       setUser(u);
@@ -75,21 +79,21 @@ const MyAccount = () => {
     if (error) {
       setError(error.message);
     } else {
-      setSuccess("Informations mises à jour !");
+      setSuccess(t("myAccount.successInfos"));
     }
   };
 
   const handleSavePassword = async () => {
     if (!passwords.new || !passwords.confirm) {
-      setError("Veuillez remplir tous les champs.");
+      setError(t("myAccount.errorFields"));
       return;
     }
     if (passwords.new !== passwords.confirm) {
-      setError("Les mots de passe ne correspondent pas.");
+      setError(t("myAccount.errorPasswordMatch"));
       return;
     }
     if (passwords.new.length < 6) {
-      setError("Le mot de passe doit contenir au moins 6 caractères.");
+      setError(t("myAccount.errorPasswordLength"));
       return;
     }
     setLoading(true);
@@ -100,7 +104,7 @@ const MyAccount = () => {
     if (error) {
       setError(error.message);
     } else {
-      setSuccess("Mot de passe mis à jour !");
+      setSuccess(t("myAccount.successPassword"));
       setPasswords({ current: "", new: "", confirm: "" });
     }
   };
@@ -115,8 +119,8 @@ const MyAccount = () => {
 
         {/* Titre */}
         <div className="mb-8">
-          <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">Espace personnel</p>
-          <h1 className="font-display text-3xl font-bold">Mon compte</h1>
+          <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">{t("myAccount.personalLabel")}</p>
+          <h1 className="font-display text-3xl font-bold">{t("myAccount.title")}</h1>
         </div>
 
         {/* Messages */}
@@ -134,7 +138,7 @@ const MyAccount = () => {
 
         {/* Mes commandes — accès rapide */}
         <button
-          onClick={() => navigate("/mes-commandes")}
+          onClick={() => navigate(lp("/mes-commandes"))}
           className="w-full bg-white rounded-2xl p-5 mb-6 flex items-center justify-between hover:shadow-md transition-shadow"
           style={{ boxShadow: "var(--card-shadow)" }}
         >
@@ -143,8 +147,8 @@ const MyAccount = () => {
               <ShoppingBag size={18} className="text-primary" />
             </div>
             <div className="text-left">
-              <p className="font-semibold text-foreground">Mes commandes</p>
-              <p className="text-xs text-muted-foreground">Historique & suivi de livraison</p>
+              <p className="font-semibold text-foreground">{t("myAccount.ordersTitle")}</p>
+              <p className="text-xs text-muted-foreground">{t("myAccount.ordersSubtitle")}</p>
             </div>
           </div>
           <ChevronRight size={20} className="text-muted-foreground" />
@@ -156,13 +160,13 @@ const MyAccount = () => {
             <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
               <User size={16} className="text-primary" />
             </div>
-            <h2 className="font-display text-lg font-semibold">Informations personnelles</h2>
+            <h2 className="font-display text-lg font-semibold">{t("myAccount.personalInfoTitle")}</h2>
           </div>
 
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1.5">Prénom</label>
+                <label className="block text-sm font-medium mb-1.5">{t("myAccount.firstNameLabel")}</label>
                 <input
                   name="prenom"
                   value={form.prenom}
@@ -172,7 +176,7 @@ const MyAccount = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">Nom</label>
+                <label className="block text-sm font-medium mb-1.5">{t("myAccount.lastNameLabel")}</label>
                 <input
                   name="nom"
                   value={form.nom}
@@ -200,7 +204,7 @@ const MyAccount = () => {
             <div>
               <label className="block text-sm font-medium mb-1.5">
                 <Phone size={14} className="inline mr-1" />
-                Téléphone
+                {t("myAccount.phoneLabel")}
               </label>
               <input
                 name="telephone"
@@ -220,7 +224,7 @@ const MyAccount = () => {
               {loading ? (
                 <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
               ) : (
-                "Sauvegarder les modifications"
+                t("myAccount.saveBtn")
               )}
             </button>
           </div>
@@ -232,12 +236,12 @@ const MyAccount = () => {
             <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
               <Lock size={16} className="text-primary" />
             </div>
-            <h2 className="font-display text-lg font-semibold">Changer le mot de passe</h2>
+            <h2 className="font-display text-lg font-semibold">{t("myAccount.passwordTitle")}</h2>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1.5">Nouveau mot de passe</label>
+              <label className="block text-sm font-medium mb-1.5">{t("myAccount.newPasswordLabel")}</label>
               <div className="relative">
                 <input
                   name="new"
@@ -253,7 +257,7 @@ const MyAccount = () => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1.5">Confirmer le nouveau mot de passe</label>
+              <label className="block text-sm font-medium mb-1.5">{t("myAccount.confirmPasswordLabel")}</label>
               <div className="relative">
                 <input
                   name="confirm"
@@ -277,7 +281,7 @@ const MyAccount = () => {
               {loading ? (
                 <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
               ) : (
-                "Changer le mot de passe"
+                t("myAccount.changePasswordBtn")
               )}
             </button>
           </div>

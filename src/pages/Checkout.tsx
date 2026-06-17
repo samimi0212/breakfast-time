@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, CreditCard, Clock, MapPin, User, Lock } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import type { PaymentRequest } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements, PaymentRequestButtonElement } from "@stripe/react-stripe-js";
 import { useCart } from "@/context/CartContext";
 import { supabase } from "@/lib/supabase";
+import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -50,6 +52,8 @@ const CARD_ELEMENT_OPTIONS = {
 const CheckoutForm = () => {
   const { items, total, clearCart } = useCart();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const { lp } = useLangPath();
   const stripe = useStripe();
   const elements = useElements();
 
@@ -133,7 +137,7 @@ const CheckoutForm = () => {
   );
 
   useEffect(() => {
-    if (items.length === 0) navigate("/panier");
+    if (items.length === 0) navigate(lp("/panier"));
   }, [items]);
 
   useEffect(() => {
@@ -164,15 +168,15 @@ const CheckoutForm = () => {
 
       // Validation du formulaire
       const errs: Record<string, string> = {};
-      if (!f.prenom) errs.prenom = "Ce champ est requis";
-      if (!f.nom) errs.nom = "Ce champ est requis";
-      if (!f.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) errs.email = "Email invalide";
-      if (!f.telephone) errs.telephone = "Ce champ est requis";
-      if (!f.adresse) errs.adresse = "Ce champ est requis";
-      if (!f.ville) errs.ville = "Ce champ est requis";
-      if (!f.codePostal) errs.codePostal = "Ce champ est requis";
-      if (!f.heure) errs.heure = "Sélectionnez un créneau";
-      if (dp === null) errs.adresse = "Adresse hors zone de livraison (max 15 km)";
+      if (!f.prenom) errs.prenom = t("checkout.errRequired");
+      if (!f.nom) errs.nom = t("checkout.errRequired");
+      if (!f.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) errs.email = t("checkout.errEmail");
+      if (!f.telephone) errs.telephone = t("checkout.errRequired");
+      if (!f.adresse) errs.adresse = t("checkout.errRequired");
+      if (!f.ville) errs.ville = t("checkout.errRequired");
+      if (!f.codePostal) errs.codePostal = t("checkout.errRequired");
+      if (!f.heure) errs.heure = t("checkout.errSlot");
+      if (dp === null) errs.adresse = t("checkout.errOutOfZone");
 
       if (Object.keys(errs).length > 0) {
         ev.complete("fail");
@@ -192,7 +196,7 @@ const CheckoutForm = () => {
         const data = await res.json();
         if (!res.ok || data.error) {
           ev.complete("fail");
-          setErrors({ general: data.error || "Erreur lors de la création du paiement" });
+          setErrors({ general: data.error || t("checkout.errPayment") });
           return;
         }
 
@@ -205,7 +209,7 @@ const CheckoutForm = () => {
 
         if (confirmError) {
           ev.complete("fail");
-          setErrors({ general: confirmError.message || "Paiement refusé" });
+          setErrors({ general: confirmError.message || t("checkout.errGeneric") });
           return;
         }
 
@@ -215,7 +219,7 @@ const CheckoutForm = () => {
         if (paymentIntent?.status === "requires_action") {
           const { error } = await stripe.confirmCardPayment(data.clientSecret);
           if (error) {
-            setErrors({ general: error.message || "Paiement refusé" });
+            setErrors({ general: error.message || t("checkout.errGeneric") });
             return;
           }
         }
@@ -301,10 +305,10 @@ const CheckoutForm = () => {
         } catch { /* ignore */ }
 
         clearCart();
-        navigate("/confirmation");
+        navigate(lp("/confirmation"));
       } catch (err: any) {
         ev.complete("fail");
-        setErrors({ general: err.message || "Erreur. Veuillez réessayer." });
+        setErrors({ general: err.message || t("checkout.errGeneric") });
         setLoading(false);
       }
     });
@@ -403,11 +407,11 @@ const CheckoutForm = () => {
   };
 
   const validateField = (name: string, value: string): string => {
-    if (!value) return "Ce champ est requis";
+    if (!value) return t("checkout.errRequired");
     if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-      return "Adresse email invalide";
+      return t("checkout.errEmail");
     if (name === "telephone" && !/^(\+33|0)[1-9](\s?\d{2}){4}$/.test(value.replace(/[\s.\-()]/g, "")))
-      return "Numéro de téléphone invalide";
+      return t("checkout.errPhone");
     return "";
   };
 
@@ -419,23 +423,23 @@ const CheckoutForm = () => {
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!form.prenom) e.prenom = "Ce champ est requis";
-    if (!form.nom) e.nom = "Ce champ est requis";
+    if (!form.prenom) e.prenom = t("checkout.errRequired");
+    if (!form.nom) e.nom = t("checkout.errRequired");
     if (!form.email) {
-      e.email = "Ce champ est requis";
+      e.email = t("checkout.errRequired");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      e.email = "Adresse email invalide";
+      e.email = t("checkout.errEmail");
     }
     if (!form.telephone) {
-      e.telephone = "Ce champ est requis";
+      e.telephone = t("checkout.errRequired");
     } else if (!/^(\+33|0)[1-9](\s?\d{2}){4}$/.test(form.telephone.replace(/[\s.\-()]/g, ""))) {
-      e.telephone = "Numéro de téléphone invalide";
+      e.telephone = t("checkout.errPhone");
     }
-    if (!form.adresse) e.adresse = "Ce champ est requis";
-    if (!form.ville) e.ville = "Ce champ est requis";
-    if (!form.codePostal) e.codePostal = "Ce champ est requis";
-    if (!form.heure) e.heure = "Ce champ est requis";
-    if (deliveryPrice === null) e.adresse = "Adresse hors zone de livraison (max 15 km)";
+    if (!form.adresse) e.adresse = t("checkout.errRequired");
+    if (!form.ville) e.ville = t("checkout.errRequired");
+    if (!form.codePostal) e.codePostal = t("checkout.errRequired");
+    if (!form.heure) e.heure = t("checkout.errRequired");
+    if (deliveryPrice === null) e.adresse = t("checkout.errOutOfZone");
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -460,9 +464,9 @@ const CheckoutForm = () => {
       try {
         data = await res.json();
       } catch {
-        throw new Error("Erreur serveur. Veuillez réessayer dans quelques secondes.");
+        throw new Error(t("checkout.errServer"));
       }
-      if (!res.ok || data.error) throw new Error(data.error || "Erreur lors de la création du paiement");
+      if (!res.ok || data.error) throw new Error(data.error || t("checkout.errPayment"));
 
       // 2. Confirmer le paiement avec Stripe
       const cardElement = elements.getElement(CardElement);
@@ -478,7 +482,7 @@ const CheckoutForm = () => {
       });
 
       if (stripeError) {
-        setErrors({ general: stripeError.message || "Paiement refusé. Veuillez vérifier votre carte." });
+        setErrors({ general: stripeError.message || t("checkout.errGeneric") });
         setLoading(false);
         return;
       }
@@ -573,9 +577,9 @@ const CheckoutForm = () => {
       }
 
       clearCart();
-      navigate("/confirmation");
+      navigate(lp("/confirmation"));
     } catch (err: any) {
-      setErrors({ general: err.message || "Une erreur est survenue. Veuillez réessayer." });
+      setErrors({ general: err.message || t("checkout.errGeneric") });
       setLoading(false);
     }
   };
@@ -591,14 +595,14 @@ const CheckoutForm = () => {
 
       <div className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
         <button
-          onClick={() => navigate("/panier")}
+          onClick={() => navigate(lp("/panier"))}
           className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Retour au panier</span>
+          <span className="text-sm font-medium">{t("checkout.backBtn")}</span>
         </button>
 
-        <h1 className="font-display text-3xl font-bold mb-8">Finaliser la commande</h1>
+        <h1 className="font-display text-3xl font-bold mb-8">{t("checkout.title")}</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
@@ -610,25 +614,25 @@ const CheckoutForm = () => {
               onFocus={() => setActiveSection("coordonnees")}
               onBlur={() => setActiveSection(null)}
             >
-              <SectionTitle icon={User} title="Vos coordonnées" complete={isCoordComplete} />
+              <SectionTitle icon={User} title={t("checkout.coordTitle")} complete={isCoordComplete} />
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Prénom</label>
+                  <label className="block text-sm font-medium mb-1.5">{t("checkout.firstNameLabel")}</label>
                   <input name="prenom" value={form.prenom} onChange={handleChange} onBlur={handleBlur} placeholder="Marie" className={inputClass("prenom")} />
                   {errors.prenom && <p className="text-red-400 text-xs mt-1">{errors.prenom}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Nom</label>
+                  <label className="block text-sm font-medium mb-1.5">{t("checkout.lastNameLabel")}</label>
                   <input name="nom" value={form.nom} onChange={handleChange} onBlur={handleBlur} placeholder="Dupont" className={inputClass("nom")} />
                   {errors.nom && <p className="text-red-400 text-xs mt-1">{errors.nom}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Email</label>
+                  <label className="block text-sm font-medium mb-1.5">{t("checkout.emailLabel")}</label>
                   <input name="email" type="email" value={form.email} onChange={handleChange} onBlur={handleBlur} placeholder="marie@email.com" className={inputClass("email")} />
                   {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Téléphone</label>
+                  <label className="block text-sm font-medium mb-1.5">{t("checkout.phoneLabel")}</label>
                   <input name="telephone" type="tel" value={form.telephone} onChange={handleChange} onBlur={handleBlur} placeholder="+33 6 00 00 00 00" className={inputClass("telephone")} />
                   {errors.telephone && <p className="text-red-400 text-xs mt-1">{errors.telephone}</p>}
                 </div>
@@ -642,10 +646,10 @@ const CheckoutForm = () => {
               onFocus={() => setActiveSection("adresse")}
               onBlur={() => setActiveSection(null)}
             >
-              <SectionTitle icon={MapPin} title="Adresse de livraison" complete={isAdresseComplete} />
+              <SectionTitle icon={MapPin} title={t("checkout.adresseTitle")} complete={isAdresseComplete} />
               <div className="space-y-4">
                 <div className="relative">
-                  <label className="block text-sm font-medium mb-1.5">Adresse</label>
+                  <label className="block text-sm font-medium mb-1.5">{t("checkout.addressLabel")}</label>
                   <input
                     name="adresse"
                     value={form.adresse}
@@ -675,24 +679,24 @@ const CheckoutForm = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1.5">
-                    Complément d'adresse <span className="text-muted-foreground font-normal">(facultatif)</span>
+                    {t("checkout.complementLabel")} <span className="text-muted-foreground font-normal">{t("checkout.complementOptional")}</span>
                   </label>
                   <input
                     name="complement"
                     value={form.complement}
                     onChange={handleChange}
-                    placeholder="Bât. B, 3ème étage, digicode 1234..."
+                    placeholder={t("checkout.complementPlaceholder")}
                     className={inputClass("complement")}
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1.5">Ville</label>
+                    <label className="block text-sm font-medium mb-1.5">{t("checkout.cityLabel")}</label>
                     <input name="ville" value={form.ville} onChange={handleChange} placeholder="Nice" className={inputClass("ville")} />
                     {errors.ville && <p className="text-red-400 text-xs mt-1">{errors.ville}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1.5">Code postal</label>
+                    <label className="block text-sm font-medium mb-1.5">{t("checkout.postalLabel")}</label>
                     <input name="codePostal" value={form.codePostal} onChange={handleChange} placeholder="06000" className={inputClass("codePostal")} />
                     {errors.codePostal && <p className="text-red-400 text-xs mt-1">{errors.codePostal}</p>}
                   </div>
@@ -707,9 +711,9 @@ const CheckoutForm = () => {
               onFocus={() => setActiveSection("creneau")}
               onBlur={() => setActiveSection(null)}
             >
-              <SectionTitle icon={Clock} title="Créneau de livraison" complete={isCreneauComplete} />
+              <SectionTitle icon={Clock} title={t("checkout.creneauTitle")} complete={isCreneauComplete} />
               <div className="mb-4">
-                <label className="block text-sm font-bold mb-2">Date</label>
+                <label className="block text-sm font-bold mb-2">{t("checkout.dateLabel")}</label>
                 <div className="flex gap-2 flex-wrap">
                   {Array.from({ length: 7 }, (_, i) => {
                     const d = new Date();
@@ -717,11 +721,12 @@ const CheckoutForm = () => {
                     const iso = d.toISOString().split("T")[0];
                     const isSelected = form.date === iso && !showCustomDate;
                     const isUnavailable = i === 0 && generateSlots(iso).length === 0;
+                    const locale = i18n.language === "en" ? "en-GB" : "fr-FR";
                     const label = i === 0
-                      ? "Aujourd'hui"
+                      ? t("checkout.todayLabel")
                       : i === 1
-                      ? "Demain"
-                      : d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" });
+                      ? t("checkout.tomorrowLabel")
+                      : d.toLocaleDateString(locale, { weekday: "short", day: "numeric", month: "short" });
                     return (
                       <button
                         key={iso}
@@ -754,7 +759,7 @@ const CheckoutForm = () => {
                         : "border-border bg-background text-foreground hover:border-primary/50"
                     }`}
                   >
-                    Autre date…
+                    {t("checkout.otherDateLabel")}
                   </button>
                 </div>
                 {showCustomDate && (
@@ -773,9 +778,9 @@ const CheckoutForm = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-bold mb-2">Heure</label>
+                <label className="block text-sm font-bold mb-2">{t("checkout.timeLabel")}</label>
                 {slots.length === 0 ? (
-                  <p className="text-sm text-muted-foreground italic">Aucun créneau disponible pour ce jour</p>
+                  <p className="text-sm text-muted-foreground italic">{t("checkout.noSlots")}</p>
                 ) : (
                   <div className="flex gap-2 flex-wrap">
                     {form.date === todayStr() && (() => {
@@ -801,7 +806,7 @@ const CheckoutForm = () => {
                               : "border-border bg-background text-foreground hover:border-primary/50"
                           }`}
                         >
-                          Maintenant
+                          {t("checkout.nowLabel")}
                         </button>
                       );
                     })()}
@@ -842,12 +847,12 @@ const CheckoutForm = () => {
               onFocus={() => setActiveSection("note")}
               onBlur={() => setActiveSection(null)}
             >
-              <h2 className="font-display text-lg font-semibold mb-4">Note pour le livreur</h2>
+              <h2 className="font-display text-lg font-semibold mb-4">{t("checkout.noteTitle")}</h2>
               <textarea
                 name="note"
                 value={form.note}
                 onChange={handleChange}
-                placeholder="Instructions particulières..."
+                placeholder={t("checkout.notePlaceholder")}
                 rows={3}
                 className="w-full px-4 py-3 rounded-xl border-2 border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition resize-none"
               />
@@ -859,12 +864,12 @@ const CheckoutForm = () => {
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                   <CreditCard size={16} className="text-primary" />
                 </div>
-                <h2 className="font-display text-lg font-semibold">Paiement</h2>
+                <h2 className="font-display text-lg font-semibold">{t("checkout.paymentTitle")}</h2>
               </div>
 
               {deliveryError && (
                 <p className="text-red-400 text-sm mb-3 flex items-center gap-1.5">
-                  <span>⚠️</span> Veuillez d'abord renseigner une adresse dans notre zone de livraison.
+                  <span>⚠️</span> {t("checkout.paymentDeliveryError")}
                 </p>
               )}
 
@@ -885,7 +890,7 @@ const CheckoutForm = () => {
                   />
                   <div className="flex items-center gap-3 mt-4">
                     <div className="flex-1 h-px bg-border" />
-                    <span className="text-xs text-muted-foreground">ou payer par carte</span>
+                    <span className="text-xs text-muted-foreground">{t("checkout.orPayByCard")}</span>
                     <div className="flex-1 h-px bg-border" />
                   </div>
                 </div>
@@ -903,7 +908,7 @@ const CheckoutForm = () => {
 
               <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1.5">
                 <Lock size={11} />
-                Paiement 100% sécurisé — vos données bancaires ne sont jamais stockées sur nos serveurs
+                {t("checkout.securePayment")}
               </p>
             </div>
 
@@ -912,7 +917,7 @@ const CheckoutForm = () => {
           {/* Récapitulatif */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl p-6 sticky top-24" style={{ boxShadow: "var(--card-shadow)" }}>
-              <h2 className="font-display text-lg font-bold mb-4">Récapitulatif</h2>
+              <h2 className="font-display text-lg font-bold mb-4">{t("checkout.summaryTitle")}</h2>
 
               <div className="space-y-3 mb-4">
                 {items.map((item, i) => (
@@ -938,18 +943,18 @@ const CheckoutForm = () => {
 
               <div className="border-t border-border pt-4 space-y-2 mb-6">
                 <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>Sous-total</span>
+                  <span>{t("checkout.subtotal")}</span>
                   <span>{total.toFixed(2).replace(".", ",")}€</span>
                 </div>
                 <div className="flex flex-col gap-1 text-sm text-muted-foreground">
                   <div className="flex justify-between">
-                    <span>Livraison</span>
+                    <span>{t("checkout.delivery")}</span>
                     {deliveryLoading ? (
-                      <span className="text-muted-foreground italic">Calcul...</span>
+                      <span className="text-muted-foreground italic">{t("checkout.calculating")}</span>
                     ) : deliveryPrice !== null ? (
                       <span className="font-semibold text-foreground">{deliveryPrice.toFixed(2).replace(".", ",")}€</span>
                     ) : !deliveryError ? (
-                      <span className="text-muted-foreground italic text-xs">Saisir une adresse</span>
+                      <span className="text-muted-foreground italic text-xs">{t("checkout.enterAddress")}</span>
                     ) : null}
                   </div>
                   {deliveryError && (
@@ -957,7 +962,7 @@ const CheckoutForm = () => {
                   )}
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t border-border">
-                  <span>Total</span>
+                  <span>{t("checkout.total")}</span>
                   <span className="text-primary">{(total + (deliveryPrice ?? 0)).toFixed(2).replace(".", ",")}€</span>
                 </div>
               </div>
@@ -972,14 +977,14 @@ const CheckoutForm = () => {
                 ) : (
                   <>
                     <CreditCard size={18} />
-                    Payer {(total + (deliveryPrice ?? 0)).toFixed(2).replace(".", ",")}€
+                    {t("checkout.payBtn", { amount: (total + (deliveryPrice ?? 0)).toFixed(2).replace(".", ",") })}
                   </>
                 )}
               </button>
 
               <p className="text-xs text-muted-foreground text-center mt-3 flex items-center justify-center gap-1">
                 <Lock size={11} />
-                Paiement sécurisé par Stripe
+                {t("checkout.secureStripe")}
               </p>
             </div>
           </div>
