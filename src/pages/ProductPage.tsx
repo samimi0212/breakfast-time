@@ -1,13 +1,18 @@
 import { useCart } from "@/context/CartContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, ShoppingBag, Check, Minus, Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { useLangPath } from "@/hooks/useLangPath";
 import { allProducts } from "@/data/products";
 
 const ProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const { lp } = useLangPath();
+  const isEn = i18n.language === "en";
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
@@ -73,9 +78,9 @@ const ProductPage = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-2xl font-display mb-4">Produit introuvable</p>
-          <button onClick={() => navigate("/#menu")} className="text-primary underline">
-            Retour à la carte
+          <p className="text-2xl font-display mb-4">{t("productPage.notFound")}</p>
+          <button onClick={() => navigate(lp("/") + "#menu")} className="text-primary underline">
+            {t("productPage.backToMenu")}
           </button>
         </div>
       </div>
@@ -98,9 +103,13 @@ const ProductPage = () => {
 
   const related = allProducts.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
 
+  const localName = isEn ? (product.name_en || product.name) : product.name;
+  const localComposition = isEn ? (product.composition_en || product.composition) : product.composition;
+  const localAllergens = isEn && product.allergens_en ? product.allergens_en : product.allergens;
+
   const parsePrice = (s: string) => parseFloat(s.replace("€", "").replace(",", ".").trim()) || 0;
   const extractSupplement = (choice: string) => {
-    const m = choice.match(/\(\+([0-9,]+)€\)/);
+    const m = choice.match(/\(\+([0-9,]+)€\)/) || choice.match(/\(\+€([0-9.]+)\)/);
     return m ? parseFloat(m[1].replace(",", ".")) : 0;
   };
   const selectedSupplements = product.options
@@ -152,7 +161,7 @@ const ProductPage = () => {
           <div className="flex items-start justify-between gap-3 mb-4">
             <div className="flex-1">
               <p className="text-primary text-xs font-semibold tracking-widest uppercase mb-1">{product.category}</p>
-              <h1 className="font-display text-2xl font-bold leading-tight">{product.name}</h1>
+              <h1 className="font-display text-2xl font-bold leading-tight">{localName}</h1>
             </div>
             <span className="text-2xl font-display font-bold text-primary flex-shrink-0 mt-5">{product.price}</span>
           </div>
@@ -163,13 +172,13 @@ const ProductPage = () => {
           )}
 
           {/* Composition */}
-          {product.composition.length > 0 && (
+          {localComposition.length > 0 && (
             <div className="bg-muted rounded-2xl p-4 mb-4">
-              <h3 className="font-display font-semibold text-sm mb-2">Détails</h3>
+              <h3 className="font-display font-semibold text-sm mb-2">{t("productPage.details")}</h3>
               <ul className="space-y-1.5">
-                {product.composition.map((item, i) => {
-                  const hasChoice = item.includes("au choix");
-                  const cleanItem = item.replace(" au choix", "");
+                {localComposition.map((item, i) => {
+                  const hasChoice = item.includes("au choix") || item.includes("of your choice");
+                  const cleanItem = item.replace(" au choix", "").replace(" of your choice", "");
                   return (
                     <li key={i} className="flex items-center gap-2 text-sm text-foreground/80">
                       <span className="w-4 h-4 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
@@ -178,7 +187,7 @@ const ProductPage = () => {
                       <span>{cleanItem}</span>
                       {hasChoice && (
                         <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ backgroundColor: "#DFF057", color: "#5a5a1a" }}>
-                          au choix
+                          {t("productPage.choiceLabel")}
                         </span>
                       )}
                     </li>
@@ -189,11 +198,11 @@ const ProductPage = () => {
           )}
 
           {/* Allergènes */}
-          {product.allergens && product.allergens.length > 0 && (
+          {localAllergens && localAllergens.length > 0 && (
             <div className="bg-muted rounded-2xl p-4 mb-4">
-              <h3 className="font-display font-semibold text-sm mb-2">Allergènes</h3>
+              <h3 className="font-display font-semibold text-sm mb-2">{t("productPage.allergens")}</h3>
               <div className="flex flex-wrap gap-2">
-                {product.allergens.map((item, i) => {
+                {localAllergens.map((item, i) => {
                   const icons: Record<string, string> = {
                     "Gluten": "🌾", "Œufs": "🥚", "Poisson": "🐟", "Crustacés": "🦀",
                     "Arachide": "🥜", "Soja": "🫘", "Céleri": "🥬", "Lait": "🥛",
@@ -219,13 +228,13 @@ const ProductPage = () => {
                   return (
                     <div key={option.id}>
                       <div className="flex items-center justify-between mb-2">
-                        <h3 className="font-display font-semibold text-sm">{option.label}</h3>
+                        <h3 className="font-display font-semibold text-sm">{(isEn && option.label_en) ? option.label_en : option.label}</h3>
                         <span className="text-xs text-muted-foreground">{val.length}/50</span>
                       </div>
                       <textarea
                         rows={3}
                         maxLength={50}
-                        placeholder={option.placeholder}
+                        placeholder={(isEn && option.placeholder_en) ? option.placeholder_en : option.placeholder}
                         value={val}
                         onChange={(e) => setSelections((prev) => ({ ...prev, [option.id]: e.target.value }))}
                         className="w-full rounded-xl border-2 border-border bg-white px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none resize-none"
@@ -236,10 +245,10 @@ const ProductPage = () => {
                 return (
                   <div key={option.id}>
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-display font-semibold text-sm">{option.label}</h3>
+                      <h3 className="font-display font-semibold text-sm">{(isEn && option.label_en) ? option.label_en : option.label}</h3>
                       {option.required && (
                         <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">
-                          Choix requis
+                          {t("productPage.requiredChoice")}
                         </span>
                       )}
                     </div>
@@ -249,7 +258,7 @@ const ProductPage = () => {
                       </p>
                     )}
                     <div className="flex flex-wrap gap-2">
-                      {option.choices.map((choice) => {
+                      {(isEn && option.choices_en ? option.choices_en : option.choices).map((choice) => {
                         const arr = (selections[option.id] as string[]) || [];
                         const count = option.maxSelect ? arr.filter((c) => c === choice).length : 0;
                         const isSelected = option.maxSelect
@@ -258,7 +267,7 @@ const ProductPage = () => {
                           ? arr.includes(choice)
                           : selections[option.id] === choice;
                         const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
-                        const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "");
+                        const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "").replace(/\s*\(\+€[0-9.]+\)/, "");
                         const selArr = Array.isArray(selections[option.id]) ? (selections[option.id] as string[]) : [];
                         const withPriceArr = option.firstFree ? selArr.filter((c) => extractSupplement(c) > 0) : [];
                         const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
@@ -304,7 +313,7 @@ const ProductPage = () => {
           {/* Livraison */}
           <div className="flex items-center gap-2 text-xs text-muted-foreground border border-border rounded-xl px-3 py-2.5">
             <span>🚴</span>
-            <span>Livré en <strong className="text-foreground">30-45 min</strong> · Suivi en temps réel</span>
+            <span>{t("productPage.deliveryShort")}</span>
           </div>
         </div>
 
@@ -345,9 +354,9 @@ const ProductPage = () => {
               style={added ? { backgroundColor: "#DFF057", color: "#3a3a0a" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
             >
               {added ? (
-                <><Check size={16} /> Ajouté !</>
+                <><Check size={16} /> {t("productPage.addedShort")}</>
               ) : (
-                <><ShoppingBag size={16} /> Ajouter au panier · {fmt(totalWithQty)}</>
+                <><ShoppingBag size={16} /> {t("productPage.addToCartShort", { price: fmt(totalWithQty) })}</>
               )}
             </button>
           </div>
@@ -362,7 +371,7 @@ const ProductPage = () => {
           className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group"
         >
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Retour</span>
+          <span className="text-sm font-medium">{t("productPage.back")}</span>
         </button>
 
         {/* Produit principal */}
@@ -378,7 +387,7 @@ const ProductPage = () => {
           <div className="flex flex-col gap-6">
             <div>
               <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">{product.category}</p>
-              <h1 className="font-display text-4xl lg:text-5xl font-bold leading-tight mb-4">{product.name}</h1>
+              <h1 className="font-display text-4xl lg:text-5xl font-bold leading-tight mb-4">{localName}</h1>
               <p className="text-muted-foreground text-lg leading-relaxed">{product.desc}</p>
             </div>
 
@@ -386,13 +395,13 @@ const ProductPage = () => {
               <span className="text-4xl font-display font-bold text-primary">{product.price}</span>
             </div>
 
-            {product.composition.length > 0 && (
+            {localComposition.length > 0 && (
               <div className="bg-muted rounded-2xl p-5">
-                <h3 className="font-display font-semibold text-lg mb-3">Détails</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">{t("productPage.details")}</h3>
                 <ul className="space-y-2">
-                  {product.composition.map((item, i) => {
-                    const hasChoice = item.includes("au choix");
-                    const cleanItem = item.replace(" au choix", "");
+                  {localComposition.map((item, i) => {
+                    const hasChoice = item.includes("au choix") || item.includes("of your choice");
+                    const cleanItem = item.replace(" au choix", "").replace(" of your choice", "").replace(" to choose", "");
                     return (
                       <li key={i} className="flex items-center gap-3 text-sm text-foreground/80">
                         <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
@@ -401,7 +410,7 @@ const ProductPage = () => {
                         <span>{cleanItem}</span>
                         {hasChoice && (
                           <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ backgroundColor: "#DFF057", color: "#5a5a1a" }}>
-                            au choix
+                            {t("productPage.choiceLabel")}
                           </span>
                         )}
                       </li>
@@ -411,11 +420,11 @@ const ProductPage = () => {
               </div>
             )}
 
-            {product.allergens && product.allergens.length > 0 && (
+            {localAllergens && localAllergens.length > 0 && (
               <div className="bg-muted rounded-2xl p-5">
-                <h3 className="font-display font-semibold text-lg mb-3">Allergènes</h3>
+                <h3 className="font-display font-semibold text-lg mb-3">{t("productPage.allergens")}</h3>
                 <ul className="space-y-2">
-                  {product.allergens.map((item, i) => {
+                  {localAllergens.map((item, i) => {
                     const icons: Record<string, string> = {
                       "Gluten": "🌾", "Œufs": "🥚", "Poisson": "🐟", "Crustacés": "🦀",
                       "Arachide": "🥜", "Soja": "🫘", "Céleri": "🥬", "Lait": "🥛",
@@ -443,13 +452,13 @@ const ProductPage = () => {
                     return (
                       <div key={option.id}>
                         <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-display font-semibold text-lg">{option.label}</h3>
+                          <h3 className="font-display font-semibold text-lg">{(isEn && option.label_en) ? option.label_en : option.label}</h3>
                           <span className="text-xs text-muted-foreground">{val.length}/50</span>
                         </div>
                         <textarea
                           rows={3}
                           maxLength={50}
-                          placeholder={option.placeholder}
+                          placeholder={(isEn && option.placeholder_en) ? option.placeholder_en : option.placeholder}
                           value={val}
                           onChange={(e) => setSelections((prev) => ({ ...prev, [option.id]: e.target.value }))}
                           className="w-full rounded-xl border-2 border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none resize-none"
@@ -460,23 +469,23 @@ const ProductPage = () => {
                   return (
                     <div key={option.id}>
                       <div className="flex items-center gap-2 mb-3">
-                        <h3 className="font-display font-semibold text-lg">{option.label}</h3>
+                        <h3 className="font-display font-semibold text-lg">{(isEn && option.label_en) ? option.label_en : option.label}</h3>
                         {option.required && (
-                          <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">Choix requis</span>
+                          <span className="text-xs bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">{t("productPage.requiredChoice")}</span>
                         )}
                       </div>
                       {option.maxSelect && (
                         <p className="text-xs text-muted-foreground mb-2">
-                          {((selections[option.id] as string[]) || []).length} / {option.maxSelect} sélectionné(s)
+                          {((selections[option.id] as string[]) || []).length} / {option.maxSelect} {t("productPage.selectedCount")}
                         </p>
                       )}
                       <div className="flex flex-wrap gap-2">
-                        {option.choices.map((choice) => {
+                        {(isEn && option.choices_en ? option.choices_en : option.choices).map((choice) => {
                           const arr = (selections[option.id] as string[]) || [];
                           const count = option.maxSelect ? arr.filter((c) => c === choice).length : 0;
                           const isSelected = option.maxSelect ? count > 0 : option.multiSelect ? arr.includes(choice) : selections[option.id] === choice;
                           const totalReached = option.maxSelect ? arr.length >= option.maxSelect : false;
-                          const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "");
+                          const cleanChoice = choice.replace(/\s*\(\+[0-9,]+€\)/, "").replace(/\s*\(\+€[0-9.]+\)/, "");
                           const selArr = Array.isArray(selections[option.id]) ? (selections[option.id] as string[]) : [];
                           const withPriceArr = option.firstFree ? selArr.filter((c) => extractSupplement(c) > 0) : [];
                           const paidItems = option.firstFree ? withPriceArr.slice(option.firstFree) : [];
@@ -548,22 +557,22 @@ const ProductPage = () => {
                   style={added ? { backgroundColor: "#DFF057", color: "#3a3a0a" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
                 >
                   {added ? (
-                    <><Check size={20} /> Ajouté au panier !</>
+                    <><Check size={20} /> {t("productPage.addedFull")}</>
                   ) : (
-                    <><ShoppingBag size={20} /> Ajouter au panier · {fmt(totalWithQty)}</>
+                    <><ShoppingBag size={20} /> {t("productPage.addToCartFull", { price: fmt(totalWithQty) })}</>
                   )}
                 </button>
               </div>
               {!allSelected && (
                 <p className="text-sm text-amber-600 font-medium">
-                  Veuillez sélectionner toutes les options obligatoires
+                  {t("productPage.requiredOptions")}
                 </p>
               )}
             </div>
 
             <div className="flex items-center gap-3 text-sm text-muted-foreground border border-border rounded-2xl px-4 py-3">
               <span className="text-xl">🚴</span>
-              <span>Livré en <strong className="text-foreground">30-45 minutes</strong> · Suivi de livraison en temps réel</span>
+              <span>{t("productPage.deliveryFull")}</span>
             </div>
           </div>
         </div>
@@ -571,12 +580,12 @@ const ProductPage = () => {
         {/* Produits similaires */}
         {related.length > 0 && (
           <div className="mt-20">
-            <h2 className="font-display text-2xl font-semibold mb-8">Vous aimerez aussi</h2>
+            <h2 className="font-display text-2xl font-semibold mb-8">{t("productPage.youMightAlsoLike")}</h2>
             <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {related.map((item) => (
                 <div
                   key={item.id}
-                  onClick={() => navigate(`/produit/${item.id}`)}
+                  onClick={() => navigate(lp(`/produit/${item.id}`))}
                   className="bg-card rounded-2xl overflow-hidden cursor-pointer hover-lift group"
                   style={{ boxShadow: "var(--card-shadow)" }}
                 >
@@ -588,7 +597,7 @@ const ProductPage = () => {
                     />
                   </div>
                   <div className="p-3 flex justify-between items-center">
-                    <h3 className="font-display font-semibold text-sm">{item.name}</h3>
+                    <h3 className="font-display font-semibold text-sm">{isEn ? (item.name_en || item.name) : item.name}</h3>
                     <span className="text-primary font-bold text-sm">{item.price}</span>
                   </div>
                 </div>

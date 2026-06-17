@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { allProducts } from "@/data/products";
 import { Search, BookOpen, ShoppingBasket, ArrowRight, ShoppingCart } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useCart } from "@/context/CartContext";
+import { useLangPath } from "@/hooks/useLangPath";
 
 const menus = [
   {
@@ -428,7 +431,11 @@ const allProduits = Object.values(produits).flat();
 const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; name: string; price: string; img: string; hasOptions?: boolean }) => {
   const navigate = useNavigate();
   const { addItem } = useCart();
+  const { t, i18n } = useTranslation();
+  const { lp } = useLangPath();
   const [added, setAdded] = useState(false);
+  const productData = allProducts.find((p) => p.id === id);
+  const displayName = i18n.language === "en" ? (productData?.name_en || name) : name;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -439,7 +446,7 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
 
   return (
     <div
-      onClick={() => navigate(`/produit/${id}`)}
+      onClick={() => navigate(lp(`/produit/${id}`))}
       className="bg-card rounded-2xl overflow-hidden hover-lift group cursor-pointer flex flex-col sm:flex-col h-full"
       style={{ boxShadow: "var(--card-shadow)" }}
     >
@@ -464,7 +471,7 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
           />
         </div>
         <div className="flex-1 px-3 py-2 flex flex-col justify-center gap-2">
-          <h3 className="font-display text-sm font-semibold leading-tight">{name}</h3>
+          <h3 className="font-display text-sm font-semibold leading-tight">{displayName}</h3>
           <div className="flex items-center justify-between gap-2">
             <span className="text-primary font-bold text-sm">{price}</span>
             {hasOptions ? (
@@ -477,7 +484,7 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
                 className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-200 flex-shrink-0"
                 style={{ backgroundColor: added ? "#3a3a0a" : "#DFF057", color: added ? "#DFF057" : "#3a3a0a" }}
               >
-                {added ? "✓ Ajouté" : <><ShoppingCart size={11} /> Ajouter</>}
+                {added ? t("cartePage.addedShort") : <><ShoppingCart size={11} /> {t("cartePage.addShort")}</>}
               </button>
             )}
           </div>
@@ -487,11 +494,11 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
       {/* Desktop : texte en bas */}
       <div className="p-4 flex-col flex-1 hidden sm:flex">
         <div className="flex items-start justify-between gap-2 mb-3 flex-1">
-          <h3 className="font-display text-base font-semibold leading-tight">{name}</h3>
+          <h3 className="font-display text-base font-semibold leading-tight">{displayName}</h3>
           <span className="text-primary font-bold text-base flex-shrink-0">{price}</span>
         </div>
         <button className="w-full border-2 border-primary text-primary py-2 rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-colors text-sm mt-auto">
-          Voir le produit →
+          {t("cartePage.viewProduct")}
         </button>
       </div>
     </div>
@@ -505,6 +512,17 @@ const CartePage = () => {
     "/carte"
   );
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { lp } = useLangPath();
+  const categoryLabels: Record<string, string> = {
+    "Viennoiseries": t("cartePage.catViennoiseries"),
+    "Pains": t("cartePage.catPains"),
+    "Le Salé": t("cartePage.catSale"),
+    "Extra": t("cartePage.catExtra"),
+    "Le Sucré": t("cartePage.catSucre"),
+    "Boissons": t("cartePage.catBoissons"),
+    "À Partager": t("cartePage.catPartager"),
+  };
   const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = useState<"menus" | "carte" | null>(() => {
     const t = searchParams.get("tab");
@@ -533,10 +551,18 @@ const CartePage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const filteredMenus = menus.filter((m) => m.name.toLowerCase().includes(search.toLowerCase()));
+  const filteredMenus = menus.filter((m) => {
+    const s = search.toLowerCase();
+    const enName = allProducts.find((p) => p.id === m.id)?.name_en || "";
+    return m.name.toLowerCase().includes(s) || enName.toLowerCase().includes(s);
+  });
 
   const filteredProduits = search
-    ? allProduits.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()))
+    ? allProduits.filter((p) => {
+        const s = search.toLowerCase();
+        const enName = allProducts.find((ap) => ap.id === p.id)?.name_en || "";
+        return p.name.toLowerCase().includes(s) || enName.toLowerCase().includes(s);
+      })
     : produits[catActive];
 
   return (
@@ -546,19 +572,19 @@ const CartePage = () => {
       {/* Header desktop */}
       <div className="hidden md:block bg-foreground pt-24 pb-10 px-6 text-center">
         <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-2">
-          Livraison 7j/7 · Alpes-Maritimes
+          {t("cartePage.deliveryBadge")}
         </p>
         <h1 className="font-display text-4xl font-bold mb-3" style={{ color: "white" }}>
-          Notre{" "}
-          <span className="italic" style={{ color: "#DFF057" }}>Carte</span>
+          {t("cartePage.heroTitle")}{" "}
+          <span className="italic" style={{ color: "#DFF057" }}>{t("cartePage.heroTitleItalic")}</span>
         </h1>
         <p className="text-base max-w-lg mx-auto mb-7" style={{ color: "rgba(255,255,255,0.7)" }}>
-          Des produits de qualité, préparés le matin même pour un petit-déjeuner aussi frais que gourmand.
+          {t("cartePage.heroSubtitle")}
         </p>
         <div className="max-w-md mx-auto relative">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-            placeholder="Rechercher un produit..."
+            placeholder={t("cartePage.searchPlaceholder")}
             className="w-full pl-11 pr-4 py-3.5 rounded-full border-0 bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
           />
         </div>
@@ -567,12 +593,12 @@ const CartePage = () => {
       {/* Header mobile — blanc épuré */}
       <div className="md:hidden bg-white pt-20 pb-4 px-5">
         <h1 className="font-display text-2xl font-bold mb-3 text-foreground">
-          Notre <span className="italic" style={{ color: "#7a7020" }}>Carte</span>
+          {t("cartePage.heroTitle")} <span className="italic" style={{ color: "#7a7020" }}>{t("cartePage.heroTitleItalic")}</span>
         </h1>
         <div className="relative">
           <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-            placeholder="Rechercher un produit..."
+            placeholder={t("cartePage.searchPlaceholder")}
             className="w-full pl-10 pr-4 py-2.5 rounded-full border border-border bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary text-sm"
           />
         </div>
@@ -581,9 +607,9 @@ const CartePage = () => {
       {/* Breadcrumb desktop uniquement */}
       <div className="hidden md:block px-6 py-4 max-w-7xl mx-auto w-full">
         <p className="text-sm text-muted-foreground">
-          <a href="/" className="hover:text-primary transition-colors">Accueil</a>
+          <a href={lp("/")} className="hover:text-primary transition-colors">{t("cartePage.breadcrumbHome")}</a>
           <span className="mx-2">›</span>
-          <span className="text-foreground font-medium">La Carte</span>
+          <span className="text-foreground font-medium">{t("cartePage.breadcrumbCarte")}</span>
         </p>
       </div>
 
@@ -593,7 +619,7 @@ const CartePage = () => {
         {search ? (
           <div>
             <p className="text-muted-foreground text-sm mb-6">
-              {filteredMenus.length + filteredProduits.length} résultat(s) pour "<strong>{search}</strong>"
+              {filteredMenus.length + filteredProduits.length} {t("cartePage.searchResults")} "<strong>{search}</strong>"
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
               {filteredMenus.map((item) => (
@@ -606,8 +632,8 @@ const CartePage = () => {
             {filteredMenus.length + filteredProduits.length === 0 && (
               <div className="text-center py-16">
                 <p className="text-2xl mb-2">🔍</p>
-                <p className="font-display text-xl font-semibold mb-2">Aucun résultat</p>
-                <p className="text-muted-foreground">Essayez avec un autre mot-clé</p>
+                <p className="font-display text-xl font-semibold mb-2">{t("cartePage.noResults")}</p>
+                <p className="text-muted-foreground">{t("cartePage.noResultsHint")}</p>
               </div>
             )}
           </div>
@@ -619,10 +645,10 @@ const CartePage = () => {
                 {/* Desktop : 2 cards compactes côte à côte */}
                 <div className="hidden sm:grid sm:grid-cols-2 gap-4 mt-2">
                   {[
-                    { tab: "menus", img: "/menu-brunch.png",   title: "Nos Menus",  sub: "Formules complètes livrées chez vous", cta: "Voir les menus" },
-                    { tab: "carte", img: "/avocado-toast.png", title: "À la Carte", sub: "Composez votre breakfast à la pièce",   cta: "Composer" },
-                  ].map(({ tab: t, img, title, sub, cta }) => (
-                    <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
+                    { tabKey: "menus", img: "/menu-brunch.png",   title: t("cartePage.choiceMenus"),  sub: t("cartePage.choiceMenusSub"), cta: t("cartePage.choiceMenusCta") },
+                    { tabKey: "carte", img: "/avocado-toast.png", title: t("cartePage.choiceCarte"), sub: t("cartePage.choiceCarteSub"),   cta: t("cartePage.choiceCarteCta") },
+                  ].map(({ tabKey, img, title, sub, cta }) => (
+                    <button key={tabKey} onClick={() => switchTab(tabKey as "menus" | "carte")}
                       className="group flex items-center gap-5 p-6 rounded-2xl bg-white border border-border hover:border-primary hover:shadow-lg transition-all duration-300 text-left">
                       {/* Vignette image */}
                       <div className="w-36 h-36 rounded-xl overflow-hidden flex-shrink-0">
@@ -644,10 +670,10 @@ const CartePage = () => {
                 {/* Mobile : 2 cartes photo carrées côte à côte */}
                 <div className="grid grid-cols-2 gap-3 sm:hidden">
                   {[
-                    { tab: "menus", img: "/menu-highlight.jpg", title: "Nos Menus", price: "Dès 11,90€", cta: "Voir les menus" },
-                    { tab: "carte", img: "/hero-breakfast.jpg", title: "À la Carte", price: "Dès 1,50€", cta: "Voir la carte" },
-                  ].map(({ tab: t, img, title, price, cta }) => (
-                    <button key={t} onClick={() => switchTab(t as "menus" | "carte")}
+                    { tabKey: "menus", img: "/menu-highlight.jpg", title: t("cartePage.mobileMenusTitle"), price: t("cartePage.mobileMenusPrice"), cta: t("cartePage.mobileMenusCta") },
+                    { tabKey: "carte", img: "/hero-breakfast.jpg", title: t("cartePage.mobileCarteTitle"), price: t("cartePage.mobileCartePrice"), cta: t("cartePage.mobileCarteCta") },
+                  ].map(({ tabKey, img, title, price, cta }) => (
+                    <button key={tabKey} onClick={() => switchTab(tabKey as "menus" | "carte")}
                       className="group relative rounded-2xl overflow-hidden"
                       style={{ aspectRatio: "3/4" }}>
                       <img src={img} alt={title} className="w-full h-full object-cover group-active:scale-105 transition-transform duration-300" />
@@ -679,7 +705,7 @@ const CartePage = () => {
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    Nos Menus
+                    {t("cartePage.tabMenus")}
                   </button>
                   <button
                     onClick={() => switchTab("carte")}
@@ -689,7 +715,7 @@ const CartePage = () => {
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    Produits à la Carte
+                    {t("cartePage.tabCarte")}
                   </button>
                 </div>
               </div>
@@ -718,7 +744,7 @@ const CartePage = () => {
                           : "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                       }`}
                     >
-                      {cat}
+                      {categoryLabels[cat] || cat}
                     </button>
                   ))}
                 </div>
