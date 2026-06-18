@@ -1,5 +1,6 @@
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
@@ -11,6 +12,11 @@ import EventsPromo from "@/components/EventsPromo";
 import OrderOnline from "@/components/OrderOnline";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import PromoPopup from "@/components/PromoPopup";
+
+const VALID_PROMOS: Record<string, string> = {
+  BONJOUR20: "-20%",
+};
 
 const Index = () => {
   usePageMeta(
@@ -19,27 +25,47 @@ const Index = () => {
     "/"
   );
 
-  const [showPopup, setShowPopup] = useState(false);
+  const [searchParams] = useSearchParams();
+  const [showLaunchPopup, setShowLaunchPopup] = useState(false);
+  const [promoPopup, setPromoPopup] = useState<{ code: string; discount: string } | null>(null);
 
   useEffect(() => {
+    // Vérifier si un code promo est dans l'URL
+    const promoParam = searchParams.get("promo")?.toUpperCase();
+    if (promoParam && VALID_PROMOS[promoParam]) {
+      sessionStorage.setItem("bt_promo_code", promoParam);
+      setPromoPopup({ code: promoParam, discount: VALID_PROMOS[promoParam] });
+      return;
+    }
+
+    // Sinon, popup lancement
     const seen = sessionStorage.getItem("bt_popup_seen");
     if (!seen) {
-      const timer = setTimeout(() => setShowPopup(true), 800);
+      const timer = setTimeout(() => setShowLaunchPopup(true), 800);
       return () => clearTimeout(timer);
     }
   }, []);
 
   const closePopup = () => {
     sessionStorage.setItem("bt_popup_seen", "1");
-    setShowPopup(false);
+    setShowLaunchPopup(false);
   };
 
   return (
   <>
     <Navbar />
 
+    {/* Pop-up code promo QR */}
+    {promoPopup && (
+      <PromoPopup
+        code={promoPopup.code}
+        discount={promoPopup.discount}
+        onClose={() => setPromoPopup(null)}
+      />
+    )}
+
     {/* Pop-up lancement */}
-    {showPopup && (
+    {showLaunchPopup && (
       <div
         className="fixed inset-0 z-50 flex items-center justify-center px-4"
         style={{ backgroundColor: "rgba(0,0,0,0.5)" }}

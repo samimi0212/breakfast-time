@@ -89,6 +89,13 @@ const CheckoutForm = () => {
   const [slots, setSlots] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [promoCode, setPromoCode] = useState<string | null>(null);
+  const promoDiscount = promoCode ? 0.20 : 0; // 20% off
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem("bt_promo_code");
+    if (stored) setPromoCode(stored);
+  }, []);
   const [deliveryPrice, setDeliveryPrice] = useState<number | null>(null);
   const [deliveryLoading, setDeliveryLoading] = useState(false);
   const [deliveryError, setDeliveryError] = useState("");
@@ -184,14 +191,16 @@ const CheckoutForm = () => {
         return;
       }
 
-      const orderTotal = tot + (dp ?? 0);
+      const baseTotal = tot + (dp ?? 0);
+      const storedPromo = sessionStorage.getItem("bt_promo_code");
+      const orderTotal = storedPromo ? baseTotal * 0.80 : baseTotal;
 
       try {
         // Créer le PaymentIntent
         const res = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: orderTotal }),
+          body: JSON.stringify({ amount: orderTotal, promoCode: storedPromo }),
         });
         const data = await res.json();
         if (!res.ok || data.error) {
@@ -304,6 +313,7 @@ const CheckoutForm = () => {
           });
         } catch { /* ignore */ }
 
+        sessionStorage.removeItem("bt_promo_code");
         clearCart();
         navigate(lp("/confirmation"));
       } catch (err: any) {
@@ -452,13 +462,14 @@ const CheckoutForm = () => {
     setErrors({});
 
     try {
-      const orderTotal = total + (deliveryPrice ?? 0);
+      const baseTotal = total + (deliveryPrice ?? 0);
+      const orderTotal = promoCode ? baseTotal * (1 - promoDiscount) : baseTotal;
 
       // 1. Créer le PaymentIntent côté serveur
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: orderTotal }),
+        body: JSON.stringify({ amount: orderTotal, promoCode }),
       });
       let data: any;
       try {
@@ -961,9 +972,17 @@ const CheckoutForm = () => {
                     <span className="text-red-400 text-xs">{deliveryError}</span>
                   )}
                 </div>
+                {promoCode && (
+                  <div className="flex justify-between text-sm font-semibold" style={{ color: "#5a7a0a" }}>
+                    <span>🎉 Code {promoCode}</span>
+                    <span>-{((total + (deliveryPrice ?? 0)) * promoDiscount).toFixed(2).replace(".", ",")}€</span>
+                  </div>
+                )}
                 <div className="flex justify-between font-bold text-lg pt-2 border-t border-border">
                   <span>{t("checkout.total")}</span>
-                  <span className="text-primary">{(total + (deliveryPrice ?? 0)).toFixed(2).replace(".", ",")}€</span>
+                  <span className="text-primary">
+                    {((total + (deliveryPrice ?? 0)) * (1 - promoDiscount)).toFixed(2).replace(".", ",")}€
+                  </span>
                 </div>
               </div>
 
@@ -977,7 +996,7 @@ const CheckoutForm = () => {
                 ) : (
                   <>
                     <CreditCard size={18} />
-                    {t("checkout.payBtn", { amount: (total + (deliveryPrice ?? 0)).toFixed(2).replace(".", ",") })}
+                    {t("checkout.payBtn", { amount: ((total + (deliveryPrice ?? 0)) * (1 - promoDiscount)).toFixed(2).replace(".", ",") })}
                   </>
                 )}
               </button>
