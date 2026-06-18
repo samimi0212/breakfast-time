@@ -272,18 +272,18 @@ const Cart = () => {
                 </div>
               ) : (
                 <div className="mb-4">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 w-full min-w-0">
                     <input
                       type="text"
                       value={promoInput}
                       onChange={(e) => { setPromoInput(e.target.value); setPromoError(""); }}
                       onKeyDown={(e) => e.key === "Enter" && applyPromo()}
                       placeholder="Code promo"
-                      className="flex-1 px-4 py-2.5 rounded-xl border-2 border-border text-sm focus:outline-none focus:border-primary transition-colors"
+                      className="min-w-0 flex-1 px-3 py-2.5 rounded-xl border-2 border-border text-sm focus:outline-none focus:border-primary transition-colors"
                     />
                     <button
                       onClick={applyPromo}
-                      className="px-4 py-2.5 rounded-xl text-sm font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="flex-shrink-0 px-4 py-2.5 rounded-xl text-sm font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
                       Appliquer
                     </button>
