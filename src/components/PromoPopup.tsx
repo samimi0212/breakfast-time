@@ -46,12 +46,12 @@ const PromoPopup = ({ code, discount, onClose }: PromoPopupProps) => {
           Bienvenue ! 🎉
         </h2>
         <p className="text-muted-foreground text-sm mb-6">
-          Un cadeau rien que pour toi
+          Un cadeau rien que pour vous
         </p>
 
         {/* Code */}
         <div className="bg-muted rounded-2xl p-4 mb-3">
-          <p className="text-xs text-muted-foreground mb-1">Ton code promo</p>
+          <p className="text-xs text-muted-foreground mb-1">Votre code promo</p>
           <p className="font-display text-3xl font-bold tracking-widest" style={{ color: "#3a3a0a" }}>
             {code}
           </p>
