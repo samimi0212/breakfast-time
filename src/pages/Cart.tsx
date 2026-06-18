@@ -261,7 +261,7 @@ const Cart = () => {
               {promoCode ? (
                 <div className="flex items-center justify-between bg-muted rounded-xl px-4 py-3 mb-4">
                   <span className="text-sm font-semibold" style={{ color: "#5a7a0a" }}>
-                    🎉 {promoCode} — -20% appliqué
+                    🎉 {promoCode} — appliqué
                   </span>
                   <button
                     onClick={removePromo}
