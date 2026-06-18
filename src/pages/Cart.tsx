@@ -259,16 +259,9 @@ const Cart = () => {
 
               {/* Code promo */}
               {promoCode ? (
-                <div className="flex items-center justify-between bg-muted rounded-xl px-4 py-3 mb-4">
-                  <span className="text-sm font-semibold" style={{ color: "#5a7a0a" }}>
-                    🎉 {promoCode} — appliqué
-                  </span>
-                  <button
-                    onClick={removePromo}
-                    className="text-xs text-muted-foreground hover:text-red-500 transition-colors ml-3"
-                  >
-                    Retirer
-                  </button>
+                <div className="flex items-center justify-between bg-muted rounded-xl px-4 py-2.5 mb-4">
+                  <span className="text-sm font-semibold whitespace-nowrap" style={{ color: "#5a7a0a" }}>🎉 {promoCode} — appliqué</span>
+                  <button onClick={removePromo} className="text-xs text-muted-foreground hover:text-red-500 transition-colors ml-3 whitespace-nowrap flex-shrink-0">Retirer</button>
                 </div>
               ) : (
                 <div className="mb-4">
