@@ -4,7 +4,7 @@ import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft, UtensilsCrossed } from "lu
 import { useCart } from "@/context/CartContext";
 import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 
 const Cart = () => {
@@ -14,9 +14,17 @@ const Cart = () => {
   const { lp } = useLangPath();
   const [wantsCutlery, setWantsCutlery] = useState(false);
   const [cutleryQty, setCutleryQty] = useState(1);
+  const [promoCode, setPromoCode] = useState<string | null>(null);
 
+  useEffect(() => {
+    const stored = sessionStorage.getItem("bt_promo_code");
+    if (stored) setPromoCode(stored);
+  }, []);
+
+  const promoDiscount = promoCode ? 0.20 : 0;
   const MIN_ORDER = 15;
-  const orderTotal = total + (wantsCutlery ? cutleryQty * 0.80 : 0);
+  const subtotalWithCutlery = total + (wantsCutlery ? cutleryQty * 0.80 : 0);
+  const orderTotal = subtotalWithCutlery * (1 - promoDiscount);
   const isMinReached = orderTotal >= MIN_ORDER;
   const progressPct = Math.min((orderTotal / MIN_ORDER) * 100, 100);
 
@@ -215,6 +223,12 @@ const Cart = () => {
                   <span>{t("cart.deliveryLabel")}</span>
                   <span className="italic text-xs">{t("cart.deliveryCalc")}</span>
                 </div>
+                {promoCode && (
+                  <div className="flex justify-between text-sm font-semibold" style={{ color: "#5a7a0a" }}>
+                    <span>🎉 Code {promoCode}</span>
+                    <span>-{(subtotalWithCutlery * promoDiscount).toFixed(2).replace(".", ",")}€</span>
+                  </div>
+                )}
                 <div className="border-t border-border pt-4 flex justify-between font-bold text-lg">
                   <span>{t("cart.total")}</span>
                   <span className="text-primary">{orderTotal.toFixed(2).replace(".", ",")}€</span>
