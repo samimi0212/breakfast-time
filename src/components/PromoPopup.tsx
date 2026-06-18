@@ -56,7 +56,7 @@ const PromoPopup = ({ code, discount, onClose }: PromoPopupProps) => {
             {code}
           </p>
           <p className="text-sm font-semibold mt-1" style={{ color: "#5a7a0a" }}>
-            {discount} sur ta commande
+            {discount} sur votre commande
           </p>
         </div>
 
