@@ -14,7 +14,7 @@ const PromoPopup = ({ code, discount, onClose }: PromoPopupProps) => {
 
   const handleOrder = () => {
     onClose();
-    navigate(lp("/carte"));
+    navigate(lp("/"));
   };
 
   return (
@@ -70,7 +70,7 @@ const PromoPopup = ({ code, discount, onClose }: PromoPopupProps) => {
           className="w-full py-4 rounded-2xl font-semibold text-base transition-all"
           style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
         >
-          Commander maintenant →
+          Découvrir →
         </button>
       </div>
     </div>
