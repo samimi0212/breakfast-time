@@ -15,11 +15,33 @@ const Cart = () => {
   const [wantsCutlery, setWantsCutlery] = useState(false);
   const [cutleryQty, setCutleryQty] = useState(1);
   const [promoCode, setPromoCode] = useState<string | null>(null);
+  const [promoInput, setPromoInput] = useState("");
+  const [promoError, setPromoError] = useState("");
+
+  const VALID_PROMOS: Record<string, number> = { BONJOUR20: 0.20 };
 
   useEffect(() => {
     const stored = sessionStorage.getItem("bt_promo_code");
     if (stored) setPromoCode(stored);
   }, []);
+
+  const applyPromo = () => {
+    const code = promoInput.trim().toUpperCase();
+    if (VALID_PROMOS[code]) {
+      sessionStorage.setItem("bt_promo_code", code);
+      setPromoCode(code);
+      setPromoInput("");
+      setPromoError("");
+    } else {
+      setPromoError("Code invalide");
+    }
+  };
+
+  const removePromo = () => {
+    sessionStorage.removeItem("bt_promo_code");
+    setPromoCode(null);
+    setPromoError("");
+  };
 
   const promoDiscount = promoCode ? 0.20 : 0;
   const MIN_ORDER = 15;
@@ -234,6 +256,43 @@ const Cart = () => {
                   <span className="text-primary">{orderTotal.toFixed(2).replace(".", ",")}€</span>
                 </div>
               </div>
+
+              {/* Code promo */}
+              {promoCode ? (
+                <div className="flex items-center justify-between bg-muted rounded-xl px-4 py-3 mb-4">
+                  <span className="text-sm font-semibold" style={{ color: "#5a7a0a" }}>
+                    🎉 {promoCode} — -20% appliqué
+                  </span>
+                  <button
+                    onClick={removePromo}
+                    className="text-xs text-muted-foreground hover:text-red-500 transition-colors ml-3"
+                  >
+                    Retirer
+                  </button>
+                </div>
+              ) : (
+                <div className="mb-4">
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={promoInput}
+                      onChange={(e) => { setPromoInput(e.target.value); setPromoError(""); }}
+                      onKeyDown={(e) => e.key === "Enter" && applyPromo()}
+                      placeholder="Code promo"
+                      className="flex-1 px-4 py-2.5 rounded-xl border-2 border-border text-sm focus:outline-none focus:border-primary transition-colors"
+                    />
+                    <button
+                      onClick={applyPromo}
+                      className="px-4 py-2.5 rounded-xl text-sm font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      Appliquer
+                    </button>
+                  </div>
+                  {promoError && (
+                    <p className="text-xs text-red-500 mt-1.5 ml-1">{promoError}</p>
+                  )}
+                </div>
+              )}
 
               {/* Barre minimum de commande */}
               {!isMinReached && (
