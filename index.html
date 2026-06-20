@@ -34,31 +34,55 @@
     {
       "@context": "https://schema.org",
       "@type": "FoodEstablishment",
+      "@id": "https://www.breakfast-time.fr/#business",
       "name": "Breakfast Time",
-      "description": "Service de livraison de petit-déjeuner et brunch spécialisés. Produits faits maison livrés en moins de 45 minutes.",
+      "description": "Service de livraison de petit-déjeuner et brunch à domicile sur la Côte d'Azur. Produits frais préparés le matin même, livrés en 30 à 45 minutes, 7j/7 de 8h à 15h.",
       "url": "https://www.breakfast-time.fr",
       "image": "https://www.breakfast-time.fr/og-image.jpg",
       "servesCuisine": ["Petit-déjeuner", "Brunch", "English breakfast", "Pancakes", "Bagels", "Avocado toast", "Smoothies"],
-      "openingHours": "Mo-Su 08:00-15:00",
       "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Carte bancaire",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Antibes",
+        "postalCode": "06600",
+        "addressRegion": "Provence-Alpes-Côte d'Azur",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.5808,
+        "longitude": 7.1239
+      },
+      "sameAs": [
+        "https://www.instagram.com/breakfasttime.06/"
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "15:00"
+      },
       "areaServed": [
-        "Antibes", "Nice", "Cannes", "Mougins", "Cagnes-sur-Mer", "Biot",
-        "Villeneuve-Loubet", "Valbonne", "Roquefort-les-Pins", "Vallauris",
-        "La Colle-sur-Loup", "Le Rouret", "Opio", "Saint-Paul-de-Vence",
+        "Antibes", "Nice", "Cannes", "Juan-les-Pins", "Sophia Antipolis", "Mougins",
+        "Cagnes-sur-Mer", "Biot", "Villeneuve-Loubet", "Valbonne", "Roquefort-les-Pins",
+        "Vallauris", "La Colle-sur-Loup", "Le Rouret", "Opio", "Saint-Paul-de-Vence",
         "Le Cannet", "Châteauneuf-Grasse", "Mouans-Sartoux", "Saint-Laurent-du-Var",
         "La Gaude", "Tourrettes-sur-Loup", "La Roquette-sur-Siagne", "Gourdon",
         "Saint-Jeannet", "Pégomas", "Grasse"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Carte Breakfast Time",
+        "name": "Nos Menus Breakfast Time",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "MenuItem", "name": "Pancakes à composer" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MenuItem", "name": "Bagel" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MenuItem", "name": "Avocado Toast" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MenuItem", "name": "English Breakfast" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MenuItem", "name": "Smoothie" } },
-          { "@type": "Offer", "itemOffered": { "@type": "MenuItem", "name": "Brunch" } }
+          { "@type": "Offer", "price": "11.90", "priceCurrency": "EUR", "itemOffered": { "@type": "MenuItem", "name": "Menu Français" } },
+          { "@type": "Offer", "price": "16.90", "priceCurrency": "EUR", "itemOffered": { "@type": "MenuItem", "name": "Menu Anglais" } },
+          { "@type": "Offer", "price": "27.90", "priceCurrency": "EUR", "itemOffered": { "@type": "MenuItem", "name": "Menu Brunch" } },
+          { "@type": "Offer", "price": "23.90", "priceCurrency": "EUR", "itemOffered": { "@type": "MenuItem", "name": "Menu Veggie" } },
+          { "@type": "Offer", "price": "35.00", "priceCurrency": "EUR", "itemOffered": { "@type": "MenuItem", "name": "Menu Duo" } },
+          { "@type": "Offer", "price": "59.00", "priceCurrency": "EUR", "itemOffered": { "@type": "MenuItem", "name": "Menu Famille" } },
+          { "@type": "Offer", "price": "35.00", "priceCurrency": "EUR", "itemOffered": { "@type": "MenuItem", "name": "Birthday Box" } }
         ]
       }
     }
