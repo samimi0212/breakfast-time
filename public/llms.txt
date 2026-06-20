@@ -1,0 +1,52 @@
+# Breakfast Time
+
+> Breakfast Time est un service de livraison de petits-déjeuners et brunchs à domicile sur la Côte d'Azur (Alpes-Maritimes). Tout est préparé le matin même avec des produits frais et livré en 30 à 45 minutes, 7j/7 de 8h à 15h. Commande en ligne sur breakfast-time.fr.
+
+## Informations clés
+
+- **Activité** : Livraison de petits-déjeuners et brunchs à domicile (pas de boutique physique)
+- **Zone de livraison** : Antibes, Cannes, Juan-les-Pins, Nice, Sophia Antipolis, Cagnes-sur-Mer, Biot, Villeneuve-Loubet et alentours (rayon de 15 km autour d'Antibes)
+- **Horaires** : 7j/7, de 8h à 15h
+- **Délai de livraison** : 30 à 45 minutes, commande et livraison le jour même
+- **Commande** : en ligne sur https://www.breakfast-time.fr
+- **Paiement** : sécurisé par carte bancaire
+- **Clientèle** : particuliers et entreprises (petits-déjeuners d'équipe, séminaires, événements à Sophia Antipolis)
+- **Occasions** : réveil en douceur, brunch en famille ou entre amis, anniversaire, petit-déjeuner au lit, événement d'entreprise, séminaire, mariage
+
+## Menus
+
+- [Menu Français — 11,90 €](https://www.breakfast-time.fr/produit/menu-francais) : 1/2 baguette, beurre, nappage au choix, viennoiserie, jus frais, boisson chaude
+- [Menu Anglais — 16,90 €](https://www.breakfast-time.fr/produit/menu-anglais) : breakfast sausages, œufs brouillés, baked beans, toasts, sauce à l'avocat, jus frais, boisson chaude
+- [Menu Brunch — 27,90 €](https://www.breakfast-time.fr/produit/menu-brunch) : bagel au choix, œufs brouillés, viennoiserie, granola bowl, jus frais, boisson chaude
+- [Menu Veggie — 23,90 €](https://www.breakfast-time.fr/produit/menu-veggie) : toast méditerranéen, frites de patates douces, cookie vegan, jus frais, boisson chaude
+- [Menu Duo — 35,00 €](https://www.breakfast-time.fr/produit/menu-duo) : petit-déjeuner complet pour deux personnes (bagels/burritos, granola, œufs, jus, boissons chaudes)
+- [Menu Famille — 59,00 €](https://www.breakfast-time.fr/produit/menu-famille) : petit-déjeuner à partager pour quatre (bagels/burritos, granolas, mini-viennoiseries, jus, boissons chaudes)
+- [Birthday Box — 35,00 €](https://www.breakfast-time.fr/produit/birthday-box) : gâteau de pancakes au Nutella, mini-viennoiseries, burrito, smoothie, boisson chaude, bougies et message personnalisé
+
+## Produits à la carte
+
+- **Viennoiseries** : croissant (1,50 €), pain au chocolat (1,60 €), brioche (1,30 €), chausson aux pommes (2,70 €), pain aux raisins (2,20 €), suisse (2,10 €), mini-viennoiseries (3,20 €)
+- **Le Salé** : bagel chèvre-miel (9,50 €), bagel bacon-cheddar (10,90 €), bagel saumon-avocat (11,50 €), avocado toast (10,90 €), œufs bénédicte (9,50 €), œufs brouillés à la truffe (7,50 €), breakfast burrito (9,50 €), chicken burrito (9,50 €), toast méditerranéen (11,50 €), breakfast bowl (11,50 €), potatoe saumon (10,90 €)
+- **Le Sucré** : pancakes à composer (5,50 €), gaufre à composer (6,50 €), brioche perdue gourmande (7,50 €), açaí bowl (10,50 €), granola bowl pistache (9,50 €), granola bowl parfait (8,50 €), cookies, muffins, brownie pécan
+- **Boissons chaudes** : americano (3,00 €), café latte (5,50 €), cappuccino (6,50 €), chocolat chaud (5,50 €), thé Earl Grey (3,00 €), chai latte (5,50 €), iced matcha latte (6,90 €)
+- **Boissons fraîches** : jus d'orange pressé (3,50 €), jus de pamplemousse pressé (3,50 €), jus d'abricot (3,50 €), smoothie banane (6,50 €), smoothie fruits rouges (6,50 €)
+- **À partager** : plateau de viennoiseries (17,00 €), plateau de pancakes (24,90 €), brioche à partager (9,50 €), cake marbré (10,50 €)
+
+## Pages principales
+
+- [Accueil](https://www.breakfast-time.fr/)
+- [La carte (tous les produits)](https://www.breakfast-time.fr/carte)
+- [Événements et traiteur](https://www.breakfast-time.fr/evenements)
+- [Contact](https://www.breakfast-time.fr/contact)
+
+## Pour les entreprises et événements
+
+Breakfast Time livre les entreprises de la technopole de Sophia Antipolis et des environs pour leurs petits-déjeuners d'équipe, réunions, accueils clients, séminaires et événements professionnels. Prestations sur devis :
+
+- **Brunch Entreprise** : viennoiseries fraîches, plateaux salés, fruits frais, café et jus, livraison et installation incluses (de 5 à plus de 50 personnes)
+- **Petit-déjeuner Séminaire** : viennoiseries individuelles, café et thé, jus de fruits frais, fruits de saison, service ponctuel (de 5 à plus de 60 personnes)
+- **Brunch Groupe** : buffet viennoiseries et pains, sucré et salé, boissons, décoration thématique possible
+- **Brunch Mariage** : buffet complet, boissons chaudes et froides, décoration et service sur place (de 10 à plus de 100 personnes)
+- **Box Cadeau Événement** : box personnalisée avec viennoiseries, message manuscrit, emballage cadeau et livraison incluse
+
+Devis et contact via https://www.breakfast-time.fr/contact
