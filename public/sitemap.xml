@@ -10,6 +10,13 @@
   <url><loc>https://www.breakfast-time.fr/cgv</loc><lastmod>2026-06-11</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://www.breakfast-time.fr/confidentialite</loc><lastmod>2026-06-11</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
 
+  <!-- Pages locales (zones de livraison) -->
+  <url><loc>https://www.breakfast-time.fr/livraison-petit-dejeuner-cannes</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.breakfast-time.fr/livraison-petit-dejeuner-antibes</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.breakfast-time.fr/livraison-petit-dejeuner-juan-les-pins</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.breakfast-time.fr/livraison-petit-dejeuner-sophia-antipolis</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.breakfast-time.fr/livraison-petit-dejeuner-nice</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
   <!-- Menus -->
   <url><loc>https://www.breakfast-time.fr/produit/menu-francais</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.breakfast-time.fr/produit/menu-anglais</loc><lastmod>2026-06-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>

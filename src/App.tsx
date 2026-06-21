@@ -24,8 +24,10 @@ import CGV from "./pages/CGV.tsx";
 import Confidentialite from "./pages/Confidentialite.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import VillePage from "./pages/VillePage.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
 import BottomNav from "./components/BottomNav.tsx";
+import { cities } from "./data/cities.ts";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +50,11 @@ const routeDefs = [
   { path: "/confidentialite", element: <Confidentialite /> },
   { path: "/contact", element: <Contact /> },
   { path: "/produit/:id", element: <ProductPage /> },
+  // Pages locales SEO (une par ville) — /livraison-petit-dejeuner-{slug}
+  ...cities.map((city) => ({
+    path: `/livraison-petit-dejeuner-${city.slug}`,
+    element: <VillePage slug={city.slug} />,
+  })),
 ];
 
 // Composant interne pour accéder à useNavigate (doit être dans BrowserRouter)
