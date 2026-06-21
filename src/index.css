@@ -131,3 +131,10 @@
     transform: translateY(-72px) !important;
   }
 }
+
+
+@media (max-width: 767px) {
+  body.crisp-hidden #crisp-chatbox {
+    display: none !important;
+  }
+}

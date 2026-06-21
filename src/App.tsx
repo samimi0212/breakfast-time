@@ -85,6 +85,17 @@ const AppRoutes = () => {
     }
   }, [location.pathname, i18n]);
 
+  // Sur mobile, masquer le widget Crisp sur toutes les pages sauf l'accueil
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    const isHome = location.pathname === "/" || location.pathname === "/en";
+    if (isMobile && !isHome) {
+      document.body.classList.add("crisp-hidden");
+    } else {
+      document.body.classList.remove("crisp-hidden");
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <BottomNav />
