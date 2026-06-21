@@ -45,8 +45,8 @@ export const cities: City[] = [
   {
     slug: "cannes",
     name: "Cannes",
-    deliveryTime: "25 à 35 minutes",
-    deliveryTime_en: "25 to 35 minutes",
+    deliveryTime: "30 à 45 minutes",
+    deliveryTime_en: "30 to 45 minutes",
     intro:
       "Faites-vous livrer un petit-déjeuner ou un brunch frais directement chez vous à Cannes — préparé le matin même et déposé à votre porte, 7j/7 de 8h à 15h.",
     intro_en:
@@ -86,8 +86,8 @@ export const cities: City[] = [
       {
         q: "En combien de temps suis-je livré à Cannes ?",
         q_en: "How long does delivery to Cannes take?",
-        a: "Comptez environ 25 à 35 minutes après confirmation de votre commande, selon le quartier et l'affluence.",
-        a_en: "Allow around 25 to 35 minutes after your order is confirmed, depending on the area and traffic.",
+        a: "Comptez environ 30 à 45 minutes après confirmation de votre commande, selon le quartier et l'affluence.",
+        a_en: "Allow around 30 to 45 minutes after your order is confirmed, depending on the area and traffic.",
       },
       {
         q: "Puis-je commander un brunch pour un événement à Cannes ?",
@@ -99,24 +99,24 @@ export const cities: City[] = [
     metaTitle: "Livraison petit-déjeuner Cannes — Brunch à domicile | Breakfast Time",
     metaTitle_en: "Breakfast Delivery Cannes — Brunch at Home | Breakfast Time",
     metaDesc:
-      "Livraison de petit-déjeuner et brunch à domicile à Cannes (Croisette, Le Suquet, La Bocca). Produits frais, livrés en 25-35 min, 7j/7 de 8h à 15h.",
+      "Livraison de petit-déjeuner et brunch à domicile à Cannes (Croisette, Le Suquet, La Bocca). Produits frais, livrés en 30-45 min, 7j/7 de 8h à 15h.",
     metaDesc_en:
-      "Breakfast and brunch delivery in Cannes (Croisette, Le Suquet, La Bocca). Fresh products, delivered in 25-35 min, 7 days a week from 8am to 3pm.",
+      "Breakfast and brunch delivery in Cannes (Croisette, Le Suquet, La Bocca). Fresh products, delivered in 30-45 min, 7 days a week from 8am to 3pm.",
   },
   {
     slug: "antibes",
     name: "Antibes",
-    deliveryTime: "15 à 30 minutes",
-    deliveryTime_en: "15 to 30 minutes",
+    deliveryTime: "30 à 45 minutes",
+    deliveryTime_en: "30 to 45 minutes",
     intro:
       "Breakfast Time livre votre petit-déjeuner et votre brunch à domicile partout à Antibes — frais, préparés le matin même, 7j/7 de 8h à 15h.",
     intro_en:
       "Breakfast Time delivers your breakfast and brunch at home anywhere in Antibes — fresh, prepared the same morning, 7 days a week from 8am to 3pm.",
     quartiers: ["Vieil Antibes", "Cap d'Antibes", "La Fontonne", "Les Semboules", "Le Port Vauban", "La Brague"],
     context:
-      "Antibes est notre ville d'origine, et c'est ici que nous livrons le plus vite. Du Vieil Antibes au Cap, en passant par La Fontonne et Les Semboules, votre petit-déjeuner arrive chaud et soigné en un temps record. Le matin face au port Vauban ou dans votre jardin antibois, c'est encore meilleur quand c'est livré.",
+      "Du Vieil Antibes au Cap, en passant par La Fontonne et Les Semboules, votre petit-déjeuner arrive chaud et soigné. Le matin face au port Vauban ou dans votre jardin antibois, c'est encore meilleur quand c'est livré.",
     context_en:
-      "Antibes is our home town, and it's where we deliver fastest. From Vieil Antibes to the Cap, through La Fontonne and Les Semboules, your breakfast arrives warm and beautifully prepared in record time. Mornings facing Port Vauban or in your Antibes garden are even better when delivered.",
+      "From Vieil Antibes to the Cap, through La Fontonne and Les Semboules, your breakfast arrives warm and beautifully prepared. Mornings facing Port Vauban or in your Antibes garden are even better when delivered.",
     useCases: [
       {
         title: "Le réveil tranquille",
@@ -141,8 +141,8 @@ export const cities: City[] = [
       {
         q: "Quel est le délai de livraison à Antibes ?",
         q_en: "What's the delivery time in Antibes?",
-        a: "Antibes étant notre zone la plus proche, comptez environ 15 à 30 minutes selon le quartier.",
-        a_en: "As Antibes is our closest area, allow around 15 to 30 minutes depending on the neighbourhood.",
+        a: "Comptez environ 30 à 45 minutes après confirmation de votre commande, selon le quartier.",
+        a_en: "Allow around 30 to 45 minutes after your order is confirmed, depending on the neighbourhood.",
       },
       {
         q: "Livrez-vous le Cap d'Antibes et Les Semboules ?",
@@ -160,15 +160,15 @@ export const cities: City[] = [
     metaTitle: "Livraison petit-déjeuner Antibes — Brunch à domicile | Breakfast Time",
     metaTitle_en: "Breakfast Delivery Antibes — Brunch at Home | Breakfast Time",
     metaDesc:
-      "Livraison de petit-déjeuner et brunch à domicile à Antibes (Vieil Antibes, Cap d'Antibes, La Fontonne). Frais, livrés en 15-30 min, 7j/7 de 8h à 15h.",
+      "Livraison de petit-déjeuner et brunch à domicile à Antibes (Vieil Antibes, Cap d'Antibes, La Fontonne). Frais, livrés en 30-45 min, 7j/7 de 8h à 15h.",
     metaDesc_en:
-      "Breakfast and brunch delivery in Antibes (old town, Cap d'Antibes, La Fontonne). Fresh, delivered in 15-30 min, 7 days a week from 8am to 3pm.",
+      "Breakfast and brunch delivery in Antibes (old town, Cap d'Antibes, La Fontonne). Fresh, delivered in 30-45 min, 7 days a week from 8am to 3pm.",
   },
   {
     slug: "juan-les-pins",
     name: "Juan-les-Pins",
-    deliveryTime: "15 à 30 minutes",
-    deliveryTime_en: "15 to 30 minutes",
+    deliveryTime: "30 à 45 minutes",
+    deliveryTime_en: "30 to 45 minutes",
     intro:
       "Petit-déjeuner et brunch livrés à domicile à Juan-les-Pins — produits frais préparés le matin même, déposés chez vous 7j/7 de 8h à 15h.",
     intro_en:
@@ -208,8 +208,8 @@ export const cities: City[] = [
       {
         q: "Quel délai pour être livré à Juan-les-Pins ?",
         q_en: "How long for delivery to Juan-les-Pins?",
-        a: "Juan-les-Pins est tout proche de notre local : comptez environ 15 à 30 minutes.",
-        a_en: "Juan-les-Pins is very close to our kitchen: allow around 15 to 30 minutes.",
+        a: "Comptez environ 30 à 45 minutes après confirmation de votre commande.",
+        a_en: "Allow around 30 to 45 minutes after your order is confirmed.",
       },
       {
         q: "Proposez-vous des options végétariennes ?",
@@ -221,15 +221,15 @@ export const cities: City[] = [
     metaTitle: "Livraison petit-déjeuner Juan-les-Pins — Brunch à domicile | Breakfast Time",
     metaTitle_en: "Breakfast Delivery Juan-les-Pins — Brunch at Home | Breakfast Time",
     metaDesc:
-      "Livraison de petit-déjeuner et brunch à domicile à Juan-les-Pins (Pinède, plages, locations). Frais, livrés en 15-30 min, 7j/7 de 8h à 15h.",
+      "Livraison de petit-déjeuner et brunch à domicile à Juan-les-Pins (Pinède, plages, locations). Frais, livrés en 30-45 min, 7j/7 de 8h à 15h.",
     metaDesc_en:
-      "Breakfast and brunch delivery in Juan-les-Pins (Pinède, beaches, rentals). Fresh, delivered in 15-30 min, 7 days a week from 8am to 3pm.",
+      "Breakfast and brunch delivery in Juan-les-Pins (Pinède, beaches, rentals). Fresh, delivered in 30-45 min, 7 days a week from 8am to 3pm.",
   },
   {
     slug: "sophia-antipolis",
     name: "Sophia Antipolis",
-    deliveryTime: "10 à 25 minutes",
-    deliveryTime_en: "10 to 25 minutes",
+    deliveryTime: "30 à 45 minutes",
+    deliveryTime_en: "30 to 45 minutes",
     intro:
       "Breakfast Time livre vos petits-déjeuners d'entreprise et de séminaire sur toute la technopole de Sophia Antipolis — frais, livrés et installés, 7j/7 de 8h à 15h.",
     intro_en:
