@@ -296,10 +296,6 @@ export const cities: City[] = [
     intro_en:
       "Breakfast Time delivers fresh breakfasts and brunches in western Nice — airport area, Arénas and Saint-Augustin — prepared the same morning, 7 days a week from 8am to 3pm.",
     quartiers: ["Nice Ouest", "Aéroport / Arénas", "Saint-Augustin", "Saint-Isidore", "Sainte-Marguerite"],
-    coverageNote:
-      "Depuis notre local à Biot, nous livrons actuellement l'ouest de Nice (zone aéroport, Arénas, Saint-Augustin, Saint-Isidore). Le centre-ville et l'est de Nice sont hors de notre zone de livraison pour le moment.",
-    coverageNote_en:
-      "From our kitchen in Biot, we currently deliver to western Nice (airport area, Arénas, Saint-Augustin, Saint-Isidore). The city centre and eastern Nice are outside our delivery area for now.",
     context:
       "L'ouest de Nice, autour de l'aéroport, d'Arénas et de Saint-Augustin, est à portée de livraison depuis notre local de Biot. Entreprises de la plaine du Var, hôtels près de l'aéroport ou résidents de Nice Ouest : profitez d'un petit-déjeuner frais livré à domicile ou au bureau, sans détour par une boulangerie.",
     context_en:
