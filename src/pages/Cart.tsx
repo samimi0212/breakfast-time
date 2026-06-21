@@ -243,9 +243,12 @@ const Cart = () => {
                 )}
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>{t("cart.deliveryLabel")}</span>
-                  <span className="italic text-xs">{t("cart.deliveryCalc")}</span>
+                  {promoCode === "RETOUR"
+                    ? <span className="font-semibold" style={{ color: "#5a7a0a" }}>Offerte</span>
+                    : <span className="italic text-xs">{t("cart.deliveryCalc")}</span>
+                  }
                 </div>
-                {promoCode && (
+                {promoCode && promoDiscount > 0 && (
                   <div className="flex justify-between text-sm font-semibold" style={{ color: "#5a7a0a" }}>
                     <span>🎉 Code {promoCode}</span>
                     <span>-{(subtotalWithCutlery * promoDiscount).toFixed(2).replace(".", ",")}€</span>
