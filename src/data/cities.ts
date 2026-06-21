@@ -297,15 +297,15 @@ export const cities: City[] = [
       "Breakfast Time delivers fresh breakfasts and brunches in western Nice — airport area, Arénas and Saint-Augustin — prepared the same morning, 7 days a week from 8am to 3pm.",
     quartiers: ["Nice Ouest", "Aéroport / Arénas", "Saint-Augustin", "Saint-Isidore", "Sainte-Marguerite"],
     context:
-      "L'ouest de Nice, autour de l'aéroport, d'Arénas et de Saint-Augustin, est à portée de livraison depuis notre local de Biot. Entreprises de la plaine du Var, hôtels près de l'aéroport ou résidents de Nice Ouest : profitez d'un petit-déjeuner frais livré à domicile ou au bureau, sans détour par une boulangerie.",
+      "L'ouest de Nice, autour de l'aéroport, d'Arénas et de Saint-Augustin, est à portée de livraison. Hôtels près de l'aéroport, bureaux du secteur ou résidents de Nice Ouest : profitez d'un petit-déjeuner frais livré à domicile ou au bureau, sans détour par une boulangerie.",
     context_en:
-      "Western Nice, around the airport, Arénas and Saint-Augustin, is within delivery reach from our Biot kitchen. Companies in the Var plain, hotels near the airport or residents of western Nice: enjoy a fresh breakfast delivered at home or to the office, no bakery detour needed.",
+      "Western Nice, around the airport, Arénas and Saint-Augustin, is within delivery reach. Hotels near the airport, local offices or residents of western Nice: enjoy a fresh breakfast delivered at home or to the office, no bakery detour needed.",
     useCases: [
       {
-        title: "Bureaux plaine du Var",
-        title_en: "Var plain offices",
-        text: "Petit-déjeuner d'équipe livré aux entreprises de Nice Ouest, Arénas et de la plaine du Var.",
-        text_en: "Team breakfast delivered to companies in western Nice, Arénas and the Var plain.",
+        title: "Bureaux de Nice Ouest",
+        title_en: "Western Nice offices",
+        text: "Petit-déjeuner d'équipe livré aux entreprises de Nice Ouest, du secteur aéroport et d'Arénas.",
+        text_en: "Team breakfast delivered to companies in western Nice, the airport area and Arénas.",
       },
       {
         title: "Près de l'aéroport",
@@ -324,8 +324,8 @@ export const cities: City[] = [
       {
         q: "Livrez-vous dans tout Nice ?",
         q_en: "Do you deliver across all of Nice?",
-        a: "Pas encore. Depuis notre local de Biot, nous livrons l'ouest de Nice (aéroport, Arénas, Saint-Augustin, Saint-Isidore). Le centre et l'est de Nice ne sont pas encore desservis.",
-        a_en: "Not yet. From our Biot kitchen we deliver western Nice (airport, Arénas, Saint-Augustin, Saint-Isidore). Central and eastern Nice are not covered yet.",
+        a: "Pas encore. Nous livrons l'ouest de Nice (aéroport, Arénas, Saint-Augustin, Saint-Isidore). Le centre et l'est de Nice ne sont pas encore desservis.",
+        a_en: "Not yet. We deliver western Nice (airport, Arénas, Saint-Augustin, Saint-Isidore). Central and eastern Nice are not covered yet.",
       },
       {
         q: "Quel est le délai de livraison vers Nice Ouest ?",
@@ -336,8 +336,8 @@ export const cities: City[] = [
       {
         q: "Livrez-vous les entreprises près de l'aéroport de Nice ?",
         q_en: "Do you deliver to companies near Nice airport?",
-        a: "Oui, nous livrons les bureaux de la zone aéroport, Arénas et de la plaine du Var. Demandez un devis pour les commandes groupées.",
-        a_en: "Yes, we deliver to offices in the airport area, Arénas and the Var plain. Request a quote for group orders.",
+        a: "Oui, nous livrons les bureaux de la zone aéroport, d'Arénas et de Nice Ouest. Demandez un devis pour les commandes groupées.",
+        a_en: "Yes, we deliver to offices in the airport area, Arénas and western Nice. Request a quote for group orders.",
       },
     ],
     metaTitle: "Livraison petit-déjeuner Nice Ouest — Brunch à domicile | Breakfast Time",
