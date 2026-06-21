@@ -18,7 +18,7 @@ const Cart = () => {
   const [promoInput, setPromoInput] = useState("");
   const [promoError, setPromoError] = useState("");
 
-  const VALID_PROMOS: Record<string, number> = { BONJOUR20: 0.20 };
+  const VALID_PROMOS: Record<string, number> = { BONJOUR20: 0.20, BIENVENUE10: 0.10, RETOUR: 0 };
 
   useEffect(() => {
     const stored = sessionStorage.getItem("bt_promo_code");
@@ -43,7 +43,7 @@ const Cart = () => {
     setPromoError("");
   };
 
-  const promoDiscount = promoCode ? 0.20 : 0;
+  const promoDiscount = promoCode ? (VALID_PROMOS[promoCode] ?? 0) : 0;
   const MIN_ORDER = 15;
   const subtotalWithCutlery = total + (wantsCutlery ? cutleryQty * 0.80 : 0);
   const orderTotal = subtotalWithCutlery * (1 - promoDiscount);

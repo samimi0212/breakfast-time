@@ -90,7 +90,9 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [promoCode, setPromoCode] = useState<string | null>(null);
-  const promoDiscount = promoCode ? 0.20 : 0; // 20% off
+  const VALID_PROMOS: Record<string, number> = { BONJOUR20: 0.20, BIENVENUE10: 0.10, RETOUR: 0 };
+  const promoDiscount = promoCode ? (VALID_PROMOS[promoCode] ?? 0) : 0;
+  const freeDelivery = promoCode === "RETOUR";
 
   useEffect(() => {
     const stored = sessionStorage.getItem("bt_promo_code");
@@ -462,7 +464,22 @@ const CheckoutForm = () => {
     setErrors({});
 
     try {
-      const baseTotal = total + (deliveryPrice ?? 0);
+      // Vérification mono-usage du code promo
+      if (promoCode) {
+        const { count } = await supabase
+          .from("promo_usage")
+          .select("*", { count: "exact", head: true })
+          .eq("email", form.email)
+          .eq("promo_code", promoCode);
+        if ((count ?? 0) > 0) {
+          setErrors({ global: "Ce code promo a déjà été utilisé sur ce compte." });
+          setLoading(false);
+          return;
+        }
+      }
+
+      const effectiveDelivery = freeDelivery ? 0 : (deliveryPrice ?? 0);
+      const baseTotal = total + effectiveDelivery;
       const orderTotal = promoCode ? baseTotal * (1 - promoDiscount) : baseTotal;
 
       // 1. Créer le PaymentIntent côté serveur
@@ -555,6 +572,11 @@ const CheckoutForm = () => {
 
       if (dbError) {
         console.error("Supabase insert error:", dbError);
+      }
+
+      // Enregistrer l'usage du code promo pour bloquer la réutilisation
+      if (promoCode) {
+        await supabase.from("promo_usage").insert({ email: form.email, promo_code: promoCode });
       }
 
       // 5. Envoyer l'email de confirmation
