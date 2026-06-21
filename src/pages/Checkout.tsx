@@ -985,7 +985,9 @@ const CheckoutForm = () => {
                     {deliveryLoading ? (
                       <span className="text-muted-foreground italic">{t("checkout.calculating")}</span>
                     ) : deliveryPrice !== null ? (
-                      <span className="font-semibold text-foreground">{deliveryPrice.toFixed(2).replace(".", ",")}€</span>
+                      freeDelivery
+                        ? <span className="font-semibold" style={{ color: "#5a7a0a" }}>Offerte</span>
+                        : <span className="font-semibold text-foreground">{deliveryPrice.toFixed(2).replace(".", ",")}€</span>
                     ) : !deliveryError ? (
                       <span className="text-muted-foreground italic text-xs">{t("checkout.enterAddress")}</span>
                     ) : null}
@@ -994,16 +996,16 @@ const CheckoutForm = () => {
                     <span className="text-red-400 text-xs">{deliveryError}</span>
                   )}
                 </div>
-                {promoCode && (
+                {promoCode && promoDiscount > 0 && (
                   <div className="flex justify-between text-sm font-semibold" style={{ color: "#5a7a0a" }}>
                     <span>🎉 Code {promoCode}</span>
-                    <span>-{((total + (deliveryPrice ?? 0)) * promoDiscount).toFixed(2).replace(".", ",")}€</span>
+                    <span>-{(total * promoDiscount).toFixed(2).replace(".", ",")}€</span>
                   </div>
                 )}
                 <div className="flex justify-between font-bold text-lg pt-2 border-t border-border">
                   <span>{t("checkout.total")}</span>
                   <span className="text-primary">
-                    {((total + (deliveryPrice ?? 0)) * (1 - promoDiscount)).toFixed(2).replace(".", ",")}€
+                    {(total * (1 - promoDiscount) + (freeDelivery ? 0 : (deliveryPrice ?? 0))).toFixed(2).replace(".", ",")}€
                   </span>
                 </div>
               </div>
