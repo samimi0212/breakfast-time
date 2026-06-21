@@ -27,7 +27,7 @@ const Cart = () => {
 
   const applyPromo = () => {
     const code = promoInput.trim().toUpperCase();
-    if (VALID_PROMOS[code]) {
+    if (code in VALID_PROMOS) {
       sessionStorage.setItem("bt_promo_code", code);
       setPromoCode(code);
       setPromoInput("");
