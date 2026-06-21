@@ -139,10 +139,10 @@ export const cities: City[] = [
     ],
     faq: [
       {
-        q: "Quel est le délai de livraison à Antibes ?",
-        q_en: "What's the delivery time in Antibes?",
-        a: "Comptez environ 30 à 45 minutes après confirmation de votre commande, selon le quartier.",
-        a_en: "Allow around 30 to 45 minutes after your order is confirmed, depending on the neighbourhood.",
+        q: "Puis-je être livré le matin même à Antibes ?",
+        q_en: "Can I get same-day delivery in Antibes?",
+        a: "Oui, nous livrons à Antibes le jour même, 7j/7 de 8h à 15h. Il vous suffit de passer commande en ligne.",
+        a_en: "Yes, we deliver in Antibes the same day, 7 days a week from 8am to 3pm. Just place your order online.",
       },
       {
         q: "Livrez-vous le Cap d'Antibes et Les Semboules ?",
