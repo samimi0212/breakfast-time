@@ -322,16 +322,16 @@ export const cities: City[] = [
     ],
     faq: [
       {
-        q: "Livrez-vous dans tout Nice ?",
-        q_en: "Do you deliver across all of Nice?",
-        a: "Pas encore. Nous livrons l'ouest de Nice (aéroport, Arénas, Saint-Augustin, Saint-Isidore). Le centre et l'est de Nice ne sont pas encore desservis.",
-        a_en: "Not yet. We deliver western Nice (airport, Arénas, Saint-Augustin, Saint-Isidore). Central and eastern Nice are not covered yet.",
+        q: "Quels quartiers de Nice livrez-vous ?",
+        q_en: "Which areas of Nice do you deliver to?",
+        a: "Nous livrons l'ouest de Nice : aéroport, Arénas, Saint-Augustin, Saint-Isidore et Sainte-Marguerite, à domicile comme au bureau.",
+        a_en: "We deliver to western Nice: airport, Arénas, Saint-Augustin, Saint-Isidore and Sainte-Marguerite, at home or at the office.",
       },
       {
-        q: "Quel est le délai de livraison vers Nice Ouest ?",
-        q_en: "What's the delivery time to western Nice?",
-        a: "Comptez environ 30 à 45 minutes selon le trafic, l'ouest de Nice étant à la limite de notre zone.",
-        a_en: "Allow around 30 to 45 minutes depending on traffic, as western Nice is at the edge of our area.",
+        q: "Puis-je être livré le matin même à Nice ?",
+        q_en: "Can I get same-day delivery in Nice?",
+        a: "Oui, nous livrons le jour même à partir de 8h, 7j/7. Il vous suffit de passer commande en ligne.",
+        a_en: "Yes, we deliver the same day from 8am, 7 days a week. Just place your order online.",
       },
       {
         q: "Livrez-vous les entreprises près de l'aéroport de Nice ?",
