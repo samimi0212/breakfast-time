@@ -111,6 +111,13 @@
     "stat3Label": "8am to 3pm",
     "cta": "Order now →"
   },
+  "ugc": {
+    "label": "Seen on Instagram",
+    "title": "They share their mornings",
+    "subtitle": "Real customers, real moments — shared with love on Instagram.",
+    "cta": "Follow us on Instagram",
+    "ctaSub": "@breakfasttimefr"
+  },
   "testimonials": {
     "label": "Reviews",
     "title": "What our customers say",

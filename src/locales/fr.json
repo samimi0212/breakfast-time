@@ -111,6 +111,13 @@
     "stat3Label": "8h à 15h",
     "cta": "Commandez maintenant →"
   },
+  "ugc": {
+    "label": "Vus sur Instagram",
+    "title": "Ils partagent leurs matins",
+    "subtitle": "Des vrais clients, de vrais moments — partagés avec amour sur Instagram.",
+    "cta": "Nous suivre sur Instagram",
+    "ctaSub": "@breakfasttimefr"
+  },
   "testimonials": {
     "label": "Témoignages",
     "title": "Ce que disent nos clients",

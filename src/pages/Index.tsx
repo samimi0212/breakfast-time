@@ -9,6 +9,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import AboutSection from "@/components/AboutSection";
 import DeliveryZone from "@/components/DeliveryZone";
 import EventsPromo from "@/components/EventsPromo";
+import UGCVideos from "@/components/UGCVideos";
 import OrderOnline from "@/components/OrderOnline";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -95,6 +96,7 @@ const Index = () => {
       <MenuSection />
       <OrderOnline />
       <EventsPromo />
+      <UGCVideos />
       <HowItWorks />
       <DeliveryZone />
       <WhyChooseUs />
