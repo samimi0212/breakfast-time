@@ -2,7 +2,10 @@
   "mcpServers": {
     "motion": {
       "type": "http",
-      "url": "https://mcp.motion.so/mcp"
+      "url": "https://mcp.motion.so/mcp",
+      "headers": {
+        "Authorization": "Bearer motion_lRPoeAWSZf1qDaAbk6OVLWk2TeE0SMti"
+      }
     }
   }
 }
