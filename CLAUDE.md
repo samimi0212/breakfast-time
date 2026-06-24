@@ -1,7 +1,7 @@
 # Breakfast Time — Guide Claude
 
 ## Projet
-Site vitrine pour **Breakfast Time**, boulangerie-traiteur.
+Site vitrine pour **Breakfast Time**, service de **livraison de petit déjeuner et brunch à domicile**. ⚠️ Ce n'est PAS une boulangerie ni un traiteur — c'est un service de livraison à domicile.
 - Framework : Vite + React + TypeScript + Tailwind CSS + shadcn/ui
 - Repo GitHub : https://github.com/samimi0212/breakfast-time
 - Déploiement : **Vercel** (auto-deploy depuis la branche `main`)
