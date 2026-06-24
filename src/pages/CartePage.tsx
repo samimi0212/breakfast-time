@@ -508,7 +508,7 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
 const CartePage = () => {
   usePageMeta(
     "Notre Carte — Menus & Brunchs | Breakfast Time",
-    "Découvrez nos menus petit-déjeuner et brunch livrés à domicile dans les Alpes-Maritimes. Produits frais et locaux, 7j/7.",
+    "Découvrez nos menus petit-déjeuner et brunch livrés à domicile à Antibes, Cannes, Nice et alentours. Produits frais et locaux, 7j/7.",
     "/carte"
   );
   const navigate = useNavigate();

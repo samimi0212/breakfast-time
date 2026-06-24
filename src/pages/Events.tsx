@@ -15,7 +15,7 @@ import brunchGroupe from "@/assets/brunch-groupe.png";
 const Events = () => {
   usePageMeta(
     "Événements — Mariage, Entreprise, Groupe | Breakfast Time",
-    "Breakfast Time organise vos petits-déjeuners d'exception pour mariages, séminaires et événements de groupe dans les Alpes-Maritimes.",
+    "Breakfast Time organise vos petits-déjeuners d'exception pour mariages, séminaires et événements de groupe à Antibes, Cannes, Nice et alentours.",
     "/evenements"
   );
   const navigate = useNavigate();
