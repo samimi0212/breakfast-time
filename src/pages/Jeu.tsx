@@ -17,6 +17,20 @@ const PLAT_MIN_Y = 150;
 const PLAT_MAX_Y = 265;
 const MAX_LIVES = 5;
 
+// Charte Breakfast Time
+const BRAND = {
+  olive: "#3F5A28",
+  olive2: "#5E7A34",
+  lime: "#AFC23E",
+  limeLt: "#D7E58A",
+  cream: "#F7F6F0",
+  sage: "#ECEBD8",
+  border: "#DDE3B0",
+};
+const FONT_DISPLAY = '"Playfair Display", Georgia, serif';
+const FONT_BODY = '"DM Sans", system-ui, sans-serif';
+const BTN_GRADIENT = "linear-gradient(135deg, #6B8A36 0%, #AFC23E 100%)";
+
 interface Float {
   x: number;
   y: number;
@@ -132,8 +146,8 @@ function tickGame(g: Game): { died: boolean } {
       g.comboTimer = 110;
       const pts = 10 * Math.max(1, g.combo);
       g.score += pts;
-      addFloat(g, c.x, c.y - 18, `+${pts}`, "#C25A00", g.combo >= 2 ? 22 : 18);
-      spawnParticles(g, c.x, c.y, "#FFD700", 8);
+      addFloat(g, c.x, c.y - 18, `+${pts}`, BRAND.olive, g.combo >= 2 ? 22 : 18);
+      spawnParticles(g, c.x, c.y, BRAND.lime, 8);
     }
   }
   g.collectibles = g.collectibles.filter((c) => c.x > -30 && !c.collected);
@@ -148,11 +162,11 @@ function tickGame(g: Game): { died: boolean } {
         addFloat(g, pu.x, pu.y - 20, "+1 vie ❤️", "#C0392B", 20);
       } else {
         g.score += 50;
-        addFloat(g, pu.x, pu.y - 20, "+50", "#C25A00", 20);
+        addFloat(g, pu.x, pu.y - 20, "+50", BRAND.olive, 20);
       }
       g.flash = 0.4;
-      g.flashColor = "212,165,116";
-      spawnParticles(g, pu.x, pu.y, "#D4A574", 14);
+      g.flashColor = "175,194,62";
+      spawnParticles(g, pu.x, pu.y, BRAND.lime, 14);
     }
   }
   g.powerups = g.powerups.filter((pu) => pu.x > -30 && !pu.taken);
@@ -200,12 +214,12 @@ function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
 function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
   const W = CANVAS_W, H = CANVAS_H;
 
-  // ciel en haut, vide sombre en bas
+  // ciel crème en haut, vide vert olive en bas (charte Breakfast Time)
   const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, "#FFF3DF");
-  grad.addColorStop(0.55, "#FBCB97");
-  grad.addColorStop(0.82, "#B07A47");
-  grad.addColorStop(1, "#3D2613");
+  grad.addColorStop(0, "#F6F5E8");
+  grad.addColorStop(0.45, "#E4E7C4");
+  grad.addColorStop(0.78, "#8A9A45");
+  grad.addColorStop(1, "#2E3D1A");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
@@ -241,8 +255,11 @@ function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
   ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
   for (const c of g.collectibles) {
     if (c.collected) continue;
-    ctx.fillStyle = "rgba(255,251,240,0.85)";
+    ctx.fillStyle = "rgba(247,246,240,0.92)";
     ctx.beginPath(); ctx.arc(c.x, c.y - 8, 17, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "rgba(175,194,62,0.6)";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(c.x, c.y - 8, 17, 0, Math.PI * 2); ctx.stroke();
     ctx.font = "26px serif";
     ctx.fillText(c.emoji, c.x, c.y);
   }
@@ -252,8 +269,8 @@ function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
     if (pu.taken) continue;
     const pulse = 1 + Math.sin(g.frame * 0.15) * 0.12;
     ctx.save();
-    ctx.globalAlpha = 0.4;
-    ctx.fillStyle = "#D4A574";
+    ctx.globalAlpha = 0.45;
+    ctx.fillStyle = BRAND.lime;
     ctx.beginPath(); ctx.arc(pu.x, pu.y - 6, 20 * pulse, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
     ctx.font = "28px serif"; ctx.textAlign = "center";
@@ -297,16 +314,16 @@ function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
 
 function drawHUD(ctx: CanvasRenderingContext2D, g: Game) {
   ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
-  ctx.font = "bold 30px sans-serif";
-  ctx.fillStyle = "rgba(60,30,5,0.92)";
-  ctx.fillText(`${Math.floor(g.score)}`, 15, 38);
-  ctx.font = "11px sans-serif";
-  ctx.fillStyle = "rgba(60,30,5,0.65)";
-  ctx.fillText("SCORE", 16, 52);
+  ctx.font = `bold 32px ${FONT_DISPLAY}`;
+  ctx.fillStyle = BRAND.olive;
+  ctx.fillText(`${Math.floor(g.score)}`, 15, 40);
+  ctx.font = `600 11px ${FONT_BODY}`;
+  ctx.fillStyle = BRAND.olive2;
+  ctx.fillText("SCORE", 17, 54);
   if (g.best > 0) {
-    ctx.fillStyle = "rgba(60,30,5,0.6)";
-    ctx.font = "12px sans-serif";
-    ctx.fillText(`🏆 Record ${Math.floor(g.best)}`, 16, 70);
+    ctx.fillStyle = "rgba(63,90,40,0.7)";
+    ctx.font = `12px ${FONT_BODY}`;
+    ctx.fillText(`🏆 Record ${Math.floor(g.best)}`, 16, 72);
   }
 
   ctx.textAlign = "right";
@@ -316,17 +333,20 @@ function drawHUD(ctx: CanvasRenderingContext2D, g: Game) {
   if (g.combo >= 2) {
     const pop = 1 + Math.min(0.25, g.comboTimer / 110 * 0.25);
     ctx.save();
-    ctx.translate(CANVAS_W / 2, 36);
+    ctx.translate(CANVAS_W / 2, 38);
     ctx.scale(pop, pop);
     ctx.textAlign = "center";
-    ctx.font = "bold 22px sans-serif";
-    ctx.fillStyle = "#C25A00";
+    ctx.font = `bold 24px ${FONT_DISPLAY}`;
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = BRAND.cream;
+    ctx.strokeText(`COMBO x${g.combo}`, 0, 0);
+    ctx.fillStyle = BRAND.olive;
     ctx.fillText(`COMBO x${g.combo}`, 0, 0);
     ctx.restore();
   }
 }
 
-function drawFrame(ctx: CanvasRenderingContext2D, g: Game, dpr: number, opts: { hud: boolean; overlay?: "start" | "paused" | null }) {
+function drawFrame(ctx: CanvasRenderingContext2D, g: Game, dpr: number, opts: { hud: boolean; overlay?: "start" | "paused" | null; logo?: HTMLImageElement | null }) {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
 
@@ -346,26 +366,49 @@ function drawFrame(ctx: CanvasRenderingContext2D, g: Game, dpr: number, opts: { 
   if (opts.hud) drawHUD(ctx, g);
 
   if (opts.overlay) {
-    ctx.fillStyle = "rgba(0,0,0,0.5)";
+    // voile vert olive (charte)
+    ctx.fillStyle = "rgba(46,61,26,0.55)";
     ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
     ctx.textAlign = "center";
+
     if (opts.overlay === "start") {
-      ctx.fillStyle = "#FFF8EC";
-      ctx.font = "bold 34px sans-serif";
-      ctx.fillText("🥐 Breakfast Time !", CANVAS_W / 2, CANVAS_H / 2 - 28);
-      ctx.font = "16px sans-serif";
-      ctx.fillStyle = "#FFD9A0";
-      ctx.fillText("Clic ou Espace pour commencer", CANVAS_W / 2, CANVAS_H / 2 + 6);
-      ctx.font = "13px sans-serif";
-      ctx.fillStyle = "rgba(255,248,236,0.8)";
-      ctx.fillText("Saute de plateforme en plateforme  •  ne tombe pas dans le vide  •  ☕ = 1 vie", CANVAS_W / 2, CANVAS_H / 2 + 34);
+      // panneau crème façon enseigne
+      const pw = 440, ph = 214;
+      const px = (CANVAS_W - pw) / 2, py = (CANVAS_H - ph) / 2;
+      ctx.fillStyle = "rgba(31,41,18,0.35)";
+      roundRectPath(ctx, px + 4, py + 6, pw, ph, 18); ctx.fill();
+      ctx.fillStyle = BRAND.cream;
+      roundRectPath(ctx, px, py, pw, ph, 18); ctx.fill();
+      ctx.strokeStyle = BRAND.border; ctx.lineWidth = 2;
+      roundRectPath(ctx, px, py, pw, ph, 18); ctx.stroke();
+
+      if (opts.logo && opts.logo.complete && opts.logo.naturalWidth) {
+        const lw = 232, lh = lw * (opts.logo.naturalHeight / opts.logo.naturalWidth);
+        ctx.drawImage(opts.logo, CANVAS_W / 2 - lw / 2, py + 16, lw, lh);
+      } else {
+        ctx.fillStyle = BRAND.olive;
+        ctx.font = `700 34px ${FONT_DISPLAY}`;
+        ctx.fillText("Breakfast Time", CANVAS_W / 2, py + 70);
+      }
+      ctx.fillStyle = BRAND.olive;
+      ctx.font = `600 16px ${FONT_BODY}`;
+      ctx.fillText("Clic ou Espace pour commencer", CANVAS_W / 2, py + ph - 44);
+      ctx.fillStyle = BRAND.olive2;
+      ctx.font = `13px ${FONT_BODY}`;
+      ctx.fillText("Saute de plateforme en plateforme  •  évite le vide  •  ☕ = 1 vie", CANVAS_W / 2, py + ph - 20);
     } else {
-      ctx.fillStyle = "#FFF8EC";
-      ctx.font = "bold 30px sans-serif";
-      ctx.fillText("⏸ Pause", CANVAS_W / 2, CANVAS_H / 2 - 6);
-      ctx.font = "15px sans-serif";
-      ctx.fillStyle = "#FFD9A0";
-      ctx.fillText("Espace / Clic pour reprendre", CANVAS_W / 2, CANVAS_H / 2 + 24);
+      const pw = 320, ph = 120;
+      const px = (CANVAS_W - pw) / 2, py = (CANVAS_H - ph) / 2;
+      ctx.fillStyle = BRAND.cream;
+      roundRectPath(ctx, px, py, pw, ph, 16); ctx.fill();
+      ctx.strokeStyle = BRAND.border; ctx.lineWidth = 2;
+      roundRectPath(ctx, px, py, pw, ph, 16); ctx.stroke();
+      ctx.fillStyle = BRAND.olive;
+      ctx.font = `700 30px ${FONT_DISPLAY}`;
+      ctx.fillText("⏸ Pause", CANVAS_W / 2, py + 52);
+      ctx.fillStyle = BRAND.olive2;
+      ctx.font = `15px ${FONT_BODY}`;
+      ctx.fillText("Espace / Clic pour reprendre", CANVAS_W / 2, py + 84);
     }
   }
 }
@@ -377,6 +420,7 @@ export default function Jeu() {
   const pausedRef = useRef(false);
   const dprRef = useRef(1);
   const bestRef = useRef(0);
+  const logoRef = useRef<HTMLImageElement | null>(null);
   const [gameState, setGameState] = useState<GameState>("register");
   const [finalScore, setFinalScore] = useState(0);
   const [isNewRecord, setIsNewRecord] = useState(false);
@@ -397,6 +441,18 @@ export default function Jeu() {
     }
     const b = Number(localStorage.getItem(BEST_KEY) || 0);
     bestRef.current = Number.isFinite(b) ? b : 0;
+  }, []);
+
+  // Précharge le logo + les polices de marque pour le rendu canvas
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/logo.png";
+    img.onload = () => { logoRef.current = img; };
+    const f = (document as Document & { fonts?: { load: (s: string) => Promise<unknown> } }).fonts;
+    if (f) {
+      f.load(`700 32px ${FONT_DISPLAY}`).catch(() => {});
+      f.load(`600 16px ${FONT_BODY}`).catch(() => {});
+    }
   }, []);
 
   const fetchLeaderboard = async () => {
@@ -472,7 +528,7 @@ export default function Jeu() {
     const loop = () => {
       const g = gameRef.current;
       if (pausedRef.current) {
-        drawFrame(ctx, g, dprRef.current, { hud: true, overlay: "paused" });
+        drawFrame(ctx, g, dprRef.current, { hud: true, overlay: "paused", logo: logoRef.current });
         rafRef.current = requestAnimationFrame(loop);
         return;
       }
@@ -510,7 +566,7 @@ export default function Jeu() {
     const loop = () => {
       g.frame++;
       for (const c of g.clouds) { c.x -= 0.3; if (c.x < -120) c.x = CANVAS_W + 80; }
-      drawFrame(ctx, g, dprRef.current, { hud: false, overlay: "start" });
+      drawFrame(ctx, g, dprRef.current, { hud: false, overlay: "start", logo: logoRef.current });
       rafRef.current = requestAnimationFrame(loop);
     };
     rafRef.current = requestAnimationFrame(loop);
@@ -551,15 +607,16 @@ export default function Jeu() {
     return () => document.removeEventListener("visibilitychange", onHide);
   }, [gameState]);
 
-  const card: React.CSSProperties = { background: "#fff", borderRadius: "16px", border: "1px solid #F5DEB3", boxShadow: "0 4px 24px rgba(139,69,19,0.08)" };
+  const card: React.CSSProperties = { background: "#fff", borderRadius: "16px", border: `1px solid ${BRAND.border}`, boxShadow: "0 4px 24px rgba(63,90,40,0.1)" };
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #FFF8EC 0%, #FFE4C4 100%)", padding: "2rem 1rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem" }}>
+    <div style={{ minHeight: "100vh", background: `linear-gradient(135deg, ${BRAND.cream} 0%, ${BRAND.sage} 100%)`, padding: "2rem 1rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem" }}>
 
       {/* Header */}
       <div style={{ textAlign: "center" }}>
-        <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#8B4513", marginBottom: "4px" }}>🏆 Jeu Concours Breakfast Time</h1>
-        <p style={{ color: "#A0522D", fontSize: "14px" }}>Fais le meilleur score et gagne un brunch offert !</p>
+        <img src="/logo.png" alt="Breakfast Time" style={{ height: "62px", width: "auto", marginBottom: "6px" }} />
+        <h1 style={{ fontSize: "20px", fontWeight: 700, fontFamily: FONT_DISPLAY, color: BRAND.olive, marginBottom: "2px" }}>🏆 Jeu Concours</h1>
+        <p style={{ color: BRAND.olive2, fontSize: "14px" }}>Fais le meilleur score et gagne un brunch offert !</p>
       </div>
 
       {/* Register form */}
@@ -584,7 +641,7 @@ export default function Jeu() {
               style={{ padding: "12px 16px", borderRadius: "10px", border: "1.5px solid #E8C49A", fontSize: "15px", outline: "none" }}
             />
             {formError && <p style={{ color: "#E24B4A", fontSize: "13px" }}>{formError}</p>}
-            <button type="submit" style={{ padding: "14px", borderRadius: "10px", background: "#D4A574", color: "#fff", fontWeight: 700, fontSize: "16px", border: "none", cursor: "pointer" }}>
+            <button type="submit" style={{ padding: "14px", borderRadius: "10px", background: BTN_GRADIENT, color: "#fff", fontWeight: 700, fontSize: "16px", border: "none", cursor: "pointer", boxShadow: "0 3px 10px rgba(63,90,40,0.25)" }}>
               Je joue ! 🎮
             </button>
           </form>
@@ -602,8 +659,8 @@ export default function Jeu() {
               { label: "Ton record", value: bestRef.current > 0 ? String(Math.floor(bestRef.current)) : "—" },
             ].map(({ label, value }) => (
               <div key={label} style={{ ...card, padding: "8px 18px", textAlign: "center", boxShadow: "none" }}>
-                <div style={{ fontSize: "11px", color: "#A0522D", marginBottom: "2px" }}>{label}</div>
-                <div style={{ fontSize: "18px", fontWeight: 600, color: "#5C2E00" }}>{value}</div>
+                <div style={{ fontSize: "11px", color: BRAND.olive2, marginBottom: "2px" }}>{label}</div>
+                <div style={{ fontSize: "18px", fontWeight: 600, color: BRAND.olive }}>{value}</div>
               </div>
             ))}
           </div>
@@ -616,7 +673,7 @@ export default function Jeu() {
             style={{ borderRadius: "12px", border: "2px solid #E8C49A", cursor: "pointer", width: "100%", maxWidth: `${CANVAS_W}px`, aspectRatio: `${CANVAS_W} / ${CANVAS_H}`, touchAction: "none", display: "block" }}
           />
 
-          <p style={{ fontSize: "12px", color: "#A0522D" }}>Espace / Tap pour sauter (double saut !) — P pour mettre en pause</p>
+          <p style={{ fontSize: "12px", color: BRAND.olive2 }}>Espace / Tap pour sauter (double saut !) — P pour mettre en pause</p>
         </>
       )}
 
@@ -625,21 +682,21 @@ export default function Jeu() {
         <div style={{ ...card, padding: "1.5rem 2rem", maxWidth: "440px", width: "100%", textAlign: "center" }}>
           <div style={{ fontSize: "40px", marginBottom: "8px" }}>{isNewRecord ? "🎉" : "🎯"}</div>
           {isNewRecord && (
-            <p style={{ color: "#D4A574", fontWeight: 700, fontSize: "15px", marginBottom: "4px" }}>Nouveau record personnel !</p>
+            <p style={{ color: BRAND.olive2, fontWeight: 700, fontSize: "15px", marginBottom: "4px" }}>Nouveau record personnel !</p>
           )}
-          <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#8B4513", marginBottom: "4px" }}>Score final : {finalScore}</h2>
+          <h2 style={{ fontSize: "22px", fontWeight: 700, fontFamily: FONT_DISPLAY, color: BRAND.olive, marginBottom: "4px" }}>Score final : {finalScore}</h2>
           {submitting ? (
-            <p style={{ color: "#A0522D", fontSize: "14px" }}>Enregistrement...</p>
+            <p style={{ color: BRAND.olive2, fontSize: "14px" }}>Enregistrement...</p>
           ) : (
             myRank && (
-              <p style={{ color: myRank <= 3 ? "#D4A574" : "#A0522D", fontWeight: myRank <= 3 ? 700 : 400, fontSize: "15px", marginBottom: "4px" }}>
+              <p style={{ color: myRank <= 3 ? BRAND.olive : BRAND.olive2, fontWeight: myRank <= 3 ? 700 : 400, fontSize: "15px", marginBottom: "4px" }}>
                 {myRank === 1 ? "🏆 Tu es 1er — bravo !" : myRank === 2 ? "🥈 2e place !" : myRank === 3 ? "🥉 3e place !" : `Tu es ${myRank}e au classement`}
               </p>
             )
           )}
           <button
             onClick={startGame}
-            style={{ marginTop: "16px", padding: "12px 32px", borderRadius: "10px", background: "#D4A574", color: "#fff", fontWeight: 700, fontSize: "15px", border: "none", cursor: "pointer" }}
+            style={{ marginTop: "16px", padding: "12px 32px", borderRadius: "10px", background: BTN_GRADIENT, color: "#fff", fontWeight: 700, fontSize: "15px", border: "none", cursor: "pointer", boxShadow: "0 3px 10px rgba(63,90,40,0.25)" }}
           >
             Rejouer 🔄
           </button>
@@ -648,7 +705,7 @@ export default function Jeu() {
 
       {/* Leaderboard */}
       <div style={{ ...card, padding: "1.5rem", maxWidth: "440px", width: "100%" }}>
-        <h2 style={{ fontSize: "18px", fontWeight: 700, color: "#8B4513", marginBottom: "1rem", textAlign: "center" }}>🏆 Classement</h2>
+        <h2 style={{ fontSize: "18px", fontWeight: 700, fontFamily: FONT_DISPLAY, color: BRAND.olive, marginBottom: "1rem", textAlign: "center" }}>🏆 Classement</h2>
         {leaderboard.length === 0 ? (
           <p style={{ textAlign: "center", color: "#aaa", fontSize: "14px" }}>Sois le premier à jouer !</p>
         ) : (
@@ -666,8 +723,8 @@ export default function Jeu() {
                 <span style={{ fontSize: "20px", width: "28px", textAlign: "center" }}>
                   {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}.`}
                 </span>
-                <span style={{ flex: 1, fontWeight: i < 3 ? 600 : 400, color: "#5C2E00" }}>{entry.prenom}</span>
-                <span style={{ fontWeight: 700, color: "#D4A574", fontSize: "16px" }}>{Math.floor(entry.score)}</span>
+                <span style={{ flex: 1, fontWeight: i < 3 ? 600 : 400, color: BRAND.olive }}>{entry.prenom}</span>
+                <span style={{ fontWeight: 700, color: BRAND.olive2, fontSize: "16px" }}>{Math.floor(entry.score)}</span>
               </div>
             ))}
           </div>
