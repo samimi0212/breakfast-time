@@ -699,7 +699,7 @@ const CartePage = () => {
                 <div className="bg-muted rounded-2xl p-1.5 flex gap-2 justify-center">
                   <button
                     onClick={() => switchTab("menus")}
-                    className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                    className={`px-4 sm:px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 whitespace-nowrap ${
                       tab === "menus"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
@@ -709,7 +709,7 @@ const CartePage = () => {
                   </button>
                   <button
                     onClick={() => switchTab("carte")}
-                    className={`px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                    className={`px-4 sm:px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-200 whitespace-nowrap ${
                       tab === "carte"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
