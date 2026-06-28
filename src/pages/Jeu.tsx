@@ -9,12 +9,13 @@ interface ScoreEntry {
   rank?: number;
 }
 
-const GROUND_Y = 300;
 const CANVAS_W = 660;
 const CANVAS_H = 360;
 const ITEMS = ["🥐", "🥚", "🥯", "🧁", "🥞", "🍓", "🍞"];
-const OBSTACLES = ["🍴", "🔪"];
 const BEST_KEY = "bt_jeu_best";
+const PLAT_MIN_Y = 150;
+const PLAT_MAX_Y = 265;
+const MAX_LIVES = 5;
 
 interface Float {
   x: number;
@@ -26,35 +27,53 @@ interface Float {
   size: number;
 }
 
+type Platform = { x: number; y: number; w: number; h: number; color: string };
+
+function ensurePlatforms(g: Game) {
+  let rightmost = 0;
+  for (const pl of g.platforms) rightmost = Math.max(rightmost, pl.x + pl.w);
+  while (rightmost < CANVAS_W + 220) {
+    const prevY = g.platforms.length ? g.platforms[g.platforms.length - 1].y : 240;
+    const gap = 60 + Math.random() * 70 + Math.min(45, g.score * 0.02);
+    let newY = prevY + (Math.random() - 0.5) * 130;
+    newY = Math.max(PLAT_MIN_Y, Math.min(PLAT_MAX_Y, newY));
+    const pw = 95 + Math.random() * 65;
+    const newX = rightmost + gap;
+    g.platforms.push({ x: newX, y: newY, w: pw, h: 18, color: Math.random() > 0.5 ? "#E6B17E" : "#D49A5E" });
+    if (Math.random() < 0.65) {
+      g.collectibles.push({ x: newX + pw / 2, y: newY - 26, emoji: ITEMS[Math.floor(Math.random() * ITEMS.length)], collected: false });
+    }
+    if (Math.random() < 0.07) {
+      g.powerups.push({ x: newX + pw / 2, y: newY - 32, taken: false });
+    }
+    rightmost = newX + pw;
+  }
+}
+
 function makeGame(best = 0) {
-  return {
+  const g = {
     frame: 0,
-    speed: 3,
+    speed: 2.6,
     score: 0,
     lives: 3,
     best,
     combo: 0,
     comboTimer: 0,
-    shieldTimer: 0,
     invuln: 0,
     shake: 0,
     flash: 0,
-    flashColor: "255,255,255",
-    spawnTimer: 0,
+    flashColor: "226,75,74",
     bgX: 0,
-    player: { x: 80, y: GROUND_Y - 50, w: 40, h: 50, vy: 0, jumps: 0, onGround: false },
-    platforms: [
-      { x: 180, y: GROUND_Y - 90, w: 100, h: 18, color: "#D4A574" },
-      { x: 350, y: GROUND_Y - 140, w: 110, h: 18, color: "#E8C49A" },
-      { x: 530, y: GROUND_Y - 80, w: 90, h: 18, color: "#D4A574" },
-    ] as { x: number; y: number; w: number; h: number; color: string }[],
+    player: { x: 80, y: 240 - 50, w: 40, h: 50, vy: 0, jumps: 0, onGround: true },
+    platforms: [{ x: -40, y: 240, w: 260, h: 18, color: "#E6B17E" }] as Platform[],
     collectibles: [] as { x: number; y: number; emoji: string; collected: boolean }[],
-    obstacles: [] as { x: number; y: number; w: number; h: number; emoji: string; dead: boolean }[],
     powerups: [] as { x: number; y: number; taken: boolean }[],
     particles: [] as { x: number; y: number; vx: number; vy: number; life: number; color: string }[],
     floats: [] as Float[],
     clouds: [{ x: 100, y: 40, s: 1 }, { x: 300, y: 70, s: 0.8 }, { x: 550, y: 30, s: 1.2 }],
   };
+  ensurePlatforms(g);
+  return g;
 }
 
 type Game = ReturnType<typeof makeGame>;
@@ -73,29 +92,11 @@ function addFloat(g: Game, x: number, y: number, text: string, color: string, si
   g.floats.push({ x, y, vy: -1, life: 1, text, color, size });
 }
 
-function spawnPlatform(g: Game) {
-  const lastX = g.platforms.length ? g.platforms[g.platforms.length - 1].x : CANVAS_W;
-  const gapX = 140 + Math.random() * 80;
-  const newX = Math.max(lastX, CANVAS_W) + gapX;
-  const newY = GROUND_Y - 70 - Math.random() * 100;
-  const pw = 80 + Math.random() * 50;
-  g.platforms.push({ x: newX, y: newY, w: pw, h: 18, color: Math.random() > 0.5 ? "#D4A574" : "#E8C49A" });
-  if (Math.random() < 0.6) {
-    g.collectibles.push({ x: newX + 20 + Math.random() * 30, y: newY - 35, emoji: ITEMS[Math.floor(Math.random() * ITEMS.length)], collected: false });
-  }
-  // Power-up café (bouclier) — rare, en l'air, à portée de double saut
-  if (Math.random() < 0.07) {
-    g.powerups.push({ x: newX + pw / 2, y: GROUND_Y - 130 - Math.random() * 40, taken: false });
-  }
-}
-
 function tickGame(g: Game): { died: boolean } {
   g.frame++;
   g.bgX -= g.speed * 0.3;
-  g.speed = Math.min(8.5, 3 + g.score * 0.0025);
+  g.speed = Math.min(7, 2.6 + g.score * 0.002);
 
-  // timers
-  if (g.shieldTimer > 0) g.shieldTimer--;
   if (g.invuln > 0) g.invuln--;
   if (g.shake > 0) g.shake *= 0.85;
   if (g.flash > 0) g.flash -= 0.06;
@@ -109,89 +110,52 @@ function tickGame(g: Game): { died: boolean } {
   p.y += p.vy;
   p.onGround = false;
 
-  if (p.y + p.h >= GROUND_Y) {
-    p.y = GROUND_Y - p.h;
-    p.vy = 0;
-    p.jumps = 0;
-    p.onGround = true;
-  }
-
+  // plateformes : collision "une face" (on atterrit dessus)
   for (const pl of g.platforms) {
     pl.x -= g.speed;
-    if (p.vy > 0 && p.y + p.h <= pl.y + 8 && p.y + p.h + p.vy >= pl.y && p.x + p.w > pl.x + 5 && p.x < pl.x + pl.w - 5) {
+    if (p.vy > 0 && p.y + p.h <= pl.y + 10 && p.y + p.h + p.vy >= pl.y && p.x + p.w > pl.x + 4 && p.x < pl.x + pl.w - 4) {
       p.y = pl.y - p.h;
       p.vy = 0;
       p.jumps = 0;
       p.onGround = true;
     }
   }
-  g.platforms = g.platforms.filter((pl) => pl.x + pl.w > -20);
-
-  g.spawnTimer++;
-  if (g.spawnTimer > Math.max(38, 80 - g.score * 0.05)) {
-    g.spawnTimer = 0;
-    spawnPlatform(g);
-    if (Math.random() < 0.35 + g.score * 0.0006) {
-      // ~30% des obstacles volent en hauteur (il faut rester au sol / ne pas sauter)
-      const fly = Math.random() < 0.3;
-      const oy = fly ? GROUND_Y - 95 : GROUND_Y - 42;
-      g.obstacles.push({ x: CANVAS_W + 20, y: oy, w: 34, h: 38, emoji: OBSTACLES[Math.floor(Math.random() * OBSTACLES.length)], dead: false });
-    }
-  }
+  g.platforms = g.platforms.filter((pl) => pl.x + pl.w > -40);
+  ensurePlatforms(g);
 
   // collectibles
   for (const c of g.collectibles) {
     c.x -= g.speed;
-    if (!c.collected && rectOverlap(p.x + 4, p.y + 4, p.w - 8, p.h - 8, c.x - 15, c.y - 15, 30, 30)) {
+    if (!c.collected && rectOverlap(p.x + 4, p.y + 4, p.w - 8, p.h - 8, c.x - 16, c.y - 16, 32, 32)) {
       c.collected = true;
       g.combo = Math.min(8, g.combo + 1);
       g.comboTimer = 110;
       const pts = 10 * Math.max(1, g.combo);
       g.score += pts;
-      addFloat(g, c.x, c.y - 18, `+${pts}`, "#FF8C00", g.combo >= 2 ? 22 : 18);
+      addFloat(g, c.x, c.y - 18, `+${pts}`, "#C25A00", g.combo >= 2 ? 22 : 18);
       spawnParticles(g, c.x, c.y, "#FFD700", 8);
     }
   }
   g.collectibles = g.collectibles.filter((c) => c.x > -30 && !c.collected);
 
-  // power-ups (café = bouclier)
+  // power-up café = +1 vie
   for (const pu of g.powerups) {
     pu.x -= g.speed;
     if (!pu.taken && rectOverlap(p.x, p.y, p.w, p.h, pu.x - 18, pu.y - 18, 36, 36)) {
       pu.taken = true;
-      g.shieldTimer = 320;
-      g.flash = 0.5;
+      if (g.lives < MAX_LIVES) {
+        g.lives++;
+        addFloat(g, pu.x, pu.y - 20, "+1 vie ❤️", "#C0392B", 20);
+      } else {
+        g.score += 50;
+        addFloat(g, pu.x, pu.y - 20, "+50", "#C25A00", 20);
+      }
+      g.flash = 0.4;
       g.flashColor = "212,165,116";
-      addFloat(g, pu.x, pu.y - 20, "BOUCLIER ☕", "#8B4513", 20);
       spawnParticles(g, pu.x, pu.y, "#D4A574", 14);
     }
   }
   g.powerups = g.powerups.filter((pu) => pu.x > -30 && !pu.taken);
-
-  // obstacles
-  for (const o of g.obstacles) {
-    o.x -= g.speed;
-    if (!o.dead && rectOverlap(p.x + 6, p.y + 6, p.w - 12, p.h - 12, o.x - 12, o.y - 10, o.w, o.h)) {
-      if (g.shieldTimer > 0) {
-        o.dead = true;
-        g.score += 5;
-        addFloat(g, o.x, o.y - 12, "+5", "#8B4513", 16);
-        spawnParticles(g, o.x, o.y, "#D4A574", 10);
-      } else if (g.invuln > 0) {
-        o.dead = true;
-      } else {
-        o.dead = true;
-        g.lives--;
-        g.combo = 0;
-        g.invuln = 75;
-        g.shake = 12;
-        g.flash = 0.6;
-        g.flashColor = "226,75,74";
-        spawnParticles(g, p.x + p.w / 2, p.y + p.h / 2, "#E24B4A", 14);
-      }
-    }
-  }
-  g.obstacles = g.obstacles.filter((o) => o.x > -50 && !o.dead);
 
   // particles & floats
   for (const pt of g.particles) { pt.x += pt.vx; pt.y += pt.vy; pt.vy += 0.15; pt.life -= 0.05; }
@@ -201,58 +165,94 @@ function tickGame(g: Game): { died: boolean } {
 
   for (const c of g.clouds) { c.x -= g.speed * 0.1; if (c.x < -120) c.x = CANVAS_W + 80; }
 
+  // chute dans le vide
+  if (p.y > CANVAS_H + 30) {
+    g.lives--;
+    g.combo = 0;
+    g.shake = 14;
+    g.flash = 0.6;
+    g.flashColor = "226,75,74";
+    if (g.lives > 0) {
+      g.platforms.unshift({ x: 10, y: 235, w: 210, h: 18, color: "#E6B17E" });
+      p.x = 80;
+      p.y = 235 - p.h;
+      p.vy = 0;
+      p.jumps = 0;
+      g.invuln = 70;
+    }
+  }
+
   g.score += 0.05;
   return { died: g.lives <= 0 };
+}
+
+function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+  const rr = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + rr, y);
+  ctx.arcTo(x + w, y, x + w, y + h, rr);
+  ctx.arcTo(x + w, y + h, x, y + h, rr);
+  ctx.arcTo(x, y + h, x, y, rr);
+  ctx.arcTo(x, y, x + w, y, rr);
+  ctx.closePath();
 }
 
 function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
   const W = CANVAS_W, H = CANVAS_H;
 
+  // ciel en haut, vide sombre en bas
   const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, "#FFECD2");
-  grad.addColorStop(1, "#FCB69F");
+  grad.addColorStop(0, "#FFF3DF");
+  grad.addColorStop(0.55, "#FBCB97");
+  grad.addColorStop(0.82, "#B07A47");
+  grad.addColorStop(1, "#3D2613");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
   // clouds
-  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
   for (const c of g.clouds) {
     for (const [dx, dy, r] of [[0, 0, 30], [22, 0, 24], [-18, 0, 22], [8, -14, 20], [-8, -12, 18]] as [number, number, number][]) {
       ctx.beginPath(); ctx.arc(c.x + dx * c.s, c.y + dy * c.s, r * c.s, 0, Math.PI * 2); ctx.fill();
     }
   }
 
-  // ground
-  ctx.fillStyle = "#8B6914"; ctx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
-  ctx.fillStyle = "#5D8A3C"; ctx.fillRect(0, GROUND_Y, W, 10);
-  for (let i = 0; i < 20; i++) {
-    ctx.fillStyle = "#4A7A2C";
-    ctx.beginPath();
-    ctx.arc(i * 36 + ((g.bgX * 0.5) % 36), GROUND_Y + 3, 6, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // platforms
+  // plateformes (style tartine, opaques)
   for (const pl of g.platforms) {
-    ctx.fillStyle = pl.color;
-    ctx.beginPath();
-    (ctx as CanvasRenderingContext2D & { roundRect: (x: number, y: number, w: number, h: number, r: number) => void }).roundRect(pl.x, pl.y, pl.w, pl.h, 6);
+    // ombre portée
+    ctx.fillStyle = "rgba(40,20,5,0.22)";
+    roundRectPath(ctx, pl.x + 3, pl.y + 5, pl.w, pl.h, 9);
     ctx.fill();
-    ctx.fillStyle = "rgba(255,255,255,0.3)";
-    ctx.fillRect(pl.x + 6, pl.y + 3, pl.w - 12, 4);
+    // croûte (base foncée)
+    ctx.fillStyle = "#9C6233";
+    roundRectPath(ctx, pl.x, pl.y, pl.w, pl.h + 5, 9);
+    ctx.fill();
+    // dessus
+    ctx.fillStyle = pl.color;
+    roundRectPath(ctx, pl.x + 2, pl.y, pl.w - 4, pl.h - 1, 8);
+    ctx.fill();
+    // reflet
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    roundRectPath(ctx, pl.x + 8, pl.y + 3, pl.w - 16, 3, 2);
+    ctx.fill();
   }
 
-  // collectibles / obstacles
-  ctx.font = "24px serif"; ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
-  for (const c of g.collectibles) { if (!c.collected) ctx.fillText(c.emoji, c.x, c.y); }
-  for (const o of g.obstacles) { ctx.fillText(o.emoji, o.x, o.y); }
+  // collectibles (avec pastille pour bien ressortir)
+  ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
+  for (const c of g.collectibles) {
+    if (c.collected) continue;
+    ctx.fillStyle = "rgba(255,251,240,0.85)";
+    ctx.beginPath(); ctx.arc(c.x, c.y - 8, 17, 0, Math.PI * 2); ctx.fill();
+    ctx.font = "26px serif";
+    ctx.fillText(c.emoji, c.x, c.y);
+  }
 
-  // power-ups (café avec halo)
+  // power-ups café (vie en plus)
   for (const pu of g.powerups) {
     if (pu.taken) continue;
     const pulse = 1 + Math.sin(g.frame * 0.15) * 0.12;
     ctx.save();
-    ctx.globalAlpha = 0.35;
+    ctx.globalAlpha = 0.4;
     ctx.fillStyle = "#D4A574";
     ctx.beginPath(); ctx.arc(pu.x, pu.y - 6, 20 * pulse, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
@@ -268,7 +268,7 @@ function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
   }
   ctx.globalAlpha = 1;
 
-  // player (rotation selon la vitesse verticale + bouclier + clignotement i-frames)
+  // player
   const p = g.player;
   const blink = g.invuln > 0 && Math.floor(g.frame / 4) % 2 === 0;
   if (!blink) {
@@ -276,17 +276,6 @@ function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
     const tilt = Math.max(-0.45, Math.min(0.45, p.vy * 0.035));
     const cx = p.x + p.w / 2;
     const cy = p.y + p.h / 2 + bounce;
-    if (g.shieldTimer > 0) {
-      const ring = 1 + Math.sin(g.frame * 0.2) * 0.06;
-      ctx.save();
-      ctx.globalAlpha = g.shieldTimer < 60 ? 0.3 + Math.sin(g.frame * 0.5) * 0.2 : 0.45;
-      ctx.strokeStyle = "#D4A574";
-      ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.arc(cx, cy, 34 * ring, 0, Math.PI * 2); ctx.stroke();
-      ctx.fillStyle = "rgba(212,165,116,0.12)";
-      ctx.fill();
-      ctx.restore();
-    }
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(tilt);
@@ -295,7 +284,7 @@ function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
     ctx.restore();
   }
 
-  // floats (+10, bonus...)
+  // floats
   ctx.textAlign = "center"; ctx.textBaseline = "alphabetic";
   for (const f of g.floats) {
     ctx.globalAlpha = Math.max(0, f.life);
@@ -307,26 +296,23 @@ function drawWorld(ctx: CanvasRenderingContext2D, g: Game) {
 }
 
 function drawHUD(ctx: CanvasRenderingContext2D, g: Game) {
-  // score
   ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
   ctx.font = "bold 30px sans-serif";
-  ctx.fillStyle = "rgba(92,46,0,0.9)";
+  ctx.fillStyle = "rgba(60,30,5,0.92)";
   ctx.fillText(`${Math.floor(g.score)}`, 15, 38);
   ctx.font = "11px sans-serif";
-  ctx.fillStyle = "rgba(92,46,0,0.6)";
+  ctx.fillStyle = "rgba(60,30,5,0.65)";
   ctx.fillText("SCORE", 16, 52);
   if (g.best > 0) {
-    ctx.fillStyle = "rgba(92,46,0,0.55)";
+    ctx.fillStyle = "rgba(60,30,5,0.6)";
     ctx.font = "12px sans-serif";
     ctx.fillText(`🏆 Record ${Math.floor(g.best)}`, 16, 70);
   }
 
-  // lives (cœurs en haut à droite)
   ctx.textAlign = "right";
   ctx.font = "20px serif";
   ctx.fillText("❤️".repeat(Math.max(0, g.lives)) || "💀", CANVAS_W - 14, 32);
 
-  // combo (centre haut)
   if (g.combo >= 2) {
     const pop = 1 + Math.min(0.25, g.comboTimer / 110 * 0.25);
     ctx.save();
@@ -334,20 +320,9 @@ function drawHUD(ctx: CanvasRenderingContext2D, g: Game) {
     ctx.scale(pop, pop);
     ctx.textAlign = "center";
     ctx.font = "bold 22px sans-serif";
-    ctx.fillStyle = "#FF8C00";
+    ctx.fillStyle = "#C25A00";
     ctx.fillText(`COMBO x${g.combo}`, 0, 0);
     ctx.restore();
-  }
-
-  // barre de bouclier
-  if (g.shieldTimer > 0) {
-    const ratio = g.shieldTimer / 320;
-    ctx.fillStyle = "rgba(255,255,255,0.45)";
-    ctx.fillRect(CANVAS_W / 2 - 60, CANVAS_H - 24, 120, 8);
-    ctx.fillStyle = "#D4A574";
-    ctx.fillRect(CANVAS_W / 2 - 60, CANVAS_H - 24, 120 * ratio, 8);
-    ctx.textAlign = "center"; ctx.font = "11px sans-serif"; ctx.fillStyle = "#8B4513";
-    ctx.fillText("☕ Bouclier", CANVAS_W / 2, CANVAS_H - 30);
   }
 }
 
@@ -363,7 +338,6 @@ function drawFrame(ctx: CanvasRenderingContext2D, g: Game, dpr: number, opts: { 
   drawWorld(ctx, g);
   if (shaking) ctx.restore();
 
-  // flash
   if (g.flash > 0) {
     ctx.fillStyle = `rgba(${g.flashColor},${Math.min(0.6, g.flash)})`;
     ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
@@ -383,8 +357,8 @@ function drawFrame(ctx: CanvasRenderingContext2D, g: Game, dpr: number, opts: { 
       ctx.fillStyle = "#FFD9A0";
       ctx.fillText("Clic ou Espace pour commencer", CANVAS_W / 2, CANVAS_H / 2 + 6);
       ctx.font = "13px sans-serif";
-      ctx.fillStyle = "rgba(255,248,236,0.75)";
-      ctx.fillText("Ramasse 🥐🥚🥯  •  évite 🍴🔪  •  attrape ☕ pour un bouclier", CANVAS_W / 2, CANVAS_H / 2 + 34);
+      ctx.fillStyle = "rgba(255,248,236,0.8)";
+      ctx.fillText("Saute de plateforme en plateforme  •  ne tombe pas dans le vide  •  ☕ = 1 vie", CANVAS_W / 2, CANVAS_H / 2 + 34);
     } else {
       ctx.fillStyle = "#FFF8EC";
       ctx.font = "bold 30px sans-serif";
