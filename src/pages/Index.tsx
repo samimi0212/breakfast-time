@@ -79,7 +79,7 @@ const Index = () => {
           <div className="text-5xl mb-4">☀️</div>
           <h2 className="font-display text-2xl font-bold mb-3">Nous arrivons bientôt !</h2>
           <p className="text-muted-foreground mb-6 leading-relaxed">
-            Breakfast Time sera disponible <strong>début été 2026</strong>. En attendant, explorez notre carte et nos menus.
+            Breakfast Time sera disponible <strong>début août 2026</strong>. En attendant, explorez notre carte et nos menus.
           </p>
           <button
             onClick={closePopup}
