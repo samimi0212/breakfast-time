@@ -54,8 +54,8 @@ export const allProducts: Product[] = [
         label: "Choix du nappage",
         label_en: "Choice of topping",
         required: true,
-        choices: ["Fraise", "Abricot", "Nutella"],
-        choices_en: ["Strawberry", "Apricot", "Nutella"],
+        choices: ["Fraise", "Abricot", "Pâte à tartiner"],
+        choices_en: ["Strawberry", "Apricot", "Pâte à tartiner"],
       },
       {
         id: "jus",
@@ -344,7 +344,7 @@ export const allProducts: Product[] = [
     img: "/birthday-box.png",
     desc: "",
     composition: [
-      "1 Gâteau de pancakes au Nutella",
+      "1 Gâteau de pancakes à la pâte à tartiner",
       "4 Mini viennoiseries",
       "1 Burrito au choix",
       "1 Smoothie au choix",
@@ -353,7 +353,7 @@ export const allProducts: Product[] = [
       "1 Message personnalisé",
     ],
     composition_en: [
-      "1 Nutella pancake cake",
+      "1 Pancake cake à la pâte à tartiner",
       "4 Mini pastries",
       "1 Burrito of your choice",
       "1 Smoothie of your choice",
@@ -687,8 +687,8 @@ export const allProducts: Product[] = [
         label_en: "Choice of topping",
         required: true,
         multiSelect: false,
-        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy", "Crème de pistache"],
-        choices_en: ["Nutella", "Maple Syrup", "Salted Butter Caramel", "Strawberry Jam", "Dark Chocolate", "Creamy Peanut Butter", "Pistachio Cream"],
+        choices: ["Pâte à tartiner", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy", "Crème de pistache"],
+        choices_en: ["Pâte à tartiner", "Maple Syrup", "Salted Butter Caramel", "Strawberry Jam", "Dark Chocolate", "Creamy Peanut Butter", "Pistachio Cream"],
       },
       {
         id: "toppings",
@@ -719,8 +719,8 @@ export const allProducts: Product[] = [
         label_en: "Choice of topping",
         required: true,
         multiSelect: false,
-        choices: ["Nutella", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy", "Crème de pistache"],
-        choices_en: ["Nutella", "Maple Syrup", "Salted Butter Caramel", "Strawberry Jam", "Dark Chocolate", "Creamy Peanut Butter", "Pistachio Cream"],
+        choices: ["Pâte à tartiner", "Sirop d'érable", "Caramel beurre salé", "Confiture de fraise", "Chocolat noir", "Beurre de cacahuètes Creamy", "Crème de pistache"],
+        choices_en: ["Pâte à tartiner", "Maple Syrup", "Salted Butter Caramel", "Strawberry Jam", "Dark Chocolate", "Creamy Peanut Butter", "Pistachio Cream"],
       },
       {
         id: "toppings",
@@ -829,8 +829,8 @@ export const allProducts: Product[] = [
     category: "Le Sucré",
     img: "/brioche-perdue.png",
     desc: "",
-    composition: ["Brioche perdue", "Nutella", "Eclats de noisettes grillées"],
-    composition_en: ["French toast brioche", "Nutella", "Toasted hazelnut bits"],
+    composition: ["Brioche perdue", "Pâte à tartiner", "Eclats de noisettes grillées"],
+    composition_en: ["French toast brioche", "Pâte à tartiner", "Toasted hazelnut bits"],
     options: [
       {
         id: "supplement",
@@ -1216,8 +1216,8 @@ export const allProducts: Product[] = [
         required: true,
         multiSelect: true,
         maxSelect: 3,
-        choices: ["Nutella", "Confiture de fraise", "Sirop d'érable", "Caramel beurre salé"],
-        choices_en: ["Nutella", "Strawberry Jam", "Maple Syrup", "Salted Butter Caramel"],
+        choices: ["Pâte à tartiner", "Confiture de fraise", "Sirop d'érable", "Caramel beurre salé"],
+        choices_en: ["Pâte à tartiner", "Strawberry Jam", "Maple Syrup", "Salted Butter Caramel"],
       },
     ],
   },
