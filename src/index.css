@@ -4,6 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Protection des images */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Réactive les clics sur les boutons/liens contenant des images */
+a img, button img {
+  pointer-events: auto;
+}
+
 @layer base {
   :root {
     --background: 40 20% 97%;
