@@ -401,7 +401,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "plateau-viennoiseries",
       name: "Plateau de viennoiseries",
-      price: "17,00€",
+      price: "16€",
       img: "/plateau-mini.png",
     },
     {

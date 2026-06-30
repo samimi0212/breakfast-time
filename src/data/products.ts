@@ -1181,7 +1181,7 @@ export const allProducts: Product[] = [
     id: "plateau-viennoiseries",
     name: "Plateau de viennoiseries",
     name_en: "Pastry Platter",
-    price: "17,00€",
+    price: "16€",
     category: "À Partager",
     img: "/plateau-mini.png",
     desc: "",
