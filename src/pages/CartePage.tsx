@@ -333,7 +333,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "capuccino",
       name: "Capuccino",
-      price: "6,50€",
+      price: "5,50€",
       img: "/capuccino.png",
     },
     {

@@ -1023,7 +1023,7 @@ export const allProducts: Product[] = [
   {
     id: "capuccino",
     name: "Capuccino",
-    price: "6,50€",
+    price: "5,50€",
     category: "Boissons",
     img: "/capuccino.png",
     desc: "",
