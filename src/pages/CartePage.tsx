@@ -37,13 +37,13 @@ const menus = [
   {
     id: "menu-duo",
     name: "Menu Duo",
-    price: "35,00€",
+    price: "45€",
     img: "/menu-duo.png",
   },
   {
     id: "menu-famille",
     name: "Menu Famille",
-    price: "59,00€",
+    price: "75€",
     img: "/menu-famille.png",
   },
   {

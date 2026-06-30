@@ -207,7 +207,7 @@ export const allProducts: Product[] = [
   {
     id: "menu-duo",
     name: "Menu Duo",
-    price: "35,00€",
+    price: "45€",
     category: "Nos Menus",
     img: "/menu-duo.png",
     desc: "",
@@ -273,7 +273,7 @@ export const allProducts: Product[] = [
     id: "menu-famille",
     name: "Menu Famille",
     name_en: "Family Menu",
-    price: "59,00€",
+    price: "75€",
     category: "Nos Menus",
     img: "/menu-famille.png",
     desc: "",
