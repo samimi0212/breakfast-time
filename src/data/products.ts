@@ -847,7 +847,7 @@ export const allProducts: Product[] = [
     id: "brioche-perdue-caramel",
     name: "Brioche Perdue Caramel",
     name_en: "Caramel French Toast",
-    price: "6,50€",
+    price: "7,50€",
     category: "Le Sucré",
     img: "/brioche-perdue-caramel.png",
     desc: "",

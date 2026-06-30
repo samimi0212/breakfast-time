@@ -271,7 +271,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "brioche-perdue-caramel",
       name: "Brioche Perdue Caramel",
-      price: "6,50€",
+      price: "7,50€",
       img: "/brioche-perdue-caramel.png",
     },
     {
