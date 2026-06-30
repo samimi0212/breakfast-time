@@ -1202,7 +1202,7 @@ export const allProducts: Product[] = [
     id: "plateau-pancakes",
     name: "Plateau de pancakes",
     name_en: "Pancake Platter",
-    price: "24,90€",
+    price: "25€",
     category: "À Partager",
     img: "/pancakes-partager.png",
     desc: "",

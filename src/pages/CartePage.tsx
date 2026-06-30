@@ -419,7 +419,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "plateau-pancakes",
       name: "Plateau de pancakes",
-      price: "24,90€",
+      price: "25€",
       img: "/pancakes-partager.png",
     },
   ],
