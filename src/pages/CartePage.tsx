@@ -59,13 +59,13 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     {
       id: "croissant",
       name: "Croissant",
-      price: "1,50€",
+      price: "1,60€",
       img: "/croissant.png",
     },
     {
       id: "pain-au-chocolat",
       name: "Pain au chocolat",
-      price: "1,60€",
+      price: "1,70€",
       img: "/pain-chocolat.png",
     },
     {

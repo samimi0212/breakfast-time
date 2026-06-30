@@ -404,7 +404,7 @@ export const allProducts: Product[] = [
   {
     id: "croissant",
     name: "Croissant",
-    price: "1,50€",
+    price: "1,60€",
     category: "Viennoiseries",
     img: "/croissant.png",
     desc: "",
@@ -415,7 +415,7 @@ export const allProducts: Product[] = [
     id: "pain-au-chocolat",
     name: "Pain au chocolat",
     name_en: "Chocolate Croissant",
-    price: "1,60€",
+    price: "1,70€",
     category: "Viennoiseries",
     img: "/pain-chocolat.png",
     desc: "",
