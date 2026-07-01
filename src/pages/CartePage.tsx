@@ -422,6 +422,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "25€",
       img: "/pancakes-partager.png",
     },
+    {
+      id: "banana-bread",
+      name: "Banana Bread",
+      price: "16,50€",
+      img: "/banana-bread.png",
+    },
   ],
 };
 

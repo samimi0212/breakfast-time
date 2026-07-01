@@ -1230,6 +1230,18 @@ export const allProducts: Product[] = [
       },
     ],
   },
+  {
+    id: "banana-bread",
+    name: "Banana Bread",
+    name_en: "Banana Bread",
+    price: "16,50€",
+    category: "À Partager",
+    img: "/banana-bread.png",
+    desc: "6-8 parts",
+    composition: [],
+    composition_en: [],
+    options: [],
+  },
   // ---- ÉVÉNEMENTS ----
   {
     id: "brunch-mariage",
