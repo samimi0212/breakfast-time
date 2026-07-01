@@ -1009,6 +1009,18 @@ export const allProducts: Product[] = [
     desc: "",
     composition: [],
   },
+  {
+    id: "porridge",
+    name: "Porridge",
+    name_en: "Porridge",
+    price: "9,50€",
+    category: "Le Sucré",
+    img: "/porridge.png",
+    desc: "",
+    composition: ["Céréales", "Amandes grillées", "Graines de Chia", "Bananes", "Beurre de cacahuètes", "Purée de mangue", "Vanille"],
+    composition_en: ["Cereals", "Toasted almonds", "Chia seeds", "Bananas", "Peanut butter", "Mango purée", "Vanilla"],
+    options: [],
+  },
   // ---- BOISSONS ----
   {
     id: "cafe-latte",

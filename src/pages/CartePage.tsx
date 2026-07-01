@@ -322,6 +322,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "3,50€",
       img: "/muffin-chocolat.jpg",
     },
+    {
+      id: "porridge",
+      name: "Porridge",
+      price: "9,50€",
+      img: "/porridge.png",
+    },
   ],
   Boissons: [
     {
