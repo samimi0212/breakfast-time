@@ -868,7 +868,7 @@ export const allProducts: Product[] = [
     name: "Granola Bowl Pistache",
     price: "9,50€",
     category: "Le Sucré",
-    img: "/bowl-pistache.png",
+    img: "/bowl-pistache.jpg",
     desc: "",
     composition: ["Yaourt végétal", "Vanille", "Crème de pistache", "Pistaches concassées", "Granola", "Myrtilles"],
     composition_en: ["Plant-based yogurt", "Vanilla", "Pistachio cream", "Crushed pistachios", "Granola", "Blueberries"],
