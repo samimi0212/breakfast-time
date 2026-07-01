@@ -405,6 +405,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/plateau-mini.png",
     },
     {
+      id: "plateau-pancakes",
+      name: "Plateau de pancakes",
+      price: "25€",
+      img: "/pancakes-partager.png",
+    },
+    {
       id: "cake-marbre",
       name: "Cake marbré",
       price: "10,50€",
@@ -415,12 +421,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       name: "Brioche",
       price: "9,50€",
       img: "/brioche-partager.png",
-    },
-    {
-      id: "plateau-pancakes",
-      name: "Plateau de pancakes",
-      price: "25€",
-      img: "/pancakes-partager.png",
     },
     {
       id: "banana-bread",

@@ -1198,16 +1198,6 @@ export const allProducts: Product[] = [
     composition_en: ["5 Croissants", "5 Chocolate croissants"],
   },
   {
-    id: "brioche-partager",
-    name: "Brioche",
-    price: "9,50€",
-    category: "À Partager",
-    img: "/brioche-partager.png",
-    desc: "",
-    composition: ["8-10 Parts"],
-    composition_en: ["8-10 Slices"],
-  },
-  {
     id: "plateau-pancakes",
     name: "Plateau de pancakes",
     name_en: "Pancake Platter",
@@ -1229,6 +1219,16 @@ export const allProducts: Product[] = [
         choices_en: ["Pâte à tartiner", "Strawberry Jam", "Maple Syrup", "Salted Butter Caramel"],
       },
     ],
+  },
+  {
+    id: "brioche-partager",
+    name: "Brioche",
+    price: "9,50€",
+    category: "À Partager",
+    img: "/brioche-partager.png",
+    desc: "",
+    composition: ["8-10 Parts"],
+    composition_en: ["8-10 Slices"],
   },
   {
     id: "banana-bread",
