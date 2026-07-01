@@ -151,6 +151,18 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
   ],
   "Le Salé": [
     {
+      id: "avocado-toast",
+      name: "Avocado Toast",
+      price: "10,90€",
+      img: "/avocado-toast.png",
+    },
+    {
+      id: "oeufs-benedicte",
+      name: "Oeufs bénédicte",
+      price: "9,50€",
+      img: "/oeufs-benedicte.png",
+    },
+    {
       id: "bagel-chevre-miel",
       name: "Bagel chèvre miel",
       price: "9,50€",
@@ -169,40 +181,10 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/bagel-saumon.png",
     },
     {
-      id: "avocado-toast",
-      name: "Avocado Toast",
-      price: "10,90€",
-      img: "/avocado-toast.png",
-    },
-    {
-      id: "oeufs-benedicte",
-      name: "Oeufs bénédicte",
-      price: "9,50€",
-      img: "/oeufs-benedicte.png",
-    },
-    {
-      id: "oeufs-brouilles-truffe",
-      name: "Oeufs brouillés Truffe",
-      price: "7,50€",
-      img: "/oeufs-brouilles-truffe.png",
-    },
-    {
-      id: "oeufs-brouilles",
-      name: "Oeufs brouillés",
-      price: "4,50€",
-      img: "/oeufs-brouilles.png",
-    },
-    {
       id: "breakfast-burrito",
       name: "Breakfast Burrito",
       price: "9,50€",
       img: "/breakfast-burrito.png",
-    },
-    {
-      id: "breakfast-bowl",
-      name: "Breakfast Bowl",
-      price: "11,50€",
-      img: "/breakfast-bowl.png",
     },
     {
       id: "chicken-burrito",
@@ -211,16 +193,34 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/chicken-burrito.png",
     },
     {
+      id: "potatoe-saumon",
+      name: "Potatoe Saumon",
+      price: "10,90€",
+      img: "/potatoe-saumon.png",
+    },
+    {
       id: "toast-mediterraneen",
       name: "Toast méditerranéen",
       price: "11,50€",
       img: "/toast-med.png",
     },
     {
-      id: "potatoe-saumon",
-      name: "Potatoe Saumon",
-      price: "10,90€",
-      img: "/potatoe-saumon.png",
+      id: "breakfast-bowl",
+      name: "Breakfast Bowl",
+      price: "11,50€",
+      img: "/breakfast-bowl.png",
+    },
+    {
+      id: "oeufs-brouilles",
+      name: "Oeufs brouillés",
+      price: "4,50€",
+      img: "/oeufs-brouilles.png",
+    },
+    {
+      id: "oeufs-brouilles-truffe",
+      name: "Oeufs brouillés Truffe",
+      price: "7,50€",
+      img: "/oeufs-brouilles-truffe.png",
     },
   ],
   "Extra": [
