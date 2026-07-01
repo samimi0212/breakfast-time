@@ -172,18 +172,27 @@ export const allProducts: Product[] = [
     composition: [
       "1 Toast méditerranéen",
       "1 Frite de patates douces",
-      "1 Cookie vegan",
+      "1 Extra au choix",
       "1 Jus frais au choix",
       "1 Boisson chaude au choix",
     ],
     composition_en: [
       "1 Mediterranean Toast",
       "1 Sweet Potato Fries",
-      "1 Vegan Cookie",
+      "1 Extra of your choice",
       "1 Fresh juice of your choice",
       "1 Hot drink of your choice",
     ],
     options: [
+      {
+        id: "extra",
+        label: "Extra (1 au choix)",
+        label_en: "Extra (choose 1)",
+        required: true,
+        multiSelect: false,
+        choices: ["Cookie caramel beurre salé", "Muffin myrtilles", "Muffin chocolat", "Brownie pécan"],
+        choices_en: ["Salted Caramel Cookie", "Blueberry Muffin", "Chocolate Muffin", "Pecan Brownie"],
+      },
       {
         id: "jus",
         label: "Jus frais (1 au choix)",
