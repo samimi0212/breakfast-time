@@ -950,7 +950,7 @@ export const allProducts: Product[] = [
     name_en: "Salted Caramel Cookie",
     price: "3,80€",
     category: "Le Sucré",
-    img: "/cookie-caramel.png",
+    img: "/cookie-caramel.jpg",
     desc: "",
     composition: ["Caramel", "Beurre salé de Guérande"],
     composition_en: ["Caramel", "Guérande salted butter"],
