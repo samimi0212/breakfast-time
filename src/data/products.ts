@@ -983,7 +983,7 @@ export const allProducts: Product[] = [
     name_en: "Blueberry Muffin",
     price: "3,50€",
     category: "Le Sucré",
-    img: "/muffin-myrtilles.png",
+    img: "/muffin-myrtilles.jpg",
     desc: "",
     composition: ["Farine", "Myrtilles", "Beurre", "Œufs", "Sucre"],
     composition_en: ["Flour", "Blueberries", "Butter", "Eggs", "Sugar"],
