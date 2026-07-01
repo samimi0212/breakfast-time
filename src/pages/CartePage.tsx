@@ -287,6 +287,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/granola-bowl.png",
     },
     {
+      id: "porridge",
+      name: "Porridge Mangue Vanille",
+      price: "9,50€",
+      img: "/porridge.png",
+    },
+    {
       id: "acai-bowl",
       name: "Acaï Bowl",
       price: "10,50€",
@@ -321,12 +327,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       name: "Muffin Chocolat",
       price: "3,50€",
       img: "/muffin-chocolat.jpg",
-    },
-    {
-      id: "porridge",
-      name: "Porridge",
-      price: "9,50€",
-      img: "/porridge.png",
     },
   ],
   Boissons: [
