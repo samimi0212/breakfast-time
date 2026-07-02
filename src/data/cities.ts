@@ -347,6 +347,189 @@ export const cities: City[] = [
     metaDesc_en:
       "Breakfast and brunch delivery in western Nice (airport, Arénas, Saint-Augustin). Fresh, prepared the same morning, 7 days a week from 8am to 3pm.",
   },
+  {
+    slug: "biot",
+    name: "Biot",
+    deliveryTime: "15 à 25 minutes",
+    deliveryTime_en: "15 to 25 minutes",
+    intro:
+      "Petit-déjeuner et brunch frais livrés à Biot en 15 à 25 minutes — notre zone de livraison la plus rapide, 7j/7 de 8h à 15h.",
+    intro_en:
+      "Fresh breakfast and brunch delivered in Biot in 15 to 25 minutes — our fastest delivery area, 7 days a week from 8am to 3pm.",
+    quartiers: ["Village historique", "Saint-Philippe", "Sophia Antipolis (côté Biot)", "La Brague", "Gare de Biot"],
+    context:
+      "Biot est notre zone la mieux desservie : du village des verriers aux quartiers proches de Sophia Antipolis, votre commande arrive rapidement et encore chaude. Résidents, télétravailleurs ou vacanciers en villa, profitez d'un vrai petit-déjeuner sans sortir de chez vous.",
+    context_en:
+      "Biot is our best-served area: from the glassblowers' village to the neighbourhoods near Sophia Antipolis, your order arrives quickly and still warm. Residents, remote workers or holidaymakers in villas — enjoy a proper breakfast without leaving home.",
+    useCases: [
+      {
+        title: "Livraison express",
+        title_en: "Express delivery",
+        text: "Biot est notre zone la plus rapide : commande livrée en 15 à 25 minutes, souvent moins.",
+        text_en: "Biot is our fastest area: orders delivered in 15 to 25 minutes, often less.",
+      },
+      {
+        title: "Télétravail gourmand",
+        title_en: "Working from home",
+        text: "Petit-déjeuner ou brunch livré à domicile pendant votre journée de télétravail, sans perdre une minute.",
+        text_en: "Breakfast or brunch delivered to your door on your work-from-home day, without losing a minute.",
+      },
+      {
+        title: "Vacances en villa",
+        title_en: "Villa holidays",
+        text: "En location saisonnière à Biot ? Réveillez toute la maisonnée avec un Menu Famille livré au portail.",
+        text_en: "Staying in a holiday rental in Biot? Wake the whole household with a Family Menu delivered to the gate.",
+      },
+    ],
+    faq: [
+      {
+        q: "Livrez-vous partout à Biot ?",
+        q_en: "Do you deliver everywhere in Biot?",
+        a: "Oui, toute la commune : le village historique, Saint-Philippe, La Brague, la gare et les quartiers résidentiels.",
+        a_en: "Yes, the whole town: the historic village, Saint-Philippe, La Brague, the station area and residential neighbourhoods.",
+      },
+      {
+        q: "Quel est le délai de livraison à Biot ?",
+        q_en: "How fast is delivery in Biot?",
+        a: "Entre 15 et 25 minutes après confirmation de votre commande — Biot est notre zone de livraison la plus rapide.",
+        a_en: "Between 15 and 25 minutes after your order is confirmed — Biot is our fastest delivery area.",
+      },
+      {
+        q: "Peut-on commander pour un événement à Biot ?",
+        q_en: "Can I order for an event in Biot?",
+        a: "Oui, brunchs de groupe, anniversaires et petits-déjeuners d'entreprise : demandez un devis via notre page Événements.",
+        a_en: "Yes — group brunches, birthdays and corporate breakfasts: request a quote via our Events page.",
+      },
+    ],
+    metaTitle: "Livraison petit-déjeuner Biot — Brunch à domicile | Breakfast Time",
+    metaTitle_en: "Breakfast Delivery Biot — Brunch at Home | Breakfast Time",
+    metaDesc:
+      "Livraison de petit-déjeuner et brunch à Biot en 15-25 min, notre zone la plus rapide. Produits frais du matin, 7j/7 de 8h à 15h.",
+    metaDesc_en:
+      "Breakfast and brunch delivery in Biot in 15-25 min, our fastest area. Fresh morning products, 7 days a week from 8am to 3pm.",
+  },
+  {
+    slug: "valbonne",
+    name: "Valbonne",
+    deliveryTime: "20 à 30 minutes",
+    deliveryTime_en: "20 to 30 minutes",
+    intro:
+      "Petit-déjeuner et brunch frais livrés à Valbonne et Sophia Antipolis en 20 à 30 minutes — à la maison comme au bureau, 7j/7 de 8h à 15h.",
+    intro_en:
+      "Fresh breakfast and brunch delivered to Valbonne and Sophia Antipolis in 20 to 30 minutes — at home or at the office, 7 days a week from 8am to 3pm.",
+    quartiers: ["Village de Valbonne", "Garbejaïre", "Haut-Sartoux", "Île Verte", "Les Clausonnes", "Sophia Antipolis"],
+    context:
+      "Entre le village provençal de Valbonne et les entreprises de Sophia Antipolis, les matins sont souvent trop courts. Petit-déjeuner d'équipe livré avant une réunion, brunch du week-end près de la place des Arcades ou à Garbejaïre : commandez en ligne, on s'occupe du reste. Site et service disponibles en anglais pour la communauté internationale.",
+    context_en:
+      "Between Valbonne's Provençal village and the companies of Sophia Antipolis, mornings are often too short. Team breakfast delivered before a meeting, weekend brunch near the Place des Arcades or in Garbejaïre: order online, we handle the rest. Website and service fully available in English for the international community.",
+    useCases: [
+      {
+        title: "Petit-déjeuner d'entreprise",
+        title_en: "Corporate breakfast",
+        text: "Réunions, séminaires et comités à Sophia Antipolis : plateaux livrés et installés à l'heure, devis rapide.",
+        text_en: "Meetings, seminars and boards in Sophia Antipolis: platters delivered and set up on time, quick quote.",
+      },
+      {
+        title: "Brunch du week-end",
+        title_en: "Weekend brunch",
+        text: "Pancakes, bagels et jus pressés livrés à domicile au village, à l'Île Verte ou au Haut-Sartoux.",
+        text_en: "Pancakes, bagels and fresh juices delivered to your home in the village, Île Verte or Haut-Sartoux.",
+      },
+      {
+        title: "English breakfast",
+        title_en: "English breakfast",
+        text: "Expatriés et internationaux de Valbonne : notre Menu Anglais complet arrive chaud, commandé en 2 minutes.",
+        text_en: "Valbonne's expat community: our full English Breakfast arrives hot, ordered in 2 minutes.",
+      },
+    ],
+    faq: [
+      {
+        q: "Livrez-vous les entreprises de Sophia Antipolis côté Valbonne ?",
+        q_en: "Do you deliver to Sophia Antipolis companies on the Valbonne side?",
+        a: "Oui, Garbejaïre, Haut-Sartoux, Les Clausonnes et toute la technopole. Pour les groupes, demandez un devis Événements.",
+        a_en: "Yes — Garbejaïre, Haut-Sartoux, Les Clausonnes and the whole technology park. For groups, request an Events quote.",
+      },
+      {
+        q: "En combien de temps suis-je livré à Valbonne ?",
+        q_en: "How long does delivery to Valbonne take?",
+        a: "Comptez 20 à 30 minutes après confirmation de votre commande, selon le quartier.",
+        a_en: "Allow 20 to 30 minutes after your order is confirmed, depending on the area.",
+      },
+      {
+        q: "Proposez-vous un service en anglais ?",
+        q_en: "Is your service available in English?",
+        a: "Oui, le site existe en version anglaise et toute la carte est traduite — pratique pour la communauté internationale de Valbonne.",
+        a_en: "Yes, the website has a full English version and the whole menu is translated — handy for Valbonne's international community.",
+      },
+    ],
+    metaTitle: "Livraison petit-déjeuner Valbonne & Sophia — Brunch livré | Breakfast Time",
+    metaTitle_en: "Breakfast Delivery Valbonne & Sophia — Brunch Delivered | Breakfast Time",
+    metaDesc:
+      "Livraison de petit-déjeuner et brunch à Valbonne et Sophia Antipolis (Garbejaïre, Haut-Sartoux). Frais, livrés en 20-30 min, 7j/7 de 8h à 15h.",
+    metaDesc_en:
+      "Breakfast and brunch delivery in Valbonne and Sophia Antipolis (Garbejaïre, Haut-Sartoux). Fresh, delivered in 20-30 min, 7 days a week from 8am to 3pm.",
+  },
+  {
+    slug: "cagnes-sur-mer",
+    name: "Cagnes-sur-Mer",
+    deliveryTime: "25 à 40 minutes",
+    deliveryTime_en: "25 to 40 minutes",
+    intro:
+      "Faites-vous livrer un petit-déjeuner ou un brunch frais à Cagnes-sur-Mer — du Cros-de-Cagnes au Haut-de-Cagnes, préparé le matin même, 7j/7 de 8h à 15h.",
+    intro_en:
+      "Get a fresh breakfast or brunch delivered in Cagnes-sur-Mer — from Cros-de-Cagnes to Haut-de-Cagnes, prepared the same morning, 7 days a week from 8am to 3pm.",
+    quartiers: ["Centre-ville", "Cros-de-Cagnes", "Haut-de-Cagnes", "Les Collettes", "Val Fleuri", "Polygone Riviera"],
+    context:
+      "Matin en bord de mer au Cros, ruelles médiévales du Haut-de-Cagnes ou résidences autour du Polygone Riviera : Breakfast Time livre un petit-déjeuner complet ou un brunch gourmand partout à Cagnes-sur-Mer. Parfait pour un dimanche en famille, des invités de passage ou un réveil paresseux face à la Méditerranée.",
+    context_en:
+      "Seaside mornings at the Cros, medieval lanes of Haut-de-Cagnes or residences around Polygone Riviera: Breakfast Time delivers a full breakfast or an indulgent brunch anywhere in Cagnes-sur-Mer. Perfect for a family Sunday, visiting guests or a lazy wake-up facing the Mediterranean.",
+    useCases: [
+      {
+        title: "Brunch en famille",
+        title_en: "Family brunch",
+        text: "Le Menu Famille livré un dimanche matin : viennoiseries, bagels, jus pressés — zéro cuisine, zéro vaisselle.",
+        text_en: "The Family Menu delivered on a Sunday morning: pastries, bagels, fresh juices — no cooking, no dishes.",
+      },
+      {
+        title: "Réveil face à la mer",
+        title_en: "Seaside wake-up",
+        text: "Résidents et vacanciers du Cros-de-Cagnes : petit-déjeuner frais livré pour le déguster sur la terrasse.",
+        text_en: "Residents and holidaymakers in Cros-de-Cagnes: fresh breakfast delivered to enjoy on the terrace.",
+      },
+      {
+        title: "Occasions spéciales",
+        title_en: "Special occasions",
+        text: "Anniversaire, naissance, matinée entre amis : Birthday Box et plateaux à partager livrés avec le sourire.",
+        text_en: "Birthday, new baby, morning with friends: Birthday Box and sharing platters delivered with a smile.",
+      },
+    ],
+    faq: [
+      {
+        q: "Livrez-vous toute la commune de Cagnes-sur-Mer ?",
+        q_en: "Do you deliver across all of Cagnes-sur-Mer?",
+        a: "Oui : centre-ville, Cros-de-Cagnes, Haut-de-Cagnes, Les Collettes, Val Fleuri et les quartiers autour du Polygone Riviera.",
+        a_en: "Yes: the town centre, Cros-de-Cagnes, Haut-de-Cagnes, Les Collettes, Val Fleuri and the areas around Polygone Riviera.",
+      },
+      {
+        q: "Quel est le délai de livraison à Cagnes-sur-Mer ?",
+        q_en: "How long does delivery to Cagnes-sur-Mer take?",
+        a: "Comptez 25 à 40 minutes après confirmation de la commande, selon le quartier et la circulation.",
+        a_en: "Allow 25 to 40 minutes after your order is confirmed, depending on the area and traffic.",
+      },
+      {
+        q: "Peut-on commander un brunch pour un groupe à Cagnes ?",
+        q_en: "Can I order brunch for a group in Cagnes?",
+        a: "Oui, pour les groupes, anniversaires et entreprises : demandez un devis via notre page Événements.",
+        a_en: "Yes — for groups, birthdays and companies: request a quote via our Events page.",
+      },
+    ],
+    metaTitle: "Livraison petit-déjeuner Cagnes-sur-Mer — Brunch à domicile | Breakfast Time",
+    metaTitle_en: "Breakfast Delivery Cagnes-sur-Mer — Brunch at Home | Breakfast Time",
+    metaDesc:
+      "Livraison de petit-déjeuner et brunch à Cagnes-sur-Mer (Cros, Haut-de-Cagnes, centre). Produits frais, livrés en 25-40 min, 7j/7 de 8h à 15h.",
+    metaDesc_en:
+      "Breakfast and brunch delivery in Cagnes-sur-Mer (Cros, Haut-de-Cagnes, centre). Fresh products, delivered in 25-40 min, 7 days a week from 8am to 3pm.",
+  },
 ];
 
 export const getCityBySlug = (slug: string): City | undefined =>
