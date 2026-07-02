@@ -7,12 +7,33 @@ import { createServer } from "http";
 import { readFileSync, existsSync, writeFileSync, mkdirSync } from "fs";
 import { join, extname, dirname } from "path";
 import { fileURLToPath } from "url";
-import puppeteer from "puppeteer";
+import puppeteerCore from "puppeteer-core";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 const PORT = 4173;
-const CONCURRENCY = 4;
+// Sur Vercel, le conteneur de build n'a pas les librairies système dont Chrome a besoin :
+// on utilise @sparticuz/chromium, un Chromium compilé pour tourner sans elles.
+// En local (Mac/Linux avec un OS complet), on utilise le Chrome téléchargé par `puppeteer`.
+const IS_VERCEL = !!process.env.VERCEL;
+const CONCURRENCY = IS_VERCEL ? 2 : 4;
+
+async function launchBrowser() {
+  if (IS_VERCEL) {
+    const chromium = (await import("@sparticuz/chromium")).default;
+    return puppeteerCore.launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: true,
+    });
+  }
+  const puppeteerFull = (await import("puppeteer")).default;
+  return puppeteerCore.launch({
+    executablePath: await puppeteerFull.executablePath(),
+    headless: "new",
+    args: ["--no-sandbox"],
+  });
+}
 
 // Routes exclues du pré-rendu : privées, dynamiques (panier) ou sans intérêt SEO.
 const EXCLUDE = ["/panier", "/commande", "/mon-compte", "/confirmation", "/mes-commandes", "/connexion", "/inscription", "/jeu"];
@@ -80,7 +101,7 @@ async function renderRoute(browser, route) {
 async function prerender() {
   const routes = getRoutesFromSitemap();
   await new Promise((resolve) => server.listen(PORT, resolve));
-  const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
+  const browser = await launchBrowser();
 
   let done = 0;
   let failed = 0;
