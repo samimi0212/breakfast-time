@@ -171,14 +171,14 @@ export const allProducts: Product[] = [
     desc: "",
     composition: [
       "1 Toast méditerranéen",
-      "1 Frite de patates douces",
+      "Frites de patates douces",
       "1 Extra au choix",
       "1 Jus frais au choix",
       "1 Boisson chaude au choix",
     ],
     composition_en: [
       "1 Mediterranean Toast",
-      "1 Sweet Potato Fries",
+      "Sweet Potato Fries",
       "1 Extra of your choice",
       "1 Fresh juice of your choice",
       "1 Hot drink of your choice",
