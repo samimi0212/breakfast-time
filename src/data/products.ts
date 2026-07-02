@@ -1021,7 +1021,6 @@ export const allProducts: Product[] = [
     desc: "",
     composition: [],
   },
-  {
   // ---- BOISSONS ----
   {
     id: "cafe-latte",
