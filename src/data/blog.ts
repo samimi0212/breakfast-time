@@ -97,7 +97,7 @@ export const blogPosts: BlogPost[] = [
     excerpt_en:
       "Celebrating a birthday with family or friends in Antibes, Cannes or Nice? Here's how to put together a birthday brunch delivered to your door, without spending your morning in the kitchen.",
     date: "2026-07-27",
-    image: "/cadeau.jpg",
+    image: "/brunch.jpg",
     metaTitle: "Anniversaire brunch à Antibes, Cannes, Nice | Breakfast Time",
     metaTitle_en: "Birthday brunch in Antibes, Cannes, Nice | Breakfast Time",
     metaDesc:
