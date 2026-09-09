@@ -163,6 +163,70 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "petit-dejeuner-au-bureau-equipe",
+    title: "Petit-déjeuner au bureau : comment régaler son équipe sans se déplacer",
+    title_en: "Office breakfast: how to treat your team without leaving the building",
+    excerpt:
+      "Réunion d'équipe, onboarding, anniversaire de collègue ou simple moment de convivialité ? Découvrez comment commander un petit-déjeuner livré directement dans vos locaux.",
+    excerpt_en:
+      "Team meeting, onboarding, colleague's birthday or just a moment to connect? Here's how to order a breakfast delivered straight to your office.",
+    date: "2026-09-09",
+    image: "/entreprise2.jpg",
+    metaTitle: "Petit-déjeuner d'équipe livré au bureau | Breakfast Time",
+    metaTitle_en: "Office team breakfast delivery | Breakfast Time",
+    metaDesc:
+      "Commandez un petit-déjeuner ou brunch livré au bureau pour votre équipe à Antibes, Cannes ou Nice. Viennoiseries, bagels, boissons chaudes — prêt à partager.",
+    metaDesc_en:
+      "Order a breakfast or brunch delivered to your office for your team in Antibes, Cannes or Nice. Pastries, bagels, hot drinks — ready to share.",
+    blocks: [
+      {
+        type: "p",
+        text: "Un petit-déjeuner partagé au bureau, c'est souvent la façon la plus simple de créer un moment de cohésion sans organisation compliquée. Que ce soit pour une réunion importante, un accueil de nouveaux collaborateurs ou juste parce que c'est vendredi, faire livrer le petit-déjeuner directement dans vos locaux évite les allers-retours en boulangerie et les croissants froids.",
+        text_en:
+          "A shared breakfast at the office is often the simplest way to create a moment of togetherness without complicated logistics. Whether it's for an important meeting, welcoming new team members or just because it's Friday, having breakfast delivered straight to your office avoids the back-and-forth trips to the bakery — and cold croissants.",
+      },
+      {
+        type: "h2",
+        text: "Ce qui fait un bon petit-déjeuner d'entreprise",
+        text_en: "What makes a good office breakfast",
+      },
+      {
+        type: "p",
+        text: "La clé, c'est la simplicité pour vous et la qualité pour votre équipe. Des viennoiseries fraîches du matin, une option salée pour ceux qui ne mangent pas sucré, des boissons chaudes et froides — et une commande unique, pas dix commandes séparées. Chez Breakfast Time, chaque menu est personnalisable au moment de la commande, ce qui permet à chacun de choisir ses options sans compliquer la logistique.",
+        text_en:
+          "The key is simplicity for you and quality for your team. Fresh morning pastries, a savoury option for those who skip sweet things, hot and cold drinks — and a single order, not ten separate ones. At Breakfast Time, every menu is customisable at the time of ordering, so everyone can choose their options without complicating the logistics.",
+      },
+      {
+        type: "h2",
+        text: "Pour combien de personnes peut-on commander ?",
+        text_en: "How many people can you order for?",
+      },
+      {
+        type: "p",
+        text: "Nos menus sont conçus pour des commandes individuelles ou en duo, mais rien n'empêche de passer plusieurs commandes pour une même adresse. Chaque article est livré ensemble, à l'heure choisie. Pour une équipe de 5, 10 ou 15 personnes, il suffit d'ajouter les menus correspondants au panier — viennoiseries, plats chauds ou bowls, boissons chaudes ou jus frais — et de choisir un créneau en avance pour que tout arrive en même temps.",
+        text_en:
+          "Our menus are designed for individual or duo orders, but there's nothing stopping you from placing several orders for the same address. Each item is delivered together at the chosen time. For a team of 5, 10 or 15 people, simply add the corresponding menus to the basket — pastries, hot dishes or bowls, hot drinks or fresh juices — and choose a time slot in advance so everything arrives together.",
+      },
+      {
+        type: "h2",
+        text: "Livraison dans vos locaux à Antibes, Cannes et Nice",
+        text_en: "Delivery to your premises in Antibes, Cannes and Nice",
+      },
+      {
+        type: "p",
+        text: "Nous livrons 7j/7 de 8h à 15h dans les Alpes-Maritimes : Antibes, Juan-les-Pins, Cannes, Mougins, Sophia Antipolis, Valbonne, et l'ouest de Nice. Pour une réunion à 9h, une commande la veille ou le matin même en précommande suffit. Il suffit d'indiquer l'adresse de vos locaux lors de la commande pour vérifier votre zone de livraison.",
+        text_en:
+          "We deliver 7 days a week from 8am to 3pm across the Alpes-Maritimes: Antibes, Juan-les-Pins, Cannes, Mougins, Sophia Antipolis, Valbonne and western Nice. For a 9am meeting, ordering the evening before or that same morning as a pre-order is all it takes. Simply enter your office address when ordering to check your delivery zone.",
+      },
+      {
+        type: "p",
+        text: "Envie de régaler votre équipe dès la semaine prochaine ? Composez votre commande directement sur notre carte.",
+        text_en:
+          "Want to treat your team as early as next week? Put together your order directly on our menu.",
+      },
+    ],
+  },
 ];
 
 export const getBlogPostBySlug = (slug: string) =>
