@@ -719,7 +719,7 @@ export const allProducts: Product[] = [
     name_en: "Scrambled Eggs",
     price: "4,50€",
     category: "Le Salé",
-    img: "/oeufs-brouilles.jpg",
+    img: "/oeufs-brouilles.png",
     desc: "",
     composition: ["Œufs frais de plein air", "Beurre de Baratte", "Fleur de sel", "1 toast"],
     composition_en: ["Free-range fresh eggs", "Churned butter", "Fleur de sel", "1 toast"],
