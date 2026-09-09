@@ -25,8 +25,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import heroImg from "@/assets/image-accueil.png";
 import contextImg from "@/assets/image-accueil2.png";
 import brunchEntrepriseImg from "@/assets/brunch-entreprise.jpg";
-import pancakesPartagerImg from "@/assets/pancakes-partager.png";
-import menuAnglaisImg from "@/assets/menu-anglais2.png";
+import pancakesPartagerImg from "@/assets/brunch.png";
+import menuAnglaisImg from "@/assets/entreprise.jpg";
 
 interface VillePageProps {
   slug: string;

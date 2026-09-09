@@ -170,14 +170,14 @@ export const allProducts: Product[] = [
     img: "/menu-veggie-titre.png",
     desc: "",
     composition: [
-      "1 Burratina",
+      "1 Plat au choix",
       "Frites de patates douces",
       "1 Extra au choix",
       "1 Jus frais au choix",
       "1 Boisson chaude au choix",
     ],
     composition_en: [
-      "1 Mediterranean Toast",
+      "1 Dish of your choice",
       "Sweet Potato Fries",
       "1 Extra of your choice",
       "1 Fresh juice of your choice",

@@ -1,7 +1,7 @@
 import { Clock, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
-import heroImg from "@/assets/hero-breakfast.jpg";
+import heroImg from "@/assets/brunch.png";
 
 const FinalCTA = () => {
   const { t } = useTranslation();

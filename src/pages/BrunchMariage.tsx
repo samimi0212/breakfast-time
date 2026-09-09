@@ -26,7 +26,7 @@ import {
 import heroMariage from "@/assets/mariage-hero.jpg";
 import buffetMariage from "@/assets/mariage-buffet.jpg";
 import convivesMariage from "@/assets/mariage-convives.jpg";
-import detailMariage from "@/assets/mariage-detail.jpg";
+import detailMariage from "@/assets/mariage-hero.jpg";
 
 const OLIVE_DARK = "#2a2a08";
 const OLIVE_MID = "#7a7020";
