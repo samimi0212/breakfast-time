@@ -51,10 +51,10 @@ const Footer = () => {
       <div className="flex items-center justify-between mb-6">
         <img src={logo} alt="Breakfast Time" className="h-10 w-auto brightness-0 invert" />
         <div className="flex gap-2">
-          <a href="#" className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
+          <a href="https://www.instagram.com/breakfasttime.06/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
             <Instagram size={15} style={{ color: "#DFF057" }} />
           </a>
-          <a href="#" className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
+          <a href="https://www.facebook.com/profile.php?id=61590627511962" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
             <Facebook size={15} style={{ color: "#DFF057" }} />
           </a>
         </div>
@@ -157,10 +157,10 @@ const Footer = () => {
               {t("footer.description")}
             </p>
             <div className="flex gap-3 mt-6">
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
+              <a href="https://www.instagram.com/breakfasttime.06/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
                 <Instagram size={18} style={{ color: "#DFF057" }} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
+              <a href="https://www.facebook.com/profile.php?id=61590627511962" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style={{ backgroundColor: "rgba(223,240,87,0.15)" }}>
                 <Facebook size={18} style={{ color: "#DFF057" }} />
               </a>
             </div>
