@@ -933,7 +933,7 @@ export const allProducts: Product[] = [
     name: "Acaï Bowl",
     price: "10,50€",
     category: "Le Sucré",
-    img: "/acai.png",
+    img: "/acai-bowl.png",
     desc: "",
     composition: ["Acai", "Bananes", "Fruits rouges", "Granola artisanal", "Miel de Lavande"],
     composition_en: ["Acai", "Bananas", "Mixed berries", "Artisanal granola", "Lavender honey"],
