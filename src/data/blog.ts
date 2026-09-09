@@ -33,7 +33,7 @@ export const blogPosts: BlogPost[] = [
     excerpt_en:
       "Want brunch in Antibes without leaving home? Here's how to put together the perfect brunch and have it delivered straight to your door or office.",
     date: "2026-07-15",
-    image: "/menu-brunch.png",
+    image: "/couverture1.png",
     metaTitle: "Où bruncher à Antibes en 2026 ? | Breakfast Time",
     metaTitle_en: "Where to brunch in Antibes in 2026? | Breakfast Time",
     metaDesc:
