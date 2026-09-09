@@ -602,18 +602,6 @@ export const allProducts: Product[] = [
     options: [{ id: "supplement", label: "Supplément", label_en: "Add-on", required: false, multiSelect: true, choices: ["Oignons frits (+1€)"], choices_en: ["Fried onions (+€1)"] }],
   },
   {
-    id: "toast-mediterraneen",
-    name: "Burratina",
-    name_en: "Burratina",
-    price: "10,50€",
-    category: "Le Salé",
-    img: "/burratina.png",
-    desc: "",
-    composition: ["Pinsa", "Confit de tomates", "Burrata", "Tomates cerises mélangées", "Basilic", "Huile d'olive"],
-    composition_en: ["Pinsa", "Tomato confit", "Burrata", "Mixed cherry tomatoes", "Basil", "Olive oil"],
-    options: [{ id: "supplement", label: "Supplément", label_en: "Add-on", required: false, multiSelect: true, choices: ["Oignons frits (+1€)"], choices_en: ["Fried onions (+€1)"] }],
-  },
-  {
     id: "breakfast-burrito",
     name: "Pulled Burrito",
     name_en: "Pulled Burrito",
