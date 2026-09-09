@@ -158,7 +158,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "oeufs-brouilles",
       name: "Oeufs brouillés",
       price: "4,50€",
-      img: "/oeufs-brouilles.jpg",
+      img: "/oeufs-brouilles.png",
     },
     {
       id: "oeufs-brouilles-truffe",
