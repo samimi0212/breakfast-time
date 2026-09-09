@@ -185,6 +185,15 @@ export const allProducts: Product[] = [
     ],
     options: [
       {
+        id: "plat",
+        label: "Plat (1 au choix)",
+        label_en: "Dish (choose 1)",
+        required: true,
+        multiSelect: false,
+        choices: ["Bagel Avocat Saumon", "Bagel Chèvre Noix", "Bagel Bacon Cheddar", "Bagel Chicken", "Pulled Burrito", "Avocado Toast"],
+        choices_en: ["Bagel Avocado Salmon", "Bagel Goat Cheese Walnut", "Bagel Bacon Cheddar", "Bagel Chicken", "Pulled Burrito", "Avocado Toast"],
+      },
+      {
         id: "extra",
         label: "Extra (1 au choix)",
         label_en: "Extra (choose 1)",
