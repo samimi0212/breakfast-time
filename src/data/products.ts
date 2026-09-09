@@ -986,7 +986,7 @@ export const allProducts: Product[] = [
     name_en: "Pecan Brownie",
     price: "3,80€",
     category: "Le Sucré",
-    img: "/brownie.jpg",
+    img: "/brownie.png",
     desc: "",
     composition: ["85g", "Chocolat", "Noix de pécan"],
     composition_en: ["85g", "Chocolate", "Pecan nuts"],
