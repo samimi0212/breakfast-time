@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
 import { Clock, MapPin, Croissant, Bike, CalendarCheck } from "lucide-react";
-import heroImg from "@/assets/image-accueil2.png";
+import heroImg from "@/assets/image-accueil2.webp";
 
 const HeroSection = () => {
   const { t } = useTranslation();

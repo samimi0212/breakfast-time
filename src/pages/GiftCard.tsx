@@ -307,7 +307,7 @@ const GiftCardForm = () => {
 
               <div className={previewTab === "recto" ? "" : "hidden"}>
                 <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1748 / 1240", boxShadow: "var(--card-shadow)" }}>
-                  <img src="/carte-cadeau-recto.png" alt="Aperçu du recto de la carte cadeau" className="absolute inset-0 w-full h-full object-contain" />
+                  <img src="/carte-cadeau-recto.webp" alt="Aperçu du recto de la carte cadeau" className="absolute inset-0 w-full h-full object-contain" />
                 </div>
               </div>
 

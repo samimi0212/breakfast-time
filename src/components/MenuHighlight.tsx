@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
 
 const visuals = [
-  "/menu-brunch.png",
-  "/composez-brunch.jpg",
-  "/plateau-viennoiserie-entre-2.png",
+  "/menu-brunch.webp",
+  "/composez-brunch.webp",
+  "/plateau-viennoiserie-entre-2.webp",
   "https://static.wixstatic.com/media/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/21c6e4_a4aec83b7dd54ab48764a13c365dab08~mv2.jpg",
 ];
 

@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Login = () => {

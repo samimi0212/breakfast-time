@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
 
 const visuals = [
-  "/nos-menus.jpg",
-  "/composez-brunch.jpg",
-  "/carte-cadeau.png",
+  "/nos-menus.webp",
+  "/composez-brunch.webp",
+  "/carte-cadeau.webp",
 ];
 
 const MenuSection = () => {

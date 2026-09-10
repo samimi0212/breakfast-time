@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
-import aboutImg from "@/assets/image-chose-simple.jpg";
+import aboutImg from "@/assets/image-chose-simple.webp";
 
 const AboutSection = () => {
   const { t } = useTranslation();

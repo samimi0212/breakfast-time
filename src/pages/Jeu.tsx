@@ -446,7 +446,7 @@ export default function Jeu() {
   // Précharge le logo + les polices de marque pour le rendu canvas
   useEffect(() => {
     const img = new Image();
-    img.src = "/logo.png";
+    img.src = "/logo.webp";
     img.onload = () => { logoRef.current = img; };
     const f = (document as Document & { fonts?: { load: (s: string) => Promise<unknown> } }).fonts;
     if (f) {
@@ -614,7 +614,7 @@ export default function Jeu() {
 
       {/* Header */}
       <div style={{ textAlign: "center" }}>
-        <img src="/logo.png" alt="Breakfast Time" style={{ height: "62px", width: "auto", marginBottom: "6px" }} />
+        <img src="/logo.webp" alt="Breakfast Time" style={{ height: "62px", width: "auto", marginBottom: "6px" }} />
         <h1 style={{ fontSize: "20px", fontWeight: 700, fontFamily: FONT_DISPLAY, color: BRAND.olive, marginBottom: "2px" }}>🏆 Jeu Concours</h1>
         <p style={{ color: BRAND.olive2, fontSize: "14px" }}>Fais le meilleur score et gagne un brunch offert !</p>
       </div>

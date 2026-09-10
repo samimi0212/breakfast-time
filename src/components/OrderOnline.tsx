@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
-import heroImg from "@/assets/brunch.png";
+import heroImg from "@/assets/brunch.webp";
 
 const OrderOnline = () => {
   const { t } = useTranslation();

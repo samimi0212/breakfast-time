@@ -3,9 +3,9 @@ import { Sparkles, ArrowRight, X, FileText, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import EventBookingForm from "@/components/EventBookingForm";
 import PhoneAppointmentForm from "@/components/PhoneAppointmentForm";
-import brunchMariage from "@/assets/brunch-mariage.jpg";
-import brunchEntreprise from "@/assets/brunch-entreprise.jpg";
-import brunchGroupe from "@/assets/brunch-groupe.png";
+import brunchMariage from "@/assets/brunch-mariage.webp";
+import brunchEntreprise from "@/assets/brunch-entreprise.webp";
+import brunchGroupe from "@/assets/brunch-groupe.webp";
 
 type EventType = "mariage" | "entreprise" | "groupe";
 

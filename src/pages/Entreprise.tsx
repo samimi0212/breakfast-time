@@ -25,8 +25,8 @@ import {
   GraduationCap,
   PartyPopper,
 } from "lucide-react";
-import brunchEntreprise from "@/assets/brunch-entreprise.jpg";
-import heroImg from "@/assets/image-accueil.png";
+import brunchEntreprise from "@/assets/brunch-entreprise.webp";
+import heroImg from "@/assets/image-accueil.webp";
 
 const villesPhares = ["Nice", "Cannes", "Antibes", "Monaco", "Sophia Antipolis", "Grasse", "Mougins"];
 

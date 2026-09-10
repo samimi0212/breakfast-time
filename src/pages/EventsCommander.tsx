@@ -6,28 +6,32 @@ import { useLangPath } from "@/hooks/useLangPath";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowLeft, ArrowRight, ShoppingBag, Check, Minus, Plus, Trash2, Users, MapPin, Calendar } from "lucide-react";
-import plateauMini from "@/assets/4.png";
-import plateauMiniPac from "@/assets/5.png";
-import plateauCroissant from "@/assets/6.png";
-import plateauChaussons from "@/assets/7.jpeg";
-import plateauPainsRaisins from "@/assets/8.jpeg";
-import verrinesGranola from "@/assets/9.jpeg";
-import plateauChouquettes from "@/assets/10.jpeg";
-import plateauMacaron from "@/assets/11.jpg";
-import cakeMarbre from "@/assets/12.jpeg";
-import plateauPancakes from "@/assets/13.jpeg";
-import plateauFruits from "@/assets/14.jpeg";
-import plateauFromage from "@/assets/15.jpg";
-import plateauCharcuterie from "@/assets/plateau-charcuterie.jpg";
-import thermosCafe from "@/assets/thermos-cafe.jpg";
-import thermosChocolat from "@/assets/thermos-chocolat.jpg";
-import eauDetox from "@/assets/eau-detox.jpg";
-import jusFrais from "@/assets/jus-frais1.jpg";
-import clocheCookies from "@/assets/Cookies.jpg";
-import verrineCrudites from "@/assets/verrine-crudites.jpg";
-import formuleEssentielle from "@/assets/1.png";
-import formulePlaisir from "@/assets/2.png";
-import formuleGouter from "@/assets/3.png";
+import plateauMini from "@/assets/4.webp";
+import plateauMiniPac from "@/assets/5.webp";
+import plateauCroissant from "@/assets/6.webp";
+import plateauChaussons from "@/assets/7.webp";
+import plateauPainsRaisins from "@/assets/8.webp";
+import verrinesGranola from "@/assets/9.webp";
+import plateauChouquettes from "@/assets/10.webp";
+import plateauMacaron from "@/assets/11.webp";
+import cakeMarbre from "@/assets/12.webp";
+import plateauPancakes from "@/assets/13.webp";
+import plateauFruits from "@/assets/14.webp";
+import plateauFromage from "@/assets/15.webp";
+import plateauCharcuterie from "@/assets/plateau-charcuterie.webp";
+import thermosCafe from "@/assets/thermos-cafe.webp";
+import thermosChocolat from "@/assets/thermos-chocolat.webp";
+import eauDetox from "@/assets/eau-detox.webp";
+import jusFrais from "@/assets/jus-frais1.webp";
+import clocheCookies from "@/assets/Cookies.webp";
+import verrineCrudites from "@/assets/verrine-crudites.webp";
+import tarteletteThon from "@/assets/entreprises/tartelette-thon.webp";
+import focacciaPastrami from "@/assets/entreprises/focaccia-pastrami.webp";
+import bagelSaumon from "@/assets/entreprises/bagel-saumon.webp";
+import duoClub from "@/assets/entreprises/duo-club.webp";
+import formuleEssentielle from "@/assets/1.webp";
+import formulePlaisir from "@/assets/2.webp";
+import formuleGouter from "@/assets/3.webp";
 
 type EventProduct = { id: string; name: string; price: string; img: string; imgPosition?: string; composition: string[] };
 
@@ -252,7 +256,7 @@ const EventsCommander = () => {
   const productSections: { id: string; label: string; products: EventProduct[] }[] = [
     {
       id: "menus",
-      label: "Menus personnalisés",
+      label: "Formules personnalisées",
       products: [
         {
           id: "evt-formule-essentielle",
@@ -306,77 +310,77 @@ const EventsCommander = () => {
         {
           id: "evt-plateau-pains-au-chocolat",
           name: "Plateau pains au chocolat",
-          price: "7,50€",
+          price: "12,00€",
           img: plateauMiniPac,
           composition: ["10 mini pains au chocolat"],
         },
         {
           id: "evt-plateau-croissants",
           name: "Plateau croissants",
-          price: "7,50€",
+          price: "11,00€",
           img: plateauCroissant,
           composition: ["10 mini croissants"],
         },
         {
           id: "evt-plateau-chaussons-pommes",
           name: "Plateau chaussons aux pommes",
-          price: "7,50€",
+          price: "13,50€",
           img: plateauChaussons,
           composition: ["10 mini chaussons aux pommes"],
         },
         {
           id: "evt-plateau-pains-raisins",
           name: "Plateau pains aux raisins",
-          price: "7,50€",
+          price: "14,00€",
           img: plateauPainsRaisins,
           composition: ["10 mini pains aux raisins"],
         },
         {
           id: "evt-verrines-granola",
           name: "Verrines de Granola",
-          price: "7,50€",
+          price: "24,00€",
           img: verrinesGranola,
           composition: ["10 verrines", "Fromage blanc", "Granola artisanal", "Fruits de saison", "Miel de Lavande"],
         },
         {
           id: "evt-plateau-chouquettes",
           name: "Plateau chouquettes",
-          price: "7,50€",
+          price: "19,00€",
           img: plateauChouquettes,
-          composition: ["Chouquettes", "Perles de sucre"],
+          composition: ["30 chouquettes", "Perles de sucre"],
         },
         {
           id: "evt-plateau-macarons",
           name: "Plateau macarons",
-          price: "7,50€",
+          price: "30,00€",
           img: plateauMacaron,
           composition: ["4 pistache", "4 fraise", "4 vanille", "4 amande", "4 chocolat"],
         },
         {
           id: "evt-cloche-cookies",
           name: "Cloche de cookies",
-          price: "7,50€",
+          price: "25,00€",
           img: clocheCookies,
-          composition: [],
+          composition: ["10 cookies"],
         },
         {
           id: "evt-plateau-cake-marbre",
           name: "Plateau Cake marbré",
-          price: "7,50€",
+          price: "26,00€",
           img: cakeMarbre,
           composition: ["10 tranches"],
         },
         {
           id: "evt-plateau-pancakes",
           name: "Plateau Pancakes",
-          price: "25,00€",
+          price: "39,00€",
           img: plateauPancakes,
-          composition: ["10 pièces"],
+          composition: ["10 pièces", "3 nappages inclus", "3 toppings inclus"],
         },
         {
           id: "evt-plateau-fruits",
           name: "Plateau de fruits",
-          price: "25,00€",
+          price: "59,00€",
           img: plateauFruits,
           composition: ["Pour 10 personnes"],
         },
@@ -386,6 +390,34 @@ const EventsCommander = () => {
       id: "sale",
       label: "Salé",
       products: [
+        {
+          id: "evt-tartelette-thon",
+          name: "Tartelette Tataki",
+          price: "39,00€",
+          img: tarteletteThon,
+          composition: ["20 pièces"],
+        },
+        {
+          id: "evt-focaccia-pastrami",
+          name: "Focaccia pastrami",
+          price: "35,00€",
+          img: focacciaPastrami,
+          composition: ["20 pièces"],
+        },
+        {
+          id: "evt-bagel-saumon",
+          name: "Bagel Saumon",
+          price: "7,50€",
+          img: bagelSaumon,
+          composition: [],
+        },
+        {
+          id: "evt-club-sandwich",
+          name: "Club Sandwich",
+          price: "7,50€",
+          img: duoClub,
+          composition: [],
+        },
         {
           id: "evt-plateau-fromage",
           name: "Plateau de fromage",
@@ -463,6 +495,7 @@ const EventsCommander = () => {
 
   const [activeSection, setActiveSection] = useState(steps[0].id);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const stickyHeaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -483,10 +516,17 @@ const EventsCommander = () => {
     return () => observer.disconnect();
   }, []);
 
+  const STICKY_HEADER_TOP = 64; // doit rester synchro avec la classe "top-16" du bandeau sticky
+
+  const getScrollOffset = () => {
+    const headerHeight = stickyHeaderRef.current?.getBoundingClientRect().height ?? 65;
+    return STICKY_HEADER_TOP + headerHeight + 16;
+  };
+
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 90;
+      const y = el.getBoundingClientRect().top + window.scrollY - getScrollOffset();
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
@@ -494,7 +534,7 @@ const EventsCommander = () => {
   const scrollToRecap = () => {
     const el = document.getElementById("recapitulatif");
     if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 90;
+      const y = el.getBoundingClientRect().top + window.scrollY - getScrollOffset();
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
@@ -631,7 +671,7 @@ const EventsCommander = () => {
       </div>
 
       {/* Stepper numéroté */}
-      <div className="sticky top-16 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
+      <div ref={stickyHeaderRef} className="sticky top-16 z-30 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-4 overflow-x-auto">
           <div className="flex items-center min-w-max">
             {steps.map((s, i) => {
@@ -698,9 +738,9 @@ const EventsCommander = () => {
               </div>
             ) : (
               <>
-                <p className="text-primary text-xs font-semibold tracking-widest uppercase mb-2">
-                  Étape {sIndex + 1} sur {steps.length}
-                </p>
+                {sIndex === 1 && (
+                  <h2 className="font-display text-2xl font-bold mb-8">Ou composez votre commande à la carte</h2>
+                )}
                 <h2 className="font-display text-2xl font-bold mb-6">{section.label}</h2>
               </>
             )}

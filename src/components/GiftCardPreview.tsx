@@ -13,7 +13,7 @@ const GiftCardPreview = ({ from, to, message, code, expiresAt, amount }: GiftCar
   return (
     <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1748 / 1240", boxShadow: "var(--card-shadow)", containerType: "inline-size" }}>
       <img
-        src={showAmount ? "/carte-cadeau-verso2.png" : "/carte-cadeau-verso.png"}
+        src={showAmount ? "/carte-cadeau-verso2.webp" : "/carte-cadeau-verso.webp"}
         alt="Aperçu de la carte cadeau"
         className="absolute inset-0 w-full h-full object-contain"
       />

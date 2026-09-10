@@ -22,11 +22,11 @@ import {
   Croissant,
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import heroImg from "@/assets/image-accueil.png";
-import contextImg from "@/assets/image-accueil2.png";
-import brunchEntrepriseImg from "@/assets/brunch-entreprise.jpg";
-import pancakesPartagerImg from "@/assets/brunch.png";
-import menuAnglaisImg from "@/assets/entreprise.jpg";
+import heroImg from "@/assets/image-accueil.webp";
+import contextImg from "@/assets/image-accueil2.webp";
+import brunchEntrepriseImg from "@/assets/brunch-entreprise.webp";
+import pancakesPartagerImg from "@/assets/brunch.webp";
+import menuAnglaisImg from "@/assets/entreprise.webp";
 
 interface VillePageProps {
   slug: string;

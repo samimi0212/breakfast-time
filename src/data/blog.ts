@@ -33,7 +33,7 @@ export const blogPosts: BlogPost[] = [
     excerpt_en:
       "Want brunch in Antibes without leaving home? Here's how to put together the perfect brunch and have it delivered straight to your door or office.",
     date: "2026-07-15",
-    image: "/couverture1.png",
+    image: "/couverture1.webp",
     metaTitle: "Où bruncher à Antibes en 2026 ? | Breakfast Time",
     metaTitle_en: "Where to brunch in Antibes in 2026? | Breakfast Time",
     metaDesc:
@@ -97,7 +97,7 @@ export const blogPosts: BlogPost[] = [
     excerpt_en:
       "Celebrating a birthday with family or friends in Antibes, Cannes or Nice? Here's how to put together a birthday brunch delivered to your door, without spending your morning in the kitchen.",
     date: "2026-07-27",
-    image: "/brunch.jpg",
+    image: "/brunch.webp",
     metaTitle: "Anniversaire brunch à Antibes, Cannes, Nice | Breakfast Time",
     metaTitle_en: "Birthday brunch in Antibes, Cannes, Nice | Breakfast Time",
     metaDesc:
@@ -172,7 +172,7 @@ export const blogPosts: BlogPost[] = [
     excerpt_en:
       "Team meeting, onboarding, colleague's birthday or just a moment to connect? Here's how to order a breakfast delivered straight to your office.",
     date: "2026-09-09",
-    image: "/entreprise2.jpg",
+    image: "/entreprise2.webp",
     metaTitle: "Petit-déjeuner d'équipe livré au bureau | Breakfast Time",
     metaTitle_en: "Office team breakfast delivery | Breakfast Time",
     metaDesc:

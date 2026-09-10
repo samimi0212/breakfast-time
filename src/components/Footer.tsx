@@ -3,7 +3,7 @@ import { Instagram, Facebook, Mail, MapPin, Clock, CheckCircle, Loader2 } from "
 import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
 import { cities } from "@/data/cities";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 
 const Footer = () => {
   const { t } = useTranslation();
