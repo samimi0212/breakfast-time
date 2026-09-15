@@ -78,7 +78,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "mini-viennoiseries",
       name: "Mini viennoiseries",
       price: "3,20€",
-      img: "/mini-viennoiserie.webp",
+      img: "/mini.png",
     },
     {
       id: "pain-aux-raisins",

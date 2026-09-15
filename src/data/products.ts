@@ -489,7 +489,7 @@ export const allProducts: Product[] = [
     name_en: "Mini Pastries",
     price: "3,20€",
     category: "Viennoiseries",
-    img: "/mini-viennoiserie.webp",
+    img: "/mini.png",
     desc: "",
     composition: ["Pur beurre", "2 mini pains au chocolat", "2 mini croissants"],
     composition_en: ["Pure butter", "2 mini chocolate croissants", "2 mini croissants"],
