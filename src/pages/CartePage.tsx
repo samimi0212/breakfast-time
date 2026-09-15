@@ -228,7 +228,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "pudding-chia",
       name: "Granola Bowl Pistache",
       price: "9,50€",
-      img: "/granola-pistache2.webp",
+      img: "/granola-pistache.png",
     },
     {
       id: "granola-parfait",
