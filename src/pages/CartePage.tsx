@@ -128,7 +128,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "bagel-saumon-avocat",
       name: "Bagel Chicken",
       price: "8,90€",
-      img: "/bagel-chicken.webp",
+      img: "/bagel-chicken.png",
     },
     {
       id: "egg-comte-muffin",
