@@ -138,9 +138,9 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
     },
     {
       id: "breakfast-burrito",
-      name: "Pulled Burrito",
+      name: "Burrito Protéiné",
       price: "8,70€",
-      img: "/pulled-burrito.webp",
+      img: "/burrito-proteine.png",
     },
     {
       id: "oeufs-brouilles",
