@@ -775,7 +775,7 @@ export const allProducts: Product[] = [
     name: "Röstis",
     price: "3,50€",
     category: "Extra",
-    img: "/rostis.webp",
+    img: "/rostis.png",
     desc: "",
     composition: ["Röstis de pommes de terre", "Sauce fraîche aux herbes"],
     composition_en: ["Potato röstis", "Fresh herb sauce"],
