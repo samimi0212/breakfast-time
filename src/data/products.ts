@@ -456,7 +456,7 @@ export const allProducts: Product[] = [
     name_en: "Chocolate Croissant",
     price: "1,70€",
     category: "Viennoiseries",
-    img: "/pain-choco.webp",
+    img: "/pain-choco.png",
     desc: "",
     composition: ["Pur beurre"],
     composition_en: ["Pure butter"],
