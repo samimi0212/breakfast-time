@@ -752,7 +752,7 @@ export const allProducts: Product[] = [
     name_en: "Croque Monsieur",
     price: "7,50€",
     category: "Le Salé",
-    img: "/croque.webp",
+    img: "/croque.png",
     desc: "",
     composition: ["Pain de mie toasté", "Emmental", "Jambon blanc", "Béchamel", "Custard moutarde"],
     composition_en: ["Toasted white bread", "Emmental", "White ham", "Béchamel", "Mustard custard"],

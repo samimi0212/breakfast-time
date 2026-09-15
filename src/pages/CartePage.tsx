@@ -164,7 +164,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "croque-monsieur",
       name: "Croque Monsieur",
       price: "7,50€",
-      img: "/croque.webp",
+      img: "/croque.png",
     },
     {
       id: "croque-monsieur-gf",
