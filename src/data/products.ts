@@ -630,7 +630,7 @@ export const allProducts: Product[] = [
     name_en: "Build Your Pancakes",
     price: "6,50€",
     category: "Le Sucré",
-    img: "/pancakes.webp",
+    img: "/pancakes.png",
     desc: "",
     composition: ["3 Pancakes", "1 Nappage au choix", "1 Topping au choix"],
     composition_en: ["3 Pancakes", "1 Topping of your choice", "1 Topping of your choice"],
