@@ -513,7 +513,7 @@ export const allProducts: Product[] = [
     name_en: "Avocado Salmon Toast",
     price: "11,90€",
     category: "Le Salé",
-    img: "/tartine-avocat.webp",
+    img: "/tartine-avocat.png",
     desc: "",
     composition: ["Tranche de pain au levain", "Sauce cream cheese", "Saumon fumé", "Émincé d'avocat", "Jeunes pousses", "Gomasio"],
     composition_en: ["Slice of sourdough bread", "Cream cheese sauce", "Smoked salmon", "Sliced avocado", "Baby greens", "Gomasio"],

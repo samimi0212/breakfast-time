@@ -98,7 +98,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "avocado-toast",
       name: "Tartine Avocat Saumon",
       price: "11,90€",
-      img: "/tartine-avocat.webp",
+      img: "/tartine-avocat.png",
     },
     {
       id: "avocado-toast-feta",
