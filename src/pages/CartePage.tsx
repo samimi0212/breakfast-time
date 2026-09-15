@@ -198,7 +198,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "french-tartines",
       name: "French Tartines",
       price: "4,00€",
-      img: "/french-tartines.webp",
+      img: "/french.png",
     },
     {
       id: "pancakes-a-composer",
