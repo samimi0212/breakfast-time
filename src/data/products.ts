@@ -882,7 +882,7 @@ export const allProducts: Product[] = [
     name: "Granola Bowl Parfait",
     price: "8,50€",
     category: "Le Sucré",
-    img: "/granola-parfait.png",
+    img: "/granola.png",
     desc: "",
     composition: ["Yaourt grec", "Granola artisanal", "Fruits rouges", "Banane", "Miel de Lavande"],
     composition_en: ["Greek yogurt", "Artisanal granola", "Mixed berries", "Banana", "Lavender honey"],

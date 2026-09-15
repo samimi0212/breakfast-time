@@ -234,7 +234,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "granola-parfait",
       name: "Granola Bowl Parfait",
       price: "8,50€",
-      img: "/granola-parfait.png",
+      img: "/granola.png",
     },
     {
       id: "porridge",
