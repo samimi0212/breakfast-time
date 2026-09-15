@@ -90,7 +90,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "baguette",
       name: "1/2 Baguette",
       price: "0,90€",
-      img: "/baguette.webp",
+      img: "/baguette.png",
     },
   ],
   "Le Salé": [

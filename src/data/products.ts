@@ -501,7 +501,7 @@ export const allProducts: Product[] = [
     name_en: "1/2 Baguette",
     price: "0,90€",
     category: "Pains",
-    img: "/baguette.webp",
+    img: "/baguette.png",
     desc: "",
     composition: ["Farine de blé", "Levain", "Légèrement toastée"],
     composition_en: ["Wheat flour", "Sourdough", "Lightly toasted"],
