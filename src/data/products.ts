@@ -525,7 +525,7 @@ export const allProducts: Product[] = [
     name_en: "Avocado Toast",
     price: "9,70€",
     category: "Le Salé",
-    img: "/avocat-test.webp",
+    img: "/avocado.png",
     desc: "",
     composition: ["2 tranches de pain toastées", "Écrasée d'avocat", "Fêta", "Grenade"],
     composition_en: ["2 slices of toast", "Smashed avocado", "Feta", "Pomegranate"],
