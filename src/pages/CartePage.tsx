@@ -84,7 +84,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "pain-aux-raisins",
       name: "Pain aux raisins",
       price: "2,20€",
-      img: "/pain-raisins.webp",
+      img: "/pain-raisins.png",
     },
     {
       id: "baguette",

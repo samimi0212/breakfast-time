@@ -478,7 +478,7 @@ export const allProducts: Product[] = [
     name_en: "Raisin Pastry",
     price: "2,20€",
     category: "Viennoiseries",
-    img: "/pain-raisins.webp",
+    img: "/pain-raisins.png",
     desc: "",
     composition: ["Pur beurre"],
     composition_en: ["Pure butter"],
