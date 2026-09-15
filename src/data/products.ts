@@ -843,7 +843,7 @@ export const allProducts: Product[] = [
     name_en: "Caramel French Toast",
     price: "7,50€",
     category: "Le Sucré",
-    img: "/brioche-perdue-caramel.webp",
+    img: "/brioche-caramel.png",
     desc: "",
     composition: ["Brioche Nanterre pur beurre", "Caramel au beurre salé de Guérande", "Noix de pécan", "Bananes"],
     composition_en: ["Pure butter Nanterre brioche", "Guérande salted butter caramel", "Pecan nuts", "Bananas"],
