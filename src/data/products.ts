@@ -537,7 +537,7 @@ export const allProducts: Product[] = [
     name_en: "Avocado Salmon Bagel",
     price: "8,90€",
     category: "Le Salé",
-    img: "/bagel-test.webp",
+    img: "/bagel-saumon.png",
     desc: "",
     composition: ["Bagel brioché aux graines", "Cream cheese", "Saumon fumé", "Avocat", "Câpres", "Pickles oignons rouges"],
     composition_en: ["Brioche seeded bagel", "Cream cheese", "Smoked salmon", "Avocado", "Capers", "Pickled red onions"],
