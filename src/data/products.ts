@@ -821,7 +821,7 @@ export const allProducts: Product[] = [
     name_en: "Indulgent French Toast",
     price: "7,50€",
     category: "Le Sucré",
-    img: "/brioche-gourmande.webp",
+    img: "/brioche-gourmande.png",
     desc: "",
     composition: ["Brioche au lait et beurre", "Nutella", "Eclats de noisettes grillées"],
     composition_en: ["Pure butter Nanterre brioche", "Nutella", "Toasted hazelnut bits"],

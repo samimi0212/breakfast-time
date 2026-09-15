@@ -216,7 +216,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "brioche-perdue",
       name: "Brioche Perdue Gourmande",
       price: "7,50€",
-      img: "/brioche-gourmande.webp",
+      img: "/brioche-gourmande.png",
     },
     {
       id: "brioche-perdue-caramel",
