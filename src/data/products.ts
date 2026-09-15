@@ -798,7 +798,7 @@ export const allProducts: Product[] = [
     name_en: "Sweet Potato Fries",
     price: "5,50€",
     category: "Extra",
-    img: "/frites.webp",
+    img: "/frites-patates.png",
     desc: "",
     composition: ["Patates douces", "Fleur de sel", "Sauce fraîche aux herbes"],
     composition_en: ["Sweet potatoes", "Fleur de sel", "Fresh herb sauce"],
