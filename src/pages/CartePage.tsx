@@ -116,7 +116,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "bagel-chevre-miel",
       name: "Bagel Chèvre Noix",
       price: "8,90€",
-      img: "/bagel-chevre.webp",
+      img: "/bagel-chevre.png",
     },
     {
       id: "bagel-bacon-cheddar",
