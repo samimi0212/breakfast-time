@@ -92,12 +92,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       price: "0,90€",
       img: "/baguette.webp",
     },
-    {
-      id: "petit-pain-campagne",
-      name: "Petit pavé campagne",
-      price: "0,50€",
-      img: "/pave-campagne.webp",
-    },
   ],
   "Le Salé": [
     {

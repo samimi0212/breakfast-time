@@ -506,17 +506,6 @@ export const allProducts: Product[] = [
     composition: ["Farine de blé", "Levain", "Légèrement toastée"],
     composition_en: ["Wheat flour", "Sourdough", "Lightly toasted"],
   },
-  {
-    id: "petit-pain-campagne",
-    name: "Petit pavé campagne",
-    name_en: "Country Roll",
-    price: "0,50€",
-    category: "Pains",
-    img: "/pave-campagne.webp",
-    desc: "",
-    composition: ["50g", "Farine de blé", "Levain"],
-    composition_en: ["50g", "Wheat flour", "Sourdough"],
-  },
   // ---- LE SALÉ ----
   {
     id: "avocado-toast",
