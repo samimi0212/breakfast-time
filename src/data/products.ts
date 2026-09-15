@@ -718,7 +718,7 @@ export const allProducts: Product[] = [
     name_en: "Truffle Scrambled Eggs",
     price: "7,50€",
     category: "Le Salé",
-    img: "/oeufs-truffe.webp",
+    img: "/oeufs-truffe.png",
     desc: "",
     composition: ["Œufs frais de plein air", "Huile de truffe noire", "Sel de sésame à la truffe", "1 toast"],
     composition_en: ["Free-range fresh eggs", "Black truffle from Périgord", "Fleur de sel", "1 toast"],
