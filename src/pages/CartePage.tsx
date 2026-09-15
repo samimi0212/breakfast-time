@@ -134,7 +134,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "egg-comte-muffin",
       name: "Egg Comté Muffin",
       price: "6,50€",
-      img: "/egg-muffin.webp",
+      img: "/muffin-comte.png",
     },
     {
       id: "breakfast-burrito",

@@ -584,7 +584,7 @@ export const allProducts: Product[] = [
     name_en: "Egg Comté Muffin",
     price: "6,50€",
     category: "Le Salé",
-    img: "/egg-muffin.webp",
+    img: "/muffin-comte.png",
     desc: "",
     composition: ["Muffin", "Oeufs brouillés", "Jambon blanc", "Comté"],
     composition_en: ["Muffin", "Scrambled eggs", "White ham", "Comté"],
