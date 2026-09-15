@@ -467,7 +467,7 @@ export const allProducts: Product[] = [
     name_en: "Apple Turnover",
     price: "2,70€",
     category: "Viennoiseries",
-    img: "/chausson.webp",
+    img: "/chausson.png",
     desc: "",
     composition: ["Pur beurre"],
     composition_en: ["Pure butter"],

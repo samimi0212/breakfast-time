@@ -72,7 +72,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "chausson-pommes",
       name: "Chausson aux pommes",
       price: "2,70€",
-      img: "/chausson.webp",
+      img: "/chausson.png",
     },
     {
       id: "mini-viennoiseries",
