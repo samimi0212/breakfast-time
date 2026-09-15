@@ -740,7 +740,7 @@ export const allProducts: Product[] = [
     name_en: "Avocado Toast - Gluten Free",
     price: "12,50€",
     category: "Le Salé",
-    img: "/avocado-gluten.webp",
+    img: "/avocado-gluten.png",
     desc: "",
     composition: ["1 tranche de pain à la farine de riz sarrasin et millet", "Écrasée d'avocat", "Fêta", "Grenade"],
     composition_en: ["1 slice of rice, buckwheat and millet flour bread", "Smashed avocado", "Feta", "Pomegranate"],

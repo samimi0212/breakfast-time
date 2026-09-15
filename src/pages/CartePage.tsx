@@ -158,7 +158,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "avocado-toast-gf",
       name: "Avocado Toast - Gluten Free",
       price: "12,50€",
-      img: "/avocado-gluten.webp",
+      img: "/avocado-gluten.png",
     },
     {
       id: "croque-monsieur",
