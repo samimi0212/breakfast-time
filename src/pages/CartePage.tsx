@@ -210,7 +210,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "gaufre-composer",
       name: "Gaufre à composer",
       price: "6,50€",
-      img: "/gaufre.webp",
+      img: "/gaufre-composer.png",
     },
     {
       id: "brioche-perdue",

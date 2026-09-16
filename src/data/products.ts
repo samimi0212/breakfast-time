@@ -663,7 +663,7 @@ export const allProducts: Product[] = [
     name_en: "Build Your Waffle",
     price: "6,50€",
     category: "Le Sucré",
-    img: "/gaufre.webp",
+    img: "/gaufre-composer.png",
     desc: "",
     composition: ["1 Gaufre de Liège", "1 Nappage au choix", "1 Topping au choix"],
     composition_en: ["1 Liège waffle", "1 Topping of your choice", "1 Topping of your choice"],
