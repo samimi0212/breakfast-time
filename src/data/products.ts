@@ -930,9 +930,9 @@ export const allProducts: Product[] = [
   },
   {
     id: "brownie-pecan",
-    name: "Brownie Pécan",
-    name_en: "Pecan Brownie",
-    price: "3,50€",
+    name: "Double Brownie",
+    name_en: "Double Brownie",
+    price: "4,10€",
     category: "Le Sucré",
     img: "/brownie.png",
     desc: "",
