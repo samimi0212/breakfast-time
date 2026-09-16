@@ -234,13 +234,13 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "granola-parfait",
       name: "Granola Bowl Parfait",
       price: "8,50€",
-      img: "/granola.png",
+      img: "/granola1.png",
     },
     {
       id: "porridge",
       name: "Porridge Mangue Vanille",
       price: "9,50€",
-      img: "/porridge.webp",
+      img: "/porridge.png",
     },
     {
       id: "acai-bowl",
@@ -405,6 +405,10 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
   const [added, setAdded] = useState(false);
   const productData = allProducts.find((p) => p.id === id);
   const displayName = i18n.language === "en" ? (productData?.name_en || name) : name;
+  // Un produit avec des options (nappage, taille, etc.) doit toujours passer par
+  // la page produit pour les renseigner — sinon la composition n'est jamais
+  // enregistrée dans la commande (et n'apparaît pas sur le ticket).
+  const requiresOptionsPage = hasOptions || (productData?.options?.length ?? 0) > 0;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -443,7 +447,7 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
           <h3 className="font-display text-sm font-semibold leading-tight">{displayName}</h3>
           <div className="flex items-center justify-between gap-2">
             <span className="text-primary font-bold text-sm">{price}</span>
-            {hasOptions ? (
+            {requiresOptionsPage ? (
               <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
                 Voir →
               </span>
