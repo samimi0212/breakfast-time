@@ -249,12 +249,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/acai-bowl.webp",
     },
     {
-      id: "cookie-chocolat",
-      name: "Cookie Chocolat Noisette",
-      price: "3,80€",
-      img: "/cookie-choco.webp",
-    },
-    {
       id: "cookie-caramel",
       name: "Cookie Caramel Beurre Salé",
       price: "3,90€",

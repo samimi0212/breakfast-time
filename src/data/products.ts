@@ -948,17 +948,6 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "cookie-chocolat",
-    name: "Cookie Chocolat Noisette",
-    name_en: "Chocolate Hazelnut Cookie",
-    price: "3,80€",
-    category: "Le Sucré",
-    img: "/cookie-choco.webp",
-    desc: "",
-    composition: ["85g"],
-    composition_en: ["85g"],
-  },
-  {
     id: "cookie-caramel",
     name: "Cookie Caramel Beurre Salé",
     name_en: "Salted Butter Caramel Cookie",
