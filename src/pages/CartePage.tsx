@@ -243,12 +243,6 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       img: "/porridge.png",
     },
     {
-      id: "acai-bowl",
-      name: "Acaï Bowl",
-      price: "10,50€",
-      img: "/acai-bowl.webp",
-    },
-    {
       id: "cookie-caramel",
       name: "Cookie Caramel Beurre Salé",
       price: "3,90€",
