@@ -264,7 +264,7 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
       id: "muffin-choco",
       name: "Muffin Chocolat",
       price: "4,20€",
-      img: "/muffin-choco.webp",
+      img: "/muffin-choco.png",
     },
   ],
   Boissons: [
