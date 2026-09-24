@@ -5,12 +5,12 @@
 
 export const productSeoDescriptions: Record<string, { fr: string; en: string }> = {
   "menu-francais": {
-    fr: "Le petit-déjeuner français dans les règles : demi-baguette, beurre, viennoiserie et boisson chaude, livré frais chaque matin.",
-    en: "The classic French breakfast: half baguette, butter, pastry and a hot drink, delivered fresh every morning.",
+    fr: "Le petit-déjeuner français : demi-baguette tradition, beurre, nappage au choix, jus frais et boisson chaude, livré chaque matin.",
+    en: "The French breakfast: half tradition baguette, butter, topping of your choice, fresh juice and a hot drink, delivered every morning.",
   },
   "menu-anglais": {
-    fr: "L'English Breakfast complet : saucisses, œufs brouillés, baked beans et toast à l'avocat, livré chaud et généreux.",
-    en: "The full English Breakfast: sausages, scrambled eggs, baked beans and avocado toast, delivered hot and hearty.",
+    fr: "L'English Breakfast : breakfast sausages, œufs brouillés, baked beans et toast, avec jus frais et boisson chaude au choix.",
+    en: "The English Breakfast: breakfast sausages, scrambled eggs, baked beans and toast, with a fresh juice and hot drink of your choice.",
   },
   "menu-brunch": {
     fr: "Le grand brunch du dimanche : bagel gourmand, frites de patates douces et granola bowl, livré prêt à partager.",
@@ -32,29 +32,9 @@ export const productSeoDescriptions: Record<string, { fr: string; en: string }> 
     fr: "La box anniversaire gourmande : gâteau de pancakes à la pâte à tartiner, bougies scintillantes et message personnalisé inclus.",
     en: "The birthday treat box: pancake cake with chocolate spread, sparkling candles and a personalised message included.",
   },
-  croissant: {
-    fr: "Croissant pur beurre, doré et croustillant, façonné et cuit chaque matin avant d'être livré chez vous.",
-    en: "Pure butter croissant, golden and flaky, shaped and baked fresh each morning before delivery.",
-  },
-  "pain-au-chocolat": {
-    fr: "Pain au chocolat pur beurre, deux barres de chocolat noir fondant, livré tout juste sorti du four.",
-    en: "Pure butter chocolate croissant with two bars of melting dark chocolate, delivered fresh from the oven.",
-  },
-  "chausson-pommes": {
-    fr: "Chausson aux pommes pur beurre, pâte feuilletée croustillante et compotée fondante, livré frais du matin.",
-    en: "Pure butter apple turnover, crisp puff pastry and soft apple filling, delivered fresh each morning.",
-  },
-  "pain-aux-raisins": {
-    fr: "Pain aux raisins pur beurre, spirale moelleuse à la crème pâtissière et raisins gonflés, livré frais du jour.",
-    en: "Pure butter raisin pastry, a soft spiral of pastry cream and plump raisins, delivered fresh daily.",
-  },
-  "mini-viennoiseries": {
-    fr: "Assortiment de mini viennoiseries pur beurre, croissants et pains au chocolat miniatures, livré tout juste cuits.",
-    en: "Assorted pure butter mini pastries, miniature croissants and chocolate croissants, delivered oven-fresh.",
-  },
   baguette: {
-    fr: "Baguette traditionnelle de 140g, croûte craquante et mie alvéolée, livrée fraîche du jour.",
-    en: "Traditional 140g baguette, crackling crust and airy crumb, delivered fresh the same day.",
+    fr: "Demi-baguette tradition coupée en deux et légèrement toastée, livrée fraîche du jour.",
+    en: "Half tradition baguette, cut in two and lightly toasted, delivered fresh each day.",
   },
   "baguette-bio": {
     fr: "Baguette aux graines de tournesol, pavot, sésame et lin, croustillante et généreuse, livrée fraîche du matin.",
@@ -65,24 +45,24 @@ export const productSeoDescriptions: Record<string, { fr: string; en: string }> 
     en: "Country sourdough roll, dense crumb and rustic crust, delivered fresh every morning.",
   },
   "avocado-toast": {
-    fr: "Avocat crémeux et stracciatella sur pain au levain grillé, garni de jeunes pousses fraîches et de sésame doré.",
-    en: "Creamy avocado and stracciatella on grilled sourdough, topped with baby greens and golden sesame.",
+    fr: "Tartine de pain toastée, sauce cream cheese, tranches d'avocat, saumon fumé, grenade et jeunes pousses.",
+    en: "Toasted bread with cream cheese sauce, avocado slices, smoked salmon, pomegranate and baby greens.",
   },
   "bagel-chevre-miel": {
-    fr: "Bagel brioché au chèvre cendré, noix de Grenoble AOP et confit de poires, une association gourmande livrée fraîche.",
-    en: "Brioche bagel with ash-ripened goat cheese, AOP Grenoble walnuts and pear confit, a gourmet pairing delivered fresh.",
+    fr: "Bagel brioché aux graines, chèvre cendré, noix, jeunes pousses et sauce miel moutarde.",
+    en: "Seeded brioche bagel with ash-ripened goat cheese, walnuts, baby greens and honey mustard sauce.",
   },
   "bagel-bacon-cheddar": {
-    fr: "Bagel aux graines garni d'œuf, bacon croustillant et cheddar fondant, nappé d'une sauce fumée maison.",
-    en: "Seeded bagel with egg, crispy bacon and melting cheddar, finished with a house-made smoky sauce.",
+    fr: "Bagel brioché aux graines, bacon crispy, œufs émiettés, cheddar, jeunes pousses et sauce hollandaise.",
+    en: "Seeded brioche bagel with crispy bacon, crumbled eggs, cheddar, baby greens and hollandaise sauce.",
   },
   "bagel-saumon-avocat": {
-    fr: "Bagel brioché au poulet mariné aux herbes, salade fraîche et pickles d'oignons rouges, sauce fumée artisanale.",
-    en: "Brioche bagel with herb-marinated chicken, fresh salad and pickled red onions, artisanal smoky sauce.",
+    fr: "Bagel brioché aux graines, poulet mariné, jeunes pousses, sauce fumée et pickles de chou rouge.",
+    en: "Seeded brioche bagel with marinated chicken, baby greens, smoky sauce and pickled red cabbage.",
   },
   "breakfast-burrito": {
-    fr: "Burrito généreux au pulled pork, œufs brouillés et bacon croustillant, sauce fumée et confit de tomates.",
-    en: "Hearty pulled pork burrito with scrambled eggs and crispy bacon, smoky sauce and tomato confit.",
+    fr: "Burrito protéiné : galette de blé, effiloché de poulet mariné, œufs brouillés, pickles de chou rouge et sauce fumée.",
+    en: "Protein burrito: wheat tortilla, pulled marinated chicken, scrambled eggs, pickled red cabbage and smoky sauce.",
   },
   "pancakes-a-composer": {
     fr: "Trois pancakes moelleux à composer vous-même, nappage et topping au choix, livrés chauds et prêts à savourer.",
@@ -105,44 +85,44 @@ export const productSeoDescriptions: Record<string, { fr: string; en: string }> 
     en: "Hearty quinoa and falafel bowl, crispy chickpeas, hummus and pomegranate, house lemon sauce.",
   },
   "oeufs-brouilles": {
-    fr: "Œufs brouillés crémeux aux œufs fermiers plein air, beurre de baratte et fleur de sel, servis avec un toast.",
-    en: "Creamy scrambled eggs made with free-range eggs, churned butter and fleur de sel, served with toast.",
+    fr: "Œufs brouillés à la fleur de sel et à la ciboulette, servis avec un toast.",
+    en: "Scrambled eggs with fleur de sel and chives, served with a slice of toast.",
   },
   "oeufs-brouilles-truffe": {
-    fr: "Œufs brouillés à la truffe noire du Périgord, œufs fermiers plein air et fleur de sel, servis avec un toast.",
-    en: "Scrambled eggs with black Périgord truffle, free-range eggs and fleur de sel, served with toast.",
+    fr: "Œufs brouillés à l'huile de truffe noire, sel sésame et truffe, servis avec un toast.",
+    en: "Scrambled eggs with black truffle oil and truffle sesame salt, served with a slice of toast.",
   },
   rostis: {
-    fr: "Röstis de pommes de terre dorés et croustillants, accompagnés d'une sauce fraîche aux herbes maison.",
-    en: "Golden crispy potato röstis, served with a fresh house-made herb sauce.",
+    fr: "Trois röstis de pommes de terre dorés et croustillants, avec une sauce fraîche aux herbes.",
+    en: "Three golden, crispy potato röstis with a fresh herb sauce.",
   },
   "frites-patates-douces": {
     fr: "Frites de patates douces croustillantes, fleur de sel et sauce fraîche aux herbes, livrées encore chaudes.",
     en: "Crispy sweet potato fries with fleur de sel and fresh herb sauce, delivered still warm.",
   },
   "halloumi-grille": {
-    fr: "Halloumi grillé AOP, fondant à l'intérieur et doré à l'extérieur, fleur de sel et sauce fraîche aux herbes.",
-    en: "Grilled AOP halloumi, soft inside and golden outside, with fleur de sel and fresh herb sauce.",
+    fr: "Quatre tranches d'halloumi AOP grillées à l'origan, servies avec une sauce aux herbes.",
+    en: "Four slices of grilled PDO halloumi with oregano, served with a herb sauce.",
   },
   "brioche-perdue": {
-    fr: "Brioche perdue fondante à la Nocciolata et éclats de noisettes grillées, une gourmandise livrée tiède.",
-    en: "Indulgent French toast with Nocciolata and toasted hazelnut bits, a treat delivered warm.",
+    fr: "Brioche perdue épaisse et moelleuse au Nutella et éclats de noisettes grillées.",
+    en: "Thick, fluffy French toast brioche with Nutella and toasted hazelnut bits.",
   },
   "brioche-perdue-caramel": {
-    fr: "Brioche perdue au caramel beurre salé de Guérande, noix de pécan et myrtilles fraîches, livrée fondante.",
-    en: "French toast with Guérande salted butter caramel, pecans and fresh blueberries, delivered warm.",
+    fr: "Brioche perdue épaisse et moelleuse, caramel au beurre salé, bananes et noix de pécan.",
+    en: "Thick, fluffy French toast brioche with salted butter caramel, bananas and pecan nuts.",
   },
   "pudding-chia": {
-    fr: "Bowl crémeux à la pistache et vanille, yaourt végétal, granola croustillant et myrtilles fraîches.",
-    en: "Creamy pistachio and vanilla bowl, plant-based yogurt, crunchy granola and fresh blueberries.",
+    fr: "Bowl gourmand de 350ml au yaourt grec, vanille, crème de pistache, pistaches concassées et myrtilles.",
+    en: "Indulgent 350ml bowl with Greek yogurt, vanilla, pistachio cream, crushed pistachios and blueberries.",
   },
   "granola-parfait": {
-    fr: "Bowl gourmand au yaourt grec et granola artisanal, fruits rouges, banane et miel de lavande.",
-    en: "Greek yogurt bowl with artisanal granola, mixed berries, banana and lavender honey.",
+    fr: "Bowl de 350ml au yaourt grec, granola maison amandes-chocolat, fruits rouges, bananes et miel.",
+    en: "350ml bowl with Greek yogurt, homemade almond-chocolate granola, mixed berries, bananas and honey.",
   },
   porridge: {
-    fr: "Porridge onctueux à la mangue et vanille, amandes grillées, graines de chia et beurre de cacahuètes.",
-    en: "Creamy mango vanilla porridge, toasted almonds, chia seeds and peanut butter.",
+    fr: "Porridge de 350ml au yaourt grec, flocons d'avoine et chia, amandes grillées, mangue fraîche et beurre de cacahuètes.",
+    en: "350ml porridge with Greek yogurt, oats and chia, toasted almonds, fresh mango and peanut butter.",
   },
   "acai-bowl": {
     fr: "Bowl açaï glacé, fruits rouges et banane, granola artisanal croquant et miel de lavande.",
@@ -153,68 +133,68 @@ export const productSeoDescriptions: Record<string, { fr: string; en: string }> 
     en: "Soft chocolate hazelnut cookie, 85g of indulgence, crisp on the outside.",
   },
   "cookie-caramel": {
-    fr: "Cookie au caramel et beurre salé de Guérande, cœur coulant et bords croustillants, livré frais du jour.",
-    en: "Salted butter caramel cookie from Guérande, gooey centre and crisp edges, delivered fresh.",
+    fr: "Cookie moelleux au caramel et beurre salé, livré frais du jour.",
+    en: "Soft salted butter caramel cookie, delivered fresh each day.",
   },
   "brownie-pecan": {
-    fr: "Brownie fondant au chocolat noir et noix de pécan torréfiées, une gourmandise dense et intense.",
-    en: "Fudgy dark chocolate brownie with toasted pecans, dense and indulgent.",
+    fr: "Double brownie fondant aux noix de pécan, à compléter avec vos toppings préférés.",
+    en: "Fudgy double brownie with pecan nuts, to top with your favourite extras.",
   },
   "cake-marbre": {
-    fr: "Cake marbré vanille-chocolat moelleux, à partager en 8 à 10 parts, livré frais du matin.",
-    en: "Soft vanilla-chocolate marble cake, sliced for 8 to 10, delivered fresh each morning.",
+    fr: "Deux tranches de cake marbré aux pépites de chocolat, à personnaliser avec nappages et toppings.",
+    en: "Two slices of marble cake with chocolate chips, to customise with toppings.",
   },
   "muffin-myrtilles": {
-    fr: "Muffin moelleux aux myrtilles fraîches, 130g de gourmandise fondante, livré tout juste cuit.",
-    en: "Soft blueberry muffin, 130g of melting indulgence, delivered oven-fresh.",
+    fr: "Muffin moelleux aux myrtilles, livré tout juste cuit.",
+    en: "Soft blueberry muffin, delivered freshly baked.",
   },
   "muffin-choco": {
-    fr: "Muffin fondant au chocolat noir, 130g généreux et moelleux, livré tout juste sorti du four.",
-    en: "Fudgy dark chocolate muffin, a generous 130g, delivered fresh from the oven.",
+    fr: "Muffin 100% chocolat aux pépites de chocolat noir, livré tout juste sorti du four.",
+    en: "100% chocolate muffin with dark chocolate chips, delivered fresh from the oven.",
   },
   americano: {
-    fr: "Café filtre torréfié, servi non sucré avec le sucre à part, livré chaud dans les minutes qui suivent.",
-    en: "Filter coffee, served unsweetened with sugar on the side, delivered hot within minutes.",
+    fr: "Café 100% Arabica, livré chaud pour bien commencer la journée.",
+    en: "100% Arabica coffee, delivered hot to start your day right.",
   },
   "cafe-latte": {
-    fr: "Latte macchiato onctueux, espresso et lait mousseux en couches, servi non sucré, sucre à part.",
-    en: "Smooth latte macchiato, layered espresso and frothed milk, served unsweetened with sugar on the side.",
+    fr: "Café latte : expresso, lait chaud et mousse de lait onctueuse, sucre servi à part.",
+    en: "Café latte: espresso, hot milk and creamy milk foam, sugar served on the side.",
   },
   capuccino: {
-    fr: "Cappuccino crémeux à la mousse de lait onctueuse, servi non sucré avec le sucre à part.",
-    en: "Creamy cappuccino with silky milk foam, served unsweetened with sugar on the side.",
+    fr: "Cappuccino onctueux à la mousse de lait, saupoudré de cacao.",
+    en: "Creamy cappuccino with milk foam, dusted with cocoa.",
   },
   "chocolat-chaud": {
-    fr: "Chocolat chaud intense au 100% cacao de Guayaquil, servi non sucré, sucre à part sur demande.",
-    en: "Rich hot chocolate made with 100% Guayaquil cocoa, served unsweetened, sugar on request.",
+    fr: "Chocolat chaud 100% cacao non sucré, sucre en option.",
+    en: "100% cocoa hot chocolate, unsweetened, sugar on request.",
   },
   "the-earl-grey": {
-    fr: "Thé noir Earl Grey au zeste de citron, infusé à la demande, servi non sucré avec le sucre à part.",
-    en: "Earl Grey black tea with lemon zest, brewed to order, served unsweetened with sugar on the side.",
+    fr: "Thé Earl Grey au citron, sucre servi à part.",
+    en: "Earl Grey tea with lemon, sugar served on the side.",
   },
   "iced-latte": {
-    fr: "Iced latte frais et crémeux, espresso corsé sur glace et lait onctueux, servi non sucré.",
-    en: "Cool creamy iced latte, bold espresso over ice with smooth milk, served unsweetened.",
+    fr: "Iced latte : espresso, mousse de lait et glaçons, frais et désaltérant.",
+    en: "Iced latte: espresso, milk foam and ice, cool and refreshing.",
   },
   "chai-latte": {
-    fr: "Chai latte épicé au lait d'avoine, thé noir et vanille, une boisson chaude réconfortante et parfumée.",
-    en: "Spiced chai latte with oat milk, black tea and vanilla, a comforting warm drink.",
+    fr: "Chai latte à la cannelle, cardamome et gingembre, allongé de lait chaud et d'une mousse de lait.",
+    en: "Chai latte with cinnamon, cardamom and ginger, topped up with hot milk and milk foam.",
   },
   "iced-matcha-latte": {
-    fr: "Matcha latte vibrant, thé vert japonais et lait d'avoine crémeux, une boisson fraîche et énergisante.",
-    en: "Vibrant matcha latte, Japanese green tea and creamy oat milk, fresh and energising.",
+    fr: "Matcha latte onctueux au lait chaud et mousse de lait, légèrement sucré.",
+    en: "Smooth matcha latte with hot milk and milk foam, lightly sweetened.",
   },
   "smoothie-tropical": {
-    fr: "Smoothie tropical mangue et gingembre, lait de coco et pomme, sans sucres ajoutés, livré frais et vitaminé.",
-    en: "Tropical mango ginger smoothie with coconut milk and apple, no added sugar, fresh and vibrant.",
+    fr: "Smoothie mangue, lait de coco, pomme, gingembre et banane, sans sucres ajoutés.",
+    en: "Mango, coconut milk, apple, ginger and banana smoothie, no added sugar.",
   },
   "smoothie-energie": {
-    fr: "Smoothie énergisant fraise et cerise, pomme et guarana, sans sucres ajoutés, pour un vrai coup de boost.",
-    en: "Energising strawberry cherry smoothie with apple and guarana, no added sugar, a real morning boost.",
+    fr: "Smoothie fraise, cerise, pomme, guarana et banane, sans sucres ajoutés.",
+    en: "Strawberry, cherry, apple, guarana and banana smoothie, no added sugar.",
   },
   "smoothie-detox": {
-    fr: "Smoothie detox kiwi et concombre, pomme et matcha, sans sucres ajoutés, frais de la tête aux pieds.",
-    en: "Green detox smoothie with kiwi, cucumber, apple and matcha, no added sugar, fresh from head to toe.",
+    fr: "Smoothie concombre, kiwi, matcha, pomme et banane, sans sucres ajoutés.",
+    en: "Cucumber, kiwi, matcha, apple and banana smoothie, no added sugar.",
   },
   "jus-orange-presse": {
     fr: "Jus d'orange 100% pressé minute, sans sucres ajoutés, livré frais pour une vitamine C immédiate.",
@@ -227,22 +207,6 @@ export const productSeoDescriptions: Record<string, { fr: string; en: string }> 
   "jus-abricot": {
     fr: "Nectar d'abricot velouté et gourmand, livré frais pour accompagner votre petit-déjeuner.",
     en: "Velvety, indulgent apricot nectar, delivered fresh to accompany your breakfast.",
-  },
-  "plateau-viennoiseries": {
-    fr: "Plateau de viennoiseries pur beurre, 5 croissants et 5 pains au chocolat, livré prêt à partager en équipe.",
-    en: "Pure butter pastry platter with 5 croissants and 5 chocolate croissants, delivered ready to share.",
-  },
-  "plateau-pancakes": {
-    fr: "Plateau de 10 pancakes moelleux avec 3 nappages au choix, livré chaud, idéal pour un brunch à plusieurs.",
-    en: "Platter of 10 fluffy pancakes with 3 toppings of your choice, delivered warm for a shared brunch.",
-  },
-  "brioche-partager": {
-    fr: "Brioche pur beurre moelleuse à partager en 8 à 10 parts, livrée fraîche pour le petit-déjeuner en famille.",
-    en: "Soft pure butter brioche, sliced for 8 to 10, delivered fresh for a family breakfast.",
-  },
-  "banana-bread": {
-    fr: "Banana bread moelleux à la banane fondante, livré frais du jour pour une pause gourmande.",
-    en: "Moist banana bread with soft ripe banana, delivered fresh for a sweet morning treat.",
   },
   "brunch-mariage": {
     fr: "Formule brunch de mariage : buffet de viennoiseries, salé et sucré, décoration et service sur place inclus.",
@@ -263,5 +227,45 @@ export const productSeoDescriptions: Record<string, { fr: string; en: string }> 
   "petit-dejeuner-seminaire": {
     fr: "Petit-déjeuner de séminaire : viennoiseries individuelles, café, thé et fruits de saison, service ponctuel.",
     en: "Seminar breakfast package: individual pastries, coffee, tea and seasonal fruit, punctual on-site service.",
+  },
+  "avocado-toast-feta": {
+    fr: "Avocado toast simple et efficace : deux tranches de pain toastées, cream cheese et avocat.",
+    en: "A simple, satisfying avocado toast: two slices of toast, cream cheese and avocado.",
+  },
+  "bagel-avocat-saumon": {
+    fr: "Bagel brioché aux graines, cream cheese, saumon fumé, avocat, câpres, pickles de concombre et aneth.",
+    en: "Seeded brioche bagel with cream cheese, smoked salmon, avocado, capers, pickled cucumber and dill.",
+  },
+  "croque-pastrami": {
+    fr: "Croque revisité : deux tranches de pain de campagne, emmental, pastrami et béchamel moutarde.",
+    en: "A reinvented croque: two slices of country bread, Emmental, pastrami and mustard béchamel.",
+  },
+  "burrito-breakfast": {
+    fr: "Breakfast burrito protéiné aux œufs brouillés, avocat et cheddar.",
+    en: "Protein-packed breakfast burrito with scrambled eggs, avocado and cheddar.",
+  },
+  "burrito-chicken-cesar": {
+    fr: "Burrito façon César : tortilla, poulet pané, parmesan, salade et sauce césar.",
+    en: "Caesar-style burrito: tortilla, breaded chicken, parmesan, lettuce and Caesar sauce.",
+  },
+  "brioche-burrata": {
+    fr: "Brioche épaisse et moelleuse, crème de pesto basilic, burrata, tomates cerises, parmesan et crème balsamique.",
+    en: "Thick, fluffy brioche with basil pesto cream, burrata, cherry tomatoes, parmesan and balsamic cream.",
+  },
+  "gaufre-speculoos": {
+    fr: "Gaufre de Liège dorée à la crème de mascarpone, caramel beurre salé et éclats de spéculoos.",
+    en: "Golden Liège waffle with mascarpone cream, salted butter caramel and speculoos crumbs.",
+  },
+  "brioche-peanut": {
+    fr: "Deux tranches de brioche épaisses toastées, beurre de cacahuètes, coulis de chocolat noir et noix de pécan.",
+    en: "Two thick slices of toasted brioche with peanut butter, dark chocolate sauce and pecan nuts.",
+  },
+  "sweet-bowl": {
+    fr: "Sweet bowl sans gluten de 350ml : yaourt grec, fruits rouges, bananes et coulis de chocolat noir.",
+    en: "Gluten-free 350ml sweet bowl: Greek yogurt, mixed berries, bananas and dark chocolate sauce.",
+  },
+  "matcha-latte-vanille": {
+    fr: "Matcha latte à la vanille, lait chaud et mousse de lait, légèrement sucré.",
+    en: "Vanilla matcha latte with hot milk and milk foam, lightly sweetened.",
   },
 };

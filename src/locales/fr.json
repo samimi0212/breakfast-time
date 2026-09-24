@@ -512,11 +512,13 @@
     "addedShort": "✓ Ajouté",
     "addShort": "Ajouter",
     "catViennoiseries": "Pains & Viennoiseries",
-    "catPains": "Pains",
+    "catPains": "Pains & Cakes",
     "catSale": "Le Salé",
     "catExtra": "Extra",
     "catSucre": "Le Sucré",
     "catBoissons": "Boissons",
+    "catBoissonsFroides": "Boissons Froides",
+    "catBoissonsChaudes": "Boissons Chaudes",
     "catPartager": "À Partager"
   },
   "productPage": {

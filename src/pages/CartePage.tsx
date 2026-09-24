@@ -9,381 +9,46 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import { useCart } from "@/context/CartContext";
 import { useLangPath } from "@/hooks/useLangPath";
 
-const menus = [
-  {
-    id: "menu-francais",
-    name: "Menu Français",
-    price: "10,50€",
-    img: "/menu-francais-texte.webp",
-  },
-  {
-    id: "menu-anglais",
-    name: "Menu Anglais",
-    price: "16,90€",
-    img: "/menu-anglais-texte.webp",
-  },
-  {
-    id: "menu-brunch",
-    name: "Menu Brunch",
-    price: "24,90€",
-    img: "/menu-brunch-texte.webp",
-  },
-  {
-    id: "menu-veggie",
-    name: "Menu Lunch",
-    price: "16,90€",
-    img: "/menu-veggie-titre.webp",
-  },
-  {
-    id: "menu-duo",
-    name: "Menu Duo",
-    price: "45€",
-    img: "/menu-duo-texte.webp",
-  },
-  {
-    id: "menu-famille",
-    name: "Menu Famille",
-    price: "75€",
-    img: "/menu-famille-texte.webp",
-  },
-  {
-    id: "birthday-box",
-    name: "Happy Box",
-    price: "35,00€",
-    img: "/birthday-box-texte.webp",
-  },
-];
+// Noms, prix et images viennent de products.ts (source unique) — ici on ne
+// fixe que l'ordre d'affichage et le rangement par catégorie.
+const toCard = (id: string) => {
+  const p = allProducts.find((pp) => pp.id === id);
+  if (!p) throw new Error(`CartePage: produit inconnu "${id}"`);
+  return { id: p.id, name: p.name, price: p.price, img: p.img };
+};
 
-const produits: Record<string, { id: string; name: string; price: string; img: string }[]> = {
-  Viennoiseries: [
-    {
-      id: "croissant",
-      name: "Croissant",
-      price: "1,60€",
-      img: "/croissant.png",
-    },
-    {
-      id: "pain-au-chocolat",
-      name: "Pain au chocolat",
-      price: "1,70€",
-      img: "/pain-choco.png",
-    },
-    {
-      id: "chausson-pommes",
-      name: "Chausson aux pommes",
-      price: "2,70€",
-      img: "/chausson1.png",
-    },
-    {
-      id: "mini-viennoiseries",
-      name: "Mini viennoiseries",
-      price: "3,20€",
-      img: "/mini.png",
-    },
-    {
-      id: "pain-aux-raisins",
-      name: "Pain aux raisins",
-      price: "2,20€",
-      img: "/pain-raisins.png",
-    },
-    {
-      id: "baguette",
-      name: "1/2 Baguette",
-      price: "0,90€",
-      img: "/baguette.png",
-    },
-  ],
+const menus = ["menu-francais", "menu-anglais", "menu-brunch", "menu-veggie", "menu-duo", "menu-famille", "birthday-box"].map(toCard);
+
+const sections: Record<string, string[]> = {
   "Le Salé": [
-    {
-      id: "avocado-toast",
-      name: "Tartine Avocat Saumon",
-      price: "11,90€",
-      img: "/tartine-avocat.png",
-    },
-    {
-      id: "avocado-toast-feta",
-      name: "Avocado Toast",
-      price: "9,70€",
-      img: "/avocado.png",
-    },
-    {
-      id: "bagel-avocat-saumon",
-      name: "Bagel Avocat Saumon",
-      price: "8,90€",
-      img: "/bagel-saumon.png",
-    },
-    {
-      id: "bagel-chevre-miel",
-      name: "Bagel Chèvre Noix",
-      price: "8,90€",
-      img: "/bagel-chevre.png",
-    },
-    {
-      id: "bagel-bacon-cheddar",
-      name: "Bagel Bacon Cheddar",
-      price: "8,90€",
-      img: "/bagel-bacon.png",
-    },
-    {
-      id: "bagel-saumon-avocat",
-      name: "Bagel Chicken",
-      price: "8,90€",
-      img: "/bagel-chicken.png",
-    },
-    {
-      id: "egg-comte-muffin",
-      name: "Egg Comté Muffin",
-      price: "6,50€",
-      img: "/muffin-comte.png",
-    },
-    {
-      id: "breakfast-burrito",
-      name: "Burrito Protéiné",
-      price: "8,70€",
-      img: "/burrito-proteine.png",
-    },
-    {
-      id: "oeufs-brouilles",
-      name: "Oeufs brouillés",
-      price: "4,50€",
-      img: "/oeufs-brouilles.png",
-    },
-    {
-      id: "oeufs-brouilles-truffe",
-      name: "Oeufs brouillés Truffe",
-      price: "7,50€",
-      img: "/oeufs-truffe.png",
-    },
-    {
-      id: "avocado-toast-gf",
-      name: "Avocado Toast - Gluten Free",
-      price: "12,50€",
-      img: "/avocado-gluten.png",
-    },
-    {
-      id: "croque-monsieur",
-      name: "Croque Monsieur",
-      price: "7,50€",
-      img: "/croque.png",
-    },
-    {
-      id: "croque-monsieur-gf",
-      name: "Croque Monsieur - Gluten Free",
-      price: "11,90€",
-      img: "/croque-gluten.png",
-    },
-  ],
-  "Extra": [
-    {
-      id: "frites-patates-douces",
-      name: "Frites de patates douces",
-      price: "5,50€",
-      img: "/frites-patates.png",
-    },
-    {
-      id: "halloumi-grille",
-      name: "Halloumi grillé",
-      price: "7,50€",
-      img: "/halloumi.png",
-    },
-    {
-      id: "rostis",
-      name: "Röstis",
-      price: "3,50€",
-      img: "/rostis.png",
-    },
+    "avocado-toast", "avocado-toast-feta", "bagel-avocat-saumon", "bagel-chevre-miel", "bagel-bacon-cheddar",
+    "bagel-saumon-avocat", "egg-comte-muffin", "croque-monsieur", "croque-pastrami", "breakfast-burrito",
+    "burrito-breakfast", "burrito-chicken-cesar", "brioche-burrata", "oeufs-brouilles", "oeufs-brouilles-truffe",
+    "avocado-toast-gf", "croque-monsieur-gf",
   ],
   "Le Sucré": [
-    {
-      id: "french-tartines",
-      name: "French Tartines",
-      price: "4,00€",
-      img: "/french.png",
-    },
-    {
-      id: "pancakes-a-composer",
-      name: "Pancakes à composer",
-      price: "6,50€",
-      img: "/pancakes.png",
-    },
-    {
-      id: "gaufre-composer",
-      name: "Gaufre à composer",
-      price: "6,50€",
-      img: "/gaufre-composer.png",
-    },
-    {
-      id: "brioche-perdue",
-      name: "Brioche Perdue Gourmande",
-      price: "7,50€",
-      img: "/brioche-gourmande.png",
-    },
-    {
-      id: "brioche-perdue-caramel",
-      name: "Brioche Perdue Caramel",
-      price: "7,50€",
-      img: "/brioche-caramel.png",
-    },
-    {
-      id: "pudding-chia",
-      name: "Granola Bowl Pistache",
-      price: "9,50€",
-      img: "/granola-pistache1.png",
-    },
-    {
-      id: "granola-parfait",
-      name: "Granola Bowl Parfait",
-      price: "8,50€",
-      img: "/granola1.png",
-    },
-    {
-      id: "porridge",
-      name: "Porridge Mangue Vanille",
-      price: "9,50€",
-      img: "/porridge.png",
-    },
-    {
-      id: "cookie-caramel",
-      name: "Cookie Caramel Beurre Salé",
-      price: "3,90€",
-      img: "/cookie-caramel.png",
-    },
-    {
-      id: "brownie-pecan",
-      name: "Double Brownie",
-      price: "4,10€",
-      img: "/brownie.png",
-    },
-    {
-      id: "muffin-myrtilles",
-      name: "Muffin myrtilles",
-      price: "4,20€",
-      img: "/muffin-myrtilles.png",
-    },
-    {
-      id: "muffin-choco",
-      name: "Muffin Chocolat",
-      price: "4,20€",
-      img: "/muffin-choco.png",
-    },
+    "pancakes-a-composer", "gaufre-composer", "gaufre-speculoos", "brioche-perdue", "brioche-perdue-caramel",
+    "brioche-peanut", "pudding-chia", "granola-parfait", "sweet-bowl", "porridge", "french-tartines",
+    "cookie-caramel", "brownie-pecan", "muffin-choco", "muffin-myrtilles",
   ],
-  Boissons: [
-    {
-      id: "americano",
-      name: "Café",
-      price: "2,10€",
-      img: "/cafe.webp",
-    },
-    {
-      id: "cafe-latte",
-      name: "Latte Macchiato",
-      price: "5,50€",
-      img: "/latte.webp",
-    },
-    {
-      id: "capuccino",
-      name: "Capuccino",
-      price: "5,50€",
-      img: "/capuccino.webp",
-    },
-    {
-      id: "chocolat-chaud",
-      name: "Chocolat chaud",
-      price: "5,50€",
-      img: "/chocolat.webp",
-    },
-    {
-      id: "the-earl-grey",
-      name: "Thé Earl Grey citron",
-      price: "2,30€",
-      img: "/the-citron.webp",
-    },
-    {
-      id: "chai-latte",
-      name: "Chai Latte",
-      price: "6,20€",
-      img: "/chai.webp",
-    },
-    {
-      id: "iced-matcha-latte",
-      name: "Matcha Latte",
-      price: "6,90€",
-      img: "/matcha-latte.webp",
-    },
-    {
-      id: "smoothie-tropical",
-      name: "Smoothie Tropical Ginger",
-      price: "6,50€",
-      img: "/smoothie-tropical.webp",
-    },
-    {
-      id: "smoothie-energie",
-      name: "Smoothie Énergie",
-      price: "6,50€",
-      img: "/smoothie-energie.webp",
-    },
-    {
-      id: "smoothie-detox",
-      name: "Smoothie Green Detox",
-      price: "6,50€",
-      img: "/smoothie-detox.webp",
-    },
-    {
-      id: "jus-orange-presse",
-      name: "Jus d'orange pressé",
-      price: "3,90€",
-      img: "/jus-orange.webp",
-    },
-    {
-      id: "jus-pamplemousse-presse",
-      name: "Jus de pamplemousse pressé",
-      price: "3,90€",
-      img: "/jus-pamplemousse.webp",
-    },
-    {
-      id: "jus-abricot",
-      name: "Jus d'abricot",
-      price: "3,90€",
-      img: "/jus-abricot.webp",
-    },
+  "Extra": ["rostis", "frites-patates-douces", "halloumi-grille"],
+  "Pains": ["baguette", "cake-marbre"],
+  "Boissons Froides": [
+    "iced-latte", "smoothie-tropical", "smoothie-energie", "smoothie-detox",
+    "jus-orange-presse", "jus-pamplemousse-presse", "jus-abricot",
   ],
-  "À Partager": [
-    {
-      id: "plateau-viennoiseries",
-      name: "Plateau de viennoiseries",
-      price: "16€",
-      img: "/plateau-mini.webp",
-    },
-    {
-      id: "plateau-pancakes",
-      name: "Plateau de pancakes",
-      price: "25€",
-      img: "/pancakes-partager.webp",
-    },
-    {
-      id: "cake-marbre",
-      name: "Cake marbré",
-      price: "10,50€",
-      img: "/cake-marbre.webp",
-    },
-    {
-      id: "brioche-partager",
-      name: "Brioche",
-      price: "9,50€",
-      img: "/brioche-partager.webp",
-    },
-    {
-      id: "banana-bread",
-      name: "Banana Bread",
-      price: "16,50€",
-      img: "/banana-bread.webp",
-    },
+  "Boissons Chaudes": [
+    "cafe-latte", "chai-latte", "the-earl-grey", "americano", "chocolat-chaud",
+    "capuccino", "iced-matcha-latte", "matcha-latte-vanille",
   ],
 };
 
-const HIDDEN_CATEGORIES = ["À Partager"];
-const categories = Object.keys(produits).filter((c) => !HIDDEN_CATEGORIES.includes(c));
-const allProduits = Object.values(produits).flat().filter((p) => !HIDDEN_CATEGORIES.some((c) => produits[c as keyof typeof produits]?.find((pp) => pp.id === p.id)));
+const produits: Record<string, { id: string; name: string; price: string; img: string }[]> = Object.fromEntries(
+  Object.entries(sections).map(([cat, ids]) => [cat, ids.map(toCard)])
+);
+
+const categories = Object.keys(produits);
+const allProduits = Object.values(produits).flat();
 
 const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; name: string; price: string; img: string; hasOptions?: boolean }) => {
   const navigate = useNavigate();
@@ -476,12 +141,12 @@ const CartePage = () => {
   const { t } = useTranslation();
   const { lp } = useLangPath();
   const categoryLabels: Record<string, string> = {
-    "Viennoiseries": t("cartePage.catViennoiseries"),
+    "Pains": t("cartePage.catPains"),
     "Le Salé": t("cartePage.catSale"),
     "Extra": t("cartePage.catExtra"),
     "Le Sucré": t("cartePage.catSucre"),
-    "Boissons": t("cartePage.catBoissons"),
-    "À Partager": t("cartePage.catPartager"),
+    "Boissons Froides": t("cartePage.catBoissonsFroides"),
+    "Boissons Chaudes": t("cartePage.catBoissonsChaudes"),
   };
   const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = useState<"menus" | "carte" | null>(() => {
@@ -492,7 +157,7 @@ const CartePage = () => {
   });
   const [catActive, setCatActive] = useState(() => {
     const cat = searchParams.get("cat");
-    return cat || "Viennoiseries";
+    return cat && cat in produits ? cat : categories[0];
   });
 
   const switchTab = (t: "menus" | "carte") => {

@@ -512,11 +512,13 @@
     "addedShort": "✓ Added",
     "addShort": "Add",
     "catViennoiseries": "Breads & Pastries",
-    "catPains": "Breads",
+    "catPains": "Breads & Cakes",
     "catSale": "Savoury",
     "catExtra": "Extras",
     "catSucre": "Sweet",
     "catBoissons": "Drinks",
+    "catBoissonsFroides": "Cold Drinks",
+    "catBoissonsChaudes": "Hot Drinks",
     "catPartager": "To Share"
   },
   "productPage": {
