@@ -113,13 +113,30 @@ const ProductPage = () => {
 
   const handleAdd = () => {
     if (!allSelected) return;
+    // La commande part en cuisine (ticket imprimé, email) : on enregistre toujours
+    // les choix en français, même si le client a commandé depuis /en, et on
+    // écarte les choix vides laissés par une désélection.
+    const toFr = (optionId: string, choice: string) => {
+      const opt = product.options?.find((o) => o.id === optionId);
+      const idx = opt?.choices_en?.indexOf(choice) ?? -1;
+      return opt && idx >= 0 ? opt.choices[idx] ?? choice : choice;
+    };
+    const options: Record<string, string | string[]> = {};
+    for (const [optionId, sel] of Object.entries(selections)) {
+      if (Array.isArray(sel)) {
+        if (sel.length > 0) options[optionId] = sel.map((c) => toFr(optionId, c));
+      } else if (sel) {
+        options[optionId] = toFr(optionId, sel);
+      }
+    }
     addItem({
       id: product.id,
       name: product.name,
-      price: product.price,
+      // Prix unitaire suppléments compris : c'est ce montant que le panier facture.
+      price: fmt(totalPrice),
       img: product.img,
       qty,
-      options: selections,
+      options,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
