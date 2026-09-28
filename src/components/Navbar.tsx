@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { User, LogOut, ShoppingBag } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/lib/supabase";
 import { useCart } from "@/context/CartContext";
 import { useLangPath } from "@/hooks/useLangPath";
+import { showCartIcon } from "@/lib/order";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import logo from "@/assets/logo.webp";
 
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -115,19 +117,21 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* Panier — desktop uniquement */}
-          <button
-            onClick={() => navigate(lp("/panier"))}
-            className="hidden md:flex relative items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors"
-          >
-            <ShoppingBag size={20} className="text-foreground/80" />
-            {count > 0 && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center"
-                style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-                {count > 9 ? "9+" : count}
-              </span>
-            )}
-          </button>
+          {/* Panier — desktop uniquement, parcours pro */}
+          {showCartIcon(pathname, count) && (
+            <button
+              onClick={() => navigate(lp("/panier"))}
+              className="hidden md:flex relative items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-colors"
+            >
+              <ShoppingBag size={20} className="text-foreground/80" />
+              {count > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[11px] font-bold flex items-center justify-center"
+                  style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+                  {count > 9 ? "9+" : count}
+                </span>
+              )}
+            </button>
+          )}
 
         </div>
       </div>

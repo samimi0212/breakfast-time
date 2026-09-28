@@ -1,11 +1,10 @@
 import { Clock, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useLangPath } from "@/hooks/useLangPath";
 import heroImg from "@/assets/brunch.webp";
+import { ORDER_URL } from "@/lib/order";
 
 const FinalCTA = () => {
   const { t } = useTranslation();
-  const { lp } = useLangPath();
 
   const stats = [
     { icon: Clock, value: t("finalCta.stat1Value"), label: t("finalCta.stat1Label") },
@@ -59,7 +58,7 @@ const FinalCTA = () => {
         </div>
         <div className="flex justify-center">
           <a
-            href={lp("/carte")}
+            href={ORDER_URL}
             className="flex items-center justify-center gap-2 px-10 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity"
             style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
           >

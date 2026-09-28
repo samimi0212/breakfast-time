@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/lib/supabase";
 import { useLangPath } from "@/hooks/useLangPath";
+import { showCartIcon } from "@/lib/order";
 
 const BottomNav = () => {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ const BottomNav = () => {
   const items = [
     { icon: Home, label: t("bottomNav.home"), href: lp("/") },
     { icon: UtensilsCrossed, label: t("bottomNav.menu"), href: lp("/carte") },
-    { icon: ShoppingBag, label: t("bottomNav.cart"), href: lp("/panier") },
+    ...(showCartIcon(path, count) ? [{ icon: ShoppingBag, label: t("bottomNav.cart"), href: lp("/panier") }] : []),
     { icon: User, label: t("bottomNav.account"), href: user ? lp("/mon-compte") : lp(`/connexion?redirect=${encodeURIComponent(typeof window !== "undefined" ? window.location.pathname : "/")}`) },
   ];
 

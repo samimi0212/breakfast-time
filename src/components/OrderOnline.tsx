@@ -1,10 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { useLangPath } from "@/hooks/useLangPath";
 import heroImg from "@/assets/brunch.webp";
+import { ORDER_URL } from "@/lib/order";
 
 const OrderOnline = () => {
   const { t } = useTranslation();
-  const { lp } = useLangPath();
 
   return (
     <section className="relative py-28 overflow-hidden">
@@ -39,7 +38,7 @@ const OrderOnline = () => {
         </p>
         <div className="flex justify-center">
           <a
-            href={lp("/carte")}
+            href={ORDER_URL}
             className="inline-flex items-center justify-center px-10 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
             style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
           >

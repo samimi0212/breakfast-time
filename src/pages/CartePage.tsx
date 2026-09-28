@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { allProducts } from "@/data/products";
-import { Search, BookOpen, ShoppingBasket, ArrowRight, ShoppingCart } from "lucide-react";
+import { Search, BookOpen, ShoppingBasket, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { useCart } from "@/context/CartContext";
 import { useLangPath } from "@/hooks/useLangPath";
 
 // Noms, prix et images viennent de products.ts (source unique) — ici on ne
@@ -50,25 +49,12 @@ const produits: Record<string, { id: string; name: string; price: string; img: s
 const categories = Object.keys(produits);
 const allProduits = Object.values(produits).flat();
 
-const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; name: string; price: string; img: string; hasOptions?: boolean }) => {
+const CardItem = ({ id, name, price, img }: { id: string; name: string; price: string; img: string; hasOptions?: boolean }) => {
   const navigate = useNavigate();
-  const { addItem } = useCart();
   const { t, i18n } = useTranslation();
   const { lp } = useLangPath();
-  const [added, setAdded] = useState(false);
   const productData = allProducts.find((p) => p.id === id);
   const displayName = i18n.language === "en" ? (productData?.name_en || name) : name;
-  // Un produit avec des options (nappage, taille, etc.) doit toujours passer par
-  // la page produit pour les renseigner — sinon la composition n'est jamais
-  // enregistrée dans la commande (et n'apparaît pas sur le ticket).
-  const requiresOptionsPage = hasOptions || (productData?.options?.length ?? 0) > 0;
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    addItem({ id, name, price, img, qty: 1 });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
 
   return (
     <div
@@ -100,19 +86,9 @@ const CardItem = ({ id, name, price, img, hasOptions = false }: { id: string; na
           <h3 className="font-display text-sm font-semibold leading-tight">{displayName}</h3>
           <div className="flex items-center justify-between gap-2">
             <span className="text-primary font-bold text-sm">{price}</span>
-            {requiresOptionsPage ? (
-              <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
-                Voir →
-              </span>
-            ) : (
-              <button
-                onClick={handleAddToCart}
-                className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-200 flex-shrink-0"
-                style={{ backgroundColor: added ? "#3a3a0a" : "#DFF057", color: added ? "#DFF057" : "#3a3a0a" }}
-              >
-                {added ? t("cartePage.addedShort") : <><ShoppingCart size={11} /> {t("cartePage.addShort")}</>}
-              </button>
-            )}
+            <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}>
+              Voir →
+            </span>
           </div>
         </div>
       </div>

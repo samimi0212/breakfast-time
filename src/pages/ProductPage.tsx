@@ -1,8 +1,8 @@
-import { useCart } from "@/context/CartContext";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, ShoppingBag, Check, Minus, Plus } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Check } from "lucide-react";
+import { ORDER_URL } from "@/lib/order";
 import Navbar from "@/components/Navbar";
 import { useLangPath } from "@/hooks/useLangPath";
 import { allProducts } from "@/data/products";
@@ -15,10 +15,7 @@ const ProductPage = () => {
   const { t, i18n } = useTranslation();
   const { lp } = useLangPath();
   const isEn = i18n.language === "en";
-  const [qty, setQty] = useState(1);
-  const [added, setAdded] = useState(false);
   const [hoveredImg, setHoveredImg] = useState<string | null>(null);
-  const { addItem } = useCart();
   const [selections, setSelections] = useState<Record<string, string | string[]>>({});
   // Mémorise le dernier choix retiré pour continuer la désélection même sous le max
   const lastRemovedRef = useRef<{ optionId: string; choice: string } | null>(null);
@@ -50,16 +47,6 @@ const ProductPage = () => {
           : `Commandez ${productName} livré à domicile à Antibes, Cannes, Nice et alentours. Produits frais préparés le matin, livraison en 30–45 min, 7j/7 de 8h à 15h.`)
     : "";
   usePageMeta(metaTitle, metaDesc, product ? `/produit/${product.id}` : undefined);
-
-  const allSelected = product?.options
-    ? product.options.filter((o) => o.required).every((o) => {
-        if (o.maxSelect) {
-          const arr = (selections[o.id] as string[]) || [];
-          return arr.length === o.maxSelect;
-        }
-        return selections[o.id] && (selections[o.id] as string[]).length > 0 || typeof selections[o.id] === "string";
-      })
-    : true;
 
   const handleSelect = (optionId: string, choice: string, multiSelect?: boolean, maxSelect?: number) => {
     if (maxSelect) {
@@ -111,37 +98,6 @@ const ProductPage = () => {
     );
   }
 
-  const handleAdd = () => {
-    if (!allSelected) return;
-    // La commande part en cuisine (ticket imprimé, email) : on enregistre toujours
-    // les choix en français, même si le client a commandé depuis /en, et on
-    // écarte les choix vides laissés par une désélection.
-    const toFr = (optionId: string, choice: string) => {
-      const opt = product.options?.find((o) => o.id === optionId);
-      const idx = opt?.choices_en?.indexOf(choice) ?? -1;
-      return opt && idx >= 0 ? opt.choices[idx] ?? choice : choice;
-    };
-    const options: Record<string, string | string[]> = {};
-    for (const [optionId, sel] of Object.entries(selections)) {
-      if (Array.isArray(sel)) {
-        if (sel.length > 0) options[optionId] = sel.map((c) => toFr(optionId, c));
-      } else if (sel) {
-        options[optionId] = toFr(optionId, sel);
-      }
-    }
-    addItem({
-      id: product.id,
-      name: product.name,
-      // Prix unitaire suppléments compris : c'est ce montant que le panier facture.
-      price: fmt(totalPrice),
-      img: product.img,
-      qty,
-      options,
-    });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
-
   const related = allProducts.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
 
   const EXCLUDED_HOVER = new Set(["beurre", "nappage", "confiture", "miel", "sel", "sucre", "sauce", "bacon", "bacon crispy"]);
@@ -183,7 +139,7 @@ const ProductPage = () => {
     : [];
   const supplementsTotal = selectedSupplements.reduce((acc, c) => acc + extractSupplement(c), 0);
   const totalPrice = parsePrice(product.price) + supplementsTotal;
-  const totalWithQty = totalPrice * qty;
+  const totalWithQty = totalPrice;
   const fmt = (n: number) => n.toFixed(2).replace(".", ",") + "€";
 
   return (
@@ -373,36 +329,13 @@ const ProductPage = () => {
               <span className="font-bold text-foreground">{fmt(totalWithQty)}</span>
             </div>
           )}
-          {/* Quantité + bouton */}
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-muted rounded-xl px-2 py-1.5 flex-shrink-0">
-              <button
-                onClick={() => setQty(Math.max(1, qty - 1))}
-                className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-              >
-                <Minus size={13} />
-              </button>
-              <span className="font-semibold w-6 text-center">{qty}</span>
-              <button
-                onClick={() => setQty(qty + 1)}
-                className="w-7 h-7 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-              >
-                <Plus size={13} />
-              </button>
-            </div>
-            <button
-              onClick={handleAdd}
-              disabled={!allSelected}
-              className="flex-1 py-3 rounded-2xl font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              style={added ? { backgroundColor: "#DFF057", color: "#3a3a0a" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
-            >
-              {added ? (
-                <><Check size={16} /> {t("productPage.addedShort")}</>
-              ) : (
-                <><ShoppingBag size={16} /> {t("productPage.addToCartShort", { price: fmt(totalWithQty) })}</>
-              )}
-            </button>
-          </div>
+          <a
+            href={ORDER_URL}
+            className="w-full py-3 rounded-2xl font-semibold text-sm transition-all flex items-center justify-center gap-2"
+            style={{ backgroundColor: "hsl(61,45%,42%)", color: "white" }}
+          >
+            <ShoppingBag size={16} /> {isEn ? "Order now" : "Commander"}
+          </a>
         </div>
       </div>
 
@@ -566,40 +499,13 @@ const ProductPage = () => {
                   <span className="font-bold text-foreground text-base">{fmt(totalWithQty)}</span>
                 </div>
               )}
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 bg-muted rounded-xl px-3 py-2.5 flex-shrink-0">
-                  <button
-                    onClick={() => setQty(Math.max(1, qty - 1))}
-                    className="w-8 h-8 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-                  >
-                    <Minus size={14} />
-                  </button>
-                  <span className="font-semibold w-8 text-center text-lg">{qty}</span>
-                  <button
-                    onClick={() => setQty(qty + 1)}
-                    className="w-8 h-8 rounded-lg bg-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
-                  >
-                    <Plus size={14} />
-                  </button>
-                </div>
-                <button
-                  onClick={handleAdd}
-                  disabled={!allSelected}
-                  className="flex-1 py-4 rounded-2xl font-semibold text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  style={added ? { backgroundColor: "#DFF057", color: "#3a3a0a" } : { backgroundColor: "hsl(61,45%,42%)", color: "white" }}
-                >
-                  {added ? (
-                    <><Check size={20} /> {t("productPage.addedFull")}</>
-                  ) : (
-                    <><ShoppingBag size={20} /> {t("productPage.addToCartFull", { price: fmt(totalWithQty) })}</>
-                  )}
-                </button>
-              </div>
-              {!allSelected && (
-                <p className="text-sm text-amber-600 font-medium">
-                  {t("productPage.requiredOptions")}
-                </p>
-              )}
+              <a
+                href={ORDER_URL}
+                className="w-full py-4 rounded-2xl font-semibold text-lg transition-all hover:opacity-90 flex items-center justify-center gap-2"
+                style={{ backgroundColor: "hsl(61,45%,42%)", color: "white" }}
+              >
+                <ShoppingBag size={20} /> {isEn ? "Order now" : "Commander"}
+              </a>
             </div>
 
             <div className="flex items-center gap-3 text-sm text-muted-foreground border border-border rounded-2xl px-4 py-3">

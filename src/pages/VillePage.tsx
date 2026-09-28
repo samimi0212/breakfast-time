@@ -27,6 +27,7 @@ import contextImg from "@/assets/image-accueil2.webp";
 import brunchEntrepriseImg from "@/assets/brunch-entreprise.webp";
 import pancakesPartagerImg from "@/assets/brunch.webp";
 import menuAnglaisImg from "@/assets/entreprise.webp";
+import { ORDER_URL } from "@/lib/order";
 
 interface VillePageProps {
   slug: string;
@@ -93,7 +94,7 @@ const VillePage = ({ slug }: VillePageProps) => {
   const occasionCards = [
     { icon: Building2, img: brunchEntrepriseImg, product: tr("Plateau petit-déjeuner", "Breakfast platter"), ctaLabel: tr("Demander un devis", "Request a quote"), to: "/contact" },
     { icon: Utensils, img: pancakesPartagerImg, product: tr("Pancakes à partager", "Pancakes to share"), ctaLabel: tr("Voir la carte", "See the menu"), to: "/carte" },
-    { icon: Coffee, img: menuAnglaisImg, product: tr("Menu Anglais", "English Menu"), ctaLabel: tr("Commander", "Order now"), to: "/carte" },
+    { icon: Coffee, img: menuAnglaisImg, product: tr("Menu Anglais", "English Menu"), ctaLabel: tr("Commander", "Order now"), to: ORDER_URL },
   ];
 
   return (
@@ -121,7 +122,7 @@ const VillePage = ({ slug }: VillePageProps) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
-              onClick={() => navigate(lp("/carte"))}
+              onClick={() => window.location.assign(ORDER_URL)}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-bold transition-all hover:scale-105"
               style={{ backgroundColor: "#DFF057", color: "#3a3a0a" }}
             >
@@ -256,7 +257,7 @@ const VillePage = ({ slug }: VillePageProps) => {
                     <h3 className="font-display text-xl font-semibold mb-3">{isEn ? uc.title_en : uc.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">{isEn ? uc.text_en : uc.text}</p>
                     <button
-                      onClick={() => navigate(lp(card.to))}
+                      onClick={() => (card.to.startsWith("http") ? window.location.assign(card.to) : navigate(lp(card.to)))}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
                     >
                       {card.ctaLabel}
