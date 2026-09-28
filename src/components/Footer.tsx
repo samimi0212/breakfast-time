@@ -69,7 +69,6 @@ const Footer = () => {
             <li><a href={lp("/carte")} className="hover:text-white transition-colors">{t("footer.menuLink")}</a></li>
             <li><a href={lp("/blog")} className="hover:text-white transition-colors">{t("footer.blogLink")}</a></li>
             <li><a href={lp("/entreprise")} className="hover:text-white transition-colors">{t("footer.entrepriseLink")}</a></li>
-            <li><a href={lp("/#how")} className="hover:text-white transition-colors">{t("footer.howItWorksLink")}</a></li>
             <li><a href={lp("/#about")} className="hover:text-white transition-colors">{t("footer.aboutLink")}</a></li>
             <li><a href={lp("/#delivery")} className="hover:text-white transition-colors">{t("footer.deliveryLink")}</a></li>
             <li><a href={lp("/connexion")} className="hover:text-white transition-colors">{t("footer.accountLink")}</a></li>
@@ -173,7 +172,6 @@ const Footer = () => {
               <li><a href={lp("/carte")} className="hover:text-white transition-colors">{t("footer.menuLink")}</a></li>
               <li><a href={lp("/blog")} className="hover:text-white transition-colors">{t("footer.blogLink")}</a></li>
             <li><a href={lp("/entreprise")} className="hover:text-white transition-colors">{t("footer.entrepriseLink")}</a></li>
-              <li><a href={lp("/#how")} className="hover:text-white transition-colors">{t("footer.howItWorksLink")}</a></li>
               <li><a href={lp("/#about")} className="hover:text-white transition-colors">{t("footer.aboutLink")}</a></li>
               <li><a href={lp("/#delivery")} className="hover:text-white transition-colors">{t("footer.deliveryLink")}</a></li>
               <li><a href={lp("/connexion")} className="hover:text-white transition-colors">{t("footer.accountLink")}</a></li>

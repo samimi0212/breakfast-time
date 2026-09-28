@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import HowItWorks from "@/components/HowItWorks";
 import MenuSection from "@/components/MenuSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import AboutSection from "@/components/AboutSection";
@@ -53,7 +52,6 @@ const Index = () => {
       <MenuSection />
       <OrderOnline />
       <EventsPromo />
-      <HowItWorks />
       <WhyChooseUs />
       <AboutSection />
       <FinalCTA />

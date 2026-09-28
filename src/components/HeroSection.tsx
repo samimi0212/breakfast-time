@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useLangPath } from "@/hooks/useLangPath";
 import { Clock, MapPin, Croissant, Bike, CalendarCheck } from "lucide-react";
 import heroImg from "@/assets/image-accueil2.webp";
+import { ORDER_URL } from "@/lib/order";
 
 const HeroSection = () => {
   const { t } = useTranslation();
@@ -74,11 +75,11 @@ const HeroSection = () => {
               {t("hero.cta")}
             </a>
             <a
-              href="#how"
+              href={ORDER_URL}
               className="border-2 px-8 py-4 rounded-full text-lg font-semibold transition-colors hover:bg-card/10"
               style={{ borderColor: "hsl(0 0% 100% / 0.3)", color: "hsl(0 0% 100%)" }}
             >
-              {t("hero.ctaHow")}
+              {t("orderOnline.cta")}
             </a>
           </div>
         </div>
